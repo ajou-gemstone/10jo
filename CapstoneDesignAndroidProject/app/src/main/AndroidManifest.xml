@@ -12,12 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.capstonedesignandroid.Login" />
-        <activity android:name="com.example.capstonedesignandroid.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+        <activity android:name="com.example.capstonedesignandroid.MainActivity" />
         <activity android:name=".CafeMapActivity"/>
         <activity android:name=".LectureroomReservationActivity" />
-        <activity android:name=".StudyBulletinBoardActivity" />
+        <activity android:name=".StudyBulletinBoardActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.example.capstonedesignandroid.StudyGroupAdapter" />
+        <activity android:name="com.example.capstonedesignandroid.TabFragment1" />
         <activity android:name="com.example.capstonedesignandroid.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
