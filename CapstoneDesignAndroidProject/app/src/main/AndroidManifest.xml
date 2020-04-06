@@ -2,25 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.capstonedesignandroid">
 
+    <uses-permission android:name="android.permission.INTERNET">
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION">
+    </uses-permission>
+
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="5343ab15cade8583f5b9291294696fa2"/>
         <activity
             android:name=".CafeMapActivity"
-            android:label="@string/title_activity_cafe_map"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_cafe_map"></activity>
         <activity
             android:name=".LectureroomReservationActivity"
-            android:label="@string/title_activity_lectureroom_reservation"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_lectureroom_reservation"/>
         <activity
             android:name=".StudyBulletinBoardActivity"
-            android:label="@string/title_activity_study_bulletin_board"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_study_bulletin_board"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
