@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.capstonedesignandroid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,19 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".CafeMapActivity"
-            android:label="@string/title_activity_cafe_map"/>
-        <activity
-            android:name=".LectureroomReservationActivity"
-            android:label="@string/title_activity_lectureroom_reservation" />
-        <activity
-            android:name=".StudyBulletinBoardActivity"
-            android:label="@string/title_activity_study_bulletin_board" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.capstonedesignandroid.Login" />
+        <activity android:name="com.example.capstonedesignandroid.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".CafeMapActivity"/>
+        <activity android:name=".LectureroomReservationActivity" />
+        <activity android:name=".StudyBulletinBoardActivity" />
+        <activity android:name="com.example.capstonedesignandroid.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
