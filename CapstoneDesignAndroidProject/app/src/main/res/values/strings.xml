@@ -3,4 +3,5 @@
     <string name="title_activity_cafe_map">cafemap</string>
     <string name="title_activity_lectureroom_reservation">lectureroomreservation</string>
     <string name="title_activity_study_bulletin_board">studybulletinboard</string>
+    <string name="title_activity_cafe_detailed_info">CafeDetailedInfoActivity</string>
 </resources>
