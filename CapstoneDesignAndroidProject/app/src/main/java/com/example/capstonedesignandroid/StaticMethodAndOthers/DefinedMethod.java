@@ -1,5 +1,6 @@
-package com.example.capstonedesignandroid.StaticMethod;
+package com.example.capstonedesignandroid.StaticMethodAndOthers;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -33,6 +34,15 @@ public class DefinedMethod {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public static ArrayList declareEightToTwentyoneTimeArrayList(ArrayList<String> arrayList){
+        arrayList.add("8:00");arrayList.add("8:30");arrayList.add("9:00");arrayList.add("9:30");arrayList.add("10:00");arrayList.add("10:30");
+        arrayList.add("11:00");arrayList.add("11:30");arrayList.add("12:00");arrayList.add("12:30");arrayList.add("13:00");arrayList.add("13:30");
+        arrayList.add("14:00");arrayList.add("14:30");arrayList.add("15:00");arrayList.add("15:30");arrayList.add("16:00");arrayList.add("16:30");
+        arrayList.add("17:00");arrayList.add("17:30");arrayList.add("18:00");arrayList.add("18:30");arrayList.add("19:00");arrayList.add("19:30");
+        arrayList.add("20:00");arrayList.add("20:30");arrayList.add("21:00");
+        return arrayList;
     }
 
 }

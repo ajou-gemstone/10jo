@@ -96,6 +96,7 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
         Intent activityIntent = new Intent(this, CafeDetailedInfoActivity.class);
         activityIntent.putExtra("cafeId", tmpCafeCoreInfo.getCafeId());
         startActivityForResult(activityIntent, activityIntentConstant);
+
     }
 
     @Override

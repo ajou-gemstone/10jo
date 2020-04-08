@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.capstonedesignandroid.LectureroomReservationActivity;
 import com.example.capstonedesignandroid.R;
-import com.example.capstonedesignandroid.StaticMethod.DefinedMethod;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 
 import java.util.Date;
 
