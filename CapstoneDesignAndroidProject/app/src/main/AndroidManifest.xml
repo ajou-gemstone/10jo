@@ -22,7 +22,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.example.capstonedesignandroid.StudyGroupAdapter" />
-        <activity android:name="com.example.capstonedesignandroid.TabFragment1" />
+        <activity android:name="com.example.capstonedesignandroid.MakeGroupActivity" />
         <activity android:name="com.example.capstonedesignandroid.SplashActivity"
             android:theme="@style/SplashTheme"
             tools:ignore="WrongManifestParent">
