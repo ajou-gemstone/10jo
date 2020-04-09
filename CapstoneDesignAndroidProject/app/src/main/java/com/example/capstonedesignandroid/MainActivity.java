@@ -1,6 +1,6 @@
 package com.example.capstonedesignandroid;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,16 +15,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import com.example.capstonedesignandroid.Fragment.LectureroomReservationCanlendar;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Date;
+import android.support.v7.app.AppCompatActivity;
 
 
 public class LectureroomReservationActivity extends AppCompatActivity {
@@ -103,7 +100,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         LinearLayout.LayoutParams checkboxLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         checkboxLayoutParams.leftMargin = 40;
         checkBox.setLayoutParams(checkboxLayoutParams);
-        checkBox.setText("텍스트");
+        checkBox.setText("성호관");
         checkBox.setId(0);
         LectureroomFilterLayout.addView(checkBox);
 
