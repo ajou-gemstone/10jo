@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.capstonedesignandroid">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="ASMR"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.capstonedesignandroid.Login" />
         <activity android:name="com.example.capstonedesignandroid.MainActivity" />
+
         <activity android:name=".CafeMapActivity"/>
         <activity android:name=".LectureroomReservationActivity" />
         <activity android:name=".StudyBulletinBoardActivity"
@@ -21,12 +24,21 @@
         <activity android:name="com.example.capstonedesignandroid.StudyGroupAdapter" />
         <activity android:name="com.example.capstonedesignandroid.TabFragment1" />
         <activity android:name="com.example.capstonedesignandroid.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            tools:ignore="WrongManifestParent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CafeDetailedInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="5343ab15cade8583f5b9291294696fa2" />
+
     </application>
 
 </manifest>
