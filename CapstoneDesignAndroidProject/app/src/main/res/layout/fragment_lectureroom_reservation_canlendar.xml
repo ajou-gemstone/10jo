@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_blue_bright">
+
+    <RelativeLayout
+        android:id="@+id/calendarReservationLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/calendarDateCancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/calendarReservationView"
+            android:src="@drawable/cafeplaceblack_18" />
+
+
+        <ImageButton
+            android:id="@+id/calendarDateReserveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/calendarReservationView"
+            android:src="@drawable/cafeplacered_18" />
+
+        <CalendarView
+            android:id="@+id/calendarReservationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calendarDateCancelButton"
+            android:gravity="center" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -2,10 +2,19 @@ package com.example.capstonedesignandroid;
 
 import android.support.v7.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LectureroomReservationActivityButton.setOnClickListener(this);
         CafeMapActivityButton.setOnClickListener(this);
 
+//        Log.d("asdf", ""+ getSigneture(this));
     }
 
     @Override
@@ -47,4 +57,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public static String getSigneture(Context context){
+//        PackageManager pm = context.getPackageManager();
+//        try{
+//            PackageInfo packageInfo = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+//
+//            for(int i = 0; i < packageInfo.signatures.length; i++){
+//                Signature signature = packageInfo.signatures[i];
+//                try {
+//                    MessageDigest md = MessageDigest.getInstance("SHA");
+//                    md.update(signature.toByteArray());
+//                    return Base64.encodeToString(md.digest(), Base64.NO_WRAP);
+//                } catch (NoSuchAlgorithmException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//
+//        }catch(PackageManager.NameNotFoundException e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 }

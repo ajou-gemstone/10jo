@@ -1,8 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/LectureroomReservationLayout"
     tools:context=".LectureroomReservationActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/calendarReserveButton"
+        android:text="날짜 예약하기"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+    <TextView
+        android:id="@+id/reserveTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/calendarReserveButton"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/reserveTypeTextView"
+        android:layout_toRightOf="@+id/reserveTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="예약 타입: 선착순">
+
+    </TextView>
+
+    <HorizontalScrollView
+        android:id="@+id/reserveHorizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendarReserveButton">
+        <LinearLayout
+            android:id="@+id/LectureroomFilterLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/LectureroomAllCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="모두">
+            </CheckBox>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:id="@+id/reservation_calendar_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp">
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/reserveTimeSpinnerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reserveHorizontalScrollView"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/reserveTimeAllCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모든 시간" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="희망시간"/>
+
+        <Spinner
+            android:id="@+id/reserveStartTimeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/reserveEndTimeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reserveTimeSpinnerLayout"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/reserveRandomButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cafeplacered_18">
+
+        </ImageButton>
+        <ImageButton
+            android:id="@+id/reserveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cafeplaceblack_18"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+        </ImageButton>
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>
