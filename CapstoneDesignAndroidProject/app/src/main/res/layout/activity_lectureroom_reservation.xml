@@ -94,12 +94,13 @@
         android:layout_below="@+id/reserveTimeSpinnerLayout"
         android:orientation="horizontal">
         <ImageButton
-            android:id="@+id/reserveButton"
+            android:id="@+id/reserveRandomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/cafeplacered_18">
 
         </ImageButton>
+
         <ImageButton
             android:id="@+id/reserveButton"
             android:layout_width="wrap_content"
@@ -111,9 +112,11 @@
         </ImageButton>
     </RelativeLayout>
 
-
-
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </RelativeLayout>
