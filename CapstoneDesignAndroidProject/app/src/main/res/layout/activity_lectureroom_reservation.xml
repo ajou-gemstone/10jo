@@ -13,11 +13,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"/>
     <TextView
-        android:id="@+id/reserveTextView"
+        android:id="@+id/reserveTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/calendarReserveButton"
         android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/reserveTypeTextView"
+        android:layout_toRightOf="@+id/reserveTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="예약 타입: 선착순">
+
+    </TextView>
 
     <HorizontalScrollView
         android:id="@+id/reserveHorizontalScrollView"
@@ -49,6 +58,7 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/reserveTimeSpinnerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/reserveHorizontalScrollView"
@@ -77,6 +87,31 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reserveTimeSpinnerLayout"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/reserveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cafeplacered_18">
+
+        </ImageButton>
+        <ImageButton
+            android:id="@+id/reserveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cafeplaceblack_18"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+        </ImageButton>
+    </RelativeLayout>
+
+
 
 
 

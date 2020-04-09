@@ -1,5 +1,6 @@
 package com.example.capstonedesignandroid.Fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +26,7 @@ public class LectureroomReservationCanlendar extends Fragment {
     private ImageButton calendarDateReserveButton;
     private CalendarView calendarReservationView;
     private Date reserveDate;
+    private Date tmpreserveDate;
 
     LectureroomReservationActivity lectureroomReservationActivity;
     @Override
@@ -62,29 +65,57 @@ public class LectureroomReservationCanlendar extends Fragment {
         calendarDateReserveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!isAvailableTimeReservation()){
+                    return;
+                }
+                decideReservationType();
                 lectureroomReservationActivity.getReservationDate(reserveDate);
                 lectureroomReservationActivity.removeLectureroomReservationCanlendarFragment();
             }
         });
 
         //캘린더 날짜 구성 및 기능 정의
-        //이미 캘린더에서 날짜를 골랐을 때
-        if(!lectureroomReservationActivity.dataSelected){//시스템 현재 시간 가져오기
-            long now = System.currentTimeMillis();
-            calendarReservationView.setDate(now);
-        }
-        else{//이미 결정한 시간 가져오기
-            calendarReservationView.setDate(lectureroomReservationActivity.reserveDate.getTime());
-        }
+        //이미 activity에서 날짜 시간 가져오기
+        calendarReservationView.setDate(lectureroomReservationActivity.reserveDate.getTime());
+        reserveDate = new Date();
+        reserveDate = lectureroomReservationActivity.reserveDate;
+        tmpreserveDate = reserveDate;
+
         calendarReservationView.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth)
             {
-                reserveDate = DefinedMethod.getDate(year, month, dayOfMonth);
+                tmpreserveDate = new Date();
+                tmpreserveDate = DefinedMethod.getDate(year, month, dayOfMonth);
             }
         });
 
         return rootView;
+    }
+
+    //과거나 15일 이후의 예약을 막는다.
+    public boolean isAvailableTimeReservation(){
+        if(tmpreserveDate.getTime() < lectureroomReservationActivity.currentDate.getTime()){
+            Toast.makeText(lectureroomReservationActivity.getApplicationContext(),"과거의 날짜는 예약할 수 없습니다.", Toast.LENGTH_LONG).show();
+            return false;
+        }else if((tmpreserveDate.getTime() - lectureroomReservationActivity.currentDate.getTime())/(24*60*60*1000) > 14){
+            Toast.makeText(lectureroomReservationActivity.getApplicationContext(),"15일 이후의 날짜는 예약할 수 없습니다.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        reserveDate = tmpreserveDate;
+
+        return true;
+    }
+
+    //선착순인지 선지망 후추첨인지 결정한다.
+    public void decideReservationType(){
+        long diffDate = reserveDate.getTime() - lectureroomReservationActivity.currentDate.getTime();
+        diffDate = diffDate / (24*60*60*1000);
+        if(diffDate < 3){//선착순
+            lectureroomReservationActivity.getReservationType(true);
+        }else{
+            lectureroomReservationActivity.getReservationType(false);
+        }
     }
 
 }
