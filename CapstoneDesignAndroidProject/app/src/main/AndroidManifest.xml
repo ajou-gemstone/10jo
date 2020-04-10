@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.capstonedesignandroid">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -13,32 +13,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.capstonedesignandroid.Login" />
-        <activity android:name="com.example.capstonedesignandroid.MainActivity" />
-
-        <activity android:name=".CafeMapActivity"/>
-        <activity android:name=".LectureroomReservationActivity" />
-        <activity android:name=".StudyBulletinBoardActivity"
+        <activity
+            android:name=".testActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Login" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".CafeMapActivity" />
+        <activity
+            android:name=".LectureroomReservationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StudyBulletinBoardActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.example.capstonedesignandroid.StudyGroupAdapter" />
-        <activity android:name="com.example.capstonedesignandroid.TabFragment1" />
-        <activity android:name="com.example.capstonedesignandroid.SplashActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".StudyGroupAdapter" />
+        <activity android:name=".TabFragment1" />
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
             tools:ignore="WrongManifestParent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".CafeDetailedInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="5343ab15cade8583f5b9291294696fa2" />
-
+            android:value="fa48347431d94978a0df221d44686add" />
     </application>
 
 </manifest>

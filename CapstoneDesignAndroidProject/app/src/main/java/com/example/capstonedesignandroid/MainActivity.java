@@ -1,26 +1,17 @@
 package com.example.capstonedesignandroid;
 
-import android.support.v7.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button StudyBulletinBoardActivityButton;
     private Button LectureroomReservationActivityButton;
     private Button CafeMapActivityButton;
+    private Button testActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +21,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         StudyBulletinBoardActivityButton = findViewById(R.id.StudyBulletinBoardActivityButton);
         LectureroomReservationActivityButton = findViewById(R.id.LectureroomReservationActivityButton);
         CafeMapActivityButton = findViewById(R.id.CafeMapActivityButton);
+        testActivity = findViewById(R.id.testButton);
 
         StudyBulletinBoardActivityButton.setOnClickListener(this);
         LectureroomReservationActivityButton.setOnClickListener(this);
         CafeMapActivityButton.setOnClickListener(this);
+        testActivity.setOnClickListener(this);
 
 //        Log.d("asdf", ""+ getSigneture(this));
     }
@@ -53,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.CafeMapActivityButton:
                 activityintent = new Intent(this, CafeMapActivity.class);
+                startActivity(activityintent);
+                break;
+            case R.id.testButton:
+                activityintent = new Intent(this, testActivity.class);
                 startActivity(activityintent);
                 break;
         }
