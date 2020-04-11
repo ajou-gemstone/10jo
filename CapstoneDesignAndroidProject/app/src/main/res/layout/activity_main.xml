@@ -47,5 +47,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/LectureroomCheckActivityButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="예약 강의실 확인"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/testButton"
+        app:layout_constraintTop_toBottomOf="@+id/CafeMapActivityButton" />
+
 
 </android.support.constraint.ConstraintLayout>
