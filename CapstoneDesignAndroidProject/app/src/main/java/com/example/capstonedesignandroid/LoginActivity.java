@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private static final String BASE = "http://15.165.101.224:3000";
 
     EditText position;
