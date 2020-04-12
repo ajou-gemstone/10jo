@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#292a2e"
+    tools:context="com.example.capstonedesignandroid.testActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_centerInParent="true"
+        android:text="Mew Mew"/>
+
+    <RelativeLayout
+        android:id="@+id/layoutAbove"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="vertical"
+        android:background="#FFEB3B">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutCenter"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@+id/layoutAbove"
+        android:background="#FFC107">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutBelow"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@+id/layoutCenter"
+        android:background="#FF9800">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutTrash"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutBelow"
+        android:background="#AC0202">
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추가">
+
+    </Button>
+</RelativeLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "431383498888",
+    "firebase_url": "https://asmr-799cf.firebaseio.com",
+    "project_id": "asmr-799cf",
+    "storage_bucket": "asmr-799cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431383498888:android:e809ba6fb87ada23f90f3d",
+        "android_client_info": {
+          "package_name": "com.example.capstonedesignandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431383498888-gvaf30nk91vutco577hobuirqd9d69d1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDIwM_WIqKxuhNzQzp2lDKKoke28Oy7O8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431383498888-gvaf30nk91vutco577hobuirqd9d69d1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

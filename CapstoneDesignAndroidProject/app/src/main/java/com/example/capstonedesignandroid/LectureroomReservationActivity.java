@@ -1,10 +1,13 @@
 package com.example.capstonedesignandroid;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.fragment.app.Fragment;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,18 +15,20 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.capstonedesignandroid.Adapter.SimpleTextAdapter;
+import com.example.capstonedesignandroid.Adapter.FCFSAdapter;
+import com.example.capstonedesignandroid.Adapter.PPDAdapter;
 import com.example.capstonedesignandroid.Fragment.LectureroomReservationCanlendar;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 
 import java.util.ArrayList;
 import java.util.Date;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class LectureroomReservationActivity extends AppCompatActivity {
@@ -42,6 +47,14 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private long nowTime;
     private boolean isFCFS = true;
     private TextView reserveTypeTextView;
+    private ImageButton reserveRandomButton;
+    private ImageButton reserveButton;
+    private RecyclerView recyclerView;
+    private ArrayList<String> list;
+    private RecyclerView recyclerViewFCFS;
+    private RecyclerView recyclerViewPPD;
+    private Boolean PPDFirstOrderSelected = false;
+    private LinearLayout recyclerPPDLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +63,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
         //프래그먼트는 뷰와 다르게 context를 매개변수로 넣어줄 필요가 없다.
         lectureroomReservationCanlendarFragment = new LectureroomReservationCanlendar();
-
         calendarReserveButton = findViewById(R.id.calendarReserveButton);
         reserveTimeTextView = findViewById(R.id.reserveTimeTextView);
         FrameLayout reservation_calendar_container = findViewById(R.id.reservation_calendar_container);
@@ -107,7 +119,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         checkBox.setId(0);
         LectureroomFilterLayout.addView(checkBox);
 
-
         //spinner, ArrayAdapter를 이용하여 구현한다.
         eightToTwentyoneTimeArrayList = DefinedMethod.declareEightToTwentyoneTimeArrayList(eightToTwentyoneTimeArrayList);
 
@@ -137,20 +148,114 @@ public class LectureroomReservationActivity extends AppCompatActivity {
             }
         });
         //----------------------------------------------
+        reserveRandomButton = findViewById(R.id.reserveRandomButton);
+        reserveButton = findViewById(R.id.reserveButton);
+
+        reserveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //선착순 UI
+                if(isFCFS){
+                    int year = DefinedMethod.getYear(reserveDate);
+                    int month = DefinedMethod.getMonth(reserveDate) + 1;
+                    int day = DefinedMethod.getDay(reserveDate);
+                    //날짜, 강의실 등의 데이터를 서버에 전달하여 필터링을 거쳐 목록을 받는다.
+
+                    inflateFCFSUI();
+                }else{//선지망 후추첨 UI
+                    inflateFCFSPPDUI();
+                }
+            }
+        });
+        recyclerViewFCFS = findViewById(R.id.lectureRoomFCFSrecyclerView);
+        recyclerPPDLayout = findViewById(R.id.recyclerPPDLayout);
+        recyclerViewPPD = findViewById(R.id.recyclerPPDrecyclerView);
+    }
+
+    private void inflateFCFSUI(){
+        recyclerViewFCFS.setVisibility(View.VISIBLE);
+        recyclerPPDLayout.setVisibility(View.INVISIBLE);
+        //---------------------------------------
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
-        ArrayList<String> list = new ArrayList<>();
+        // 강의실 목록 UI만 정의 및 초기화를 해준다.
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        recyclerViewFCFS.setLayoutManager(new GridLayoutManager(this, 3)) ;
+
+        list = new ArrayList<>();
+        for(int i=0; i<100; i++) {
+            list.add(String.format("TEXTT %d", i)) ;
+        }
+
+        // 리사이클러뷰에 FCFSAdapter 객체 지정.
+        FCFSAdapter adapter = new FCFSAdapter(list) ;
+        recyclerViewFCFS.setAdapter(adapter);
+
+        //adapter의 click event를 listen할 수 있도록 액티비티에서 listener 객체를 생성, 등록하고
+        //인터페이스를 통해 adapter에서 위임하여 처리하도록 하며
+        //액티비티에서 adapter의 파라미터를 사용할 수 있도록 한다.
+        //adapter상의 리스너를 직접 정의해야 하기 때문에 setOnItemClickListener, OnItemClickListener 둘 다 정의를 해야 한다.
+        adapter.setOnItemClickListener(new FCFSAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);
+                builder.setTitle("강의실 정보").setMessage("" + list.get(position));
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+    }
+
+    private void inflateFCFSPPDUI(){
+        recyclerPPDLayout.setVisibility(View.VISIBLE);
+        recyclerViewFCFS.setVisibility(View.INVISIBLE);
+
+        recyclerViewPPD.setLayoutManager(new LinearLayoutManager(this)) ;
+
+        list = new ArrayList<>();
         for(int i=0; i<100; i++) {
             list.add(String.format("TEXT %d", i)) ;
         }
 
-        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        RecyclerView recyclerView = findViewById(R.id.recyclerView) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
+        PPDAdapter adapter = new PPDAdapter(list) ;
+        recyclerViewPPD.setAdapter(adapter);
 
-        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        SimpleTextAdapter adapter = new SimpleTextAdapter(list) ;
-        recyclerView.setAdapter(adapter) ;
+        //adapter의 click event를 listen할 수 있도록 액티비티에서 listener 객체를 생성, 등록하고
+        //인터페이스를 통해 adapter에서 위임하여 처리하도록 하며
+        //액티비티에서 adapter의 파라미터를 사용할 수 있도록 한다.
+        adapter.setOnItemClickListener(new PPDAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                if(v.getId() == R.id.lectureRoomInfo){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);
+                    builder.setTitle("이 시간대를 1순위로 예약하시겠습니까?").setMessage("" + list.get(position));
+                    builder.setPositiveButton("예", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            PPDFirstOrderSelected = true;
+                        }
+                    });
+                    builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+                else if(v.getId() == R.id.lectureRoomNameButton){
+                    Toast.makeText(LectureroomReservationActivity.this, list.get(position), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     // lectureroomReservationCanlendarFragment와 주고 받는 부분
@@ -172,5 +277,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         }
     }
     //------------------------------------------------------
+
+
 
 }
