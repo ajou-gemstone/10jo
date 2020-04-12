@@ -8,13 +8,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,17 +30,23 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 //사진은 내부 저장소
 public class LectureroomCheckPictureActivity extends AppCompatActivity {
 
     private static final int CAPTURE_IMAGE = 99;
+    private static final int REQUEST_IMAGE_CAPTURE = 11111;
     private Button takePictureButton;
     private ImageView pictureImageView;
     private Bitmap bitmap;
     private Button transportPictureButton;
     private ImageView tmpImageView;
     private Bitmap img = null;
+
+    private String imageFilePath;
+    private Uri photoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +62,10 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
             }
         }
 
+        Log.d("getFilesDir", ""+getFilesDir());
+        Log.d("getPackageName", ""+getPackageName());
+        Log.d("getExternalFilesDir", ""+getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+
         //사진을 촬영한 시간도 저장해준다.
 
         takePictureButton = findViewById(R.id.takePictureButton);
@@ -61,66 +76,67 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, CAPTURE_IMAGE);
+                sendTakePhotoIntent();
             }
         });
 
         transportPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //                //내부저장소 캐시 경로를 받아옵니다.
-//                File storage = getCacheDir();
-                File storage = getFilesDir();
-                Log.d("getFilesDir", ""+getFilesDir());
-//
-                String name = "tmp";
-                //저장할 파일 이름
-                String fileName = name + ".png";
-//
-//                //storage 에 파일 인스턴스를 생성합니다.
-                File tempFile = new File(storage, fileName);
 
-                try {
-                    // 자동으로 빈 파일을 생성합니다.
-                    tempFile.createNewFile();
-                    // 파일을 쓸 수 있는 스트림을 준비합니다. 스트림과 파일을 연결한다.
-                    FileOutputStream out = new FileOutputStream(tempFile);
-                    // compress 함수를 사용해 스트림에 비트맵을 저장합니다.
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-                    // 스트림 사용후 닫아줍니다.
-                    out.close();
-                } catch (FileNotFoundException e) {
-                    Log.e("MyTag","FileNotFoundException : " + e.getMessage());
-                } catch (IOException e) {
-                    Log.e("MyTag","IOException : " + e.getMessage());
-                }
-                //내부저장소 캐시 경로를 받아옵니다.
-//                File storage = getCacheDir();
-
-                //storage 에 파일 인스턴스를 생성합니다.
-                File tempFile2 = new File(storage, fileName);
-                try {
-                    FileInputStream in = new FileInputStream(tempFile2);
-                    img = BitmapFactory.decodeStream(in);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                tmpImageView.setImageBitmap(img);
+                tmpImageView.setImageURI(photoUri);
             }
         });
 
+    }
+
+    private void sendTakePhotoIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+
+            if (photoFile != null) {
+                photoUri = FileProvider.getUriForFile(this, getPackageName(), photoFile);
+
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "TEST_" + timeStamp + "_";
+
+        //외부 저장 경로를 사용하지만 sdcard가 없어도 emulated가 되어서 가상의(심볼릭) 경로이고
+        //나중에 provider를 통하여 사전에 지정한(files_paths.xml에 있음) 실제 기기에서 저장되는 경로에 파일을 지정해주고
+        //camera intent로 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)을 추가하여 실제로 저장할 수 있도록 한다.
+
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //내부 저장 경로를 사용할 경우 화질의 문제가 생기기 때문에 외부 저장 경로를 활용한다.
+        //또한 provider를 활용하지 못한다. (내부 저장 경로는 앱에 종속되기 때문에)
+//        File storageDir = getFilesDir();
+        File image = File.createTempFile(
+                imageFileName,      /* prefix */
+                ".png",         /* suffix */
+                storageDir          /* directory */
+        );
+        imageFilePath = image.getAbsolutePath();
+        Log.d("imageFilePath", ""+imageFilePath);
+        return image;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CAPTURE_IMAGE && resultCode == Activity.RESULT_OK && data.hasExtra("data")) {
-            bitmap = (Bitmap) data.getExtras().get("data");
-            if (bitmap != null) {
-                pictureImageView.setImageBitmap(bitmap);
-            }
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            pictureImageView.setImageURI(photoUri);
         }
     }
 
