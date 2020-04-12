@@ -3,17 +3,20 @@ package com.example.capstonedesignandroid;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.core.app.Fragment;
-import androidx.core.widget.SwipeRefreshLayout;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.capstonedesignandroid.Adapter.StudyGroupAdapter;
 
 import java.util.ArrayList;
 
@@ -22,7 +25,7 @@ public class TabFragment2 extends Fragment {
 
     Intent intent,intent2;
     ArrayAdapter adapter;
-    Button b1, b2, b3, b4, whole, search;
+    Button b1, b2, b3, b4, b5, whole, search;
     String userId,userPassword, maintext, name, trust,emotion, selecttitle, like;
     String chattingroom_id = "0";
     TextView text, text_sorted;
@@ -33,11 +36,11 @@ public class TabFragment2 extends Fragment {
     String[] userInfo, titleArray, categoryArray, profileArray, likeArray,tempArray;
     int[] indexArray;
     Boolean ischecked2;
-    StudyGroupAdapter m_Adapter = new StudyGroupAdapter();
+    StudyGroupAdapter groupAdapter = new StudyGroupAdapter();
     EditText editSearch;
     boolean likesorting;
     String category = "";
-    int s =0;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class TabFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ListView listview;
         View view = inflater.inflate(R.layout.tab_fragment_2, container, false);
-        b1 = view.findViewById(R.id.b1); b2 = view.findViewById(R.id.b2); b3 = view.findViewById(R.id.b3); b4 = view.findViewById(R.id.b4); whole = view.findViewById(R.id.whole);
+        whole = view.findViewById(R.id.whole); b1 = view.findViewById(R.id.b1); b2 = view.findViewById(R.id.b2); b3 = view.findViewById(R.id.b3); b4 = view.findViewById(R.id.b4); b5 = view.findViewById(R.id.b5);
         //mSwipeRefreshLayout = view.findViewById(R.id.refresh);
         //mSwipeRefreshLayout.setOnRefreshListener(this);
         //mSwipeRefreshLayout.setColorSchemeResources(R.color.blue);
@@ -56,8 +59,8 @@ public class TabFragment2 extends Fragment {
         editSearch = view.findViewById(R.id.editSearch);
         search = view.findViewById(R.id.search);
 
-        Intent intent1 = getActivity().getIntent();
-        userInfo = intent1.getStringArrayExtra("strings");
+//        Intent intent1 = getActivity().getIntent();
+//        userInfo = intent1.getStringArrayExtra("strings");
 //        userId = userInfo[0];
 //        userPassword = userInfo[1];
 //        name = userInfo[3];
@@ -67,36 +70,78 @@ public class TabFragment2 extends Fragment {
         text = (TextView) view.findViewById(R.id.text);
         list = new ArrayList<>();
         adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
+
+        //db 가져오기
         listview = (ListView)view.findViewById(R.id.listview1);
-        listview.setAdapter(m_Adapter);
+        listview.setAdapter(groupAdapter);
 
 //        titleArray=userInfo[2].split(",");
 //        likeArray=userInfo[6].split(",");
 //        categoryArray=userInfo[7].split(",");
 //        profileArray=userInfo[8].split(",");
 
-        //m_Adapter.clear();
+        //처음에는 전체 다보여주기
+        groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
+        groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
 
-        //처음에는 최신순으로 고민 방 리스트 보여줌
-
-
-
-
-        editSearch.setVisibility(View.GONE);
-
-        //설정 누르면 보이기, 안보이기 반복
-        search.setOnClickListener(new View.OnClickListener() {
+        whole.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(s%2 == 0) {
-                    editSearch.setVisibility(View.VISIBLE);
-                }
-                else {
-                    editSearch.setVisibility(View.GONE);
-                }
-                s++;
+            public void onClick(View v) {
+                category = "전체";
+                groupAdapter.clear();
+//                for (int i = titleArray.length - 1; i >= 0; i--)
+//                    groupAdapter.add(Integer.parseInt(profileArray[i]), titleArray[i], categoryArray[i], likeArray[i]);
+                groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
+                groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
+                groupAdapter.notifyDataSetChanged();
             }
         });
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "캡디";
+                    groupAdapter.clear();
+//                    for (int i = titleArray.length - 1; i >= 0; i--)
+//                        if (categoryArray[i].equals("진로"))
+//                            m_Adapter.add(Integer.parseInt(profileArray[i]), titleArray[i], categoryArray[i], likeArray[i]);
+                groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
+                groupAdapter.notifyDataSetChanged();
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "자주연";
+                groupAdapter.clear();
+                groupAdapter.notifyDataSetChanged();
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "환경과인간";
+                groupAdapter.clear();
+                groupAdapter.notifyDataSetChanged();
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "인공지능";
+                groupAdapter.clear();
+                groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
+                groupAdapter.notifyDataSetChanged();
+            }
+        });
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                category = "과학사";
+                groupAdapter.clear();
+                groupAdapter.notifyDataSetChanged();
+            }
+        });
+
 
         editSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -108,7 +153,17 @@ public class TabFragment2 extends Fragment {
                 return false;
             }
         });
-        
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                intent2 = new Intent(getActivity(), ReadGroupActivity.class);
+                intent2.putExtra("str", "과목별 제목 넘기기테스트");
+                startActivity(intent2);
+            }
+
+        });
+
         return view;
     } //onCreateView
 

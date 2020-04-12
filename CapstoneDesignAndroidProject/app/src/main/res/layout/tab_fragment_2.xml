@@ -20,57 +20,70 @@
 
             <Button
                 android:id="@+id/whole"
+                android:textSize="11dp"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_weight="1"
-                android:textSize="11dp"
                 android:gravity="center"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:fontFamily="@font/d"
+                android:background="@drawable/toggle_button"
                 android:textStyle="bold"
-                android:text="캡디"/>
+                android:text="전체" />
+
             <Button
                 android:id="@+id/b1"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:textSize="11dp"
                 android:layout_weight="1"
+                android:textSize="11dp"
                 android:gravity="center"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:fontFamily="@font/d"
+                android:background="@drawable/toggle_button"
                 android:textStyle="bold"
-                android:text="자주연" />
-
+                android:text="캡디"/>
             <Button
                 android:id="@+id/b2"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:layout_weight="1"
                 android:textSize="11dp"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:fontFamily="@font/d"
+                android:background="@drawable/toggle_button"
                 android:textStyle="bold"
-                android:text="환경과인간" />
+                android:text="자주연" />
 
             <Button
                 android:id="@+id/b3"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
+                android:layout_weight="1"
+                android:textSize="11dp"
+                android:gravity="center"
+                android:layout_marginRight="3dp"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/toggle_button"
+                android:textStyle="bold"
+                android:text="환경과인간" />
+
+            <Button
+                android:id="@+id/b4"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
                 android:textSize="11dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:fontFamily="@font/d"
+                android:background="@drawable/toggle_button"
                 android:textStyle="bold"
                 android:text="인공지능" />
 
             <Button
-                android:id="@+id/b4"
+                android:id="@+id/b5"
                 android:textSize="11dp"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -78,9 +91,10 @@
                 android:gravity="center"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:fontFamily="@font/d"
+                android:background="@drawable/toggle_button"
                 android:textStyle="bold"
                 android:text="과학사" />
+
 
         </LinearLayout>
 
@@ -107,7 +121,6 @@
                 android:background="@drawable/round_edittext"
                 android:layout_marginRight="5dp"
                 android:paddingLeft="10dp"
-                android:fontFamily="@font/d"
                 android:hint="모임을 찾아보세요" />
 
             <View
@@ -117,7 +130,7 @@
 
         </LinearLayout>
 
-        <androidx.core.widget.SwipeRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="50dp"
@@ -128,11 +141,11 @@
                 android:layout_height="wrap_content"
                 android:layout_x="0px"
                 android:layout_y="0px"
-                android:dividerHeight="8dp"
-                android:divider="#00000000"
-                android:padding="5dp">
+                android:dividerHeight="3dp"
+                android:divider="#f0f0f0"
+                >
             </ListView>
-        </androidx.core.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 </RelativeLayout>

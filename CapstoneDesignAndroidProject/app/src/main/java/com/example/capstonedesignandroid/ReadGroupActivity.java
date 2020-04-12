@@ -2,23 +2,14 @@ package com.example.capstonedesignandroid;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadGroupActivity extends AppCompatActivity {
-    Button enterbt, likebutton, oldchatbutton;
+    Button enterbt, reservation;
     TextView title,maintext;
     Intent intent2;
     String userKey;
@@ -27,9 +18,9 @@ public class ReadGroupActivity extends AppCompatActivity {
     String trust;
     int like;
     String emotion;
-    TextView liketext;
+    TextView currentnum, totalnum;
     String like1;
-    String[] userInfo;
+    String groupId;
     String[] readpost;
     int oldchat = 0;
     int likebutton1 = 0;
@@ -42,11 +33,15 @@ public class ReadGroupActivity extends AppCompatActivity {
         enterbt =  (Button)findViewById(R.id.button_enter);
         title =  (TextView)findViewById(R.id.textview_title);
         maintext =  (TextView)findViewById(R.id.textview_maintext);
-        liketext = (TextView) findViewById(R.id.text_like);
-        likebutton = (Button) findViewById(R.id.button_like);
-        oldchatbutton = (Button) findViewById(R.id.button_oldchat);
-//        Intent intent3 = getIntent();
-//        userInfo = intent3.getStringArrayExtra("strings");
+        currentnum = (TextView) findViewById(R.id.currentnum);
+        totalnum = (TextView) findViewById(R.id.totalnum);
+        reservation = (Button) findViewById(R.id.button_oldchat);
+
+
+        Intent intent3 = getIntent();
+        groupId = intent3.getStringExtra("str");
+        title.setText(groupId);
+
 //        readpost = intent3.getStringArrayExtra("readpost");
 //
 //        userId = userInfo[0];
@@ -57,10 +52,10 @@ public class ReadGroupActivity extends AppCompatActivity {
 //        like1 = readpost[2];
 //
 //        if(!userId.equals(readpost[3])){
-//            oldchatbutton.setVisibility(View.GONE);
+//            reservation.setVisibility(View.GONE);
 //        }
 
-//        title.setText(readpost[0]);
+
 //        maintext.setText(readpost[1]);
 //        liketext.setText(like1);
 
@@ -69,6 +64,8 @@ public class ReadGroupActivity extends AppCompatActivity {
         enterbt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
+            startActivity(intent);
 //                Retrofit retrofit2 = new Retrofit.Builder()
 //                        .baseUrl(BASE)
 //                        .addConverterFactory(GsonConverterFactory.create())
@@ -81,31 +78,8 @@ public class ReadGroupActivity extends AppCompatActivity {
         });
 
 
-//        likebutton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                if(likebutton1==0) {
-//                    like = Integer.parseInt(like1) + 1;
-//                    liketext.setText(Integer.toString(like));
-//                    View view = View.inflate(getApplicationContext(), R.layout.toast_temp, null);
-//                    Toast toast = new Toast(getApplicationContext());
-//                    toast.setView(view);
-//                    toast.setGravity(Gravity.CENTER, 0, 0);
-//                    toast.setDuration(Toast.LENGTH_SHORT);
-//                    toast.show();
-//
-//                    Retrofit retrofit = new Retrofit.Builder()
-//                            .baseUrl(BASE)
-//                            .addConverterFactory(GsonConverterFactory.create())
-//                            .build();
-//
-//                    LikeInterface likeInterface = retrofit.create(LikeInterface.class);
-//                    Call<List<Dummy>> call = likeInterface.listDummies(readpost[0], Integer.toString(like));
-//                    call.enqueue(dummies1);
-//                }
-//            }
-//        });
 
-        oldchatbutton.setOnClickListener(new View.OnClickListener() {
+        reservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 oldchat = 1;

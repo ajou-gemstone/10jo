@@ -11,18 +11,21 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.capstonedesignandroid.Adapter.StudyGroupAdapter;
+
 import java.util.ArrayList;
 
 //public class TabFragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
 public class TabFragment1 extends Fragment {
 
-    Intent intent,intent2;
+    Intent intent1,intent2;
     ArrayAdapter adapter;
     Button search;
     String userId,userPassword, maintext, name, trust,emotion, selecttitle, like;
@@ -35,11 +38,12 @@ public class TabFragment1 extends Fragment {
     String[] userInfo, titleArray, categoryArray, profileArray, likeArray,tempArray;
     int[] indexArray;
     Boolean ischecked2;
-    StudyGroupAdapter m_Adapter = new StudyGroupAdapter();
+
     EditText editSearch;
     boolean likesorting;
     String category = "";
-    int s =0;
+
+    StudyGroupAdapter groupAdapter = new StudyGroupAdapter();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,47 +61,31 @@ public class TabFragment1 extends Fragment {
         editSearch = view.findViewById(R.id.editSearch);
         search = view.findViewById(R.id.search);
 
-        Intent intent1 = getActivity().getIntent();
-        userInfo = intent1.getStringArrayExtra("strings");
-//        userId = userInfo[0];
-//        userPassword = userInfo[1];
-//        name = userInfo[3];
-//        trust = userInfo[4];
-//        emotion = userInfo[5];
-        like = "1";
-        text = (TextView) view.findViewById(R.id.text);
-        list = new ArrayList<>();
-        adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
+        //        Intent intent1 = getActivity().getIntent();
+//        userInfo = intent1.getStringArrayExtra("strings");
+////        userId = userInfo[0];
+////        userPassword = userInfo[1];
+////        name = userInfo[3];
+////        trust = userInfo[4];
+////        emotion = userInfo[5];
+//        like = "1";
+//        text = (TextView) view.findViewById(R.id.text);
+//        list = new ArrayList<>();
+//        adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
+
+        //db에서 가져오기
         listview = (ListView)view.findViewById(R.id.listview1);
-        listview.setAdapter(m_Adapter);
+        listview.setAdapter(groupAdapter);
+        groupAdapter.add(0, "삼성코테같이준비해요", "모든", "타이틀", "하반기무조건합격보장해드림", "없음", 1, 4);
+        groupAdapter.add(1, "오픽AL5번연속배출모임", "모든", "타이틀2", "야 너두 할 수 있어", "없음", 2, 10);
+
 
 //        titleArray=userInfo[2].split(",");
 //        likeArray=userInfo[6].split(",");
 //        categoryArray=userInfo[7].split(",");
 //        profileArray=userInfo[8].split(",");
 
-        //m_Adapter.clear();
-
-        //처음에는 최신순으로 고민 방 리스트 보여줌
-
-
-
-
-        editSearch.setVisibility(View.GONE);
-
-        //설정 누르면 보이기, 안보이기 반복
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(s%2 == 0) {
-                    editSearch.setVisibility(View.VISIBLE);
-                }
-                else {
-                    editSearch.setVisibility(View.GONE);
-                }
-                s++;
-            }
-        });
+        //groupAdapter.clear();
 
         editSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -108,6 +96,16 @@ public class TabFragment1 extends Fragment {
                 }
                 return false;
             }
+        });
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                intent2 = new Intent(getActivity(), ReadGroupActivity.class);
+                intent2.putExtra("str", "넘기기테스트");
+                startActivity(intent2);
+            }
+
         });
 
         return view;
