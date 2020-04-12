@@ -10,8 +10,26 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile file("C://Users/KangChanhyuk/debug.jks")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
         release {
+            storeFile file("C://Users/KangChanhyuk/release.jks")
+//            storePassword "123456"
+//            keyAlias "myreleasekey"
+//            keyPassword "123456"
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

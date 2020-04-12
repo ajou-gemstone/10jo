@@ -51,9 +51,7 @@ public class Login extends AppCompatActivity {
         //SharedPreference.setAttribute(getApplicationContext(), "IP", BASE);
         final EditText password = (EditText) findViewById(R.id.edittext_password);
         final Button login = (Button) findViewById(R.id.button_login);
-        Button signup = (Button) findViewById(R.id.button_signup);
         Button button_developer = (Button) findViewById(R.id.button_developer);
-        Button findpassword = findViewById(R.id.button_findpassword);
         CheckBox remember = findViewById(R.id.remember);
 
         id.setOnKeyListener(new View.OnKeyListener() {
@@ -81,24 +79,6 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivityForResult(intent,100);
-            }
-        });
-
-        signup.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(),SignUp.class);
-//                startActivityForResult(intent,100);
-            }
-        });
-
-        findpassword.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(),FindPassword.class);
-//                startActivityForResult(intent,100);
             }
         });
 
