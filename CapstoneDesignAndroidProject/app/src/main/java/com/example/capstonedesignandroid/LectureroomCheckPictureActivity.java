@@ -2,33 +2,39 @@ package com.example.capstonedesignandroid;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.loader.content.CursorLoader;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,6 +54,9 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
     private String imageFilePath;
     private Uri photoUri;
 
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +67,13 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
             if (!hasPermissions(PERMISSIONS)) {
                 //퍼미션 허가 안되어있다면 사용자에게 요청
                 requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
-            }else{
+            } else {
             }
         }
 
-        Log.d("getFilesDir", ""+getFilesDir());
-        Log.d("getPackageName", ""+getPackageName());
-        Log.d("getExternalFilesDir", ""+getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+        Log.d("getFilesDir", "" + getFilesDir());
+        Log.d("getPackageName", "" + getPackageName());
+        Log.d("getExternalFilesDir", "" + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
 
         //사진을 촬영한 시간도 저장해준다.
 
@@ -85,11 +94,47 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 tmpImageView.setImageURI(photoUri);
+
+                //photoUri는 content provider 경로이므로 file 경로로 재설정 해주어야 한다.
+                //content provider경로에서 file 경로로 재설정 하는 것은 굉장히 어렵기 때문에 이전에 구했던
+                //file경로인 externalFile경로를 이용하여 uri를 설정한다.
+                //실제 file path도
+                final Uri fileuri = Uri.fromFile(new File(imageFilePath));//내장 데이터(앨범)의 uri를 가져옴
+                //파이어 베이스에 이미지를 업로드 하면서 node서버에 어떤 이미지가 어떤 사용자의 것인지도 추강를 해야 한다.
+                StorageReference riversRef = storageRef.child("images/" + fileuri.getLastPathSegment());//저장소에 파일명으로 저장함
+                UploadTask uploadTask = riversRef.putFile(fileuri);//저장소에 파일을 넣음 + task로 처리하도록 함.(반환값이 task)
+
+                // Register observers to listen for when the download is done or if it fails
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패띠", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//firebase에서 자주 쓰이는 callback listener
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                        // ...
+                        Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
+
+        //----------------------------------------------------------------------------------
+        //-------------------firebase-------------------
+
+        //app에 등록된 firebase storage의 instance를 가져온다. (싱글톤)
+        storage = FirebaseStorage.getInstance("gs://asmr-799cf.appspot.com");
+
+        //스토리지의 레퍼런스(주소)를 가져온다.
+        storageRef = storage.getReference();
     }
 
+
+    //사진을 찍는 인텐트를 실행하고, 인텐트 환경 설정을 한다.
     private void sendTakePhotoIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -103,6 +148,8 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
             if (photoFile != null) {
                 photoUri = FileProvider.getUriForFile(this, getPackageName(), photoFile);
 
+                Log.d("photoUri", "" + photoUri);
+
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
@@ -114,8 +161,11 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
         String imageFileName = "TEST_" + timeStamp + "_";
 
         //외부 저장 경로를 사용하지만 sdcard가 없어도 emulated가 되어서 가상의(심볼릭) 경로이고
-        //나중에 provider를 통하여 사전에 지정한(files_paths.xml에 있음) 실제 기기에서 저장되는 경로에 파일을 지정해주고
+        //나중에 provider를 통하여 사전에 지정한(files_paths.xml에 있음) 실제 기기에서 저장되는 경로에 파일을 지정해주어서
+        //camera intent에서 좋은 화질의 사진을 실제 디렉토리에 저장 할 수 있도록 한다.
         //camera intent로 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)을 추가하여 실제로 저장할 수 있도록 한다.
+        //camera intent에서 카메라는 file path를 사용하지 않고 content provider path를 쓴다는 것을 유념하자.
+        //(왜 그럴까?) 접근할 때는 어차피 external file path를 이용하기 때문에 나머지는 file path를 이용하여 처리하면 된다.
 
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         //내부 저장 경로를 사용할 경우 화질의 문제가 생기기 때문에 외부 저장 경로를 활용한다.
@@ -126,8 +176,10 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
                 ".png",         /* suffix */
                 storageDir          /* directory */
         );
+
         imageFilePath = image.getAbsolutePath();
-        Log.d("imageFilePath", ""+imageFilePath);
+        Log.d("imageFilePath", "" + imageFilePath);
+
         return image;
     }
 
@@ -140,17 +192,20 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
         }
     }
 
-    // 여기서부터는 퍼미션 관련 코드입니다.
+    //****-------------------------------------------------------------------------------------------------------------
+    //****-------------------------------------------------------------------------------------------------------------
+    //****-------------------------------------------------------------------------------------------------------------
+    // 여기서부터는 퍼미션 관련 코드
     static final int PERMISSIONS_REQUEST_CODE = 1000;
-    String[] PERMISSIONS  = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private boolean hasPermissions(String[] permissions) {
         int result;
 
         //스트링 배열에 있는 퍼미션들의 허가 상태 여부 확인
-        for (String perms : permissions){
+        for (String perms : permissions) {
             result = ContextCompat.checkSelfPermission(this, perms);
-            if (result == PackageManager.PERMISSION_DENIED){
+            if (result == PackageManager.PERMISSION_DENIED) {
                 //허가 안된 퍼미션 발견
                 return false;
             }
@@ -163,7 +218,7 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch(requestCode){
+        switch (requestCode) {
             case PERMISSIONS_REQUEST_CODE:
                 if (grantResults.length > 0) {
                     boolean cameraPermissionAccepted = grantResults[0]
@@ -172,8 +227,7 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
                             == PackageManager.PERMISSION_GRANTED;
                     if (!cameraPermissionAccepted || !diskPermissionAccepted)
                         showDialogForPermission("앱을 실행하려면 퍼미션을 허가하셔야합니다.");
-                    else
-                    {
+                    else {
                     }
                 }
                 break;
@@ -184,12 +238,12 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     private void showDialogForPermission(String msg) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder( this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("알림");
         builder.setMessage(msg);
         builder.setCancelable(false);
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id){
+            public void onClick(DialogInterface dialog, int id) {
                 requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
             }
         });

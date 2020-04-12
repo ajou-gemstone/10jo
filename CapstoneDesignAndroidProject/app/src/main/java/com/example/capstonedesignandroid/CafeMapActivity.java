@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.capstonedesignandroid.OOD.CafeCoreInfo;
+import com.example.capstonedesignandroid.DTO.CafeCoreInfo;
 
 import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
