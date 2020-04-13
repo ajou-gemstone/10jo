@@ -1,4 +1,4 @@
-package com.example.capstonedesignandroid.OOD;
+package com.example.capstonedesignandroid.DTO;
 
 public class CafeCoreInfo {
 

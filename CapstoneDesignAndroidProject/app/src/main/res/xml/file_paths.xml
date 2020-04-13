@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!--@string으로 path를 설정하면 안된다.-->
+    <external-path name="filedirex" path= "Android/data/com.example.capstonedesignandroid/files/Pictures" />
+    <files-path name="filedir" path="/data/user/0/com.example.capstonedesignandroid/files"/>
+</paths>
