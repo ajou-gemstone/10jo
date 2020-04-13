@@ -1,4 +1,4 @@
-package com.example.capstonedesignandroid;
+package com.example.capstonedesignandroid.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,21 +9,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.capstonedesignandroid.R;
+
 import java.util.ArrayList;
 
 public class StudyGroupAdapter extends BaseAdapter {
     private class listItem {
-        private int profile;    // R.drawable.~ 리소스 아이디 값을 받아오는 변수
-        private String name;    // String 카카오톡 대화 목록의 이름
-        private String chat;    // String 마지막 대화
-        private String like;
+        private int groupId;
+        private String groupName;
+        private String groupType;
+        private String title;
+        private String intro;
+        private String classCode;
+        private int studentTotalNumber;
+        private int studentCurrentNumber;
 
         // 매개변수가 있는 생성자로 받아와 값을 전달한다.
-        public listItem(int profile, String name, String chat, String like){
-            this.profile=profile;
-            this.name=name;
-            this.chat=chat;
-            this.like=like;
+        public listItem(int groupId, String groupName, String groupType, String title, String intro, String classCode, int studentCurrentNumber,int studentTotalNumber){
+            this.groupId = groupId;
+            this.groupName = groupName;
+            this.groupType = groupType;
+            this.title = title;
+            this.intro = intro;
+            this.classCode = classCode;
+            this. studentCurrentNumber = studentCurrentNumber;
+            this.studentTotalNumber = studentTotalNumber;
         }
     }
 
@@ -39,8 +49,8 @@ public class StudyGroupAdapter extends BaseAdapter {
         list = new ArrayList();
     }
 
-    public void add(int profile, String name, String chat, String like) {
-        list.add(new listItem(profile, name, chat, like));
+    public void add(int groupId, String groupName, String groupType, String title, String intro, String classCode, int studentTotalNumber,int studentCurrentNumber) {
+        list.add(new listItem(groupId, groupName, groupType, title, intro, classCode, studentTotalNumber, studentCurrentNumber));
     }
 
     public void clear() {
@@ -61,7 +71,7 @@ public class StudyGroupAdapter extends BaseAdapter {
 
     public String getPosition(int position) {
         // 현재 position에 따른 list의 값을 반환 시켜준다.
-        return list.get(position).name;
+        return list.get(position).groupName;
     }
 
     @Override
@@ -74,13 +84,14 @@ public class StudyGroupAdapter extends BaseAdapter {
         final int pos = position;
         final Context context = parent.getContext();
 
-        TextView        text    = null;
+
         CustomHolder    holder  = null;
         LinearLayout    layout  = null;
+        ImageView       imageView = null;
         TextView        textView1 = null;
         TextView        textView2 = null;
-        ImageView       imageView = null;
-        TextView        textView  = null;
+        TextView        textView3  = null;
+        TextView        textView4  = null;
 
         // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
         if ( convertView == null ) {
@@ -89,10 +100,12 @@ public class StudyGroupAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.activity_study_group_list, parent, false);
 
             layout    = (LinearLayout) convertView.findViewById(R.id.layout);
-            textView1    = (TextView) convertView.findViewById(R.id.name);
-            textView2    = (TextView) convertView.findViewById(R.id.chat);
-            imageView   = (ImageView) convertView.findViewById(R.id.profile_image);
-            textView    = (TextView) convertView.findViewById(R.id.heartnum);
+            textView1    = (TextView) convertView.findViewById(R.id.groupname);
+            textView2    = (TextView) convertView.findViewById(R.id.tag);
+            imageView    = (ImageView) convertView.findViewById(R.id.profile_image);
+            textView3    = (TextView) convertView.findViewById(R.id.currentnum);
+            textView4    = (TextView) convertView.findViewById(R.id.totalnum);
+
 
             // 홀더 생성 및 Tag로 등록
             holder = new CustomHolder();
@@ -100,7 +113,8 @@ public class StudyGroupAdapter extends BaseAdapter {
             holder.textView1 = textView1;
             holder.textView2 = textView2;
             holder.imageView = imageView;
-            holder.textView = textView;
+            holder.textView3 = textView3;
+            holder.textView4 = textView4;
             convertView.setTag(holder);
         }
         else {
@@ -109,11 +123,13 @@ public class StudyGroupAdapter extends BaseAdapter {
             textView1 = holder.textView1;
             textView2 = holder.textView2;
             imageView = holder.imageView;
-            textView = holder.textView;
+            textView3 = holder.textView3;
+            textView4 = holder.textView4;
+
         }
 
         // Text 등록
-        switch(getItem(pos).profile) {
+        switch(getItem(pos).groupId) {
             case 0:
                 imageView.setImageResource(R.drawable.profile);
                 break;
@@ -127,9 +143,10 @@ public class StudyGroupAdapter extends BaseAdapter {
 
         }
         //imageView.setImageResource()
-        textView1.setText(getItem(pos).name);
-        textView2.setText(getItem(pos).chat);
-        textView.setText(getItem(pos).like);
+        textView1.setText(getItem(pos).groupName);
+        textView2.setText(getItem(pos).groupType);
+        textView3.setText(""+getItem(pos).studentCurrentNumber); //int형 가져올땐 string으로 인식되기위해 ""+붙여야함
+        textView4.setText(""+getItem(pos).studentTotalNumber);
 
         return convertView;
     }
@@ -139,6 +156,7 @@ public class StudyGroupAdapter extends BaseAdapter {
         public TextView textView2;
         ImageView imageView;
         LinearLayout layout;
-        TextView textView;
+        TextView textView3;
+        TextView textView4;
     }
 }
