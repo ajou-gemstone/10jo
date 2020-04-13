@@ -27,7 +27,7 @@
             android:name=".testActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Login" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".CafeMapActivity" />
         <activity
@@ -37,8 +37,10 @@
             android:name=".StudyBulletinBoardActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".StudyGroupAdapter" />
+        <activity android:name=".MakeGroupActivity" />
+        <activity android:name=".ReadGroupActivity" />
         <activity android:name=".TabFragment1" />
+        <activity android:name=".TabFragment2" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"

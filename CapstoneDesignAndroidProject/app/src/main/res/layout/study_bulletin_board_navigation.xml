@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="wrap_content"
     android:gravity="left"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -11,17 +11,20 @@
         android:layout_height="80dp"
         android:background="#000e36"
         />
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="20dp"
-        app:srcCompat="@drawable/heart" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            app:srcCompat="@drawable/profile" />
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -36,9 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18dp"
-            android:text="님, 잘 오셨어요."
+            android:text="님"
             android:textColor="#000000"
-            android:fontFamily="@font/d"
             android:layout_marginLeft="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     </LinearLayout>

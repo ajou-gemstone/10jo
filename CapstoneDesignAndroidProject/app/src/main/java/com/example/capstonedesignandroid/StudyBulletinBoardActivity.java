@@ -1,11 +1,9 @@
 package com.example.capstonedesignandroid;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 
+import com.example.capstonedesignandroid.Adapter.StudyGroupAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -16,7 +14,6 @@ import androidx.core.view.GravityCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
@@ -169,58 +166,15 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),MakeGroupActivity.class);
                 startActivityForResult(intent,100);
             }
         });
 
     }//onCreate
 
-        @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
-            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-                backKeyPressedTime = System.currentTimeMillis();
-                toast = Toast.makeText(StudyBulletinBoardActivity.this, "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
-                toast.show();
-                return;
-            }
-
-            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-                toast.cancel();
-            }
-
-            AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
-            alBuilder.setMessage("종료하시겠습니까?");
-
-            // "예" 버튼을 누르면 실행되는 리스너
-            alBuilder.setPositiveButton("아니요", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    return;
-                }
-            });
-            // "아니오" 버튼을 누르면 실행되는 리스너
-            alBuilder.setNegativeButton("예", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        finishAffinity();
-                    }
-                    System.runFinalization();
-                    System.exit(0); // 아무런 작업도 하지 않고 돌아간다
-                }
-            });
-            alBuilder.setTitle("프로그램 종료");
-            alBuilder.show();
-        }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")@Override
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
 
@@ -261,7 +215,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
         else if(id == R.id.nav_logout){
             intent4 = getIntent();
             Toasty.success(StudyBulletinBoardActivity.this, "이용해주셔서 감사합니다!", Toast.LENGTH_SHORT).show();
-            intent4 = new Intent(getApplicationContext(),Login.class);
+            intent4 = new Intent(getApplicationContext(), LoginActivity.class);
             intent4.putExtra("strings",userInfo) ;
             intent4.putExtra("usertitle",usertitle) ;
             startActivity(intent4);
@@ -357,7 +311,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
                     case 0:
                         TabFragment1 tab1 = new TabFragment1();
                     case 1:
-                        TabFragment1 tab2 = new TabFragment1();
+                        TabFragment2 tab2 = new TabFragment2();
                     case 2:
                         TabFragment1 tab3 = new TabFragment1();
                 }
