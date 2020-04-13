@@ -12,6 +12,7 @@
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
 
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="ASMR"
@@ -54,6 +55,15 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="fa48347431d94978a0df221d44686add" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.capstonedesignandroid"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
     </application>
 
 </manifest>
