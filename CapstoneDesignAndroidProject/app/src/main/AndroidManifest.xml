@@ -5,13 +5,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera"
-        android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LectureroomCheckPictureActivity"></activity>
+        <activity android:name=".test2Activity"></activity>
+        <activity android:name=".LectureroomCheckPictureActivity" />
         <activity android:name=".LectureroomCheckActivity" />
         <activity
             android:name=".testActivity"
@@ -55,6 +56,7 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="fa48347431d94978a0df221d44686add" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.capstonedesignandroid"
@@ -62,7 +64,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 
