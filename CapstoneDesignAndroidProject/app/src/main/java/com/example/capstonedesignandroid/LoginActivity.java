@@ -4,21 +4,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.capstonedesignandroid.StaticMethodAndOthers.Dummy3;
-import com.example.capstonedesignandroid.StaticMethodAndOthers.GetService;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
-import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String BASE = "http://200.200.15.130:3000";
+    private static final String BASE = "http://200.200.15.147:3000";
 
     EditText position;
     Button getButton, button_developer;
@@ -93,9 +89,8 @@ public class LoginActivity extends AppCompatActivity {
                 Call<List<Dummy3>> call = service.listDummies(id1);
                 call.enqueue(dummies);
 
-
-//                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                startActivityForResult(intent,100);
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivityForResult(intent,100);
             }
         });
 
