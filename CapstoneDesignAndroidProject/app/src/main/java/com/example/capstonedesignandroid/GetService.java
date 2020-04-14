@@ -1,4 +1,4 @@
-package com.example.capstonedesignandroid.StaticMethodAndOthers;
+package com.example.capstonedesignandroid;
 
 import java.util.List;
 

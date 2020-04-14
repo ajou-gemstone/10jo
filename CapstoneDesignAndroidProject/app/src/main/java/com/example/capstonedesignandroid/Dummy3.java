@@ -1,4 +1,4 @@
-package com.example.capstonedesignandroid.StaticMethodAndOthers;
+package com.example.capstonedesignandroid;
 
 public class Dummy3 {
     String id;
