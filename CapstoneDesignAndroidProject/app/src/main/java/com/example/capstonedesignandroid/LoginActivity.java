@@ -11,9 +11,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.capstonedesignandroid.StaticMethodAndOthers.Dummy3;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.GetService;
+
+import java.util.List;
+
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String BASE = "http://15.165.101.224:3000";
+    private static final String BASE = "http://200.200.15.130:3000";
 
     EditText position;
     Button getButton, button_developer;
@@ -67,8 +80,22 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivityForResult(intent,100);
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(BASE)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                GetService service = retrofit.create(GetService.class);
+                String id1 = String.valueOf(id.getText().toString());
+                String password1 = String.valueOf(password.getText().toString());
+                info_id=id1;
+                info_password=password1;
+                Call<List<Dummy3>> call = service.listDummies(id1);
+                call.enqueue(dummies);
+
+
+//                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//                startActivityForResult(intent,100);
             }
         });
 
@@ -81,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent,100);
             }
         });
-    }
+    } //onCreate
 
     @Override
     public void onBackPressed() {
@@ -111,4 +138,32 @@ public class LoginActivity extends AppCompatActivity {
         alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
     }
 
+    Callback dummies = new Callback<List<Dummy3>>() {
+
+        @Override
+        public void onResponse(Call<List<Dummy3>> call, Response<List<Dummy3>> response) {
+            if (response.isSuccessful()) {
+                List<Dummy3> dummies = response.body();
+                StringBuilder builder = new StringBuilder();
+                for (Dummy3 dummy : dummies) {
+                    builder.append(dummy.toString()+",");
+                }
+
+                String[] result;
+                result = builder.toString().split(",");
+                result_id = result[0];
+                name = result[1];
+                trust = result[2];
+                emotion = result[3];
+            }
+        }
+
+        @Override
+        public void onFailure(Call<List<Dummy3>> call, Throwable t) {
+
+        }
+    }; //dummies
+
+
 }
+

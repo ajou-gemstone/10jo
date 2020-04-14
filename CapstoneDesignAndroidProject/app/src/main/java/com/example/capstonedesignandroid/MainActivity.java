@@ -1,10 +1,22 @@
 package com.example.capstonedesignandroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.kakao.util.maps.helper.Utility;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,7 +43,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testActivity.setOnClickListener(this);
         LectureroomCheckActivityButton.setOnClickListener(this);
 
-//        Log.d("asdf", ""+ getSigneture(this));
+        Log.d("asd", getKeyHash(getApplicationContext()));
+
+    }
+    public String getKeyHash(final Context context) {
+        PackageInfo packageInfo = Utility.getPackageInfo(context, PackageManager.GET_SIGNATURES);
+        if (packageInfo == null)
+            return null;
+
+        for (Signature signature : packageInfo.signatures) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+
+                return Base64.encodeToString(md.digest(), Base64.NO_WRAP);
+            } catch (NoSuchAlgorithmException e) {
+            }
+        }
+        return null;
     }
 
     @Override
