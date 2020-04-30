@@ -69,8 +69,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private String startTime;
     private String lastTime;
     private HorizontalScrollView lectureRoomScroll;
-    private ImageButton selectMultipleTimeButton;
-    private boolean selectMultipleTimeButtonClicked = false;
     private Boolean firstClick = false;
     private Boolean secondClick = false;
     private int firstTag =-1;
@@ -219,93 +217,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
             }
         });
 
-        //-----------------------------------------------------------
-
         reserveRandomButton = findViewById(R.id.reserveRandomButton);
         reserveButton = findViewById(R.id.reserveButton);
-
-        //DB에서 아래와 같은 정보를 dummy list로 가져왔다고 가정한다.
-        startTimePosition = 2;
-        lastTimePosition = 8;
-        DummyLectureRoomReservationState dummyLectureRoomReservation1 = new DummyLectureRoomReservationState("성101", "R 0 0 0 1 L");
-        DummyLectureRoomReservationState dummyLectureRoomReservation2 = new DummyLectureRoomReservationState("성102", "L L L L L L");
-        DummyLectureRoomReservationState dummyLectureRoomReservation3 = new DummyLectureRoomReservationState("성103", "R R R L L L");
-        DummyLectureRoomReservationState dummyLectureRoomReservation4 = new DummyLectureRoomReservationState("성104", "1 R 0 L 2 3");
-
-        dummyLectureRoomReservationList.add(dummyLectureRoomReservation1);
-        dummyLectureRoomReservationList.add(dummyLectureRoomReservation2);
-        dummyLectureRoomReservationList.add(dummyLectureRoomReservation3);
-        dummyLectureRoomReservationList.add(dummyLectureRoomReservation4);
-
-        //sorting은 사용가능한 강의실 중
-        //선지망 후추첨인 경우 시간대에 예약 팀수의 합이 가장 적은 강의실 우선
-        String num = "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19";
-
-        int i = 0;
-        priorityValue = new ArrayList<Integer>();
-        for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
-            String eachStateList =  data.getStateList();
-            String[] splitState = eachStateList.split("\\s+");
-            priorityValue.add(0);
-            for(String eachState : splitState){
-                if(num.contains(eachState)){
-                    priorityValue.set(i, priorityValue.get(i) + Integer.parseInt(eachState));
-                }else{//아니면 최대 가중치인 20을 더한다.
-                    priorityValue.set(i, priorityValue.get(i) + 20);
-                }
-            }
-            Log.d("priorityValue", ""+priorityValue.get(i));
-            i++;
-        }
-        Collections.sort(dummyLectureRoomReservationList, new Comparator<DummyLectureRoomReservationState>() {
-            @Override
-            public int compare(DummyLectureRoomReservationState t1, DummyLectureRoomReservationState t2) {
-                if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) > priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
-                    return 1;
-                }else return -1;
-            }
-        });
-
-        //선착순인 경우 빈 시간이 많고, 연결되어있는 강의실 우선
-//        String emptyL = "A";
-//        i = 0;
-//        String previousState = "NULL";
-//        priorityValue = new ArrayList<Integer>();
-//        for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
-//            String eachStateList =  data.getStateList();
-//            String[] splitState = eachStateList.split("\\s+");
-//            priorityValue.add(0);
-//            for(String eachState : splitState){
-//                if(emptyL.contains(eachState)){
-//                    priorityValue.set(i, priorityValue.get(i));
-//                }else{//아니면 최대 가중치인 20을 더한다.
-//                    priorityValue.set(i, priorityValue.get(i) + 20);
-//                }
-//                //연속으로 비어있는 강의실이면 -20을 해준다.
-//                if(emptyL.contains(eachState) && emptyL.contains(previousState)){
-//                    priorityValue.set(i, priorityValue.get(i) - 20);
-//                }
-//                previousState = eachState;
-//            }
-//            Log.d("priorityValue", ""+priorityValue.get(i));
-//            i++;
-//        }
-//        Collections.sort(dummyLectureRoomReservationList, new Comparator<DummyLectureRoomReservationState>() {
-//            @Override
-//            public int compare(DummyLectureRoomReservationState t1, DummyLectureRoomReservationState t2) {
-//                if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) > priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
-//                    return 1;
-//                }else return -1;
-//            }
-//        });
-
-
-        DummyLectureRoomReservationState dummyLectureRoomReservation0 = new DummyLectureRoomReservationState("강의실", "9:00 9:30 10:00 10:30 11:00 11:30");
-        dummyLectureRoomReservationList.add(0, dummyLectureRoomReservation0);
-
-        Log.d("dummyLectureRoomReservationList", ""+ dummyLectureRoomReservationList.get(1).getLectureroom());
-        Log.d("dummyLectureRoomReservationList", ""+ dummyLectureRoomReservationList.get(2).getLectureroom());
-        Log.d("dummyLectureRoomReservationList", ""+ dummyLectureRoomReservationList.get(3).getLectureroom());
 
         reserveButton.setOnClickListener(new View.OnClickListener() {
             //-------DB 조회-------
@@ -314,14 +227,10 @@ public class LectureroomReservationActivity extends AppCompatActivity {
             //출력: {lectureroom: "성101", stateList: "R 0 0 0 1 L"}
             //출력: {lectureroom: "성103", stateList: "R A A A L L"}
 
-            //위 것들보다 그냥 강의실 이름과 순서대로의 state만 받으면 된다.
-
-            //+선지망 후추첨 + 희망 시간인 경우 널널한 강의실(예약자가 적은 강의실)을 앞으로 하여 정렬
-
-            //계획이 바껴서 UI는 하나만 있어도 된다.
             @Override
             public void onClick(View view){
                 //날짜, 강의실 등의 데이터를 서버에 전달하여 필터링을 거쳐 목록을 받는다.
+                //쿼리
                 //날짜
                 int year = DefinedMethod.getYear(reserveDate);
                 int month = DefinedMethod.getMonth(reserveDate) + 1;
@@ -348,12 +257,92 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     lastTimePosition = reserveEndTimeSpinner.getSelectedItemPosition();
                 }
 
-                //선착순 UI
-                if(isFCFS){
+                //-----------------------------------------------------------
+                //데이터 받기
+                //-----------------------------------------------------------
 
-                }else{//선지망 후추첨 UI
-                    inflateReservationUI();
+                //DB에서 아래와 같은 정보를 dummy list로 가져왔다고 가정한다.
+                startTimePosition = 2;
+                lastTimePosition = 8;
+                DummyLectureRoomReservationState dummyLectureRoomReservation1 = new DummyLectureRoomReservationState("성101", "R 0 0 0 1 L");
+                DummyLectureRoomReservationState dummyLectureRoomReservation2 = new DummyLectureRoomReservationState("성102", "L L L L L L");
+                DummyLectureRoomReservationState dummyLectureRoomReservation3 = new DummyLectureRoomReservationState("성103", "R R R L L L");
+                DummyLectureRoomReservationState dummyLectureRoomReservation4 = new DummyLectureRoomReservationState("성104", "1 R 0 L 2 3");
+
+                dummyLectureRoomReservationList.add(dummyLectureRoomReservation1);
+                dummyLectureRoomReservationList.add(dummyLectureRoomReservation2);
+                dummyLectureRoomReservationList.add(dummyLectureRoomReservation3);
+                dummyLectureRoomReservationList.add(dummyLectureRoomReservation4);
+
+                //선착순 sorting
+                if(isFCFS){
+//                    선착순인 경우 빈 시간이 많고, 연결되어있는 강의실 우선
+                    String emptyL = "A";
+                    int i = 0;
+                    String previousState = "NULL";
+                    priorityValue = new ArrayList<Integer>();
+                    for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
+                        String eachStateList =  data.getStateList();
+                        String[] splitState = eachStateList.split("\\s+");
+                        priorityValue.add(0);
+                        for(String eachState : splitState){
+                            if(emptyL.contains(eachState)){
+                                priorityValue.set(i, priorityValue.get(i));
+                            }else{//아니면 최대 가중치인 20을 더한다.
+                                priorityValue.set(i, priorityValue.get(i) + 20);
+                            }
+                            //연속으로 비어있는 강의실이면 -20을 해준다.
+                            if(emptyL.contains(eachState) && emptyL.contains(previousState)){
+                                priorityValue.set(i, priorityValue.get(i) - 20);
+                            }
+                            previousState = eachState;
+                        }
+                        Log.d("priorityValue", ""+priorityValue.get(i));
+                        i++;
+                    }
+                    Collections.sort(dummyLectureRoomReservationList, new Comparator<DummyLectureRoomReservationState>() {
+                        @Override
+                        public int compare(DummyLectureRoomReservationState t1, DummyLectureRoomReservationState t2) {
+                            if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) > priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
+                                return 1;
+                            }else return -1;
+                        }
+                    });
+
+                }else{//선지망 후추첨 sorting
+                    //sorting은 사용가능한 강의실 중
+                    //선지망 후추첨인 경우 시간대에 예약 팀수의 합이 가장 적은 강의실 우선
+                    String num = "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19";
+
+                    int i = 0;
+                    priorityValue = new ArrayList<Integer>();
+                    for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
+                        String eachStateList =  data.getStateList();
+                        String[] splitState = eachStateList.split("\\s+");
+                        priorityValue.add(0);
+                        for(String eachState : splitState){
+                            if(num.contains(eachState)){
+                                priorityValue.set(i, priorityValue.get(i) + Integer.parseInt(eachState));
+                            }else{//아니면 최대 가중치인 20을 더한다.
+                                priorityValue.set(i, priorityValue.get(i) + 20);
+                            }
+                        }
+                        Log.d("priorityValue", ""+priorityValue.get(i));
+                        i++;
+                    }
+                    Collections.sort(dummyLectureRoomReservationList, new Comparator<DummyLectureRoomReservationState>() {
+                        @Override
+                        public int compare(DummyLectureRoomReservationState t1, DummyLectureRoomReservationState t2) {
+                            if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) > priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
+                                return 1;
+                            }else return -1;
+                        }
+                    });
                 }
+                inflateReservationUI();
+
+                DummyLectureRoomReservationState dummyLectureRoomReservation0 = new DummyLectureRoomReservationState("강의실", "9:00 9:30 10:00 10:30 11:00 11:30");
+                dummyLectureRoomReservationList.add(0, dummyLectureRoomReservation0);
             }
         });
 
