@@ -236,10 +236,11 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         dummyLectureRoomReservationList.add(dummyLectureRoomReservation2);
         dummyLectureRoomReservationList.add(dummyLectureRoomReservation3);
         dummyLectureRoomReservationList.add(dummyLectureRoomReservation4);
+
         //sorting은 사용가능한 강의실 중
         //선지망 후추첨인 경우 시간대에 예약 팀수의 합이 가장 적은 강의실 우선
-
         String num = "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19";
+
         int i = 0;
         priorityValue = new ArrayList<Integer>();
         for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
@@ -249,8 +250,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
             for(String eachState : splitState){
                 if(num.contains(eachState)){
                     priorityValue.set(i, priorityValue.get(i) + Integer.parseInt(eachState));
-                }else{//아니면 최대 가중치인 2
-                    // 0을 더한다.
+                }else{//아니면 최대 가중치인 20을 더한다.
                     priorityValue.set(i, priorityValue.get(i) + 20);
                 }
             }
@@ -267,6 +267,38 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         });
 
         //선착순인 경우 빈 시간이 많고, 연결되어있는 강의실 우선
+//        String emptyL = "A";
+//        i = 0;
+//        String previousState = "NULL";
+//        priorityValue = new ArrayList<Integer>();
+//        for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
+//            String eachStateList =  data.getStateList();
+//            String[] splitState = eachStateList.split("\\s+");
+//            priorityValue.add(0);
+//            for(String eachState : splitState){
+//                if(emptyL.contains(eachState)){
+//                    priorityValue.set(i, priorityValue.get(i));
+//                }else{//아니면 최대 가중치인 20을 더한다.
+//                    priorityValue.set(i, priorityValue.get(i) + 20);
+//                }
+//                //연속으로 비어있는 강의실이면 -20을 해준다.
+//                if(emptyL.contains(eachState) && emptyL.contains(previousState)){
+//                    priorityValue.set(i, priorityValue.get(i) - 20);
+//                }
+//                previousState = eachState;
+//            }
+//            Log.d("priorityValue", ""+priorityValue.get(i));
+//            i++;
+//        }
+//        Collections.sort(dummyLectureRoomReservationList, new Comparator<DummyLectureRoomReservationState>() {
+//            @Override
+//            public int compare(DummyLectureRoomReservationState t1, DummyLectureRoomReservationState t2) {
+//                if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) > priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
+//                    return 1;
+//                }else return -1;
+//            }
+//        });
+
 
         DummyLectureRoomReservationState dummyLectureRoomReservation0 = new DummyLectureRoomReservationState("강의실", "9:00 9:30 10:00 10:30 11:00 11:30");
         dummyLectureRoomReservationList.add(0, dummyLectureRoomReservation0);
@@ -373,16 +405,15 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new ReservationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                if(v.getId() == R.id.lectureRoomInfo){
-                   //강의실 간단한 정보 가져오기
-                }
-                else if(v.getId() == R.id.lectureRoomNameButton){
+                if(v.getId() == R.id.lectureRoomNameButton){
                     AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);
                     builder.setTitle("이 시간대를 1순위로 예약하시겠습니까?").setMessage("" + dummyLectureRoomReservationList.get(position).getLectureroom());
                     builder.setPositiveButton("예", new DialogInterface.OnClickListener(){
                         @Override
                         public void onClick(DialogInterface dialog, int id)
                         {
+                            //강의실 정보 가져오기, 확정은 다른 버튼으로한다.
+
                             //강의실 예약을 확정한다. 서버에 데이터를 넣는다.
                             //강의실 시간대를 적절히 잘 선택헀는지 확인
                             if(firstTag > 0 && secondTag > 0){

@@ -10,11 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstonedesignandroid.DTO.Dummy;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.List;
 
@@ -55,6 +61,28 @@ public class LoginActivity extends AppCompatActivity {
         final Button login = (Button) findViewById(R.id.button_login);
         Button button_developer = (Button) findViewById(R.id.button_developer);
         CheckBox remember = findViewById(R.id.remember);
+
+        //----------------------firebase--------------
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("getInstanceId", "getInstanceId failed", task.getException());
+                            Log.d("onComplete", "onComplete: ");
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        Log.d("token", token);
+                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        //-------------------firebase-------------------
 
         id.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -194,6 +222,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("onFailure", "fail");
         }
     };
+
 
 }
 
