@@ -1,10 +1,22 @@
 package com.example.capstonedesignandroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.kakao.util.maps.helper.Utility;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,7 +46,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LectureroomCheckActivityButton.setOnClickListener(this);
         test2Button.setOnClickListener(this);
 
-//        Log.d("asdf", ""+ getSigneture(this));
+        Log.d("asd", getKeyHash(getApplicationContext()));
+
+    }
+    public String getKeyHash(final Context context) {
+        PackageInfo packageInfo = Utility.getPackageInfo(context, PackageManager.GET_SIGNATURES);
+        if (packageInfo == null)
+            return null;
+
+        for (Signature signature : packageInfo.signatures) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+
+                return Base64.encodeToString(md.digest(), Base64.NO_WRAP);
+            } catch (NoSuchAlgorithmException e) {
+            }
+        }
+        return null;
     }
 
     @Override
@@ -60,10 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.LectureroomCheckActivityButton:
                 activityintent = new Intent(this, LectureroomCheckActivity.class);
-                startActivity(activityintent);
-                break;
-            case R.id.test2Button:
-                activityintent = new Intent(this, test2Activity.class);
                 startActivity(activityintent);
                 break;
         }

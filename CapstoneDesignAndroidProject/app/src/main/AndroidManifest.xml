@@ -8,20 +8,17 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
+    <uses-feature android:name="android.hardware.camera"
         android:required="true" />
+
 
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="ASMR"
-        android:networkSecurityConfig="@xml/network_security_config"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".test2Activity"></activity>
         <activity android:name=".LectureroomCheckPictureActivity" />
         <activity android:name=".LectureroomCheckActivity" />
         <activity
@@ -48,18 +45,18 @@
             tools:ignore="WrongManifestParent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".CafeDetailedInfoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/>
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="fa48347431d94978a0df221d44686add" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.capstonedesignandroid"
@@ -67,7 +64,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"></meta-data>
         </provider>
     </application>
 
