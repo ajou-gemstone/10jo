@@ -61,7 +61,6 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 //                textView.setText(eachState);
                 //동적으로 할당하였을 때는 tag를 붙이는게 편하다.
                 textView.setTag(""+i);
-                Log.d("ViewHolder", ""+i);
                 i++;
                 //click하여 생기는 이벤트는 activity에서 처리
                 textView.setOnClickListener(new View.OnClickListener() {

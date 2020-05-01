@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstonedesignandroid.DTO.Dummy;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -31,7 +32,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String BASE = "http://192.168.43.26:3000";
 
     EditText position;
     Button getButton, button_developer;
@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                 //retrofit을 사용하기 위하여 singleton으로 build한다.
                 //gson은 json구조를 띄는 직렬화된 데이터를 Java객체로 역직렬화, 직렬화를 해주는 자바 라이브러리이다.
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE)
+                        .baseUrl(MyConstants.BASE)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 

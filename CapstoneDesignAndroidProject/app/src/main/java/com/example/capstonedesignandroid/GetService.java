@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid;
 
 import com.example.capstonedesignandroid.DTO.Dummy;
+import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 
 import java.util.List;
 
@@ -29,5 +30,10 @@ public interface GetService {
     //Dummy3의 list형을 Get할 수 있도록 한다.
     //서버에서 req의 position이라는 path에(req.params.position) position이 들어갈 수 있도록 한다.
     //Get형은 주소에서 server에서도 json형 데이터를 확인할 수 있다.
+
+    //강의실 예약 필터링
+    @GET("/reservation/list")
+    Call<List<DummyLectureRoomReservationState>> getReservationList(@Query("date") String date, @Query("building") String[] building,
+                                                                    @Query("startTime") int startTime, @Query("lastTime") int lastTime);
 
 }

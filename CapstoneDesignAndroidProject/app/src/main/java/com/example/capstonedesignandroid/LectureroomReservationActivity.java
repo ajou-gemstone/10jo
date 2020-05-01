@@ -2,6 +2,7 @@ package com.example.capstonedesignandroid;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -30,11 +31,20 @@ import com.example.capstonedesignandroid.Fragment.LectureroomReservationCanlenda
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class LectureroomReservationActivity extends AppCompatActivity {
@@ -65,7 +75,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private ArrayList<CheckBox> LectureBuildingCheckboxArrayList;
     private boolean checkControl = false;
     private LinearLayout reserveTimeSpinnerInnerLayout;
-    private ArrayList<DummyLectureRoomReservationState> dummyLectureRoomReservationList = new ArrayList<DummyLectureRoomReservationState>();
+    private ArrayList<DummyLectureRoomReservationState> dummyLectureRoomReservationList;
     private String startTime;
     private String lastTime;
     private HorizontalScrollView lectureRoomScroll;
@@ -78,11 +88,19 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private int startTimePosition;
     private int lastTimePosition;
     private ArrayList<Integer> priorityValue;
+    private ImageButton reserveDetermineButton;
+    private Retrofit retrofit;
+    private boolean dummyLectureRoomReservationState_state = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lectureroom_reservation);
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
         //프래그먼트는 뷰와 다르게 context를 매개변수로 넣어줄 필요가 없다.
         lectureroomReservationCanlendarFragment = new LectureroomReservationCanlendar();
@@ -235,19 +253,25 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 int year = DefinedMethod.getYear(reserveDate);
                 int month = DefinedMethod.getMonth(reserveDate) + 1;
                 int day = DefinedMethod.getDay(reserveDate);
+                String date = "" + year + "-" + month + "-" + day;
                 //건물
+                ArrayList<String> buildingArr = new ArrayList<String>();
                 for(CheckBox eachCheckBox : LectureBuildingCheckboxArrayList){
                     if(eachCheckBox.isChecked()){
-
+                        buildingArr.add((String) eachCheckBox.getText());
                     }
                 }
+                String[] buildingArray = new String[buildingArr.size()];
+                buildingArray = buildingArr.toArray(buildingArray);
+
                 //사용 시간대
                 //모든 시간
+                //순서가 바뀌는 경우도 따로 오류 처리
                 if(reserveTimeAllCheckbox.isChecked()){
-                    startTime = "8:00";//position 0
+                    startTime = "7:00";//position 0
                     startTimePosition = 0;
-                    lastTime = "21:00";//position 26
-                    lastTimePosition = 26;
+                    lastTime = "20:30";//position 27
+                    lastTimePosition = 27;
                 }else{
                     //시작 시간
                     startTime = reserveStartTimeSpinner.getSelectedItem().toString();
@@ -257,27 +281,64 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     lastTimePosition = reserveEndTimeSpinner.getSelectedItemPosition();
                 }
 
-                //-----------------------------------------------------------
-                //데이터 받기
-                //-----------------------------------------------------------
+                Log.d("retrofittt", "date:"+date+ " building:"+ buildingArray[0] + " " + buildingArray[1] + "..." +
+                        " startTime:" + startTimePosition + " lastTime:"+ lastTimePosition);
 
-                //DB에서 아래와 같은 정보를 dummy list로 가져왔다고 가정한다.
-                startTimePosition = 2;
-                lastTimePosition = 8;
-                DummyLectureRoomReservationState dummyLectureRoomReservation1 = new DummyLectureRoomReservationState("성101", "R 0 0 0 1 L");
-                DummyLectureRoomReservationState dummyLectureRoomReservation2 = new DummyLectureRoomReservationState("성102", "L L L L L L");
-                DummyLectureRoomReservationState dummyLectureRoomReservation3 = new DummyLectureRoomReservationState("성103", "R R R L L L");
-                DummyLectureRoomReservationState dummyLectureRoomReservation4 = new DummyLectureRoomReservationState("성104", "1 R 0 L 2 3");
+                //서버 DB에서 목록을 가져온다.
+                GetService service = retrofit.create(GetService.class);
+                //retrofit service에 정의된 method를 사용하여
+                Call<List<DummyLectureRoomReservationState>> call = service.getReservationList(date, buildingArray, startTimePosition, lastTimePosition);
 
-                dummyLectureRoomReservationList.add(dummyLectureRoomReservation1);
-                dummyLectureRoomReservationList.add(dummyLectureRoomReservation2);
-                dummyLectureRoomReservationList.add(dummyLectureRoomReservation3);
-                dummyLectureRoomReservationList.add(dummyLectureRoomReservation4);
+                //비동기 호출
+//                call.enqueue(dummyLectureRoomReservationState);
+
+                //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            List<DummyLectureRoomReservationState> dummies = call.execute().body();
+                            dummyLectureRoomReservationList = new ArrayList<DummyLectureRoomReservationState>(dummies);
+                            dummyLectureRoomReservationState_state = true;
+                            Log.d("run: ", "run: ");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            dummyLectureRoomReservationState_state = false;
+                            Log.d("IOException: ", "IOException: ");
+                        }
+                    }
+                });
+
+                thread.start();
+                try {
+                    Log.d("run2: ", "run2: ");
+                    thread.join();
+                } catch (Exception e) {
+                    Log.d("Exception: ", "IOException: ");
+                    // TODO: handle exception
+                }
+
+                //-----------------------------------------------------------
+                //mockup 데이터 받기
+                if(dummyLectureRoomReservationState_state == false){
+                    //DB에서 아래와 같은 정보를 dummy list로 가져왔다고 가정한다.
+                    startTimePosition = 2;
+                    lastTimePosition = 8;
+                    DummyLectureRoomReservationState dummyLectureRoomReservation1 = new DummyLectureRoomReservationState("성101", "R 0 0 0 1 L");
+                    DummyLectureRoomReservationState dummyLectureRoomReservation2 = new DummyLectureRoomReservationState("성102", "L L L L L L");
+                    DummyLectureRoomReservationState dummyLectureRoomReservation3 = new DummyLectureRoomReservationState("성103", "R R A A A L");
+                    DummyLectureRoomReservationState dummyLectureRoomReservation4 = new DummyLectureRoomReservationState("성104", "1 R 0 L 2 3");
+
+                    dummyLectureRoomReservationList = new ArrayList<DummyLectureRoomReservationState>();
+                    dummyLectureRoomReservationList.add(dummyLectureRoomReservation1);
+                    dummyLectureRoomReservationList.add(dummyLectureRoomReservation2);
+                    dummyLectureRoomReservationList.add(dummyLectureRoomReservation3);
+                    dummyLectureRoomReservationList.add(dummyLectureRoomReservation4);
+                }
 
                 //선착순 sorting
                 if(isFCFS){
 //                    선착순인 경우 빈 시간이 많고, 연결되어있는 강의실 우선
-                    String emptyL = "A";
                     int i = 0;
                     String previousState = "NULL";
                     priorityValue = new ArrayList<Integer>();
@@ -286,13 +347,13 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         String[] splitState = eachStateList.split("\\s+");
                         priorityValue.add(0);
                         for(String eachState : splitState){
-                            if(emptyL.contains(eachState)){
+                            if(eachState.equals("A")){
                                 priorityValue.set(i, priorityValue.get(i));
                             }else{//아니면 최대 가중치인 20을 더한다.
                                 priorityValue.set(i, priorityValue.get(i) + 20);
                             }
                             //연속으로 비어있는 강의실이면 -20을 해준다.
-                            if(emptyL.contains(eachState) && emptyL.contains(previousState)){
+                            if(eachState.equals("A") && previousState.equals("A")){
                                 priorityValue.set(i, priorityValue.get(i) - 20);
                             }
                             previousState = eachState;
@@ -303,7 +364,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     Collections.sort(dummyLectureRoomReservationList, new Comparator<DummyLectureRoomReservationState>() {
                         @Override
                         public int compare(DummyLectureRoomReservationState t1, DummyLectureRoomReservationState t2) {
-                            if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) > priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
+                            if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) >= priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
                                 return 1;
                             }else return -1;
                         }
@@ -333,16 +394,84 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     Collections.sort(dummyLectureRoomReservationList, new Comparator<DummyLectureRoomReservationState>() {
                         @Override
                         public int compare(DummyLectureRoomReservationState t1, DummyLectureRoomReservationState t2) {
-                            if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) > priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
+                            if(priorityValue.get(dummyLectureRoomReservationList.indexOf(t1)) >= priorityValue.get(dummyLectureRoomReservationList.indexOf(t2))){
                                 return 1;
                             }else return -1;
                         }
                     });
                 }
-                inflateReservationUI();
 
                 DummyLectureRoomReservationState dummyLectureRoomReservation0 = new DummyLectureRoomReservationState("강의실", "9:00 9:30 10:00 10:30 11:00 11:30");
                 dummyLectureRoomReservationList.add(0, dummyLectureRoomReservation0);
+                //다시 호출된 경우를 대비해서 변수들 초기화
+                firstTag = -1;
+                secondTag = -1;
+                currentPosition = -1;
+                currentPositionView = null;
+                firstClick = false;
+                secondClick = false;
+
+                inflateReservationUI();
+            }
+        });
+
+        reserveDetermineButton = findViewById(R.id.reserveDetermineButton);
+
+        //강의실 최종 예약 버튼
+        reserveDetermineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //강의실 예약을 확정한다. 서버에 데이터를 넣는다.
+                //강의실 시간대를 적절히 잘 선택헀는지 확인
+                if(firstTag > 0 && secondTag > 0){
+                    //입력: 날짜(하나), 강의실(하나), 시작시간(하나), 종료시간(하나), 본인id(하나)
+                    //입력: {date??? lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: akdsnmkq}
+                    //서버에서 입력내용을 예약내역 DB table에 저장한다.
+                    //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
+                    int year = DefinedMethod.getYear(reserveDate);
+                    int month = DefinedMethod.getMonth(reserveDate) + 1;
+                    int day = DefinedMethod.getDay(reserveDate);
+                    dummyLectureRoomReservationList.get(currentPosition).getLectureroom();//강의실
+                    //retrofit을 사용하기 위하여 singleton으로 build한다.
+                    //gson은 json구조를 띄는 직렬화된 데이터를 Java객체로 역직렬화, 직렬화를 해주는 자바 라이브러리이다.
+
+//                    //interface class를 retrofit을 이용하여 객체화하여 사용할 수 있도록 한다.
+//                    //그리고 아마 interface인 GetService의 제대로 정의되지 않은 메소드를 retrofit 형식에 맞게 알아서 정의를 해줘서 사용할 수 있도록 변경해주는 역할도 한다.
+//                    GetService service = retrofit.create(GetService.class);
+//                    //retrofit service에 정의된 method를 사용하여
+//                    Call<List<Dummy3>> call = service.listDummies(id1, id1);
+//                    call.enqueue(dummies3);
+//
+//                    Callback dummies3 = new Callback<List<Dummy3>>() {
+//                        @Override
+//                        public void onResponse(Call<List<Dummy3>> call, Response<List<Dummy3>> response) {
+//                            if (response.isSuccessful()) {
+//                                List<Dummy3> dummies = response.body();
+//                                StringBuilder builder = new StringBuilder();
+//                                for (Dummy3 dummy : dummies) {
+//                                    builder.append(dummy.toString()+",");
+//                                }
+//
+//                                String[] result;
+//                                result = builder.toString().split(",");
+//                                result_id = result[0];
+//                                name = result[1];
+//                                trust = result[2];
+//                                emotion = result[3];
+//                                Log.d("dummies",""+result_id+name+trust+emotion);
+//                            }else
+//                            {
+//                                Log.d("onResponse:", "Fail, "+ String.valueOf(response.code()));
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<List<Dummy3>> call, Throwable t) {
+//                            Log.d("response fail", "onFailure: ");
+//                        }
+//                    }; //dummies
+
+                }
             }
         });
 
@@ -352,6 +481,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
     private void inflateReservationUI(){
         lectureRoomLayout.setVisibility(View.VISIBLE);
+        reserveDetermineButton.setVisibility(View.VISIBLE);
         recyclerViewReservation.setLayoutManager(new LinearLayoutManager(this));
 
 //        selectMultipleTimeButton = findViewById(R.id.selectMultipleTimeButton);
@@ -401,22 +531,13 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int id)
                         {
-                            //강의실 정보 가져오기, 확정은 다른 버튼으로한다.
+                            //강의실 정보 가져오기
+                            //쿼리
+                            //강의실 번호
 
-                            //강의실 예약을 확정한다. 서버에 데이터를 넣는다.
-                            //강의실 시간대를 적절히 잘 선택헀는지 확인
-                            if(firstTag > 0 && secondTag > 0){
-                                //입력: 날짜(하나), 강의실(하나), 시작시간(하나), 종료시간(하나), 본인id(하나)
-                                //입력: {date??? lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: akdsnmkq}
-                                //서버에서 입력내용을 예약내역 DB table에 저장한다.
-                                //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
-                                int year = DefinedMethod.getYear(reserveDate);
-                                int month = DefinedMethod.getMonth(reserveDate) + 1;
-                                int day = DefinedMethod.getDay(reserveDate);
-                                dummyLectureRoomReservationList.get(currentPosition).getLectureroom();//강의실
-                                //firstTag, secondTag 크기가 역전될 수도 있다.
-                                //본인 id
-                            }
+
+                            //리턴
+                            //강의실 정보
 
                         }
                     });
@@ -547,5 +668,25 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         }
     }
     //------------------------------------------------------
+    //retrofit callback
+
+    Callback dummyLectureRoomReservationState = new Callback<List<DummyLectureRoomReservationState>>() {
+        @Override
+        public void onResponse(Call<List<DummyLectureRoomReservationState>> call, Response<List<DummyLectureRoomReservationState>> response) {
+            if (response.isSuccessful()) {
+                List<DummyLectureRoomReservationState> dummies = response.body();
+                dummyLectureRoomReservationList = new ArrayList<DummyLectureRoomReservationState>(dummies);
+                dummyLectureRoomReservationState_state = true;
+            } else {
+                Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
+            }
+        }
+
+        @Override
+        public void onFailure(Call<List<DummyLectureRoomReservationState>> call, Throwable t) {
+            Log.d("response fail", "onFailure: ");
+            dummyLectureRoomReservationState_state = false;
+        }
+    }; //dummies
 
 }
