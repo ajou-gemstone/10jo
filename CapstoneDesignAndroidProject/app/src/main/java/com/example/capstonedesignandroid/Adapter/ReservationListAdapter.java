@@ -1,8 +1,11 @@
 package com.example.capstonedesignandroid.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,6 +21,17 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
 
     private ArrayList<String> arraylist;
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener ;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int position);
+    }
+
+    //리스너 객체 참조를 저장하는 변수
+    private OnItemClickListener mListener;
+
     public ReservationListAdapter(ArrayList<String> a){
         arraylist = a;
         Log.d("ReservationListAdapter", "");
@@ -29,6 +43,12 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mListener.onItemClick(view, getAdapterPosition());
+                }
+            });
         }
     }
 

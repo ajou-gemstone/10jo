@@ -13,25 +13,30 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
+import com.example.capstonedesignandroid.DTO.LectureRoomReservationState;
+import com.example.capstonedesignandroid.LectureroomReservationActivity;
 import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;
 
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> {
     private int timeCountNum = 0;
-    private ArrayList<DummyLectureRoomReservationState> mData = null ;
+    private ArrayList<LectureRoomReservationState> mData = null ;
 
-    // OnItemClickListener 리스너 객체 참조를 어댑터에 전달하는 메서드
+    //OnItemClickListener 리스너 객체 참조를 어댑터에 전달하는 메서드
+    //이 메소드가 있어야 activity에서 override한 class를 instance로 객체화하여 method가 실제로 작동이 가능하도록 할 수 있다.
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener ;
     }
 
+    //Adapter에서 일어난 event를 activity에서 처리를 해야하기 때문에 interface를 통하여 activity에서
+    //비동기적으로 event를 처리할 수 있도록 한다.
     public interface OnItemClickListener {
         void onItemClick(View v, int position);
         void onTimeClick(View v, int position, View pv);
     }
 
-    // 리스너 객체 참조를 저장하는 변수
+    //리스너 객체 참조를 저장하는 변수
     private OnItemClickListener mListener;
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
@@ -87,7 +92,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    public ReservationAdapter(ArrayList<DummyLectureRoomReservationState> list) {
+    public ReservationAdapter(ArrayList<LectureRoomReservationState> list) {
         mData = list ;
     }
 
@@ -107,7 +112,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
     public void onBindViewHolder(ReservationAdapter.ViewHolder holder, int position) {
-        DummyLectureRoomReservationState data = mData.get(position);
+        LectureRoomReservationState data = mData.get(position);
 
         holder.lectureRoomNameButton.setText(data.getLectureroom());
 

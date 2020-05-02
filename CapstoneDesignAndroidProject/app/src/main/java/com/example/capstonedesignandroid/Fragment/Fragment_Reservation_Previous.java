@@ -1,11 +1,15 @@
 package com.example.capstonedesignandroid.Fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.capstonedesignandroid.Adapter.ReservationAdapter;
@@ -34,9 +38,19 @@ public class Fragment_Reservation_Previous extends Fragment {
         arrayListString.add("하나");
         arrayListString.add("둘");
         arrayListString.add("셋");
+        Log.d("onCreateView: ", "onCreateView: ");
 
+        //recycler view에 들어갈 layout을 정해주어야 한다.
+        recyclerViewReservationList.setLayoutManager(new LinearLayoutManager(getContext()));
         reservationListAdapter = new ReservationListAdapter(arrayListString);
         recyclerViewReservationList.setAdapter(reservationListAdapter);
+
+        reservationListAdapter.setOnItemClickListener(new ReservationListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Toast.makeText(getContext(), ""+position, Toast.LENGTH_LONG).show();
+            }
+        });
 
         return view;
     }

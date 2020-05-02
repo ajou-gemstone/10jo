@@ -42,8 +42,8 @@ public class LectureroomCheckActivity extends AppCompatActivity {
     }
 
     public void setupViewPager(ViewPager viewPager) {
-        adapter.addFragment(new Fragment_Reservation_Today(), "앞으로의 예약");
-        adapter.addFragment(new Fragment_Reservation_Future(), "오늘의 예약");
+        adapter.addFragment(new Fragment_Reservation_Today(), "오늘의 예약");
+        adapter.addFragment(new Fragment_Reservation_Future(), "앞으로의 예약");
         adapter.addFragment(new Fragment_Reservation_Previous(), "예전의 예약");
         viewPager.setAdapter(adapter);
     }

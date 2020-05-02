@@ -2,6 +2,8 @@ package com.example.capstonedesignandroid;
 
 import com.example.capstonedesignandroid.DTO.Dummy;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
+import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
+import com.example.capstonedesignandroid.DTO.DummyReservationId;
 
 import java.util.List;
 
@@ -35,5 +37,26 @@ public interface GetService {
     @GET("/reservation/list")
     Call<List<DummyLectureRoomReservationState>> getReservationList(@Query("date") String date, @Query("building") String[] building,
                                                                     @Query("startTime") int startTime, @Query("lastTime") int lastTime);
+    //입력: 날짜(하나), 건물(리스트), 시작시간(하나), 종료시간(하나), //강의실 예약 인원 수(하나)
+    //입력: {date: "YYYY-M-D", building: "성호관 율곡관 연암관" startTime: "0" lastTime: "3"}
+    //출력: {lectureroom: "성101", stateList: "R 0 0 0 1 L"}
+    //출력: {lectureroom: "성103", stateList: "R A A A L L"}
+
+    //강의실 정보 가져오기
+    @GET("/")
+    Call<DummyLectureroomInfo> getLectureroomInfo(@Query("lectureroom") String lectureroom);
+    //입력: {lectureroom: 성101}
+    //출력: {capacity: 50}
+
+    //강의실 예약 저장하기
+    @POST("/")
+    Call<DummyReservationId> postReservation(@Query("date") String date, @Query("lectureroom") String lectureroom,
+                                             @Query("startTime") int startTime, @Query("lastTime") int lastTime,
+                                             @Query("userid") String userid);
+    //입력: 날짜(하나), 강의실(하나), 시작시간(하나), 종료시간(하나), 본인id(하나)
+    //입력: {date: "YYYY-M-D" lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: akdsnmkq}
+    //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
+
+
 
 }
