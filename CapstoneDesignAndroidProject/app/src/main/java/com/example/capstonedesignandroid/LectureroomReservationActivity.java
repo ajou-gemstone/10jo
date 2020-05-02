@@ -265,8 +265,13 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         buildingArr.add((String) eachCheckBox.getText());
                     }
                 }
+                if(buildingArr.size() == 0){
+                    Toast.makeText(getApplicationContext(), "건물을 최소한 하나 선택해주세요", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String[] buildingArray = new String[buildingArr.size()];
                 buildingArray = buildingArr.toArray(buildingArray);
+
 
                 //사용 시간대
                 //모든 시간
@@ -324,7 +329,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 if(dummyLectureRoomReservationState_state == false){
                     //DB에서 아래와 같은 정보를 dummy list로 가져왔다고 가정한다.
                     startTimePosition = 2;
-                    lastTimePosition = 8;
+                    lastTimePosition = 7;
                     DummyLectureRoomReservationState dummyLectureRoomReservation1 = new DummyLectureRoomReservationState("성101", "R 0 0 0 1 L");
                     DummyLectureRoomReservationState dummyLectureRoomReservation2 = new DummyLectureRoomReservationState("성102", "L L L L L L");
                     DummyLectureRoomReservationState dummyLectureRoomReservation3 = new DummyLectureRoomReservationState("성103", "R R A A A L");
@@ -424,8 +429,14 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     });
                 }
 
-                //시간표도 마찬가지로 동적으로 생성
-                DummyLectureRoomReservationState dummyLectureRoomReservation0 = new DummyLectureRoomReservationState("강의실", "9:00 9:30 10:00 10:30 11:00 11:30");
+                //시간 배열도 마찬가지로 동적으로 생성
+                String timeString = "";
+                for(int i = startTimePosition; i <= lastTimePosition; i++){
+                    timeString = timeString.concat(DefinedMethod.getTimeByPosition(i) +" ");
+                }
+                Log.d("timeString", "" + timeString);
+
+                DummyLectureRoomReservationState dummyLectureRoomReservation0 = new DummyLectureRoomReservationState("강의실", timeString);
                 lectureRoomReservationStateArrayList.add(0, new LectureRoomReservationState(dummyLectureRoomReservation0));
                 //다시 호출된 경우를 대비해서 변수들 초기화
                 firstTag = -1;
@@ -659,7 +670,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         secondClick = false;
                         secondTag = -1;
                         //배경을 모두 지움
-                        for(int i = 0; i < lastTimePosition-startTimePosition; i++){
+                        for(int i = 0; i <= lastTimePosition-startTimePosition; i++){
                             pv.findViewWithTag(""+i).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
                         }
                     }else{
@@ -667,14 +678,14 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             secondClick = false;
                             secondTag = -1;
                             //배경을 first view빼고 모두 지움
-                            for(int i = 0; i < lastTimePosition-startTimePosition; i++){
+                            for(int i = 0; i <= lastTimePosition-startTimePosition; i++){
                                 pv.findViewWithTag(""+i).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
                             }
                             pv.findViewWithTag(""+firstTag).setBackgroundColor(Color.argb(51,17,17,17));
                         }else{
                             secondClick = true;
                             secondTag = tag;
-                            for(int i = 0; i < lastTimePosition-startTimePosition; i++){
+                            for(int i = 0; i <= lastTimePosition-startTimePosition; i++){
                                 pv.findViewWithTag(""+i).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
                             }
                             //배경을 first view에서 second view까지 모두 표시
@@ -687,7 +698,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                         secondClick = false;
                                         secondTag = -1;
                                         //배경을 first view빼고 모두 지움
-                                        for(int j = 0; j < lastTimePosition-startTimePosition; j++){
+                                        for(int j = 0; j <= lastTimePosition-startTimePosition; j++){
                                             pv.findViewWithTag(""+j).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
                                         }
                                         pv.findViewWithTag(""+firstTag).setBackgroundColor(Color.argb(51,17,17,17));
