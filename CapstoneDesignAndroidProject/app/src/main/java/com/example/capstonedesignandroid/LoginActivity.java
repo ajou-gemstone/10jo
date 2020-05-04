@@ -22,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String BASE = "http://200.200.15.147:3000";
+    private static final String BASE = "http://172.30.1.4:3000";
 
     EditText position;
     Button getButton, button_developer;
@@ -47,11 +47,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final EditText id = (EditText) findViewById(R.id.edittext_id);
-        //SharedPreference.setAttribute(getApplicationContext(), "IP", BASE);
+        SharedPreference.setAttribute(getApplicationContext(), "IP", BASE);
         final EditText password = (EditText) findViewById(R.id.edittext_password);
         final Button login = (Button) findViewById(R.id.button_login);
         Button button_developer = (Button) findViewById(R.id.button_developer);
         CheckBox remember = findViewById(R.id.remember);
+        Button crawlbutton = (Button) findViewById(R.id.button_crawl);
 
         id.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -84,12 +85,14 @@ public class LoginActivity extends AppCompatActivity {
                 GetService service = retrofit.create(GetService.class);
                 String id1 = String.valueOf(id.getText().toString());
                 String password1 = String.valueOf(password.getText().toString());
-                info_id=id1;
-                info_password=password1;
-                Call<List<Dummy3>> call = service.listDummies(id1);
+//                info_id=id1;
+//                info_password=password1;
+                Call<List<Dummy3>> call = service.listDummies(id1, password1);
                 call.enqueue(dummies);
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("id", id1);
+                intent.putExtra("pw", password1);
                 startActivityForResult(intent,100);
             }
         });
@@ -100,6 +103,15 @@ public class LoginActivity extends AppCompatActivity {
                 admin = 1;
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivityForResult(intent,100);
+            }
+        });
+        crawlbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                admin = 1;
+
+                Intent intent = new Intent(getApplicationContext(),test1.class);
                 startActivityForResult(intent,100);
             }
         });

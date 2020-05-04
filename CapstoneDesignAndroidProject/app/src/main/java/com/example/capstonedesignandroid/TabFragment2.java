@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.capstonedesignandroid.Adapter.StudyGroupAdapter;
+import com.example.capstonedesignandroid.Adapter.GroupListAdapter;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,7 @@ public class TabFragment2 extends Fragment {
     String[] userInfo, titleArray, categoryArray, profileArray, likeArray,tempArray;
     int[] indexArray;
     Boolean ischecked2;
-    StudyGroupAdapter groupAdapter = new StudyGroupAdapter();
+    GroupListAdapter groupAdapter = new GroupListAdapter();
     EditText editSearch;
     boolean likesorting;
     String category = "";
