@@ -4,14 +4,24 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.capstonedesignandroid.DTO.Dummy;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.List;
 
@@ -54,6 +64,28 @@ public class LoginActivity extends AppCompatActivity {
         CheckBox remember = findViewById(R.id.remember);
         Button crawlbutton = (Button) findViewById(R.id.button_crawl);
 
+        //----------------------firebase--------------
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("getInstanceId", "getInstanceId failed", task.getException());
+                            Log.d("onComplete", "onComplete: ");
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        Log.d("token", token);
+                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        //-------------------firebase-------------------
+
         id.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
@@ -77,11 +109,15 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //retrofit을 사용하기 위하여 singleton으로 build한다.
+                //gson은 json구조를 띄는 직렬화된 데이터를 Java객체로 역직렬화, 직렬화를 해주는 자바 라이브러리이다.
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE)
+                        .baseUrl(MyConstants.BASE)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
+                //interface class를 retrofit을 이용하여 객체화하여 사용할 수 있도록 한다.
+                //그리고 아마 interface인 GetService의 제대로 정의되지 않은 메소드를 retrofit 형식에 맞게 알아서 정의를 해줘서 사용할 수 있도록 변경해주는 역할도 한다.
                 GetService service = retrofit.create(GetService.class);
                 String id1 = String.valueOf(id.getText().toString());
                 String password1 = String.valueOf(password.getText().toString());
@@ -89,6 +125,12 @@ public class LoginActivity extends AppCompatActivity {
 //                info_password=password1;
                 Call<List<Dummy3>> call = service.listDummies(id1, password1);
                 call.enqueue(dummies);
+                info_id=id1;
+                info_password=password1;
+                //retrofit service에 정의된 method를 사용하여
+
+                Call<List<Dummy3>> call2 = service.listDummies2(id1);
+                call2.enqueue(dummies2);
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 intent.putExtra("id", id1);
@@ -162,6 +204,10 @@ public class LoginActivity extends AppCompatActivity {
                 name = result[1];
                 trust = result[2];
                 emotion = result[3];
+                Log.d("dummies",""+result_id+name+trust+emotion);
+            }else
+            {
+                Log.d("onResponse:", "Fail, "+ String.valueOf(response.code()));
             }
         }
 
@@ -170,6 +216,28 @@ public class LoginActivity extends AppCompatActivity {
 
         }
     }; //dummies
+
+    Callback dummies2 = new Callback<List<Dummy3>>(){
+        @Override
+        public void onResponse(Call<List<Dummy3>> call, Response<List<Dummy3>> response) {
+            if (response.isSuccessful()) {
+                List<Dummy3> dummies = response.body();
+                StringBuilder builder = new StringBuilder();
+                for (Dummy3 dummy: dummies) {
+                    builder.append(dummy.toString()+"\n");
+                }
+                Log.d("onResponse", "" + builder.toString());
+            } else
+            {
+                Log.d("onResponse:", "Fail, "+ String.valueOf(response.code()));
+            }
+        }
+
+        @Override
+        public void onFailure(Call<List<Dummy3>> call, Throwable t) {
+            Log.d("onFailure", "fail");
+        }
+    };
 
 
 }

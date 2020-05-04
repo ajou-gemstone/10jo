@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LectureroomReservationLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/LectureroomReservationLayout"
     tools:context=".LectureroomReservationActivity">
 
     <Button
         android:id="@+id/calendarReserveButton"
-        android:text="날짜 예약하기"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:text="날짜 예약하기" />
+
     <TextView
         android:id="@+id/reserveTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/calendarReserveButton"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/calendarReserveButton" />
 
     <TextView
         android:id="@+id/reserveTypeTextView"
-        android:layout_toRightOf="@+id/reserveTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/reserveTimeTextView"
         android:text="예약 타입: 선착순">
 
     </TextView>
@@ -33,18 +34,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/calendarReserveButton">
+
         <LinearLayout
-            android:id="@+id/LectureroomFilterLayout"
+            android:id="@+id/LectureBuildingFilterLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/LectureroomAllCheckbox"
+                android:id="@+id/LectureBuildingAllCheckbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="모두">
-            </CheckBox>
+                android:text="모두"></CheckBox>
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -52,8 +53,7 @@
     <FrameLayout
         android:id="@+id/reservation_calendar_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="match_parent"></FrameLayout>
 
     <LinearLayout
         android:id="@+id/reserveTimeSpinnerLayout"
@@ -68,21 +68,28 @@
             android:layout_height="wrap_content"
             android:text="모든 시간" />
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/reserveTimeSpinnerInnerLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="희망시간"/>
+            android:layout_marginLeft="20dp">
 
-        <Spinner
-            android:id="@+id/reserveStartTimeSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="희망시간" />
 
-        <Spinner
-            android:id="@+id/reserveEndTimeSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <Spinner
+                android:id="@+id/reserveStartTimeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/reserveEndTimeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -92,6 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/reserveTimeSpinnerLayout"
         android:orientation="horizontal">
+
         <ImageButton
             android:id="@+id/reserveRandomButton"
             android:layout_width="wrap_content"
@@ -101,49 +109,100 @@
         </ImageButton>
 
         <ImageButton
-            android:id="@+id/reserveButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/reserveDetermineButton"
+            android:layout_centerInParent="true"
+            android:src="@drawable/reserve"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/cafeplaceblack_18"
-            android:layout_alignParentRight="true"
-            android:orientation="horizontal">
-
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:visibility="invisible">
         </ImageButton>
+
+        <ImageButton
+            android:id="@+id/reserveButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/lectureroom_inquiry"/>
+
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lectureRoomFCFSrecyclerView"
-        android:layout_below="@+id/reserveButtonLayout"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"/>
-
     <LinearLayout
-        android:id="@+id/recyclerPPDLayout"
+        android:id="@+id/lectureRoomPPDLayout"
+        android:layout_below="@+id/reserveButtonLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/reserveButtonLayout"
         android:orientation="vertical"
         android:visibility="invisible">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerPPDrecyclerView"
-            android:scrollbars="vertical"
+        <HorizontalScrollView
+            android:id="@+id/lectureRoomScroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5"/>
+            android:layout_height="0dp"
+            android:layout_weight="5">
+
+            <LinearLayout
+                android:id="@+id/recyclerPPDLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerPPDrecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:scrollbars="vertical" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
         <LinearLayout
+            android:id="@+id/lectureRoomPriority"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layoutAbove"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FFEB3B">
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutCenter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FFC107">
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutBelow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FF9800">
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutTrash"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#AC0202">
+            </RelativeLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 </RelativeLayout>

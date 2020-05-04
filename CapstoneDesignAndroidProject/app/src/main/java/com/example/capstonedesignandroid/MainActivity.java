@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button CafeMapActivityButton;
     private Button testActivity;
     private Button LectureroomCheckActivityButton;
+    private Button test2Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +45,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CafeMapActivityButton = findViewById(R.id.CafeMapActivityButton);
         testActivity = findViewById(R.id.testButton);
         LectureroomCheckActivityButton = findViewById(R.id.LectureroomCheckActivityButton);
+        test2Button = findViewById(R.id.test2Button);
 
         StudyBulletinBoardActivityButton.setOnClickListener(this);
         LectureroomReservationActivityButton.setOnClickListener(this);
         CafeMapActivityButton.setOnClickListener(this);
         testActivity.setOnClickListener(this);
         LectureroomCheckActivityButton.setOnClickListener(this);
+        test2Button.setOnClickListener(this);
 
         Log.d("asd", getKeyHash(getApplicationContext()));
 
