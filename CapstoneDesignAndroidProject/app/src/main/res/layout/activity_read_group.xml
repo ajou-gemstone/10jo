@@ -10,7 +10,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp">
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:id="@+id/textview_title"
             android:layout_gravity="center"
@@ -25,6 +25,13 @@
             android:layout_height="0dp"
             android:layout_weight="0.5"/>
         <Button
+            android:id="@+id/button_chat"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right|center"
+            android:text="채팅하기"
+            android:textStyle="bold"/>
+        <Button
             android:id="@+id/button_edit"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -33,7 +40,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:orientation="horizontal"
         android:background="#e8effc">
         <ScrollView
@@ -108,5 +115,21 @@
             android:textStyle="bold"/>
 
     </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/refresh">
+        <ListView
+            android:id="@+id/memberlistview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_x="0px"
+            android:layout_y="0px"
+            android:dividerHeight="3dp"
+            android:divider="#f0f0f0">
+        </ListView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>
