@@ -34,6 +34,8 @@ public class Fragment_Reservation_Previous extends Fragment {
         recyclerViewReservationList = view.findViewById(R.id.recyclerViewReservationList);
 
         //DB에서 예약정보 list를 받아온다.
+        //쿼리:
+
         ArrayList<String> arrayListString = new ArrayList<String>();
         arrayListString.add("하나");
         arrayListString.add("둘");

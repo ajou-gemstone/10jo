@@ -16,12 +16,13 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface GetService {
-
-    //Base URI: Base
-
     @POST("/study")
     @FormUrlEncoded
-    Call<List<Dummy3>> listDummies(@Field("id") String position, @Query("position") String position2);
+    Call<List<Dummy3>> listDummies(@Field("id") String position, @Field("pw") String position1);
+
+    @GET("/study/list")
+    Call<List<Dummy3>> listDummies();
+//    Call<List<Dummy3>> listDummies(@Field("id") String position, @Query("position") String position2);
     //Dummy3의 list형을 POST할 수 있도록 한다.
     //서버에서 req의 body id라는 field에(req.body.id) position이 들어갈 수 있도록 한다.
     //annotation이 붙은 Field나 Query는 server에서 사용하는 key값(변수)이고 오른쪽의 String 변수는 안드로이드에서 사용하는 변수다.

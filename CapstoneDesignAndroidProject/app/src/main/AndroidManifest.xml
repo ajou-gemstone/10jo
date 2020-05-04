@@ -62,8 +62,12 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".MakeGroupActivity" />
         <activity android:name=".ReadGroupActivity" />
+        <activity android:name=".ChattingActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".test1" />
         <activity android:name=".TabFragment1" />
         <activity android:name=".TabFragment2" />
+        <activity android:name=".TabFragment3" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"

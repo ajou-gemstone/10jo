@@ -102,7 +102,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
 
-        View view = inflater.inflate(R.layout.recyclerview_lectureroom_reservation_ppd, parent, false) ;
+        View view = inflater.inflate(R.layout.recyclerview_lectureroom_reservation_ppd, parent, false);
 
         ReservationAdapter.ViewHolder vh = new ReservationAdapter.ViewHolder(view) ;
 

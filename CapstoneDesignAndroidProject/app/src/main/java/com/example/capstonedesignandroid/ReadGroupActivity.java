@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class ReadGroupActivity extends AppCompatActivity {
-    Button enterbt, reservation;
+    Button enterbt, reservation, chatting;
     TextView title,maintext;
     Intent intent2;
     String userKey;
@@ -36,6 +36,7 @@ public class ReadGroupActivity extends AppCompatActivity {
         currentnum = (TextView) findViewById(R.id.currentnum);
         totalnum = (TextView) findViewById(R.id.totalnum);
         reservation = (Button) findViewById(R.id.button_oldchat);
+        chatting = (Button) findViewById(R.id.button_chat);
 
 
         Intent intent3 = getIntent();
@@ -84,6 +85,24 @@ public class ReadGroupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 oldchat = 1;
                 Intent intent = new Intent(getApplicationContext(),LectureroomReservationActivity.class);
+                startActivity(intent);
+
+//                Retrofit retrofit2 = new Retrofit.Builder()
+//                        .baseUrl(BASE)
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .build();
+//
+//                UserKeyInterface userKeyInterface = retrofit2.create(UserKeyInterface.class);
+//                Call<List<Dummy>> call2 = userKeyInterface.listDummies(userInfo[0], userInfo[1]);
+//                call2.enqueue(dummies2);
+            }
+        });
+
+        chatting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                oldchat = 1;
+                Intent intent = new Intent(getApplicationContext(),ChattingActivity.class);
                 startActivity(intent);
 
 //                Retrofit retrofit2 = new Retrofit.Builder()

@@ -32,6 +32,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String BASE = "http://172.30.1.4:3000";
 
     EditText position;
     Button getButton, button_developer;
@@ -56,11 +57,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final EditText id = (EditText) findViewById(R.id.edittext_id);
-        //SharedPreference.setAttribute(getApplicationContext(), "IP", BASE);
+        SharedPreference.setAttribute(getApplicationContext(), "IP", BASE);
         final EditText password = (EditText) findViewById(R.id.edittext_password);
         final Button login = (Button) findViewById(R.id.button_login);
         Button button_developer = (Button) findViewById(R.id.button_developer);
         CheckBox remember = findViewById(R.id.remember);
+        Button crawlbutton = (Button) findViewById(R.id.button_crawl);
 
         //----------------------firebase--------------
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -119,16 +121,20 @@ public class LoginActivity extends AppCompatActivity {
                 GetService service = retrofit.create(GetService.class);
                 String id1 = String.valueOf(id.getText().toString());
                 String password1 = String.valueOf(password.getText().toString());
+//                info_id=id1;
+//                info_password=password1;
+                Call<List<Dummy3>> call = service.listDummies(id1, password1);
+                call.enqueue(dummies);
                 info_id=id1;
                 info_password=password1;
                 //retrofit service에 정의된 method를 사용하여
-                Call<List<Dummy3>> call = service.listDummies(id1, id1);
-                call.enqueue(dummies3);
 
                 Call<List<Dummy3>> call2 = service.listDummies2(id1);
                 call2.enqueue(dummies2);
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("id", id1);
+                intent.putExtra("pw", password1);
                 startActivityForResult(intent,100);
             }
         });
@@ -139,6 +145,15 @@ public class LoginActivity extends AppCompatActivity {
                 admin = 1;
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivityForResult(intent,100);
+            }
+        });
+        crawlbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                admin = 1;
+
+                Intent intent = new Intent(getApplicationContext(),test1.class);
                 startActivityForResult(intent,100);
             }
         });
@@ -172,7 +187,8 @@ public class LoginActivity extends AppCompatActivity {
         alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
     }
 
-    Callback dummies3 = new Callback<List<Dummy3>>() {
+    Callback dummies = new Callback<List<Dummy3>>() {
+
         @Override
         public void onResponse(Call<List<Dummy3>> call, Response<List<Dummy3>> response) {
             if (response.isSuccessful()) {
@@ -197,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onFailure(Call<List<Dummy3>> call, Throwable t) {
-            Log.d("response fail", "onFailure: ");
+
         }
     }; //dummies
 
