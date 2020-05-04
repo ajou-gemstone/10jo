@@ -13,7 +13,7 @@ import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;
 
-public class StudyGroupAdapter extends BaseAdapter {
+public class GroupListAdapter extends BaseAdapter {
     private class listItem {
         private int groupId;
         private String groupName;
@@ -40,12 +40,12 @@ public class StudyGroupAdapter extends BaseAdapter {
     // 외부에서 아이템 추가 요청 시 사용
     private ArrayList<listItem> list;
 
-    public StudyGroupAdapter(ArrayList<listItem> list){
+    public GroupListAdapter(ArrayList<listItem> list){
         // Adapter 생성시 list값을 넘겨 받는다.
         this.list=list;
     }
 
-    public StudyGroupAdapter() {
+    public GroupListAdapter() {
         list = new ArrayList();
     }
 

@@ -3,7 +3,7 @@ package com.example.capstonedesignandroid;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.capstonedesignandroid.Adapter.StudyGroupAdapter;
+import com.example.capstonedesignandroid.Adapter.GroupListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -34,7 +34,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
     Intent intent3,intent2,intent4,intent5,intent6,intent7;
     String[] userInfo, usertitle;
     ListView favorite;
-    StudyGroupAdapter m_Adapter1 = new StudyGroupAdapter();
+    GroupListAdapter m_Adapter1 = new GroupListAdapter();
     String[] titleArray;
     String[] likeArray;
     String[] categoryArray;
@@ -313,7 +313,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
                     case 1:
                         TabFragment2 tab2 = new TabFragment2();
                     case 2:
-                        TabFragment1 tab3 = new TabFragment1();
+                        TabFragment3 tab3 = new TabFragment3();
                 }
                 return null;
             }
