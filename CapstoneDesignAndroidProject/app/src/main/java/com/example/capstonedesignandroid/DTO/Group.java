@@ -1,20 +1,26 @@
-package com.example.capstonedesignandroid;
+package com.example.capstonedesignandroid.DTO;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Dummy3 {
+public class Group {
     @SerializedName("id")
     @Expose
     private Integer id;
     @SerializedName("category")
     @Expose
-    private String category;
+    private int category;
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("textBody")
+    @Expose
+    private String textBody;
+   @SerializedName("classcode")
+    @Expose
+    private String classcode;
     @SerializedName("studyGroupNumTotal")
     @Expose
     private Integer studyGroupNumTotal;
@@ -36,11 +42,11 @@ public class Dummy3 {
         this.id = id;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
@@ -52,6 +58,20 @@ public class Dummy3 {
         this.title = title;
     }
 
+    public String getClasscode() {
+        return classcode;
+    }
+    public String getTextBody() {
+        return textBody;
+    }
+
+    public void setTextBody(String textBody) {
+        this.textBody = textBody;
+    }
+
+    public void setClasscode(String classcode) {
+        this.classcode = classcode;
+    }
     public Integer getStudyGroupNumTotal() {
         return studyGroupNumTotal;
     }

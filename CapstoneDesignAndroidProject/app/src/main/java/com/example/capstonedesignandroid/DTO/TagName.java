@@ -1,4 +1,4 @@
-package com.example.capstonedesignandroid;
+package com.example.capstonedesignandroid.DTO;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

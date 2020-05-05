@@ -3,7 +3,7 @@ package com.example.capstonedesignandroid;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.capstonedesignandroid.Adapter.GroupListAdapter;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -34,7 +34,6 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
     Intent intent3,intent2,intent4,intent5,intent6,intent7;
     String[] userInfo, usertitle;
     ListView favorite;
-    GroupListAdapter m_Adapter1 = new GroupListAdapter();
     String[] titleArray;
     String[] likeArray;
     String[] categoryArray;
@@ -119,7 +118,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                TabFragment1 fragment1 = new TabFragment1();
+                GroupFragment1 fragment1 = new GroupFragment1();
             }
 
             @Override
@@ -132,10 +131,10 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
 
             }
         });
-        View llBottomSheet = findViewById(R.id.bottom_sheet);
-        favorite = (ListView) findViewById(R.id.list_favorite);
-
-        favorite.setAdapter(m_Adapter1);
+//        View llBottomSheet = findViewById(R.id.bottom_sheet);
+//        favorite = (ListView) findViewById(R.id.list_favorite);
+//
+//        favorite.setAdapter(m_Adapter1);
 
         // init the bottom sheet behavior
 //        final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
@@ -309,11 +308,11 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
             public CharSequence getPageTitle(int position) {
                 switch (position) {
                     case 0:
-                        TabFragment1 tab1 = new TabFragment1();
+                        GroupFragment1 tab1 = new GroupFragment1();
                     case 1:
-                        TabFragment2 tab2 = new TabFragment2();
+                        GroupFragment2 tab2 = new GroupFragment2();
                     case 2:
-                        TabFragment3 tab3 = new TabFragment3();
+                        GroupFragment3 tab3 = new GroupFragment3();
                 }
                 return null;
             }

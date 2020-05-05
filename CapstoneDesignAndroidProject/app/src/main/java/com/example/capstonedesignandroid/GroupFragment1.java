@@ -21,9 +21,8 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.capstonedesignandroid.Adapter.GroupListAdapter;
-
-import org.json.*;
-import org.json.simple.parser.*;
+import com.example.capstonedesignandroid.DTO.Group;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +33,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-//public class TabFragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
-public class TabFragment1 extends Fragment {
+//public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
+public class GroupFragment1 extends Fragment {
 
     Intent intent1,intent2;
     ArrayAdapter adapter;
@@ -47,15 +46,15 @@ public class TabFragment1 extends Fragment {
     Context context;
     ArrayAdapter<String> adapter1;
     ArrayList<String> list;
-    String[] userInfo, titleArray, categoryArray, profileArray, likeArray,tempArray;
-    int[] indexArray;
+    String[] userInfo, titleArray, classcodeArray, tagArray;
+    int[] idArray, categoryArray, currentNumArray, totalNumArray;
     Boolean ischecked2;
 
     EditText editSearch;
     boolean likesorting;
     String category = "";
 
-    GroupListAdapter groupAdapter = new GroupListAdapter();
+    GroupListAdapter grouplistAdapter = new GroupListAdapter();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,39 +72,43 @@ public class TabFragment1 extends Fragment {
         editSearch = view.findViewById(R.id.editSearch);
         search = view.findViewById(R.id.search);
 
-        //        Intent intent1 = getActivity().getIntent();
-//        userInfo = intent1.getStringArrayExtra("strings");
-////        userId = userInfo[0];
-////        userPassword = userInfo[1];
-////        name = userInfo[3];
-////        trust = userInfo[4];
-////        emotion = userInfo[5];
-//        like = "1";
-//        text = (TextView) view.findViewById(R.id.text);
-//        list = new ArrayList<>();
-//        adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
+                Intent intent1 = getActivity().getIntent();
+        userInfo = intent1.getStringArrayExtra("strings");
+//        userId = userInfo[0];
+//        userPassword = userInfo[1];
+//        name = userInfo[3];
+//        trust = userInfo[4];
+//        emotion = userInfo[5];
+        like = "1";
+        text = (TextView) view.findViewById(R.id.text);
+        list = new ArrayList<>();
+        adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
 
         //db에서 가져오기
-        listview = (ListView)view.findViewById(R.id.listview1);
-        listview.setAdapter(groupAdapter);
-        groupAdapter.add(0, "삼성코테같이준비해요", "모든", "타이틀", "하반기무조건합격보장해드림", "없음", 1, 4);
-        groupAdapter.add(1, "오픽AL5번연속배출모임", "모든", "타이틀2", "야 너두 할 수 있어", "없음", 2, 10);
-        groupAdapter.add(2, "test1", "모든", "title3", "야 너두 할 수 있어", "없음", 2, 10);
-        groupAdapter.add(3, "test2", "모든", "title4", "야 너두 할 수 있어", "없음", 2, 10);
 
+        listview = (ListView)view.findViewById(R.id.listview1);
+
+        listview.setAdapter(grouplistAdapter);
+/*
+        for (int i = 0; i <= titleArray.length - 1; i++) {
+            if(categoryArray[i] == 0)
+                grouplistAdapter.add(idArray[i], tagArray[i], titleArray[i], classcodeArray[i], totalNumArray[i], currentNumArray[i]);
+        }*/
+            grouplistAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
+            grouplistAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
 
 //        titleArray=userInfo[2].split(",");
 //        likeArray=userInfo[6].split(",");
 //        categoryArray=userInfo[7].split(",");
 //        profileArray=userInfo[8].split(",");
 
-        //groupAdapter.clear();
+        //grouplistAdapter.clear();
 
         editSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && i == KeyEvent.KEYCODE_ENTER) {
-                    listview.requestFocus();
+                    //listview.requestFocus();
                     return true;
                 }
                 return false;
@@ -127,29 +130,30 @@ public class TabFragment1 extends Fragment {
                 search(text);
             }
         });
-/*
+
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                final String BASE = MyConstants.BASE;
+//                selecttitle = grouplistAdapter.getPosition(position);
+//
+//                Retrofit retrofit2 = new Retrofit.Builder()
+//                        .baseUrl(BASE)
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .build();
+//
+//                GroupService groupservice = retrofit2.create(GroupService.class);
+//                Call<List<Group>> call3 = groupservice.getStudyList();
+//                call3.enqueue(studylistDummies);
+
                 intent2 = new Intent(getActivity(), ReadGroupActivity.class);
-                intent2.putExtra("str", "넘기기테스트");
+                //intent2.putExtra("groupId", idArray[position]);
                 startActivity(intent2);
-
-                final String BASE = SharedPreference.getAttribute(context.getApplicationContext(), "IP");
-                selecttitle = groupAdapter.getPosition(position);
-
-                Retrofit retrofit2 = new Retrofit.Builder()
-                        .baseUrl(BASE)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                GetService readPostInterface = retrofit2.create(GetService.class);
-                Call<List<Dummy3>> call3 = readPostInterface.listDummies();
-                call3.enqueue(dummies3);
             }
 
         });
-*/
+
         return view;
     } //onCreateView
 
@@ -157,17 +161,15 @@ public class TabFragment1 extends Fragment {
     public void search(String charText) {
 
         // 문자 입력시마다 리스트를 지우고 새로 뿌려준다.
-        groupAdapter.clear();
+        grouplistAdapter.clear();
 
         // 문자 입력이 없을때는 모든 데이터를 보여준다.
         if (charText.length() == 0) {
 //            if(userInfo[2].equals("")){
 //            }
 //            else{
-                groupAdapter.add(0, "삼성코테같이준비해요", "모든", "타이틀", "하반기무조건합격보장해드림", "없음", 1, 4);
-                groupAdapter.add(1, "오픽AL5번연속배출모임", "모든", "타이틀2", "야 너두 할 수 있어", "없음", 2, 10);
-                groupAdapter.add(2, "test1", "모든", "title3", "야 너두 할 수 있어", "없음", 2, 10);
-                groupAdapter.add(3, "test2", "모든", "title4", "야 너두 할 수 있어", "없음", 2, 10);
+                grouplistAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
+                grouplistAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
 //            }
         }
         // 문자 입력을 할때..
@@ -180,12 +182,13 @@ public class TabFragment1 extends Fragment {
                 if (titleArray[i].contains(charText))
                 {
                     // 검색된 데이터를 리스트에 추가한다.
-                    groupAdapter.add(0, "삼성코테같이준비해요", "모든", "타이틀", "하반기무조건합격보장해드림", "없음", 1, 4);
+                    grouplistAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
+
                 }
             }
         }
         // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
-        groupAdapter.notifyDataSetChanged();
+        grouplistAdapter.notifyDataSetChanged();
     }
 
     //새로고침 코드
@@ -203,32 +206,44 @@ public class TabFragment1 extends Fragment {
 //                        .build();
 //
 //                ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-//                Call<List<Dummy3>> call1 = chattingInformationInterface.listDummies(userId);
+//                Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
 //                call1.enqueue(dummies1);
 //
 //            }
 //        },1000); // 1초후에 새로고침 끝
 //
 //    }
-    Callback dummies3 = new Callback<List<Dummy3>>() {
+//    Callback studylistDummies = new Callback<List<Group>>() {
 
-        @Override
-        public void onResponse(Call<List<Dummy3>> call, Response<List<Dummy3>> response) {
-            if (response.isSuccessful()) {
-                List<Dummy3> dummies = response.body();
-                for(int i=0;i<dummies.size();i++){
-                    Log.d("tag"+i,dummies.get(i).getId().toString());
-                }
-
-                String[] result;
-            }
-        }
-
-        @Override
-        public void onFailure(Call<List<Dummy3>> call1, Throwable t) {
-
-        }
-    };
+//        @Override
+//        public void onResponse(Call<List<Group>> call, Response<List<Group>> response) {
+//            if (response.isSuccessful()) {
+//                List<Group> dummies = response.body();
+//
+//                for(int i = 0; i< dummies.size(); i++){
+//                    Log.d("id",dummies.get(i).getId().toString());
+//                    Log.d("tag",dummies.get(i).getTagName().get(0).getTagName());
+//
+//                    String tag = "";
+//                    for(int t=0; t < dummies.get(i).getTagName().size(); t++){
+//                        tag = tag+"#"+dummies.get(i).getTagName().get(t).getTagName()+" ";
+//                    }
+//                    tagArray[i] = tag;
+//                    idArray[i] = dummies.get(i).getId();
+//                    titleArray[i] = dummies.get(i).getTitle();
+//                    categoryArray[i] = dummies.get(i).getCategory();
+//                    classcodeArray[i] = dummies.get(i).getClasscode();
+//                    currentNumArray[i] = dummies.get(i).getStudyGroupNumCurrent();
+//                    totalNumArray[i] = dummies.get(i).getStudyGroupNumTotal();
+//                }
+//            }
+//        }
+//
+//        @Override
+//        public void onFailure(Call<List<Group>> call1, Throwable t) {
+//
+//        }
+//    };
 
 
 

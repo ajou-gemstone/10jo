@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.capstonedesignandroid.DTO.ItemObject;
 import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;
@@ -16,21 +17,17 @@ import java.util.ArrayList;
 public class GroupListAdapter extends BaseAdapter {
     private class listItem {
         private int groupId;
-        private String groupName;
-        private String groupType;
+        private String tag;
         private String title;
-        private String intro;
         private String classCode;
         private int studentTotalNumber;
         private int studentCurrentNumber;
 
         // 매개변수가 있는 생성자로 받아와 값을 전달한다.
-        public listItem(int groupId, String groupName, String groupType, String title, String intro, String classCode, int studentCurrentNumber,int studentTotalNumber){
+        public listItem(int groupId, String tag, String title, String classCode, int studentCurrentNumber,int studentTotalNumber){
             this.groupId = groupId;
-            this.groupName = groupName;
-            this.groupType = groupType;
+            this.tag = tag;
             this.title = title;
-            this.intro = intro;
             this.classCode = classCode;
             this. studentCurrentNumber = studentCurrentNumber;
             this.studentTotalNumber = studentTotalNumber;
@@ -49,8 +46,8 @@ public class GroupListAdapter extends BaseAdapter {
         list = new ArrayList();
     }
 
-    public void add(int groupId, String groupName, String groupType, String title, String intro, String classCode, int studentTotalNumber,int studentCurrentNumber) {
-        list.add(new listItem(groupId, groupName, groupType, title, intro, classCode, studentTotalNumber, studentCurrentNumber));
+    public void add(int groupId, String tag, String title, String classCode, int studentTotalNumber,int studentCurrentNumber) {
+        list.add(new listItem(groupId, tag, title, classCode, studentTotalNumber, studentCurrentNumber));
     }
 
     public void clear() {
@@ -68,10 +65,9 @@ public class GroupListAdapter extends BaseAdapter {
         // 현재 position에 따른 list의 값을 반환 시켜준다.
         return list.get(position);
     }
-
     public String getPosition(int position) {
         // 현재 position에 따른 list의 값을 반환 시켜준다.
-        return list.get(position).groupName;
+        return list.get(position).title;
     }
 
     @Override
@@ -100,7 +96,7 @@ public class GroupListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.activity_study_group_list, parent, false);
 
             layout    = (LinearLayout) convertView.findViewById(R.id.layout);
-            textView1    = (TextView) convertView.findViewById(R.id.groupname);
+            textView1    = (TextView) convertView.findViewById(R.id.title);
             textView2    = (TextView) convertView.findViewById(R.id.tag);
             imageView    = (ImageView) convertView.findViewById(R.id.profile_image);
             textView3    = (TextView) convertView.findViewById(R.id.currentnum);
@@ -143,8 +139,8 @@ public class GroupListAdapter extends BaseAdapter {
 
         }
         //imageView.setImageResource()
-        textView1.setText(getItem(pos).groupName);
-        textView2.setText(getItem(pos).groupType);
+        textView1.setText(getItem(pos).title);
+        textView2.setText(getItem(pos).tag);
         textView3.setText(""+getItem(pos).studentCurrentNumber); //int형 가져올땐 string으로 인식되기위해 ""+붙여야함
         textView4.setText(""+getItem(pos).studentTotalNumber);
 

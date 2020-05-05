@@ -20,8 +20,8 @@ import com.example.capstonedesignandroid.Adapter.GroupListAdapter;
 
 import java.util.ArrayList;
 
-//public class TabFragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
-public class TabFragment2 extends Fragment {
+//public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
+public class GroupFragment2 extends Fragment {
 
     Intent intent,intent2;
     ArrayAdapter adapter;
@@ -81,9 +81,8 @@ public class TabFragment2 extends Fragment {
 //        profileArray=userInfo[8].split(",");
 
         //처음에는 전체 다보여주기
-        groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
-        groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
-
+        groupAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
+        groupAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
         whole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,8 +90,8 @@ public class TabFragment2 extends Fragment {
                 groupAdapter.clear();
 //                for (int i = titleArray.length - 1; i >= 0; i--)
 //                    groupAdapter.add(Integer.parseInt(profileArray[i]), titleArray[i], categoryArray[i], likeArray[i]);
-                groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
-                groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
+                groupAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
+                groupAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
                 groupAdapter.notifyDataSetChanged();
             }
         });
@@ -104,7 +103,7 @@ public class TabFragment2 extends Fragment {
 //                    for (int i = titleArray.length - 1; i >= 0; i--)
 //                        if (categoryArray[i].equals("진로"))
 //                            m_Adapter.add(Integer.parseInt(profileArray[i]), titleArray[i], categoryArray[i], likeArray[i]);
-                groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
+                groupAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
                 groupAdapter.notifyDataSetChanged();
             }
         });
@@ -129,7 +128,7 @@ public class TabFragment2 extends Fragment {
             public void onClick(View v) {
                 category = "인공지능";
                 groupAdapter.clear();
-                groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
+                groupAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
                 groupAdapter.notifyDataSetChanged();
             }
         });
@@ -183,7 +182,7 @@ public class TabFragment2 extends Fragment {
 //                        .build();
 //
 //                ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-//                Call<List<Dummy3>> call1 = chattingInformationInterface.listDummies(userId);
+//                Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
 //                call1.enqueue(dummies1);
 //
 //            }

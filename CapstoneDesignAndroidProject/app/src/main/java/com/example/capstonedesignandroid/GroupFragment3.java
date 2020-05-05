@@ -25,8 +25,8 @@ import com.example.capstonedesignandroid.Adapter.MyNotiListAdapter;
 
 import java.util.ArrayList;
 
-//public class TabFragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
-public class TabFragment3 extends Fragment {
+//public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
+public class GroupFragment3 extends Fragment {
 
     Intent intent1,intent2;
     ArrayAdapter adapter;
@@ -80,8 +80,7 @@ public class TabFragment3 extends Fragment {
         //db에서 가져오기
         listview = (ListView)view.findViewById(R.id.listview1);
         listview.setAdapter(groupAdapter);
-        groupAdapter.add(0, "삼성코테같이준비해요", "모든", "타이틀", "하반기무조건합격보장해드림", "없음", 1, 4);
-
+        groupAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
 //        titleArray=userInfo[2].split(",");
 //        likeArray=userInfo[6].split(",");
 //        categoryArray=userInfo[7].split(",");
@@ -162,7 +161,7 @@ public class TabFragment3 extends Fragment {
 //                        .build();
 //
 //                ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-//                Call<List<Dummy3>> call1 = chattingInformationInterface.listDummies(userId);
+//                Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
 //                call1.enqueue(dummies1);
 //
 //            }
