@@ -11,8 +11,12 @@ public class DummyReservationDetail {
     String[] userid;
     String beforeuri;
     String afteruri;
+    String reservationIntent;
+    String beforeUploadTime;
+    String afterUploadTime;
 
-    public DummyReservationDetail(String date, String day, String startTime, String lastTime, String lectureRoom, String[] userid, String beforeuri, String afteruri) {
+    public DummyReservationDetail(String date, String day, String startTime, String lastTime, String lectureRoom, String[] userid, String beforeuri,
+                                  String afteruri, String reservationIntent, String beforeUploadTime, String afterUploadTime) {
         this.date = date;
         this.day = day;
         this.startTime = startTime;
@@ -21,6 +25,9 @@ public class DummyReservationDetail {
         this.userid = userid;
         this.beforeuri = beforeuri;
         this.afteruri = afteruri;
+        this.reservationIntent = reservationIntent;
+        this.beforeUploadTime = beforeUploadTime;
+        this.afterUploadTime = afterUploadTime;
     }
 
     public String getDate() {
@@ -53,5 +60,17 @@ public class DummyReservationDetail {
 
     public String getAfteruri() {
         return afteruri;
+    }
+
+    public String getReservationIntent() {
+        return reservationIntent;
+    }
+
+    public String getBeforeUploadTime() {
+        return beforeUploadTime;
+    }
+
+    public String getAfterUploadTime() {
+        return afterUploadTime;
     }
 }

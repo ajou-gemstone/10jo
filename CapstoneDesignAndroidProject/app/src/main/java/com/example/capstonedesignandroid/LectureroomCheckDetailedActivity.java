@@ -5,18 +5,17 @@ import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,18 +24,23 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.loader.content.CursorLoader;
 
+import com.bumptech.glide.Glide;
+import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
-import com.example.capstonedesignandroid.DTO.DummyReservationList;
+import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +50,8 @@ import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -54,79 +60,44 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
 
     private static final int CAPTURE_IMAGE = 99;
     private static final int REQUEST_IMAGE_CAPTURE = 11111;
-    private Button takePictureButton;
-    private ImageView pictureImageView;
+    private Button takePictureButton1;
+    private ImageView pictureImageView1;
     private Bitmap bitmap;
-    private Button transportPictureButton;
-    private ImageView tmpImageView;
+    private Button transportPictureButton1;
     private Bitmap img = null;
-
-    private String imageFilePath;
-    private Uri photoUri;
-
+    private String imageFilePath1;
+    private Uri photoUri1;
+    private Uri photoUri2;
     private FirebaseStorage storage;
     private StorageReference storageRef;
-
     private String resId;
     private Retrofit retrofit;
-    private boolean IOexception = false;
+    private boolean IOexception = true;
     private DummyReservationDetail dummy;
+    private Button takePictureButton2;
+    private ImageView pictureImageView2;
+    private Button transportPictureButton2;
+    private boolean before = false;
+    private boolean after = false;
+    private int beforeOrAfter = -1;
+    private String imageFilePath2;
+    private TextView date;
+    private TextView day;
+    private TextView lectureroom;
+    private TextView startTime;
+    private TextView lastTime;
+    private boolean alreadyBefore = false;
+    private boolean alreadyAfter = false;
+    private TextView reservationIntent;
+    private TextView beforeUploadTime;
+    private TextView afterUploadTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lectureroom_check_picture);
+        setContentView(R.layout.activity_lectureroom_checkdetailed);
 
-        Intent intent = getIntent();
-        resId = intent.getExtras().getString("reservationId");
-
-//        서버에서 하나의 예약 정보 가져오기
-//        입력: {reservationId: reservationId}
-//        출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
-//              userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri}
-        //----------------서버에서 받기 코드-------------------
-        retrofit = new Retrofit.Builder()
-                .baseUrl(MyConstants.BASE)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        GetService service = retrofit.create(GetService.class);
-        Call<DummyReservationDetail> call = service.getReservationDetail(resId);
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    dummy = call.execute().body();
-                    IOexception = false;
-                    Log.d("run: ", "run: ");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    IOexception = true;
-                    Log.d("IOException: ", "IOException: ");
-                }
-            }
-        });
-        thread.start();
-        try {
-            thread.join();
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-        //----------------서버에서 받기 코드-------------------
-        //        출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
-//              userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri}
-
-//        mockup data로 대체
-        if(IOexception){
-            String[] userids = {"user1", "user2", "user3"};
-            dummy = new DummyReservationDetail("2020-05-01", "월", "8:00", "10:00", "성101",
-                    userids, "gs://asmr-799cf.appspot.com/images/TEST_20200412_190805_1263752076698054948.png",
-                    "gs://asmr-799cf.appspot.com/images/TEST_20200427_203734_8578526890362646423.png");
-        }
-
-
-
+        //------------------퍼미션 코드----------------
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //퍼미션 상태 확인
             if (!hasPermissions(PERMISSIONS)) {
@@ -136,38 +107,175 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
 
             }
         }
+        //------------------퍼미션 코드----------------
+
+        Intent intent = getIntent();
+        resId = intent.getExtras().getString("reservationId");
+
+        //----------------서버에서 받기 코드-------------------
+        retrofit = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit.create(GetService.class);
+        Call<DummyReservationDetail> call = service.getReservationDetail(resId);
+
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    dummy = call.execute().body();
+//                    IOexception = false;
+//                    Log.d("run: ", "run: ");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    IOexception = true;
+//                    Log.d("IOException: ", "IOException: ");
+//                }
+//            }
+//        });
+//        thread.start();
+//        try {
+//            thread.join();
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//        }
+
+        //----------------서버에서 받기 코드-------------------
+
+//        mockup data로 대체
+        if(IOexception){
+            String[] userids = {"user1", "user2", "user3"};
+            dummy = new DummyReservationDetail("2020-05-01", "월", "8:00", "10:00", "성101",
+                    userids, "/images/TEST_20200412_190805_1263752076698054948.png",
+                    "/images/TEST_20200427_203734_8578526890362646423.png", "studying algorithm",
+                    "2020-05-01 08:05", "2020-05-01 10:23");
+        }
 
         Log.d("getFilesDir", "" + getFilesDir());
         Log.d("getPackageName", "" + getPackageName());
         Log.d("getExternalFilesDir", "" + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
 
-        //사진을 촬영한 시간도 저장해준다.
+        //모임원 정보 보기 리사이클러뷰는 스터디 액티비피 부분에서 재사용 한다.
 
-        takePictureButton = findViewById(R.id.takePictureButton);
-        pictureImageView = findViewById(R.id.pictureImageView);
-        transportPictureButton = findViewById(R.id.transportPictureButton);
-        tmpImageView = findViewById(R.id.tmpImageView);
+        //------------초기 설정----------------
+        takePictureButton1 = findViewById(R.id.takePictureButton1);
+        pictureImageView1 = findViewById(R.id.pictureImageView1);
+        transportPictureButton1 = findViewById(R.id.transportPictureButton1);
 
-        takePictureButton.setOnClickListener(new View.OnClickListener() {
+        takePictureButton2 = findViewById(R.id.takePictureButton2);
+        pictureImageView2 = findViewById(R.id.pictureImageView2);
+        transportPictureButton2 = findViewById(R.id.transportPictureButton2);
+
+//        date = findViewById(R.id.date);
+        day = findViewById(R.id.day);
+        lectureroom = findViewById(R.id.lectureroom);
+        startTime = findViewById(R.id.startTime);
+        lastTime = findViewById(R.id.lastTime);
+        reservationIntent = findViewById(R.id.reservationIntent);
+        beforeUploadTime = findViewById(R.id.beforeUploadTime);
+        afterUploadTime = findViewById(R.id.afterUploadTime);
+
+//        date.setText(""+dummy.getDate());
+        day.setText(""+dummy.getDay());
+        lectureroom.setText(""+dummy.getLectureRoom());
+        startTime.setText(""+dummy.getStartTime());
+        lastTime.setText(""+dummy.getLastTime());
+        reservationIntent.setText(""+dummy.getReservationIntent());
+        beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
+        afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
+
+        //app에 등록된 firebase storage의 instance를 가져온다. (싱글톤)
+        storage = FirebaseStorage.getInstance("gs://asmr-799cf.appspot.com");
+
+        //스토리지의 레퍼런스(주소)를 가져온다.
+        storageRef = storage.getReference();
+
+        if(!dummy.getBeforeuri().equals("")){
+            //downloadUrl을 이용하여 이미지를 다운로드한다.
+            StorageReference storageReference = storage.getReference(""+dummy.getBeforeuri());
+            storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        // Glide 이용하여 이미지뷰에 로딩
+                        Glide.with(getApplicationContext())
+                                .load(task.getResult())
+                                .into(pictureImageView1);
+                        alreadyBefore = true;
+                    } else {
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        if(!dummy.getAfteruri().equals("")){
+            //downloadUrl을 이용하여 이미지를 다운로드한다.
+            StorageReference storageReference = storage.getReference(""+dummy.getAfteruri());
+            storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        // Glide 이용하여 이미지뷰에 로딩
+                        Glide.with(getApplicationContext())
+                                .load(task.getResult())
+                                .into(pictureImageView2);
+                        alreadyAfter = true;
+                    } else {
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        //------------초기 설정----------------
+        //-----------------------------------------------------------------------
+
+        takePictureButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(alreadyBefore){
+                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                beforeOrAfter = 1;
                 sendTakePhotoIntent();
             }
         });
 
-        transportPictureButton.setOnClickListener(new View.OnClickListener() {
+        takePictureButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(alreadyAfter){
+                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                beforeOrAfter = 2;
+                sendTakePhotoIntent();
+            }
+        });
 
-                tmpImageView.setImageURI(photoUri);
-
+        transportPictureButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(alreadyBefore){
+                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!before){
+                    Toast.makeText(getApplicationContext(), "사진을 찍어주세요.", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 //photoUri는 content provider 경로이므로 file 경로로 재설정 해주어야 한다.
                 //content provider경로에서 file 경로로 재설정 하는 것은 굉장히 어렵기 때문에 이전에 구했던
                 //file경로인 externalFile경로를 이용하여 uri를 설정한다.
                 //실제 file path도
-                final Uri fileuri = Uri.fromFile(new File(imageFilePath));//내장 데이터(앨범)의 uri를 가져옴
-                //파이어 베이스에 이미지를 업로드 하면서 node서버에 어떤 이미지가 어떤 사용자의 것인지도 추강를 해야 한다.
-                StorageReference riversRef = storageRef.child("images/" + fileuri.getLastPathSegment());//저장소에 파일명으로 저장함
+                final Uri fileuri = Uri.fromFile(new File(imageFilePath1));//내장 데이터(앨범)의 uri를 가져옴
+                //파이어 베이스에 이미지를 업로드 하면서 node서버에 어떤 이미지가 어떤 사용자의 것인지도 추가를 해야 한다.
+                String firebasefileuri = "images/" + fileuri.getLastPathSegment();
+                StorageReference riversRef = storageRef.child(firebasefileuri);//저장소에 파일명으로 저장함
                 UploadTask uploadTask = riversRef.putFile(fileuri);//저장소에 파일을 넣음 + task로 처리하도록 함.(반환값이 task)
 
                 // Register observers to listen for when the download is done or if it fails
@@ -175,30 +283,66 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         // Handle unsuccessful uploads
-                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패띠", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_LONG).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//firebase에서 자주 쓰이는 callback listener
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                        // ...
-                        Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다.", Toast.LENGTH_LONG).show();
+
+                        //db에 파일 이름 저장
+                        GetService service = retrofit.create(GetService.class);
+                        Call<DummyResponse> call = service.postBeforePicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
+                        call.enqueue(response);
                     }
                 });
             }
         });
 
+        transportPictureButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(alreadyAfter){
+                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!after){
+                    Toast.makeText(getApplicationContext(), "사진을 찍어주세요.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //photoUri는 content provider 경로이므로 file 경로로 재설정 해주어야 한다.
+                //content provider경로에서 file 경로로 재설정 하는 것은 굉장히 어렵기 때문에 이전에 구했던
+                //file경로인 externalFile경로를 이용하여 uri를 설정한다.
+                //실제 file path도
+                final Uri fileuri = Uri.fromFile(new File(imageFilePath2));//내장 데이터(앨범)의 uri를 가져옴
+                //파이어 베이스에 이미지를 업로드 하면서 node서버에 어떤 이미지가 어떤 사용자의 것인지도 추강를 해야 한다.
+                String firebasefileuri = "images/" + fileuri.getLastPathSegment();
+                StorageReference riversRef = storageRef.child(firebasefileuri);//저장소에 파일명으로 저장함
+                UploadTask uploadTask = riversRef.putFile(fileuri);//저장소에 파일을 넣음 + task로 처리하도록 함.(반환값이 task)
 
-        //----------------------------------------------------------------------------------
-        //-------------------firebase-------------------
-
-        //app에 등록된 firebase storage의 instance를 가져온다. (싱글톤)
-        storage = FirebaseStorage.getInstance("gs://asmr-799cf.appspot.com");
-
-        //스토리지의 레퍼런스(주소)를 가져온다.
-        storageRef = storage.getReference();
+                // Register observers to listen for when the download is done or if it fails
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//firebase에서 자주 쓰이는 callback listener
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                        Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_LONG).show();
+                        //db에 파일 이름 저장
+                        GetService service = retrofit.create(GetService.class);
+                        Call<DummyResponse> call = service.postAfterPicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
+                        call.enqueue(response);
+                    }
+                });
+            }
+        });
     }
-
 
     //사진을 찍는 인텐트를 실행하고, 인텐트 환경 설정을 한다.
     private void sendTakePhotoIntent() {
@@ -210,13 +354,18 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             } catch (IOException ex) {
                 // Error occurred while creating the File
             }
-
             if (photoFile != null) {
-                photoUri = FileProvider.getUriForFile(this, getPackageName(), photoFile);
 
-                Log.d("photoUri", "" + photoUri);
+                if(beforeOrAfter == 1){
+                    photoUri1 = FileProvider.getUriForFile(this, getPackageName(), photoFile);
+                    Log.d("photoUri", "" + photoUri1);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri1);
+                }else if(beforeOrAfter == 2){
+                    photoUri2 = FileProvider.getUriForFile(this, getPackageName(), photoFile);
+                    Log.d("photoUri", "" + photoUri2);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri2);
+                }
 
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }
@@ -243,8 +392,13 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                 storageDir          /* directory */
         );
 
-        imageFilePath = image.getAbsolutePath();
-        Log.d("imageFilePath", "" + imageFilePath);
+        if(beforeOrAfter == 1){
+            imageFilePath1 = image.getAbsolutePath();
+            Log.d("imageFilePath", "" + imageFilePath1);
+        }else if(beforeOrAfter == 2){
+            imageFilePath2 = image.getAbsolutePath();
+            Log.d("imageFilePath", "" + imageFilePath2);
+        }
 
         return image;
     }
@@ -254,9 +408,32 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            pictureImageView.setImageURI(photoUri);
+            if(beforeOrAfter == 1){
+                pictureImageView1.setImageURI(photoUri1);
+                before = true;
+            }else if(beforeOrAfter == 2){
+                pictureImageView2.setImageURI(photoUri2);
+                after = true;
+            }
         }
     }
+
+    Callback response = new Callback<DummyResponse>() {
+        @Override
+        public void onResponse(Call<DummyResponse> call, Response<DummyResponse> response) {
+            if (response.isSuccessful()) {
+                DummyResponse dummy = response.body();
+            } else {
+                Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
+            }
+        }
+
+        @Override
+        public void onFailure(Call<DummyResponse> call, Throwable t) {
+            Log.d("response fail", "onFailure: ");
+
+        }
+    };
 
     //****-------------------------------------------------------------------------------------------------------------
     //****-------------------------------------------------------------------------------------------------------------

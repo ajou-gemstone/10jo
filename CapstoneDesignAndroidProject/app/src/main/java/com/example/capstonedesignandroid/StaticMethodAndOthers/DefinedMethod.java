@@ -6,6 +6,7 @@ import android.provider.MediaStore;
 
 import androidx.loader.content.CursorLoader;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -60,6 +61,28 @@ public class DefinedMethod {
             case 24: return "19:00"; case 25: return "19:30"; case 26: return "20:00"; case 27: return "20:30"; case 28: return "21:00";
         }
         return "";
+    }
+
+    public static String getCurrentDate(){
+        long nowTime = System.currentTimeMillis();
+        Date nowDate = new Date(nowTime);
+        //시, 분, 초를 없앤 년,월,일의 Date
+        Date currentDate = DefinedMethod.getDate(DefinedMethod.getYear(nowDate), DefinedMethod.getMonth(nowDate), DefinedMethod.getDay(nowDate));
+        int year = DefinedMethod.getYear(currentDate);
+        int month = DefinedMethod.getMonth(currentDate) + 1;
+        int day = DefinedMethod.getDay(currentDate);
+        String date = "" + year + "-" + month + "-" + day;
+
+        return date;
+    }
+
+    public static String getCurrentDate2(){
+        long nowTime = System.currentTimeMillis();
+        Date nowDate = new Date(nowTime);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = transFormat.format(nowDate);
+
+        return date;
     }
 
 }

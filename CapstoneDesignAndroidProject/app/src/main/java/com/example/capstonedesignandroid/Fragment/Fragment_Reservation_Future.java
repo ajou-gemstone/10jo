@@ -43,8 +43,6 @@ public class Fragment_Reservation_Future extends Fragment {
 
     }
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +52,7 @@ public class Fragment_Reservation_Future extends Fragment {
         //출력: {reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}
         //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
-        long nowTime = System.currentTimeMillis();
-        Date nowDate = new Date(nowTime);
-        //시, 분, 초를 없앤 년,월,일의 Date
-        Date currentDate = DefinedMethod.getDate(DefinedMethod.getYear(nowDate), DefinedMethod.getMonth(nowDate), DefinedMethod.getDay(nowDate));
-        int year = DefinedMethod.getYear(currentDate);
-        int month = DefinedMethod.getMonth(currentDate) + 1;
-        int day = DefinedMethod.getDay(currentDate);
-        String date = "" + year + "-" + month + "-" + day;
+        String date = DefinedMethod.getCurrentDate();
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyConstants.BASE)
@@ -76,27 +67,28 @@ public class Fragment_Reservation_Future extends Fragment {
 
         dummyReservationListArrayList = new ArrayList<DummyReservationList>();
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    List<DummyReservationList> dummies = call.execute().body();
-                    dummyReservationListArrayList = new ArrayList<DummyReservationList>(dummies);
-                    IOexception = false;
-                    Log.d("run: ", "run: ");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    IOexception = true;
-                    Log.d("IOException: ", "IOException: ");
-                }
-            }
-        });
-        thread.start();
-        try {
-            thread.join();
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    List<DummyReservationList> dummies = call.execute().body();
+//                    dummyReservationListArrayList = new ArrayList<DummyReservationList>(dummies);
+//                    IOexception = false;
+//                    Log.d("run: ", "run: ");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    IOexception = true;
+//                    Log.d("IOException: ", "IOException: ");
+//                }
+//            }
+//        });
+//        thread.start();
+//        try {
+//            thread.join();
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//        }
+
         //----------------서버에서 받기 코드-------------------
         //출력: {reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}
 

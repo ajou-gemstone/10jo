@@ -6,6 +6,7 @@ import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyReservationId;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
+import com.example.capstonedesignandroid.DTO.DummyResponse;
 
 import java.util.List;
 
@@ -54,10 +55,10 @@ public interface GetService {
     @POST("/")
     Call<DummyReservationId> postReservation(@Query("date") String date, @Query("lectureroom") String lectureroom,
                                              @Query("startTime") int startTime, @Query("lastTime") int lastTime,
-                                             @Query("userid") String userid);
-    //입력: 날짜(하나), 강의실(하나), 시작시간(하나), 종료시간(하나), 본인id(하나)
-    //입력: {date: "YYYY-M-D" lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: akdsnmkq}
-    //서버: 예약 정보 저장
+                                             @Query("userid") String userid, @Query("randomafter") boolean randomafter);
+    //입력: 날짜(하나), 강의실(하나), 시작시간(하나), 종료시간(하나), 본인id(하나), 선지망 후추첨인 경우 랜덤 강의실 선택 여부
+    //입력: {date: "YYYY-M-D" lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: "akdsnmk", randomafter: "true or false"}
+    //동작: 예약 정보 저장
     //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
 
     //개인 예약정보 list를 받아온다.
@@ -68,12 +69,33 @@ public interface GetService {
     //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}, ...]
     //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
-//        서버에서 하나의 예약 정보 가져오기
+    //서버에서 하나의 예약 정보 가져오기
     @GET("/")
     Call<DummyReservationDetail> getReservationDetail(@Query("reservationId") String reservationId);
-//        입력: {reservationId: reservationId}
-//        출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
-//              userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri}
+    //입력: {reservationId: "reservationId"}
+    //출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
+    //userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri, reservationIntent: "studying algorithm",
+    // beforeUploadTime: "8:05", afterUploadTime: "10:20"}
+
+    //예약내역에 사진 저장하기 (before)
+    @POST("/")
+    Call<DummyResponse> postBeforePicture(@Query("reservationId") String reservationId, @Query("beforeuri") String beforeuri, @Query("beforeuriuploadtime") String beforeuriuploadtime);
+    //입력: {reservationId: "reservationId", beforeuri: "beforeuri", beforeuriuploadtime: "08:05"}
+    //동작: 해당 reservationId에 beforeuri 사진 추가, 저장
+    //출력: {response: "success or fail"}
+
+    //예약내역에 사진 저장하기 (after)
+    @POST("/")
+    Call<DummyResponse> postAfterPicture(@Query("reservationId") String reservationId, @Query("afteruri") String afteruri, @Query("afteruriuploadtime") String afteruriuploadtime);
+    //입력: {reservationId: "reservationId", afteruri: "afteruri", afteruriuploadtime: "10:20"}
+    //동작: 해당 reservationId에 afteruri 사진 추가, 저장
+    //출력: {response: "success or fail"}
+
+
+    //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
+//    @POST("/")
+//    Call<>
+
 
 
 

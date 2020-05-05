@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -494,9 +495,9 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);
                     builder.setTitle("예약 내용:  " + lectureroom+ "   "+ month + "월" + " " + day + "일" + "\n" + "시작시간: " + DefinedMethod.getTimeByPosition(firstTag) +  "  종료시간: " + DefinedMethod.getTimeByPosition(secondTag+1));
+                    final boolean[] checkedItems = {false};
                     if(!isFCFS){
                         final String[] items = {"추첨 실패 후 랜덤 강의실 배정"};
-                        final boolean[] checkedItems = {false};
                         builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -512,7 +513,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int id)
                         {
                             //입력: 날짜(하나), 강의실(하나), 시작시간(하나), 종료시간(하나), 본인id(하나)
-                            //입력: {date: "YYYY-M-D" lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: akdsnmkq}
+                            //입력: {date: "YYYY-M-D" lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: "userid", "" }
                             //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
 
                             //userid는 sharedpreferece로 가져온다.
@@ -520,7 +521,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
                             GetService service = retrofit.create(GetService.class);
                             //retrofit service에 정의된 method를 사용하여
-                            Call<DummyReservationId> call = service.postReservation(date, lectureroom, firstTag, secondTag, userid);
+                            Call<DummyReservationId> call = service.postReservation(date, lectureroom, firstTag, secondTag, userid, checkedItems[0]);
 
                             //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
                             Thread thread = new Thread(new Runnable() {
@@ -547,7 +548,9 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
                             if(success){
                                 //강의실 예약 목적 입력 intent로 이동, 예약내역 id도 이동
-                                Toast.makeText(getApplicationContext(), "강의실 예약 목적 intent로 이동할 것임.", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), LectureroomReservationAdditionalActivity.class);
+                                intent.putExtra("reservationId", reservationid.getReservationId());
+                                startActivity(intent);
                             }else{
                                 Toast.makeText(getApplicationContext(), "강의실 예약에 실패하였습니다.", Toast.LENGTH_LONG).show();
                             }
