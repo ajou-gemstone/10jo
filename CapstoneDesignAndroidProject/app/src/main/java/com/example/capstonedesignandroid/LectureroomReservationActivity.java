@@ -471,6 +471,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
         //강의실 최종 예약 버튼
         reserveDetermineButton.setOnClickListener(new View.OnClickListener() {
+            boolean tagChanged = false;
             @Override
             public void onClick(View view) {
                 //강의실 예약을 확정한다. 서버에 데이터를 넣는다.
@@ -478,6 +479,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 if(firstTag > -1 && secondTag > -1){
                     //시작시간 - 종료시간순으로 정렬
                     if(firstTag > secondTag){
+                        tagChanged = true;
                         int tmp = firstTag;
                         firstTag = secondTag;
                         secondTag = tmp;
@@ -533,6 +535,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                         Log.d("run: ", "run: ");
                                     } catch (IOException e) {
                                         e.printStackTrace();
+                                        success = false;
                                         Log.d("IOException: ", "IOException: ");
                                     }
                                 }
@@ -540,9 +543,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             thread.start();
                             try {
                                 thread.join();
-                                success = true;
                             } catch (Exception e) {
-                                success = false;
                                 // TODO: handle exception
                             }
 
@@ -552,7 +553,11 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                 intent.putExtra("reservationId", reservationid.getReservationId());
                                 startActivity(intent);
                             }else{
-                                Toast.makeText(getApplicationContext(), "강의실 예약에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "강의실 예약에 실패하였습니다. (테스트)", Toast.LENGTH_LONG).show();
+                                //아래부분 나중에 삭제
+                                Intent intent = new Intent(getApplicationContext(), LectureroomReservationAdditionalActivity.class);
+                                intent.putExtra("reservationId", "resId0");
+                                startActivity(intent);
                             }
 
                             //리턴
@@ -562,12 +567,17 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
+                            if (tagChanged) {
+                                int tmp = firstTag;
+                                firstTag = secondTag;
+                                secondTag = tmp;
+                            }
                         }
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
-
+                }else{
+                    Toast.makeText(getApplicationContext(), "시간대를 선택해주세요", Toast.LENGTH_LONG).show();
                 }
             }
         });

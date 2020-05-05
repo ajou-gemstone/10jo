@@ -76,6 +76,7 @@ public interface GetService {
     //출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
     //userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri, reservationIntent: "studying algorithm",
     // beforeUploadTime: "8:05", afterUploadTime: "10:20"}
+    //만약 uri가 존재하지 않으면 ""(null)로 보냄 uploadtime도 마찬가지
 
     //예약내역에 사진 저장하기 (before)
     @POST("/")
@@ -91,13 +92,17 @@ public interface GetService {
     //동작: 해당 reservationId에 afteruri 사진 추가, 저장
     //출력: {response: "success or fail"}
 
+    //예약에 강의실 목적, 모임원 정보 저장
+    @POST("/")
+    Call<DummyResponse> postReservationDetail(@Query("reservationId") String reservationId, @Query("reservationIntent") String reservationIntent,
+                                              @Query("userClassofsNum") int userClassofsNum, @Query("userClassofs") String[] userClassofs);
+    //입력: {reservationId: "reservationId", reservationIntent: "studying algorithm", userClassofsNum: "3",
+    // userClassofs: ["201520971", "201520000", "201520001"]}
+    //동작: 학번을 가지고 userid와 매칭을 한다.
+    //출력: {response: "success or fail"}
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
 //    @POST("/")
 //    Call<>
-
-
-
-
 
 }
