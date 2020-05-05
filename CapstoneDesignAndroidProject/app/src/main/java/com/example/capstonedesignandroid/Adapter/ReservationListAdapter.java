@@ -1,11 +1,8 @@
 package com.example.capstonedesignandroid.Adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,13 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;
 
 public class ReservationListAdapter extends RecyclerView.Adapter<ReservationListAdapter.ViewHolder>{
 
-    private ArrayList<String> arraylist;
+    private ArrayList<DummyReservationList> reservationArrayList;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener ;
@@ -32,8 +30,8 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
     //리스너 객체 참조를 저장하는 변수
     private OnItemClickListener mListener;
 
-    public ReservationListAdapter(ArrayList<String> a){
-        arraylist = a;
+    public ReservationListAdapter(ArrayList<DummyReservationList> a){
+        reservationArrayList = a;
         Log.d("ReservationListAdapter", "");
     }
 
@@ -67,12 +65,12 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(arraylist.get(position));
+        holder.textView.setText(reservationArrayList.get(position).getReservationId());
     }
 
     @Override
     public int getItemCount() {
-        return arraylist.size();
+        return reservationArrayList.size();
     }
 
 }

@@ -3,7 +3,9 @@ package com.example.capstonedesignandroid;
 import com.example.capstonedesignandroid.DTO.Dummy;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
+import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyReservationId;
+import com.example.capstonedesignandroid.DTO.DummyReservationList;
 
 import java.util.List;
 
@@ -40,8 +42,7 @@ public interface GetService {
                                                                     @Query("startTime") int startTime, @Query("lastTime") int lastTime);
     //입력: 날짜(하나), 건물(리스트), 시작시간(하나), 종료시간(하나), //강의실 예약 인원 수(하나)
     //입력: {date: "YYYY-M-D", building: "성호관 율곡관 연암관" startTime: "0" lastTime: "3"}
-    //출력: {lectureroom: "성101", stateList: "R 0 0 0 1 L"}
-    //출력: {lectureroom: "성103", stateList: "R A A A L L"}
+    //출력: [{lectureroom: "성101", stateList: "R 0 0 0 1 L"}, {lectureroom: "성103", stateList: "R A A A L L"}]
 
     //강의실 정보 가져오기
     @GET("/")
@@ -56,7 +57,23 @@ public interface GetService {
                                              @Query("userid") String userid);
     //입력: 날짜(하나), 강의실(하나), 시작시간(하나), 종료시간(하나), 본인id(하나)
     //입력: {date: "YYYY-M-D" lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: akdsnmkq}
+    //서버: 예약 정보 저장
     //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
+
+    //개인 예약정보 list를 받아온다.
+    @GET("/")
+    Call<List<DummyReservationList>> getReservationList(@Query("date") String date, @Query("tense") String tense, @Query("userid") String userid);
+    //입력: 날짜, 과거, userid
+    //입력: {date: "YYYY-M-D", tense: "future or past", userid: "userid"}
+    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}, ...]
+    //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
+
+//        서버에서 하나의 예약 정보 가져오기
+    @GET("/")
+    Call<DummyReservationDetail> getReservationDetail(@Query("reservationId") String reservationId);
+//        입력: {reservationId: reservationId}
+//        출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
+//              userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri}
 
 
 

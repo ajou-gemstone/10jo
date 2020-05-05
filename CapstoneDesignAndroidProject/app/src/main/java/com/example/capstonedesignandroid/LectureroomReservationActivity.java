@@ -66,8 +66,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private long nowTime;
     private boolean isFCFS = true;
     private TextView reserveTypeTextView;
-    private ImageButton reserveRandomButton;
-    private ImageButton reserveButton;
+    private Button reserveRandomButton;
+    private Button reserveButton;
     private RecyclerView recyclerView;
     private ArrayList<String> list;
     private RecyclerView recyclerViewFCFS;
@@ -90,7 +90,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private View currentPositionView;
     private int startTimePosition;
     private int lastTimePosition;
-    private ImageButton reserveDetermineButton;
+    private Button reserveDetermineButton;
     private Retrofit retrofit;
     private boolean dummyLectureRoomReservationState_state = false;
     private DummyReservationId reservationid;
@@ -200,11 +200,11 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 if(isChecked){
                     reserveStartTimeSpinner.setEnabled(false);
                     reserveEndTimeSpinner.setEnabled(false);
-                    reserveTimeSpinnerInnerLayout.setBackgroundColor(Color.argb(51,17,17,17));
+//                    reserveTimeSpinnerInnerLayout.setBackgroundColor(Color.argb(51,17,17,17));
                 }else{
                     reserveStartTimeSpinner.setEnabled(true);
                     reserveEndTimeSpinner.setEnabled(true);
-                    reserveTimeSpinnerInnerLayout.setBackgroundColor(Color.argb(0,255,255,255));
+//                    reserveTimeSpinnerInnerLayout.setBackgroundColor(Color.argb(0,255,255,255));
                 }
             }
         });
@@ -239,9 +239,20 @@ public class LectureroomReservationActivity extends AppCompatActivity {
             }
         });
 
+        //강의실 랜덤 확정
         reserveRandomButton = findViewById(R.id.reserveRandomButton);
-        reserveButton = findViewById(R.id.reserveButton);
+        reserveRandomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //입력: 날짜(하나), 건물(리스트), 시작시간(하나), 종료시간(하나), //강의실 예약 인원 수(하나)
+                //입력: {date: "YYYY-M-D", building: "성호관 율곡관 연암관" startTime: "0" lastTime: "3"}
+                //출력: {lectureroom: "성101", stateList: "R 0 0 0 1 L"}
+                //출력: {lectureroom: "성103", stateList: "R A A A L L"}
+            }
+        });
 
+        //강의실 예약 조회
+        reserveButton = findViewById(R.id.reserveButton);
         reserveButton.setOnClickListener(new View.OnClickListener() {
             //-------DB 조회-------
             //입력: 날짜(하나), 건물(리스트), 시작시간(하나), 종료시간(하나), //강의실 예약 인원 수(하나)
@@ -269,13 +280,12 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "건물을 최소한 하나 선택해주세요", Toast.LENGTH_LONG).show();
                     return;
                 }
+
                 String[] buildingArray = new String[buildingArr.size()];
                 buildingArray = buildingArr.toArray(buildingArray);
 
-
                 //사용 시간대
                 //모든 시간
-                //순서가 바뀌는 경우도 따로 오류 처리
                 if(reserveTimeAllCheckbox.isChecked()){
                     startTime = "7:00";//position 0
                     startTimePosition = 0;
@@ -288,9 +298,14 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     //마지막 시간
                     lastTime = reserveEndTimeSpinner.getSelectedItem().toString();
                     lastTimePosition = reserveEndTimeSpinner.getSelectedItemPosition();
+                    //순서가 바뀌는 경우도 따로 오류 처리
+                    if(startTimePosition > lastTimePosition){
+                        Toast.makeText(getApplicationContext(), "시간대를 적절히 선택해주세요", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                 }
 
-                Log.d("retrofittt", "date:"+date+ " building:"+ buildingArray[0] + " " + buildingArray[1] + "..." +
+                Log.d("retrofittt", "date:"+date+ " building:"+ buildingArray[0] + "..." +
                         " startTime:" + startTimePosition + " lastTime:"+ lastTimePosition);
 
                 //서버 DB에서 목록을 가져온다.
@@ -416,6 +431,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         }
                         i++;
                     }
+
                     Collections.sort(lectureRoomReservationStateArrayList, new Comparator<LectureRoomReservationState>() {
                         @Override
                         public int compare(LectureRoomReservationState t1, LectureRoomReservationState t2) {
@@ -458,7 +474,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //강의실 예약을 확정한다. 서버에 데이터를 넣는다.
                 //강의실 시간대를 적절히 잘 선택헀는지 확인
-                if(firstTag > 0 && secondTag > 0){
+                if(firstTag > -1 && secondTag > -1){
                     //시작시간 - 종료시간순으로 정렬
                     if(firstTag > secondTag){
                         int tmp = firstTag;
@@ -477,9 +493,19 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     String lectureroom = lectureRoomReservationStateArrayList.get(currentPosition).getLectureroom();//강의실
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);
-                    builder.setTitle("강의실 예약을 확정하겠습니까?").setMessage("" + lectureroom+
-                            "\n"+ month + "월" + day + "일" + "\n" + "시작시간: " + DefinedMethod.getTimeByPosition(firstTag) +
-                            " 종료시간: " + DefinedMethod.getTimeByPosition(secondTag+1));
+                    builder.setTitle("예약 내용:  " + lectureroom+ "   "+ month + "월" + " " + day + "일" + "\n" + "시작시간: " + DefinedMethod.getTimeByPosition(firstTag) +  "  종료시간: " + DefinedMethod.getTimeByPosition(secondTag+1));
+                    if(!isFCFS){
+                        final String[] items = {"추첨 실패 후 랜덤 강의실 배정"};
+                        final boolean[] checkedItems = {false};
+                        builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                // TODO Auto-generated method stub
+                                // 바뀐 것을 적용한다.
+                                checkedItems[which] = isChecked;
+                            }
+                        });
+                    }
                     builder.setPositiveButton("예", new DialogInterface.OnClickListener(){
                         boolean success = false;
                         @Override
@@ -702,7 +728,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                             pv.findViewWithTag(""+j).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
                                         }
                                         pv.findViewWithTag(""+firstTag).setBackgroundColor(Color.argb(51,17,17,17));
-                                        Toast.makeText(getApplicationContext(), "예약 불가능한 날짜가 있습니다.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "예약 불가능한 시간대가 포함되어 있습니다.", Toast.LENGTH_LONG).show();
                                         break;
                                     }
                                     //------------------
@@ -720,7 +746,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                             pv.findViewWithTag(""+j).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
                                         }
                                         pv.findViewWithTag(""+firstTag).setBackgroundColor(Color.argb(51,17,17,17));
-                                        Toast.makeText(getApplicationContext(), "예약 불가능한 날짜가 있습니다.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "예약 불가능한 시간대가 포함되어 있습니다.", Toast.LENGTH_LONG).show();
                                         break;
                                     }
                                     //------------------
@@ -745,10 +771,12 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     public void getReservationType(boolean isFCFS){
         this.isFCFS = isFCFS;
         if(isFCFS){
-            reserveTypeTextView.setText("예약 타입: 선착순");
+            reserveTypeTextView.setText("  예약 타입: 선착순");
+            reserveRandomButton.setVisibility(View.VISIBLE);
         }
         else{
-            reserveTypeTextView.setText("예약 타입: 선지망 후추첨");
+            reserveTypeTextView.setText("  예약 타입: 선지망 후추첨");
+            reserveRandomButton.setVisibility(View.INVISIBLE);
         }
     }
     //------------------------------------------------------

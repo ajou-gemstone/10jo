@@ -27,6 +27,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.loader.content.CursorLoader;
 
+import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
+import com.example.capstonedesignandroid.DTO.DummyReservationList;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -37,10 +41,16 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 //사진은 내부 저장소
-public class LectureroomCheckPictureActivity extends AppCompatActivity {
+public class LectureroomCheckDetailedActivity extends AppCompatActivity {
 
     private static final int CAPTURE_IMAGE = 99;
     private static final int REQUEST_IMAGE_CAPTURE = 11111;
@@ -57,10 +67,65 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference storageRef;
 
+    private String resId;
+    private Retrofit retrofit;
+    private boolean IOexception = false;
+    private DummyReservationDetail dummy;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lectureroom_check_picture);
+
+        Intent intent = getIntent();
+        resId = intent.getExtras().getString("reservationId");
+
+//        서버에서 하나의 예약 정보 가져오기
+//        입력: {reservationId: reservationId}
+//        출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
+//              userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri}
+        //----------------서버에서 받기 코드-------------------
+        retrofit = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit.create(GetService.class);
+        Call<DummyReservationDetail> call = service.getReservationDetail(resId);
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    dummy = call.execute().body();
+                    IOexception = false;
+                    Log.d("run: ", "run: ");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    IOexception = true;
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        //----------------서버에서 받기 코드-------------------
+        //        출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
+//              userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri}
+
+//        mockup data로 대체
+        if(IOexception){
+            String[] userids = {"user1", "user2", "user3"};
+            dummy = new DummyReservationDetail("2020-05-01", "월", "8:00", "10:00", "성101",
+                    userids, "gs://asmr-799cf.appspot.com/images/TEST_20200412_190805_1263752076698054948.png",
+                    "gs://asmr-799cf.appspot.com/images/TEST_20200427_203734_8578526890362646423.png");
+        }
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //퍼미션 상태 확인
@@ -68,6 +133,7 @@ public class LectureroomCheckPictureActivity extends AppCompatActivity {
                 //퍼미션 허가 안되어있다면 사용자에게 요청
                 requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
             } else {
+
             }
         }
 

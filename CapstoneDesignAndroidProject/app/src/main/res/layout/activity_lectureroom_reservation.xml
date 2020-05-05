@@ -100,34 +100,29 @@
         android:layout_below="@+id/reserveTimeSpinnerLayout"
         android:orientation="horizontal">
 
-        <ImageButton
+        <Button
             android:id="@+id/reserveRandomButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/cafeplacered_18">
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:visibility="invisible"
+            android:background="@drawable/randomreservebutton">
+        </Button>
 
-        </ImageButton>
-
-        <ImageButton
+        <Button
             android:id="@+id/reserveDetermineButton"
             android:layout_centerInParent="true"
-            android:src="@drawable/reserve"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:background="@drawable/reserve"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:visibility="invisible">
-        </ImageButton>
+        </Button>
 
-        <ImageButton
+        <Button
             android:id="@+id/reserveButton"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:orientation="horizontal"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/lectureroom_inquiry"/>
+            android:background="@drawable/lectureroom_inquiry"/>
 
     </RelativeLayout>
 
@@ -143,7 +138,7 @@
             android:id="@+id/lectureRoomScroll"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5">
+            android:layout_weight="6">
 
             <LinearLayout
                 android:id="@+id/recyclerPPDLayout"
@@ -155,7 +150,7 @@
                     android:id="@+id/recyclerPPDrecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="5"
+                    android:layout_weight="6"
                     android:scrollbars="vertical" />
 
             </LinearLayout>
@@ -169,37 +164,11 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <RelativeLayout
-                android:id="@+id/layoutAbove"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#FFEB3B">
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layoutCenter"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#FFC107">
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layoutBelow"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#FF9800">
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layoutTrash"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#AC0202">
-            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R: 선예약  L: 강의  A: 예약가능  숫자: 예약 팀수"
+                android:textSize="20dp"/>
 
         </LinearLayout>
 
