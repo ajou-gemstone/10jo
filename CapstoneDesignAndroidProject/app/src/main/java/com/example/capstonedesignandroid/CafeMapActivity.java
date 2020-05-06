@@ -37,6 +37,7 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
         setContentView(R.layout.activity_cafe_map);
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setSelectedItemId(R.id.action_cafe);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //맵 뷰 생성 및 환경 설정

@@ -154,20 +154,7 @@ public class MainActivity extends AppCompatActivity{
         }
         return null;
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_bottom, menu);
 
-        for(int i = 0; i < menu.size(); i++){
-            Drawable drawable = menu.getItem(i).getIcon();
-            if(drawable != null) {
-                drawable.mutate();
-                drawable.setColorFilter(getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_ATOP);
-            }
-        }
-
-        return true;
-    }
 //    public static String getSigneture(Context context){
 //        PackageManager pm = context.getPackageManager();
 //        try{

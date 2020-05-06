@@ -3,21 +3,13 @@ package com.example.capstonedesignandroid;
 import android.content.Intent;
 import android.os.Bundle;
 
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.core.view.GravityCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -51,6 +43,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_study_bulletin_board);
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setSelectedItemId(R.id.action_group);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Intent intent1 = getIntent();
@@ -113,16 +106,10 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
                 GroupFragment1 fragment1 = new GroupFragment1();
             }
-
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
+            public void onTabUnselected(TabLayout.Tab tab) { }
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) { }
         });
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -136,74 +123,6 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
     }//onCreate
 
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        /**
-         * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-         * one of the sections/tabs/pages.
-         */
-        public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-            public SectionsPagerAdapter(FragmentManager fm) {
-                super(fm);
-            }
-
-            @Override
-            public Fragment getItem(int position) {
-                // getItem is called to instantiate the fragment for the given page.
-                // Return a PlaceholderFragment (defined as a static inner class below).
-                return PlaceholderFragment.newInstance(position + 1);
-            }
-
-            @Override
-            public int getCount() {
-                // Show 3 total pages.
-                return 3;
-            }
-
-            @Override
-            public CharSequence getPageTitle(int position) {
-                switch (position) {
-                    case 0:
-                        GroupFragment1 tab1 = new GroupFragment1();
-                    case 1:
-                        GroupFragment2 tab2 = new GroupFragment2();
-                    case 2:
-                        GroupFragment3 tab3 = new GroupFragment3();
-                }
-                return null;
-            }
-        }//FragmentPagerAdapter
-    }//PlaceholderFragment
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.setting, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -211,7 +130,6 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
         {
             switch (item.getItemId()){
                 case R.id.action_group :
-
                     break;
                 case R.id.action_reservation :
                     Intent intent2 = new Intent(StudyBulletinBoardActivity.this, LectureroomReservationActivity.class);
@@ -229,9 +147,9 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
                     Intent intent5 = new Intent(StudyBulletinBoardActivity.this, ProfileActivity.class);
                     startActivity(intent5);
                     break;
-
             }
             return false;
         }
     };
+
 }//MainActivity

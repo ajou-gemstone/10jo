@@ -47,7 +47,6 @@ public class GroupFragment3 extends Fragment {
     String category = "";
 
     GroupListAdapter groupAdapter = new GroupListAdapter();
-    MyNotiListAdapter notiadapter = new MyNotiListAdapter(list);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,42 +108,9 @@ public class GroupFragment3 extends Fragment {
 
         });
 
-        ArrayList<String> list = new ArrayList<>();
-        for (int i=0; i<100; i++) {
-            list.add(String.format("my noti %d", i)) ;
-        }
-
-        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        RecyclerView recyclerView = view.findViewById(R.id.my_noti_list) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())) ;
-
-        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        notiadapter = new MyNotiListAdapter(list) ;
-        recyclerView.setAdapter(notiadapter) ;
-
-        // setup swipe to remove item
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-
         return view;
     } //onCreateView
 
-    ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
-        @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-            // 삭제되는 아이템의 포지션을 가져온다
-            final int position = viewHolder.getAdapterPosition();
-            // 아답타에게 알린다
-            list.remove(position);
-            notiadapter.notifyItemRemoved(position);
-        }
-    };
 
     //새로고침 코드
 //    @Override

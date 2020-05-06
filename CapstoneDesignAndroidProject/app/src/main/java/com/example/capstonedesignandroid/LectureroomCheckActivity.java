@@ -30,6 +30,7 @@ public class LectureroomCheckActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lectureroom_check);
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setSelectedItemId(R.id.action_check);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         Button button = findViewById(R.id.button);
 

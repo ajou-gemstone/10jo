@@ -109,6 +109,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lectureroom_reservation);
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setSelectedItemId(R.id.action_reservation);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         retrofit = new Retrofit.Builder()
