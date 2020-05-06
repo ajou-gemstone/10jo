@@ -57,7 +57,7 @@ public class GroupFragment3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ListView listview;
-        View view = inflater.inflate(R.layout.tab_fragment_3, container, false);
+        View view = inflater.inflate(R.layout.group_fragment_3, container, false);
         //mSwipeRefreshLayout = view.findViewById(R.id.refresh);
         //mSwipeRefreshLayout.setOnRefreshListener(this);
         //mSwipeRefreshLayout.setColorSchemeResources(R.color.blue);

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,17 +20,8 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.capstonedesignandroid.Adapter.GroupListAdapter;
-import com.example.capstonedesignandroid.DTO.Group;
-import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 //public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
 public class GroupFragment1 extends Fragment {
@@ -64,7 +54,7 @@ public class GroupFragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ListView listview;
-        View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
+        View view = inflater.inflate(R.layout.group_fragment_1, container, false);
         //mSwipeRefreshLayout = view.findViewById(R.id.refresh);
         //mSwipeRefreshLayout.setOnRefreshListener(this);
         //mSwipeRefreshLayout.setColorSchemeResources(R.color.blue);
