@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 //                Call<List<Group>> call2 = service.listDummies2(id1);
 //                call2.enqueue(dummies2);
 
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
                 intent.putExtra("id", id1);
                 intent.putExtra("pw", password1);
                 startActivityForResult(intent,100);
@@ -143,8 +143,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 admin = 1;
+                String id1 = String.valueOf(id.getText().toString());
+                String password1 = String.valueOf(password.getText().toString());
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("id", id1);
+                intent.putExtra("pw", password1);
                 startActivityForResult(intent,100);
             }
         });

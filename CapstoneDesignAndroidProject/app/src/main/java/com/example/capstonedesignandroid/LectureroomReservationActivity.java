@@ -1,9 +1,12 @@
 package com.example.capstonedesignandroid;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import androidx.appcompat.app.AlertDialog;
@@ -11,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,6 +37,7 @@ import com.example.capstonedesignandroid.DTO.LectureRoomReservationState;
 import com.example.capstonedesignandroid.Fragment.LectureroomReservationCanlendar;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -95,11 +100,16 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private boolean dummyLectureRoomReservationState_state = false;
     private DummyReservationId reservationid;
     private ArrayList<LectureRoomReservationState> lectureRoomReservationStateArrayList;
+    protected BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lectureroom_reservation);
+
+        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyConstants.BASE)
@@ -772,5 +782,36 @@ public class LectureroomReservationActivity extends AppCompatActivity {
             dummyLectureRoomReservationState_state = false;
         }
     }; //dummies
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item)
+        {
+            switch (item.getItemId()){
+                case R.id.action_group :
+                    Intent intent1 = new Intent(LectureroomReservationActivity.this, StudyBulletinBoardActivity.class);
+                    startActivity(intent1);
+                    break;
+                case R.id.action_reservation :
+
+                    break;
+                case R.id.action_check :
+                    Intent intent3 = new Intent(LectureroomReservationActivity.this, LectureroomCheckActivity.class);
+                    startActivity(intent3);
+                    break;
+                case R.id.action_cafe :
+                    Intent intent4 = new Intent(LectureroomReservationActivity.this, CafeMapActivity.class);
+                    startActivity(intent4);
+                    break;
+                case R.id.action_profile :
+                    Intent intent5 = new Intent(LectureroomReservationActivity.this, ProfileActivity.class);
+                    startActivity(intent5);
+                    break;
+
+            }
+            return false;
+        }
+    };
 
 }

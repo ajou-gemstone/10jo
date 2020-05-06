@@ -4,16 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.core.view.GravityCompat;
 import androidx.viewpager.widget.ViewPager;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
-public class StudyBulletinBoardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class StudyBulletinBoardActivity extends AppCompatActivity {
 
     ImageView imageView;
     Intent intent3,intent2,intent4,intent5,intent6,intent7;
@@ -41,14 +42,17 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
     String selecttitle;
     private long backKeyPressedTime = 0;
     private Toast toast;
+    protected BottomNavigationView navigationView;
 
     // 우선 ArrayList 객체를 ArrayAdapter 객체에 연결합니다.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_bulletin_board);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         Intent intent1 = getIntent();
 //        userInfo = intent1.getStringArrayExtra("strings");
 //        usertitle = intent1.getStringArrayExtra("usertitle");
@@ -81,18 +85,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
 //        Call<List<Dummy>> call = favoriteListInterface.listDummies(userInfo[0]);
 //        call.enqueue(dummies);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        View nav_header_view = navigationView.getHeaderView(0);
-        TextView user = (TextView) nav_header_view.findViewById(R.id.name);
-        imageView = (ImageView) nav_header_view.findViewById(R.id.imageView);
-        imageView.setImageResource(R.drawable.profile);
 //        switch(Integer.parseInt(userInfo[5])) {
 //            case 0:
 //                imageView.setImageResource(R.drawable.heart);
@@ -131,37 +124,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
 
             }
         });
-//        View llBottomSheet = findViewById(R.id.bottom_sheet);
-//        favorite = (ListView) findViewById(R.id.list_favorite);
-//
-//        favorite.setAdapter(m_Adapter1);
 
-        // init the bottom sheet behavior
-//        final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
-//        // set callback for changes
-//        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-//            @Override
-//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-//                favorite.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                        selecttitle = m_Adapter1.getPosition(position);
-//
-//                        Retrofit retrofit2 = new Retrofit.Builder()
-//                                .baseUrl(BASE)
-//                                .addConverterFactory(GsonConverterFactory.create())
-//                                .build();
-//
-//                        ReadPostInterface readPostInterface = retrofit2.create(ReadPostInterface.class);
-//                        Call<List<Dummy2>> call2 = readPostInterface.listDummies(selecttitle);
-//                        call2.enqueue(dummies2);
-//                    }
-//                });
-//            }
-//            @Override
-//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-//            }
-//        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,89 +135,6 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
 
     }//onCreate
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            intent3 = getIntent();
-            intent3 = new Intent(getApplicationContext(),MainActivity.class);
-            intent3.putExtra("strings",userInfo) ;
-            intent3.putExtra("usertitle",usertitle);
-            startActivity(intent3);
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-            intent3 = getIntent();
-            intent3 = new Intent(getApplicationContext(),MainActivity.class);
-            intent3.putExtra("strings",userInfo) ;
-            intent3.putExtra("usertitle",usertitle);
-            startActivity(intent3);
-        }  else if (id == R.id.nav_send) {
-            intent7 = getIntent();
-            intent7 = new Intent(getApplicationContext(),MainActivity.class);
-            intent7.putExtra("strings",userInfo);
-            intent7.putExtra("usertitle",usertitle) ;
-            startActivity(intent7);
-
-        } else if (id == R.id.nav_question){
-            intent2 = getIntent();
-            Toasty.normal(StudyBulletinBoardActivity.this, "궁금했던점을 말해주세요!", Toast.LENGTH_SHORT).show();
-            intent2 = new Intent(getApplicationContext(),MainActivity.class);
-            intent2.putExtra("strings",userInfo) ;
-            intent2.putExtra("usertitle",usertitle) ;
-            startActivity(intent2);
-        }
-        else if(id == R.id.nav_logout){
-            intent4 = getIntent();
-            Toasty.success(StudyBulletinBoardActivity.this, "이용해주셔서 감사합니다!", Toast.LENGTH_SHORT).show();
-            intent4 = new Intent(getApplicationContext(), LoginActivity.class);
-            intent4.putExtra("strings",userInfo) ;
-            intent4.putExtra("usertitle",usertitle) ;
-            startActivity(intent4);
-        }
-        else if(id == R.id.nav_docs){
-            intent5 = getIntent();
-            Toasty.normal(StudyBulletinBoardActivity.this, "고민한잔 이용약관입니다", Toast.LENGTH_SHORT).show();
-            intent5 = new Intent(getApplicationContext(),MainActivity.class);
-            intent5.putExtra("strings",userInfo);
-            intent5.putExtra("usertitle",usertitle) ;
-            startActivity(intent5);
-        }
-        else if(id == R.id.nav_promise){
-            intent6 = getIntent();
-            Toasty.normal(StudyBulletinBoardActivity.this, "모두의 약속", Toast.LENGTH_SHORT).show();
-            intent6 = new Intent(getApplicationContext(),MainActivity.class);
-            intent6.putExtra("strings",userInfo);
-            intent6.putExtra("usertitle",usertitle) ;
-            startActivity(intent6);
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -324,4 +204,34 @@ public class StudyBulletinBoardActivity extends AppCompatActivity implements Nav
         return super.onCreateOptionsMenu(menu);
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item)
+        {
+            switch (item.getItemId()){
+                case R.id.action_group :
+
+                    break;
+                case R.id.action_reservation :
+                    Intent intent2 = new Intent(StudyBulletinBoardActivity.this, LectureroomReservationActivity.class);
+                    startActivity(intent2);
+                    break;
+                case R.id.action_check :
+                    Intent intent3 = new Intent(StudyBulletinBoardActivity.this, LectureroomCheckActivity.class);
+                    startActivity(intent3);
+                    break;
+                case R.id.action_cafe :
+                    Intent intent4 = new Intent(StudyBulletinBoardActivity.this, CafeMapActivity.class);
+                    startActivity(intent4);
+                    break;
+                case R.id.action_profile :
+                    Intent intent5 = new Intent(StudyBulletinBoardActivity.this, ProfileActivity.class);
+                    startActivity(intent5);
+                    break;
+
+            }
+            return false;
+        }
+    };
 }//MainActivity
