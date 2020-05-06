@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
         >
 
         <LinearLayout
@@ -50,10 +49,10 @@
             android:layout_above="@+id/notilayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="50dp"
+                android:layout_height="match_parent"
                 android:id="@+id/refresh">
                 <ListView
                     android:id="@+id/listview1"
@@ -62,24 +61,10 @@
                     android:layout_x="0px"
                     android:layout_y="0px"
                     android:dividerHeight="3dp"
-                    android:divider="#f0f0f0">
+                    android:divider="#f0f0f0"
+                    >
                 </ListView>
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/notilayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/my_noti_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="#000000"
-                android:dividerHeight="3dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/my_noti_list" />
         </LinearLayout>
 
     </LinearLayout>
