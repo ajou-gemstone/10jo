@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_group"
+        android:icon="@drawable/group"
+        android:title="모임"/>
+
+    <item
+        android:id="@+id/action_reservation"
+        android:icon="@drawable/clock"
+        android:title="강의실예약"/>
+
+    <item
+        android:id="@+id/action_check"
+        android:icon="@drawable/check"
+        android:title="예약내역"/>
+    <item
+        android:id="@+id/action_cafe"
+        android:icon="@drawable/map"
+        android:title="카페확인"/>
+
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/profile"
+        android:title="프로필"/>
+
+</menu>
