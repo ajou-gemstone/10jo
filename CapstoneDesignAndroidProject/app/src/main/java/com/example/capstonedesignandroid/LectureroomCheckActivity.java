@@ -3,6 +3,8 @@ package com.example.capstonedesignandroid;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -12,9 +14,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.capstonedesignandroid.Adapter.ReservationCheckAdapter;
-import com.example.capstonedesignandroid.Fragment.Fragment_Reservation_Today;
 import com.example.capstonedesignandroid.Fragment.Fragment_Reservation_Future;
 import com.example.capstonedesignandroid.Fragment.Fragment_Reservation_Previous;
+import com.example.capstonedesignandroid.Fragment.Fragment_Reservation_Today;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 

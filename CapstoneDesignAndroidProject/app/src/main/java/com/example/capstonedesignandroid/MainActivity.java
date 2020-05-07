@@ -5,22 +5,15 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Base64;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kakao.util.maps.helper.Utility;
@@ -28,7 +21,6 @@ import com.kakao.util.maps.helper.Utility;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -44,6 +36,7 @@ public class MainActivity extends AppCompatActivity{
     private Button testActivity;
     private Button LectureroomCheckActivityButton;
     private Button test2Button;
+    private Button buildingGuardActivityButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +49,9 @@ public class MainActivity extends AppCompatActivity{
         testActivity = findViewById(R.id.testButton);
         LectureroomCheckActivityButton = findViewById(R.id.LectureroomCheckActivityButton);
         test2Button = findViewById(R.id.test2Button);
+        buildingGuardActivityButton = findViewById(R.id.buildingGuardActivityButton);
+
+        Log.d("asdddddddd", ""+ DefinedMethod.getCurrentDate2());
 
         StudyBulletinBoardActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +88,13 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-
+        buildingGuardActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainBuildingGuardActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Log.d("asd", getKeyHash(getApplicationContext()));
 
