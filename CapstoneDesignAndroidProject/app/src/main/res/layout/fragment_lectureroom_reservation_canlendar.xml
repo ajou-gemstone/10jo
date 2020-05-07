@@ -13,20 +13,20 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFF">
 
-        <ImageButton
+        <Button
             android:id="@+id/calendarDateCancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/calendarReservationView"
-            android:src="@drawable/cafeplaceblack_18" />
+            android:text="취소"
+            android:layout_alignLeft="@+id/calendarReservationView"/>
 
 
-        <ImageButton
+        <Button
             android:id="@+id/calendarDateReserveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/calendarReservationView"
-            android:src="@drawable/cafeplacered_18" />
+            android:text="확인"
+            android:layout_alignRight="@+id/calendarReservationView"/>
 
         <CalendarView
             android:id="@+id/calendarReservationView"

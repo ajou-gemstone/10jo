@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-<!--        firebase FCM 수신 서비스-->
+        <activity android:name=".Fragment.B_1_1"></activity>
+        <activity android:name=".CurrentManageReservationActivity" />
+        <activity android:name=".CurrentManageReservationChoiceBuildingActivity" />
+        <activity android:name=".MainBuildingGuardActivity" />
+        <activity android:name=".LectureroomReservationAdditionalActivity" /> <!-- firebase FCM 수신 서비스 -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:enabled="true"
@@ -29,22 +33,25 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more. -->
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/info_white_18" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
 
-        <activity android:name=".LectureroomCheckPictureActivity" />
+        <activity android:name=".LectureroomCheckDetailedActivity" />
         <activity android:name=".LectureroomCheckActivity" />
         <activity
             android:name=".testActivity"

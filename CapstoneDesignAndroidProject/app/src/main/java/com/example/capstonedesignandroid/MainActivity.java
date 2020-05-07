@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.kakao.util.maps.helper.Utility;
 
 import org.jsoup.Connection;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button testActivity;
     private Button LectureroomCheckActivityButton;
     private Button test2Button;
+    private Button buildingGuardActivityButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testActivity = findViewById(R.id.testButton);
         LectureroomCheckActivityButton = findViewById(R.id.LectureroomCheckActivityButton);
         test2Button = findViewById(R.id.test2Button);
+        buildingGuardActivityButton = findViewById(R.id.buildingGuardActivityButton);
+
+        Log.d("asdddddddd", ""+ DefinedMethod.getCurrentDate2());
 
         StudyBulletinBoardActivityButton.setOnClickListener(this);
         LectureroomReservationActivityButton.setOnClickListener(this);
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testActivity.setOnClickListener(this);
         LectureroomCheckActivityButton.setOnClickListener(this);
         test2Button.setOnClickListener(this);
+        buildingGuardActivityButton.setOnClickListener(this);
 
         Log.d("asd", getKeyHash(getApplicationContext()));
 
@@ -140,6 +146,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 activityintent = new Intent(this, LectureroomCheckActivity.class);
                 startActivity(activityintent);
                 break;
+            case R.id.buildingGuardActivityButton:
+                activityintent = new Intent(this, MainBuildingGuardActivity.class);
+                startActivity(activityintent);
+                break;
+
         }
     }
 

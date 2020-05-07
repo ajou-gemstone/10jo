@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,9 +16,9 @@ import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;
 
-public class ReservationListAdapter extends RecyclerView.Adapter<ReservationListAdapter.ViewHolder>{
+public class ClassofAdapter extends RecyclerView.Adapter<ClassofAdapter.ViewHolder>{
 
-    private ArrayList<DummyReservationList> reservationArrayList;
+    private ArrayList<String> arrayList;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener ;
@@ -30,18 +31,19 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
     //리스너 객체 참조를 저장하는 변수
     private OnItemClickListener mListener;
 
-    public ReservationListAdapter(ArrayList<DummyReservationList> a){
-        reservationArrayList = a;
-        Log.d("ReservationListAdapter", "");
+    public ClassofAdapter(ArrayList<String> a){
+        arrayList = a;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
+        TextView classofTextView;
+        Button deleteButton;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.textView);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            classofTextView = itemView.findViewById(R.id.classofTextView);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
+            deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mListener.onItemClick(view, getAdapterPosition());
@@ -56,21 +58,20 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
 
-        View view = inflater.inflate(R.layout.recyclerview_reservation_list, parent, false) ;
+        View view = inflater.inflate(R.layout.recyclerview_classof, parent, false) ;
 
-        ReservationListAdapter.ViewHolder vh = new ReservationListAdapter.ViewHolder(view) ;
+        ClassofAdapter.ViewHolder vh = new ClassofAdapter.ViewHolder(view) ;
 
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(reservationArrayList.get(position).getReservationId());
+        holder.classofTextView.setText(arrayList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return reservationArrayList.size();
+        return arrayList.size();
     }
-
 }

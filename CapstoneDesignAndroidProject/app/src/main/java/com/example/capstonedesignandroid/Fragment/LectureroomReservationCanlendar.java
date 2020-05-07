@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -20,8 +21,8 @@ import java.util.Date;
 
 public class LectureroomReservationCanlendar extends Fragment {
 
-    private ImageButton calendarDateCancelButton;
-    private ImageButton calendarDateReserveButton;
+    private Button calendarDateCancelButton;
+    private Button calendarDateReserveButton;
     private CalendarView calendarReservationView;
     private Date reserveDate;
     private Date tmpreserveDate;

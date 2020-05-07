@@ -21,7 +21,6 @@ public class Fragment_Reservation_Today extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_today_reservation, container, false);
 
-
         return view;
     }
 
