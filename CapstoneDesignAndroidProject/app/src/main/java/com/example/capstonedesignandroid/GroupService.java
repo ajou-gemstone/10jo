@@ -25,7 +25,8 @@ public interface GroupService {
     Call<List<Group>> getStudyList();
 
     @POST("/study/create")
-    Call<List<Group>> postStudy(@Query("category") int category, @Query("title") String title, @Query("textBody") String textBody, @Query("tagName") String[] tagName, @Query("studyGroupNumTot") int studyGroupNumTot);
+    @FormUrlEncoded
+    Call<List<Group>> postStudy(@Field("category") int category, @Field("title") String title, @Field("textBody") String textBody, @Field("tagName") String[] tagName, @Field("studyGroupNumTot") int studyGroupNumTot);
 
 
 }

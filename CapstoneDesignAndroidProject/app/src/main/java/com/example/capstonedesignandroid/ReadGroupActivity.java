@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.capstonedesignandroid.Adapter.UserListAdapter;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
@@ -23,20 +26,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadGroupActivity extends AppCompatActivity {
     Button enterbt, reservation, chatting;
-    TextView title,maintext;
-    Intent intent2;
-    String userKey;
-    String userId, userPassword;
-    String name;
-    String trust;
-    int like;
-    String emotion;
+    TextView title, maintext;
     TextView currentnum, totalnum;
-    String like1;
-    String groupId;
-    String[] readpost;
-    int oldchat = 0;
-    int likebutton1 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,27 +42,20 @@ public class ReadGroupActivity extends AppCompatActivity {
         reservation = (Button) findViewById(R.id.button_oldchat);
         chatting = (Button) findViewById(R.id.button_chat);
 
-
         Intent intent3 = getIntent();
 //        groupId = intent3.getStringExtra("groupId");
 //        title.setText(groupId);
 
-//        readpost = intent3.getStringArrayExtra("readpost");
-//
-//        userId = userInfo[0];
-//        userPassword = userInfo[1];
-//        name = userInfo[3];
-//        trust = userInfo[4];
-//        emotion = userInfo[5];
-//        like1 = readpost[2];
-//
-//        if(!userId.equals(readpost[3])){
-//            reservation.setVisibility(View.GONE);
-//        }
+        ListView listview;
+        UserListAdapter userListAdapter = new UserListAdapter();
+        listview = (ListView)findViewById(R.id.memberlistview);
+        listview.setAdapter(userListAdapter);
 
-//        maintext.setText(readpost[1]);
-//        liketext.setText(like1);
-
+        userListAdapter.add("aaa","aaa","aaa",0,"강찬혁");
+        userListAdapter.add("aaa","aaa","aaa",0,"이현주");
+        userListAdapter.add("aaa","aaa","aaa",0,"곽명섭");
+        userListAdapter.add("aaa","aaa","aaa",0,"한정우");
+/*
         Retrofit retrofit2 = new Retrofit.Builder()
         .baseUrl(MyConstants.BASE)
         .addConverterFactory(GsonConverterFactory.create())
@@ -79,6 +63,7 @@ public class ReadGroupActivity extends AppCompatActivity {
 
         GroupService groupService = retrofit2.create(GroupService.class);
         Call<List<Group>> call2 = groupService.getStudyGroup(groupId);
+
         //call2.enqueue(studyDummies);
         //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
         Thread thread = new Thread(new Runnable() {
@@ -102,7 +87,7 @@ public class ReadGroupActivity extends AppCompatActivity {
             thread.join();
         } catch (Exception e) {
         }
-
+*/
         enterbt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +107,6 @@ public class ReadGroupActivity extends AppCompatActivity {
         reservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                oldchat = 1;
                 Intent intent = new Intent(getApplicationContext(),LectureroomReservationActivity.class);
                 startActivity(intent);
 
@@ -140,7 +124,6 @@ public class ReadGroupActivity extends AppCompatActivity {
         chatting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                oldchat = 1;
                 Intent intent = new Intent(getApplicationContext(),ChattingActivity.class);
                 startActivity(intent);
 
@@ -154,28 +137,16 @@ public class ReadGroupActivity extends AppCompatActivity {
 //                call2.enqueue(dummies2);
             }
         });
-    }
 
-    Callback studyDummies = new Callback<List<Group>>() {
-
-        @Override
-        public void onResponse(Call<List<Group>> call, Response<List<Group>> response) {
-            if (response.isSuccessful()) {
-                List<Group> dummies = response.body();
-
-                maintext.setText(dummies.get(0).getTextBody());
-                title.setText(dummies.get(0).getTitle());
-                currentnum.setText(dummies.get(0).getStudyGroupNumCurrent());
-                totalnum.setText(dummies.get(0).getStudyGroupNumTotal());
+        //유저 하나하나 눌렀을 때
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent2 = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent2.putExtra("userId", "아이디");
+                startActivity(intent2);
             }
-        }
-
-        @Override
-        public void onFailure(Call<List<Group>> call1, Throwable t) {
-
-        }
-    };
-
-
+        });
+    }
 
 }

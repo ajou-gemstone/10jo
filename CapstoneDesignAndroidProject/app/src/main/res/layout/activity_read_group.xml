@@ -25,18 +25,18 @@
             android:layout_height="0dp"
             android:layout_weight="0.5"/>
         <Button
-            android:id="@+id/button_chat"
-            android:layout_width="80dp"
+            android:id="@+id/button_edit"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="right|center"
-            android:text="채팅하기"
-            android:textStyle="bold"/>
+            android:layout_marginRight="15dp"
+            android:background="@drawable/pencil_black" />
         <Button
-            android:id="@+id/button_edit"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:id="@+id/button_chat"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="right|center"
-            android:background="@android:drawable/ic_menu_edit" />
+            android:background="@drawable/chat_black" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,32 +66,36 @@
         android:layout_height="80dp"
         android:orientation="horizontal"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="5dp">
 
         <TextView
             android:id="@+id/currentnum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
             android:text="10"
             android:textSize="15dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
             android:text=" / "
             android:textSize="15dp" />
         <TextView
             android:id="@+id/totalnum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
             android:text="10"
             android:textSize="15dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
             android:text=" 명"
             android:textSize="15dp" />
         <View
