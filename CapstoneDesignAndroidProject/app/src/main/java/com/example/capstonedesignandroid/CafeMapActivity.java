@@ -81,6 +81,10 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
     }
 
     @Override
+    public void onBackPressed() { //super.onBackPressed();비워두면 실행안되서 뒤로가기 안됨
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mapViewContainer.removeView(mapView);

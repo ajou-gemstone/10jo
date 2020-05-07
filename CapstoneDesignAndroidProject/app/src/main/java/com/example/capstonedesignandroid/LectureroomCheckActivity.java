@@ -34,21 +34,16 @@ public class LectureroomCheckActivity extends AppCompatActivity {
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_check);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        Button button = findViewById(R.id.button);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LectureroomCheckPictureActivity.class);
-                startActivity(intent);
-            }
-        });
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+    }
+
+    @Override
+    public void onBackPressed() { //super.onBackPressed();비워두면 실행안되서 뒤로가기 안됨
     }
 
     public void setupViewPager(ViewPager viewPager) {
