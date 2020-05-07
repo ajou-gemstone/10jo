@@ -21,8 +21,17 @@ import retrofit2.http.Query;
 
 public interface GetService {
 
-    @POST("/login")
-    Call<List<User>> postUser(@Field("id") String id, @Field("password") String password);
+    @POST("/signup")
+    @FormUrlEncoded
+    Call<List<User>> signup(@Field("userId") String userId, @Field("password") String password);
+
+    @GET("/login")
+    Call<List<User>> login(@Query("userId") String userId, @Field("password") String password);
+    //출력 : id
+
+    @GET("/user/{userId}")
+    Call<List<User>> getUserInfo(@Query("userId") String userId);
+    //출력 : name, userType, email
 
     //강의실 예약 필터링
     @GET("/reservation/list")

@@ -6,6 +6,8 @@ public class User {
     private String userPassword;
     private String email;
     private int userType;
+    private String name;
+    private int score;
 
     public String getUserId() {
         return userId;
@@ -39,8 +41,6 @@ public class User {
         this.userType = userType;
     }
 
-    private int score;
-
     public int getScore() {
         return score;
     }
@@ -49,5 +49,12 @@ public class User {
         this.score = score;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

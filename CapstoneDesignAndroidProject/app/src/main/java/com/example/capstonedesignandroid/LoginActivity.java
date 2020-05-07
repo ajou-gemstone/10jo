@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -29,8 +30,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 

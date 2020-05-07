@@ -67,32 +67,32 @@ public class test1 extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            try {
-                Document doc = Jsoup.connect("https://movie.naver.com/movie/running/current.nhn").get();
-                Elements mElementDataSize = doc.select("ul[class=lst_detail_t1]").select("li"); //필요한 녀석만 꼬집어서 지정
-                int mElementSize = mElementDataSize.size(); //목록이 몇개인지 알아낸다. 그만큼 루프를 돌려야 하나깐.
-
-                for (Element elem : mElementDataSize) { //이렇게 요긴한 기능이
-                    //영화목록 <li> 에서 다시 원하는 데이터를 추출해 낸다.
-                    String my_title = elem.select("li dt[class=tit] a").text();
-                    String my_link = elem.select("li div[class=thumb] a").attr("href");
-                    String my_imgUrl = elem.select("li div[class=thumb] a img").attr("src");
-                    //특정하기 힘들다... 저 앞에 있는집의 오른쪽으로 두번째집의 건너집이 바로 우리집이야 하는 식이다.
-                    Element rElem = elem.select("dl[class=info_txt1] dt").next().first();
-                    String my_release = rElem.select("dd").text();
-                    Element dElem = elem.select("dt[class=tit_t2]").next().first();
-                    String my_director = "감독: " + dElem.select("a").text();
-                    //Log.d("test", "test" + mTitle);
-                    //ArrayList에 계속 추가한다.
-
-                   // list.add(new ItemObject(my_title, my_imgUrl, my_link, my_release, my_director));
-                }
-
-                //추출한 전체 <li> 출력해 보자.
-                //Log.d("debug :", "List " + mElementDataSize);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Document doc = Jsoup.connect("https://movie.naver.com/movie/running/current.nhn").get();
+//                Elements mElementDataSize = doc.select("ul[class=lst_detail_t1]").select("li"); //필요한 녀석만 꼬집어서 지정
+//                int mElementSize = mElementDataSize.size(); //목록이 몇개인지 알아낸다. 그만큼 루프를 돌려야 하나깐.
+//
+//                for (Element elem : mElementDataSize) { //이렇게 요긴한 기능이
+//                    //영화목록 <li> 에서 다시 원하는 데이터를 추출해 낸다.
+//                    String my_title = elem.select("li dt[class=tit] a").text();
+//                    String my_link = elem.select("li div[class=thumb] a").attr("href");
+//                    String my_imgUrl = elem.select("li div[class=thumb] a img").attr("src");
+//                    //특정하기 힘들다... 저 앞에 있는집의 오른쪽으로 두번째집의 건너집이 바로 우리집이야 하는 식이다.
+//                    Element rElem = elem.select("dl[class=info_txt1] dt").next().first();
+//                    String my_release = rElem.select("dd").text();
+//                    Element dElem = elem.select("dt[class=tit_t2]").next().first();
+//                    String my_director = "감독: " + dElem.select("a").text();
+//                    //Log.d("test", "test" + mTitle);
+//                    //ArrayList에 계속 추가한다.
+//
+//                   // list.add(new ItemObject(my_title, my_imgUrl, my_link, my_release, my_director));
+//                }
+//
+//                //추출한 전체 <li> 출력해 보자.
+//                //Log.d("debug :", "List " + mElementDataSize);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             try {
 
 //                Connection.Response response = Jsoup.connect("https://eclass2.ajou.ac.kr/")
@@ -138,9 +138,8 @@ public class test1 extends AppCompatActivity {
 //                        .method(Connection.Method.POST)
 //                        .execute();
 
-                Connection.Response mainPage = Jsoup.connect("https://eclass2.ajou.ac.kr")
+                Connection.Response mainPage = Jsoup.connect("https://sso.ajou.ac.kr/jsp/sso/ip/login_meta_form.jsp")
                         .userAgent(userAgent)
-                        .timeout(3000)
                         .cookies(response.cookies())
                         .data("userId", "rkdcksgur")
                         .data("password", "galaxy4tab")
@@ -181,7 +180,7 @@ public class test1 extends AppCompatActivity {
 
                 Map<String, String> cookies = mainPage.cookies();
 
-                Connection.Response loginPage = Jsoup.connect("https://eclass2.ajou.ac.kr/")
+                Connection.Response loginPage = Jsoup.connect("https://eclass2.ajou.ac.kr/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_1_1")
                         .userAgent(userAgent)
                         .timeout(3000)
                         .cookies(mainPage.cookies())

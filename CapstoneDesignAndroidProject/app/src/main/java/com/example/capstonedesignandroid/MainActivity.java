@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity{
         test2Button = findViewById(R.id.test2Button);
         buildingGuardActivityButton = findViewById(R.id.buildingGuardActivityButton);
 
-        Log.d("asdddddddd", ""+ DefinedMethod.getCurrentDate2());
-
         StudyBulletinBoardActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,30 +6,16 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Group {
-    @SerializedName("id")
-    @Expose
+
     private Integer id;
-    @SerializedName("category")
-    @Expose
     private String category;
-    @SerializedName("title")
-    @Expose
     private String title;
-    @SerializedName("textBody")
-    @Expose
     private String textBody;
-    @SerializedName("studyGroupNumTotal")
-    @Expose
     private Integer studyGroupNumTotal;
-    @SerializedName("studyGroupNumCurrent")
-    @Expose
     private Integer studyGroupNumCurrent;
-    @SerializedName("imageUri")
-    @Expose
     private Integer imageUri;
-    @SerializedName("tagName")
-    @Expose
     private List<TagName> tagName = null;
+    private List<User> user = null;
 
     public Integer getId() {
         return id;
@@ -93,5 +79,13 @@ public class Group {
 
     public void setTagName(List<TagName> tagName) {
         this.tagName = tagName;
+    }
+
+    public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
     }
 }

@@ -6,6 +6,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -30,13 +33,11 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-//public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
-public class GroupFragment2 extends Fragment {
+public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     Intent intent,intent2;
     ArrayAdapter adapter;
-    Button b1, b2, b3, b4, b5, whole, search;
-    String userId,userPassword, maintext, name, trust,emotion, selecttitle, like;
+    Button b1, b2, b3, b4, b5, b6, b7, whole, search;
     String chattingroom_id = "0";
     TextView text, text_sorted;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -57,10 +58,10 @@ public class GroupFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ListView listview;
         View view = inflater.inflate(R.layout.group_fragment_2, container, false);
-        whole = view.findViewById(R.id.whole); b1 = view.findViewById(R.id.b1); b2 = view.findViewById(R.id.b2); b3 = view.findViewById(R.id.b3); b4 = view.findViewById(R.id.b4); b5 = view.findViewById(R.id.b5);
-        //mSwipeRefreshLayout = view.findViewById(R.id.refresh);
-        //mSwipeRefreshLayout.setOnRefreshListener(this);
-        //mSwipeRefreshLayout.setColorSchemeResources(R.color.blue);
+        whole = view.findViewById(R.id.whole); b1 = view.findViewById(R.id.b1); b2 = view.findViewById(R.id.b2); b3 = view.findViewById(R.id.b3); b4 = view.findViewById(R.id.b4); b5 = view.findViewById(R.id.b5); b6 = view.findViewById(R.id.b6); b7 = view.findViewById(R.id.b7);
+        mSwipeRefreshLayout = view.findViewById(R.id.refresh);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.blue);
         context = container.getContext();
         editSearch = view.findViewById(R.id.editSearch);
         search = view.findViewById(R.id.search);
@@ -83,8 +84,163 @@ public class GroupFragment2 extends Fragment {
 
         GroupService groupservice = retrofit2.create(GroupService.class);
         Call<List<Group>> call = groupservice.getStudyList();
-        //call.enqueue(studylistDummies);
-        //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
+        CallThread(call);
+
+        listview = (ListView)view.findViewById(R.id.listview1);
+        listview.setAdapter(grouplistAdapter);
+
+        for (int i = 0; i <= titleArray.size() - 1; i++) {
+            if( ! categoryArray.get(i).equals("all") )
+                grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+        }
+
+        //처음에는 전체 다보여주기
+        whole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grouplistAdapter.clear();
+                category="전체";
+                for (int i = titleArray.size() - 1; i >= 0; i--)
+                    if( ! categoryArray.get(i).equals("all") )
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                grouplistAdapter.notifyDataSetChanged();
+            }
+        });
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    grouplistAdapter.clear();
+                    category = b1.getText().toString();
+                    for (int i = titleArray.size() - 1; i >= 0; i--) {
+                        if (categoryArray.get(i).equals(category))
+                            grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                    }
+                grouplistAdapter.notifyDataSetChanged();
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grouplistAdapter.clear();
+                category = b2.getText().toString();
+                for (int i = titleArray.size() - 1; i >= 0; i--) {
+                    if (categoryArray.get(i).equals(category))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                }
+                grouplistAdapter.notifyDataSetChanged();
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grouplistAdapter.clear();
+                category = b3.getText().toString();
+                for (int i = titleArray.size() - 1; i >= 0; i--) {
+                    if (categoryArray.get(i).equals(category))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                }
+                grouplistAdapter.notifyDataSetChanged();
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grouplistAdapter.clear();
+                category = b4.getText().toString();
+                for (int i = titleArray.size() - 1; i >= 0; i--) {
+                    if (categoryArray.get(i).equals(category))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                }
+                grouplistAdapter.notifyDataSetChanged();
+            }
+        });
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grouplistAdapter.clear();
+                category = b5.getText().toString();
+                for (int i = titleArray.size() - 1; i >= 0; i--) {
+                    if (categoryArray.get(i).equals(category))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                }
+                grouplistAdapter.notifyDataSetChanged();
+            }
+        });
+        b6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grouplistAdapter.clear();
+                category = b6.getText().toString();
+                for (int i = titleArray.size() - 1; i >= 0; i--) {
+                    if (categoryArray.get(i).equals(category))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                }
+                grouplistAdapter.notifyDataSetChanged();
+            }
+        });
+        b7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grouplistAdapter.clear();
+                category = b7.getText().toString();
+                for (int i = titleArray.size() - 1; i >= 0; i--) {
+                    if (categoryArray.get(i).equals(category))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                }
+                grouplistAdapter.notifyDataSetChanged();
+            }
+        });
+
+        editSearch.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && i == KeyEvent.KEYCODE_ENTER) {
+                    listview.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        editSearch.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && i == KeyEvent.KEYCODE_ENTER) {
+                    listview.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // input창에 문자를 입력할때마다 호출된다.
+                // search 메소드를 호출한다.
+                String text = editSearch.getText().toString();
+                search(text, category);
+            }
+        });
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                intent2 = new Intent(getActivity(), ReadGroupActivity.class);
+                intent2.putExtra("groupId", idArray.get(position));
+                startActivity(intent2);
+            }
+        });
+
+        return view;
+    } //onCreateView
+
+    private void CallThread(Call<List<Group>> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -97,7 +253,6 @@ public class GroupFragment2 extends Fragment {
                                 tag = tag + "#" + dummies.get(i).getTagName().get(t).getTagName() + " ";
                             }
                         }
-                        Log.d("tag",tag);
                         tagArray.add(tag);
                         idArray.add(dummies.get(i).getId());
                         titleArray.add(dummies.get(i).getTitle());
@@ -119,121 +274,70 @@ public class GroupFragment2 extends Fragment {
             thread.join();
         } catch (Exception e) {
         }
+    }
 
-        listview = (ListView)view.findViewById(R.id.listview1);
-        listview.setAdapter(grouplistAdapter);
+    //모임 제목, 태그 검색
+    public void search(String charText, String category) {
 
-        for (int i = 0; i <= titleArray.size() - 1; i++) {
-            if(!categoryArray.get(i).equals("all"))
-                grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+        grouplistAdapter.clear();
+
+        if (charText.length() == 0) {
+            //모든 목록 추가하기
+            for (int i = 0; i <= titleArray.size() - 1; i++) {
+                if( ! categoryArray.get(i).equals("all"))
+                    grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+            }
         }
-
-        //처음에는 전체 다보여주기
-        whole.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                category = "전체";
-                grouplistAdapter.clear();
-//                for (int i = titleArray.length - 1; i >= 0; i--)
-//                    groupAdapter.add(Integer.parseInt(profileArray[i]), titleArray[i], categoryArray[i], likeArray[i]);
-                grouplistAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
-                grouplistAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
-                grouplistAdapter.notifyDataSetChanged();
-            }
-        });
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                category = "캡디";
-                    grouplistAdapter.clear();
-//                    for (int i = titleArray.length - 1; i >= 0; i--)
-//                        if (categoryArray[i].equals("진로"))
-//                            m_Adapter.add(Integer.parseInt(profileArray[i]), titleArray[i], categoryArray[i], likeArray[i]);
-                grouplistAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
-                grouplistAdapter.notifyDataSetChanged();
-            }
-        });
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                category = "자주연";
-                grouplistAdapter.clear();
-                grouplistAdapter.notifyDataSetChanged();
-            }
-        });
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                category = "환경과인간";
-                grouplistAdapter.clear();
-                grouplistAdapter.notifyDataSetChanged();
-            }
-        });
-        b4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                category = "인공지능";
-                grouplistAdapter.clear();
-                grouplistAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
-                grouplistAdapter.notifyDataSetChanged();
-            }
-        });
-        b5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                category = "과학사";
-                grouplistAdapter.clear();
-                grouplistAdapter.notifyDataSetChanged();
-            }
-        });
-
-
-        editSearch.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && i == KeyEvent.KEYCODE_ENTER) {
-                    listview.requestFocus();
-                    return true;
+        else{
+            // 리스트의 모든 데이터를 검색한다.
+            if(category.equals("전체")) {
+                for(int i = titleArray.size()-1;i >=0; i--) {
+                    if( ! categoryArray.get(i).equals("all")) {
+                        if (titleArray.get(i).contains(charText)) {
+                            grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        } else if (tagArray.get(i).contains(charText)) {
+                            grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        }
+                    }
                 }
-                return false;
             }
-        });
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                intent2 = new Intent(getActivity(), ReadGroupActivity.class);
-                intent2.putExtra("str", "과목별 제목 넘기기테스트");
-                startActivity(intent2);
+            else{
+                for(int i = titleArray.size()-1;i >=0; i--) {
+                    if( categoryArray.get(i).equals(category)) {
+                        if (titleArray.get(i).contains(charText)) {
+                            grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        } else if (tagArray.get(i).contains(charText)) {
+                            grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        }
+                    }
+                }
             }
-
-        });
-
-        return view;
-    } //onCreateView
-
+        }
+        // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
+        grouplistAdapter.notifyDataSetChanged();
+    }
 
     //새로고침 코드
-//    @Override
-//    public void onRefresh(){
-//        mSwipeRefreshLayout.setRefreshing(true);
-//        final String BASE = SharedPreference.getAttribute(context.getApplicationContext(), "IP");
-//
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() { // 여기에 코드 추가
-//                Retrofit retrofit1 = new Retrofit.Builder()
-//                        .baseUrl(BASE)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-//                Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
-//                call1.enqueue(dummies1);
-//
-//            }
-//        },1000); // 1초후에 새로고침 끝
-//
-//    }
+    @Override
+    public void onRefresh(){
+        mSwipeRefreshLayout.setRefreshing(true);
+        final String BASE = MyConstants.BASE;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() { // 여기에 코드 추가
+                Retrofit retrofit1 = new Retrofit.Builder()
+                        .baseUrl(BASE)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                GroupService groupService = retrofit1.create(GroupService.class);
+                Call<List<Group>> call1 = groupService.getStudyList();
+                CallThread(call1);
+
+            }
+        },1000); // 1초후에 새로고침 끝
+
+    }//onRefresh
 
 }

@@ -13,40 +13,39 @@ import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;
 
-public class GroupListAdapter extends BaseAdapter {
+public class UserListAdapter extends BaseAdapter {
     private class listItem {
-        private int groupId;
-        private String tag;
-        private String title;
-        private String category;
-        private int studentTotalNumber;
-        private int studentCurrentNumber;
+
+        private String userId;
+        private String userPassword;
+        private String email;
+        private int userType;
+        private String name;
 
         // 매개변수가 있는 생성자로 받아와 값을 전달한다.
-        public listItem(int groupId, String tag, String title, String category, int studentCurrentNumber,int studentTotalNumber){
-            this.groupId = groupId;
-            this.tag = tag;
-            this.title = title;
-            this.category = category;
-            this. studentCurrentNumber = studentCurrentNumber;
-            this.studentTotalNumber = studentTotalNumber;
+        public listItem(String userId, String userPassword, String email, int userType, String name){
+            this.userId = userId;
+            this.userPassword = userPassword;
+            this.email = email;
+            this.userType = userType;
+            this. name = name;
         }
     }
 
     // 외부에서 아이템 추가 요청 시 사용
     private ArrayList<listItem> list;
 
-    public GroupListAdapter(ArrayList<listItem> list){
+    public UserListAdapter(ArrayList<listItem> list){
         // Adapter 생성시 list값을 넘겨 받는다.
         this.list=list;
     }
 
-    public GroupListAdapter() {
+    public UserListAdapter() {
         list = new ArrayList();
     }
 
-    public void add(int groupId, String tag, String title, String category, int studentCurrentNumber,int studentTotalNumber) {
-        list.add(new listItem(groupId, tag, title, category, studentCurrentNumber, studentTotalNumber));
+    public void add(String userId, String userPassword, String email, int userType, String name) {
+        list.add(new listItem(userId, userPassword, email, userType, name));
     }
 
     public void clear() {
@@ -64,10 +63,6 @@ public class GroupListAdapter extends BaseAdapter {
         // 현재 position에 따른 list의 값을 반환 시켜준다.
         return list.get(position);
     }
-    public String getPosition(int position) {
-        // 현재 position에 따른 list의 값을 반환 시켜준다.
-        return list.get(position).title;
-    }
 
     @Override
     public long getItemId(int position) {
@@ -84,74 +79,41 @@ public class GroupListAdapter extends BaseAdapter {
         LinearLayout    layout  = null;
         ImageView       imageView = null;
         TextView        textView1 = null;
-        TextView        textView2 = null;
-        TextView        textView3  = null;
-        TextView        textView4  = null;
+
 
         // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
         if ( convertView == null ) {
             // view가 null일 경우 커스텀 레이아웃을 얻어 옴
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.study_group_list, parent, false);
+            convertView = inflater.inflate(R.layout.user_group_list, parent, false);
 
             layout    = (LinearLayout) convertView.findViewById(R.id.layout);
-            textView1    = (TextView) convertView.findViewById(R.id.title);
-            textView2    = (TextView) convertView.findViewById(R.id.tag);
+            textView1    = (TextView) convertView.findViewById(R.id.name);
             imageView    = (ImageView) convertView.findViewById(R.id.profile_image);
-            textView3    = (TextView) convertView.findViewById(R.id.currentnum);
-            textView4    = (TextView) convertView.findViewById(R.id.totalnum);
-
 
             // 홀더 생성 및 Tag로 등록
             holder = new CustomHolder();
             holder.layout = layout;
             holder.textView1 = textView1;
-            holder.textView2 = textView2;
             holder.imageView = imageView;
-            holder.textView3 = textView3;
-            holder.textView4 = textView4;
             convertView.setTag(holder);
         }
         else {
             holder  = (CustomHolder) convertView.getTag();
             layout  = holder.layout;
             textView1 = holder.textView1;
-            textView2 = holder.textView2;
             imageView = holder.imageView;
-            textView3 = holder.textView3;
-            textView4 = holder.textView4;
-
         }
 
-        // Text 등록
-        switch(getItem(pos).groupId) {
-            case 0:
-                imageView.setImageResource(R.drawable.profile);
-                break;
-            case 1:
-                imageView.setImageResource(R.drawable.profile);
-                break;
-            case 2:
-                imageView.setImageResource(R.drawable.profile);
-                break;
-            default: break;
-
-        }
         //imageView.setImageResource()
-        textView1.setText(getItem(pos).title);
-        textView2.setText(getItem(pos).tag);
-        textView3.setText(""+getItem(pos).studentCurrentNumber); //int형 가져올땐 string으로 인식되기위해 ""+붙여야함
-        textView4.setText(""+getItem(pos).studentTotalNumber);
+        textView1.setText(getItem(pos).name);
 
         return convertView;
     }
 
     private class CustomHolder {
         public TextView textView1;
-        public TextView textView2;
         ImageView imageView;
         LinearLayout layout;
-        TextView textView3;
-        TextView textView4;
     }
 }
