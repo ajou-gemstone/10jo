@@ -57,9 +57,16 @@
             android:name=".testActivity"
             android:label="@string/title_activity_test"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".CafeMapActivity" />
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".CafeMapActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CafeDetailedInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LectureroomReservationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -67,27 +74,27 @@
             android:name=".StudyBulletinBoardActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".MakeGroupActivity" />
-        <activity android:name=".ReadGroupActivity" />
-        <activity android:name=".ChattingActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".test1" />
-        <activity android:name=".TabFragment1" />
-        <activity android:name=".TabFragment2" />
-        <activity android:name=".TabFragment3" />
+        <activity android:name=".MakeGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ReadGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ChattingActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".NotificationActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".test1"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
             tools:ignore="WrongManifestParent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CafeDetailedInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"

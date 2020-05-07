@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -17,6 +18,21 @@
         android:layout_below="@+id/tabs">
 
     </androidx.viewpager.widget.ViewPager>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bottom_bar"
+        android:layout_alignParentBottom="true">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            app:labelVisibilityMode="labeled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/main_bottom" />
+    </RelativeLayout>
 
 
 </RelativeLayout>

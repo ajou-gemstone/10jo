@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +19,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.capstonedesignandroid.Adapter.GroupListAdapter;
+import com.example.capstonedesignandroid.DTO.Group;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-//public class TabFragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
-public class TabFragment2 extends Fragment {
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+//public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
+public class GroupFragment2 extends Fragment {
 
     Intent intent,intent2;
     ArrayAdapter adapter;
@@ -32,15 +42,11 @@ public class TabFragment2 extends Fragment {
     SwipeRefreshLayout mSwipeRefreshLayout;
     Context context;
     ArrayAdapter<String> adapter1;
-    ArrayList<String> list;
-    String[] userInfo, titleArray, categoryArray, profileArray, likeArray,tempArray;
-    int[] indexArray;
-    Boolean ischecked2;
-    GroupListAdapter groupAdapter = new GroupListAdapter();
+    ArrayList<String> list, titleArray, tagArray, categoryArray;
+    ArrayList<Integer> idArray, currentNumArray, totalNumArray;
     EditText editSearch;
-    boolean likesorting;
     String category = "";
-
+    GroupListAdapter grouplistAdapter = new GroupListAdapter();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +56,7 @@ public class TabFragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ListView listview;
-        View view = inflater.inflate(R.layout.tab_fragment_2, container, false);
+        View view = inflater.inflate(R.layout.group_fragment_2, container, false);
         whole = view.findViewById(R.id.whole); b1 = view.findViewById(R.id.b1); b2 = view.findViewById(R.id.b2); b3 = view.findViewById(R.id.b3); b4 = view.findViewById(R.id.b4); b5 = view.findViewById(R.id.b5);
         //mSwipeRefreshLayout = view.findViewById(R.id.refresh);
         //mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -58,87 +64,126 @@ public class TabFragment2 extends Fragment {
         context = container.getContext();
         editSearch = view.findViewById(R.id.editSearch);
         search = view.findViewById(R.id.search);
-
-//        Intent intent1 = getActivity().getIntent();
-//        userInfo = intent1.getStringArrayExtra("strings");
-//        userId = userInfo[0];
-//        userPassword = userInfo[1];
-//        name = userInfo[3];
-//        trust = userInfo[4];
-//        emotion = userInfo[5];
-        like = "1";
         text = (TextView) view.findViewById(R.id.text);
+        titleArray = new ArrayList<>();
+        tagArray = new ArrayList<>();
+        categoryArray = new ArrayList<>();
+        idArray = new ArrayList<>();
+        currentNumArray = new ArrayList<>();
+        totalNumArray = new ArrayList<>();
         list = new ArrayList<>();
         adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
 
-        //db 가져오기
-        listview = (ListView)view.findViewById(R.id.listview1);
-        listview.setAdapter(groupAdapter);
+        final String BASE = MyConstants.BASE;
 
-//        titleArray=userInfo[2].split(",");
-//        likeArray=userInfo[6].split(",");
-//        categoryArray=userInfo[7].split(",");
-//        profileArray=userInfo[8].split(",");
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GroupService groupservice = retrofit2.create(GroupService.class);
+        Call<List<Group>> call = groupservice.getStudyList();
+        //call.enqueue(studylistDummies);
+        //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<Group> dummies = call.execute().body();
+                    for(int i = 0; i< dummies.size(); i++){
+                        String tag = "";
+                        if(dummies.get(i).getTagName().size() != 0) {
+                            for (int t = 0; t < dummies.get(i).getTagName().size(); t++) {
+                                tag = tag + "#" + dummies.get(i).getTagName().get(t).getTagName() + " ";
+                            }
+                        }
+                        Log.d("tag",tag);
+                        tagArray.add(tag);
+                        idArray.add(dummies.get(i).getId());
+                        titleArray.add(dummies.get(i).getTitle());
+                        categoryArray.add(dummies.get(i).getCategory());
+                        currentNumArray.add(dummies.get(i).getStudyGroupNumCurrent());
+                        totalNumArray.add(dummies.get(i).getStudyGroupNumTotal());
+
+                        Log.d("1", tagArray.get(i));
+                    }
+                    Log.d("run: ", "run: ");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+
+        listview = (ListView)view.findViewById(R.id.listview1);
+        listview.setAdapter(grouplistAdapter);
+
+        for (int i = 0; i <= titleArray.size() - 1; i++) {
+            if(!categoryArray.get(i).equals("all"))
+                grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+        }
 
         //처음에는 전체 다보여주기
-        groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
-        groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
-
         whole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 category = "전체";
-                groupAdapter.clear();
+                grouplistAdapter.clear();
 //                for (int i = titleArray.length - 1; i >= 0; i--)
 //                    groupAdapter.add(Integer.parseInt(profileArray[i]), titleArray[i], categoryArray[i], likeArray[i]);
-                groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
-                groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
-                groupAdapter.notifyDataSetChanged();
+                grouplistAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
+                grouplistAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
+                grouplistAdapter.notifyDataSetChanged();
             }
         });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 category = "캡디";
-                    groupAdapter.clear();
+                    grouplistAdapter.clear();
 //                    for (int i = titleArray.length - 1; i >= 0; i--)
 //                        if (categoryArray[i].equals("진로"))
 //                            m_Adapter.add(Integer.parseInt(profileArray[i]), titleArray[i], categoryArray[i], likeArray[i]);
-                groupAdapter.add(0, "캡디 에이쁠조", "과목별", "타이틀", "하반기무조건합격보장해드림", "캡디", 1, 4);
-                groupAdapter.notifyDataSetChanged();
+                grouplistAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
+                grouplistAdapter.notifyDataSetChanged();
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 category = "자주연";
-                groupAdapter.clear();
-                groupAdapter.notifyDataSetChanged();
+                grouplistAdapter.clear();
+                grouplistAdapter.notifyDataSetChanged();
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 category = "환경과인간";
-                groupAdapter.clear();
-                groupAdapter.notifyDataSetChanged();
+                grouplistAdapter.clear();
+                grouplistAdapter.notifyDataSetChanged();
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 category = "인공지능";
-                groupAdapter.clear();
-                groupAdapter.add(1, "인공지능 스터디 구해요", "과목별", "타이틀2", "야 너두 할 수 있어", "인공지능", 2, 10);
-                groupAdapter.notifyDataSetChanged();
+                grouplistAdapter.clear();
+                grouplistAdapter.add(1, "#오픽 #AL", "오픽AL5번연속배출모임", "ㄴㄴㄴ", 2,  10);
+                grouplistAdapter.notifyDataSetChanged();
             }
         });
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 category = "과학사";
-                groupAdapter.clear();
-                groupAdapter.notifyDataSetChanged();
+                grouplistAdapter.clear();
+                grouplistAdapter.notifyDataSetChanged();
             }
         });
 
@@ -183,7 +228,7 @@ public class TabFragment2 extends Fragment {
 //                        .build();
 //
 //                ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-//                Call<List<Dummy3>> call1 = chattingInformationInterface.listDummies(userId);
+//                Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
 //                call1.enqueue(dummies1);
 //
 //            }

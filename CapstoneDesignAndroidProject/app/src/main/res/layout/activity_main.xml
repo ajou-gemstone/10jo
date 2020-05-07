@@ -1,88 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:useMaterialThemeColors="false"
-        style="@style/a"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/StudyBulletinBoardActivityButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="스터디"
-        app:layout_constraintBottom_toTopOf="@+id/LectureroomReservationActivityButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:useMaterialThemeColors="false"
+            style="@style/a"/>
 
-    <Button
-        android:id="@+id/LectureroomReservationActivityButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="강의실"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/StudyBulletinBoardActivityButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="스터디"/>
 
-    <Button
-        android:id="@+id/CafeMapActivityButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="카페"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LectureroomReservationActivityButton" />
+        <Button
+            android:id="@+id/LectureroomReservationActivityButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강의실"/>
 
-    <Button
-        android:id="@+id/testButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/CafeMapActivityButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:text="카페" />
 
-    <Button
-        android:id="@+id/LectureroomCheckActivityButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="예약 강의실 확인"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/testButton"
-        app:layout_constraintTop_toBottomOf="@+id/CafeMapActivityButton" />
+        <Button
+            android:id="@+id/testButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test" />
 
-    <Button
-        android:id="@+id/test2Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/testButton" />
+        <Button
+            android:id="@+id/LectureroomCheckActivityButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="예약 강의실 확인"/>
 
-    <Button
-        android:id="@+id/buildingGuardActivityButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="경비원 관리 액티비티"
-        app:layout_constraintBottom_toTopOf="@+id/StudyBulletinBoardActivityButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/test2Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test2"/>
+        <Button
+            android:id="@+id/buildingGuardActivityButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="경비원 관리 액티비티" />
 
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bottom_bar"
+        android:layout_alignParentBottom="true">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            app:labelVisibilityMode="labeled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/main_bottom" />
+    </RelativeLayout>
+
+</RelativeLayout>

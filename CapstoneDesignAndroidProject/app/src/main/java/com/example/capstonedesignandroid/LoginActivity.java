@@ -16,7 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.capstonedesignandroid.DTO.Dummy;
+import com.example.capstonedesignandroid.DTO.Group;
+import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +33,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String BASE = "http://172.30.1.4:3000";
 
     EditText position;
     Button getButton, button_developer;
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final EditText id = (EditText) findViewById(R.id.edittext_id);
-        SharedPreference.setAttribute(getApplicationContext(), "IP", BASE);
+        SharedPreference.setAttribute(getApplicationContext(), "IP", MyConstants.BASE);
         final EditText password = (EditText) findViewById(R.id.edittext_password);
         final Button login = (Button) findViewById(R.id.button_login);
         Button button_developer = (Button) findViewById(R.id.button_developer);
@@ -111,28 +111,28 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //retrofit을 사용하기 위하여 singleton으로 build한다.
                 //gson은 json구조를 띄는 직렬화된 데이터를 Java객체로 역직렬화, 직렬화를 해주는 자바 라이브러리이다.
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(MyConstants.BASE)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                //interface class를 retrofit을 이용하여 객체화하여 사용할 수 있도록 한다.
-                //그리고 아마 interface인 GetService의 제대로 정의되지 않은 메소드를 retrofit 형식에 맞게 알아서 정의를 해줘서 사용할 수 있도록 변경해주는 역할도 한다.
-                GetService service = retrofit.create(GetService.class);
+//                Retrofit retrofit = new Retrofit.Builder()
+//                        .baseUrl(MyConstants.BASE)
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .build();
+//
+//                //interface class를 retrofit을 이용하여 객체화하여 사용할 수 있도록 한다.
+//                //그리고 아마 interface인 GetService의 제대로 정의되지 않은 메소드를 retrofit 형식에 맞게 알아서 정의를 해줘서 사용할 수 있도록 변경해주는 역할도 한다.
+//                GetService service = retrofit.create(GetService.class);
                 String id1 = String.valueOf(id.getText().toString());
                 String password1 = String.valueOf(password.getText().toString());
+////                info_id=id1;
+////                info_password=password1;
+//                Call<List<User>> call = service.postUser(id1, password1);
+//                call.enqueue(userDummies);
 //                info_id=id1;
 //                info_password=password1;
-                Call<List<Dummy3>> call = service.listDummies(id1, password1);
-                call.enqueue(dummies);
-                info_id=id1;
-                info_password=password1;
-                //retrofit service에 정의된 method를 사용하여
+//                //retrofit service에 정의된 method를 사용하여
+//
+//                Call<List<Group>> call2 = service.listDummies2(id1);
+//                call2.enqueue(dummies2);
 
-                Call<List<Dummy3>> call2 = service.listDummies2(id1);
-                call2.enqueue(dummies2);
-
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
                 intent.putExtra("id", id1);
                 intent.putExtra("pw", password1);
                 startActivityForResult(intent,100);
@@ -143,8 +143,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 admin = 1;
+                String id1 = String.valueOf(id.getText().toString());
+                String password1 = String.valueOf(password.getText().toString());
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("id", id1);
+                intent.putExtra("pw", password1);
                 startActivityForResult(intent,100);
             }
         });
@@ -187,15 +191,17 @@ public class LoginActivity extends AppCompatActivity {
         alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
     }
 
-    Callback dummies = new Callback<List<Dummy3>>() {
+    Callback userDummies = new Callback<List<User>>() {
 
         @Override
-        public void onResponse(Call<List<Dummy3>> call, Response<List<Dummy3>> response) {
+        public void onResponse(Call<List<User>> call, Response<List<User>> response) {
             if (response.isSuccessful()) {
-                List<Dummy3> dummies = response.body();
+                List<User> dummies = response.body();
                 StringBuilder builder = new StringBuilder();
-                for (Dummy3 dummy : dummies) {
+
+                for (User dummy : dummies) {
                     builder.append(dummy.toString()+",");
+                    Log.d("id", dummy.getUserId());
                 }
 
                 String[] result;
@@ -205,6 +211,7 @@ public class LoginActivity extends AppCompatActivity {
                 trust = result[2];
                 emotion = result[3];
                 Log.d("dummies",""+result_id+name+trust+emotion);
+
             }else
             {
                 Log.d("onResponse:", "Fail, "+ String.valueOf(response.code()));
@@ -212,18 +219,18 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onFailure(Call<List<Dummy3>> call, Throwable t) {
+        public void onFailure(Call<List<User>> call, Throwable t) {
 
         }
     }; //dummies
 
-    Callback dummies2 = new Callback<List<Dummy3>>(){
+    Callback dummies2 = new Callback<List<Group>>(){
         @Override
-        public void onResponse(Call<List<Dummy3>> call, Response<List<Dummy3>> response) {
+        public void onResponse(Call<List<Group>> call, Response<List<Group>> response) {
             if (response.isSuccessful()) {
-                List<Dummy3> dummies = response.body();
+                List<Group> dummies = response.body();
                 StringBuilder builder = new StringBuilder();
-                for (Dummy3 dummy: dummies) {
+                for (Group dummy: dummies) {
                     builder.append(dummy.toString()+"\n");
                 }
                 Log.d("onResponse", "" + builder.toString());
@@ -234,7 +241,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onFailure(Call<List<Dummy3>> call, Throwable t) {
+        public void onFailure(Call<List<Group>> call, Throwable t) {
             Log.d("onFailure", "fail");
         }
     };

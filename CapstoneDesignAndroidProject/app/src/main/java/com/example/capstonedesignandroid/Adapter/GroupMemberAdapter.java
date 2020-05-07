@@ -100,7 +100,7 @@ public class GroupMemberAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.activity_study_group_list, parent, false);
 
             layout    = (LinearLayout) convertView.findViewById(R.id.layout);
-            textView1    = (TextView) convertView.findViewById(R.id.groupname);
+            textView1    = (TextView) convertView.findViewById(R.id.title);
             textView2    = (TextView) convertView.findViewById(R.id.tag);
             imageView    = (ImageView) convertView.findViewById(R.id.profile_image);
             textView3    = (TextView) convertView.findViewById(R.id.currentnum);
@@ -143,7 +143,7 @@ public class GroupMemberAdapter extends BaseAdapter {
 
         }
         //imageView.setImageResource()
-        textView1.setText(getItem(pos).groupName);
+        textView1.setText(getItem(pos).title);
         textView2.setText(getItem(pos).groupType);
         textView3.setText(""+getItem(pos).studentCurrentNumber); //int형 가져올땐 string으로 인식되기위해 ""+붙여야함
         textView4.setText(""+getItem(pos).studentTotalNumber);

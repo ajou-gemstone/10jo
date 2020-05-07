@@ -4,9 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.capstonedesignandroid.DTO.Group;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadGroupActivity extends AppCompatActivity {
     Button enterbt, reservation, chatting;
@@ -40,8 +53,8 @@ public class ReadGroupActivity extends AppCompatActivity {
 
 
         Intent intent3 = getIntent();
-        groupId = intent3.getStringExtra("str");
-        title.setText(groupId);
+//        groupId = intent3.getStringExtra("groupId");
+//        title.setText(groupId);
 
 //        readpost = intent3.getStringArrayExtra("readpost");
 //
@@ -56,11 +69,39 @@ public class ReadGroupActivity extends AppCompatActivity {
 //            reservation.setVisibility(View.GONE);
 //        }
 
-
 //        maintext.setText(readpost[1]);
 //        liketext.setText(like1);
 
-      //  final String BASE = SharedPreference.getAttribute(getApplicationContext(), "IP");
+        Retrofit retrofit2 = new Retrofit.Builder()
+        .baseUrl(MyConstants.BASE)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build();
+
+        GroupService groupService = retrofit2.create(GroupService.class);
+        Call<List<Group>> call2 = groupService.getStudyGroup(groupId);
+        //call2.enqueue(studyDummies);
+        //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<Group> dummies = call2.execute().body();
+                    maintext.setText(dummies.get(0).getTextBody());
+                    title.setText(dummies.get(0).getTitle());
+                    currentnum.setText(dummies.get(0).getStudyGroupNumCurrent());
+                    totalnum.setText(dummies.get(0).getStudyGroupNumTotal());
+                    Log.d("run: ", "run: ");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
 
         enterbt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +118,6 @@ public class ReadGroupActivity extends AppCompatActivity {
 //                call2.enqueue(dummies2);
             }
         });
-
-
 
         reservation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,5 +155,27 @@ public class ReadGroupActivity extends AppCompatActivity {
             }
         });
     }
+
+    Callback studyDummies = new Callback<List<Group>>() {
+
+        @Override
+        public void onResponse(Call<List<Group>> call, Response<List<Group>> response) {
+            if (response.isSuccessful()) {
+                List<Group> dummies = response.body();
+
+                maintext.setText(dummies.get(0).getTextBody());
+                title.setText(dummies.get(0).getTitle());
+                currentnum.setText(dummies.get(0).getStudyGroupNumCurrent());
+                totalnum.setText(dummies.get(0).getStudyGroupNumTotal());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<List<Group>> call1, Throwable t) {
+
+        }
+    };
+
+
 
 }

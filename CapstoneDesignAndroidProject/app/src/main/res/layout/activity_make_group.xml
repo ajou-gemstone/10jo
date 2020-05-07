@@ -15,25 +15,25 @@
         android:layout_above="@+id/info_layout"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            android:text="새로운 모임 만들기"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <EditText
-                android:id="@+id/e1"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:backgroundTint = "#c0c0c0"
                 android:textColorHint="#c0c0c0"
                 android:hint="  모임을 잘 설명할 수 있는 제목을 적어주세요"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/tag"
+                android:layout_width="match_parent"
+                android:backgroundTint = "#c0c0c0"
+                android:textColorHint="#c0c0c0"
+                android:hint="  #태그, #태그 ..."
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
@@ -51,7 +51,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/e2"
+                    android:id="@+id/body"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#80fffdde"

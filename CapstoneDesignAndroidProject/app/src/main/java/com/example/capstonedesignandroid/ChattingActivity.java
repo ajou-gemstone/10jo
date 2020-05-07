@@ -115,7 +115,7 @@ public class ChattingActivity extends AppCompatActivity {
 //                .build();
 //
 //        ChattingService chattingNumInterface = retrofit6.create(ChattingService.class);
-//        Call<List<Dummy3>> call6 = chattingNumInterface.getchattingnum(title);
+//        Call<List<Group>> call6 = chattingNumInterface.getchattingnum(title);
 //        call6.enqueue(dummies6);
 //
 //        sendChatText.setOnKeyListener(new View.OnKeyListener() {
@@ -264,7 +264,7 @@ public class ChattingActivity extends AppCompatActivity {
 //                        .build();
 //
 //                ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-//                Call<List<Dummy3>> call1 = chattingInformationInterface.listDummies(userId);
+//                Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
 //                call1.enqueue(dummies1);
 //            }
 //        });
@@ -389,22 +389,22 @@ public class ChattingActivity extends AppCompatActivity {
                 .build();
 
         ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-        Call<List<Dummy3>> call1 = chattingInformationInterface.listDummies(userId);
+        Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
         call1.enqueue(dummies1);
     }
 
-    Callback dummies1 = new Callback<List<Dummy3>>() {
+    Callback dummies1 = new Callback<List<Group>>() {
 
         @Override
-        public void onResponse(Call<List<Dummy3>> call1, Response<List<Dummy3>> response) {
+        public void onResponse(Call<List<Group>> call1, Response<List<Group>> response) {
             if (response.isSuccessful()) {
-                List<Dummy3> dummies = response.body();
+                List<Group> dummies = response.body();
                 String[] build;
                 builder_like = new StringBuilder();
                 builder_title = new StringBuilder();
                 builder_category = new StringBuilder();
                 builder_profile = new StringBuilder();
-                for (Dummy3 dummy : dummies) {
+                for (Group dummy : dummies) {
                     build = dummy.toString().split(",");
                     builder_like.append(build[0] + ",");
                     builder_title.append(build[1] + ",");
@@ -437,7 +437,7 @@ public class ChattingActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onFailure(Call<List<Dummy3>> call1, Throwable t) {
+        public void onFailure(Call<List<Group>> call1, Throwable t) {
 
         }
     };
@@ -460,7 +460,7 @@ public class ChattingActivity extends AppCompatActivity {
                         .build();
 
                 UserInterface userInterface = retrofit2.create(UserInterface.class);
-                Call<List<Dummy3>> call2 = userInterface.listDummies(userId);
+                Call<List<Group>> call2 = userInterface.listDummies(userId);
                 call2.enqueue(dummies2);
             }
         }
@@ -471,18 +471,18 @@ public class ChattingActivity extends AppCompatActivity {
         }
     };
 
-    Callback dummies2 = new Callback<List<Dummy3>>() {
+    Callback dummies2 = new Callback<List<Group>>() {
 
         @Override
-        public void onResponse(Call<List<Dummy3>> call2, Response<List<Dummy3>> response) {
+        public void onResponse(Call<List<Group>> call2, Response<List<Group>> response) {
             if (response.isSuccessful()) {
-                List<Dummy3> dummies = response.body();
+                List<Group> dummies = response.body();
                 String[] build1;
                 StringBuilder builder_title1 = new StringBuilder();
                 StringBuilder builder_category1 = new StringBuilder();
                 StringBuilder builder_profile1 = new StringBuilder();
                 StringBuilder builder_like1 = new StringBuilder();
-                for (Dummy3 dummy : dummies) {
+                for (Group dummy : dummies) {
                     build1 = dummy.toString().split(",");
                     builder_title1.append(build1[0] + ",");
                     builder_category1.append(build1[1] + ",");
@@ -501,7 +501,7 @@ public class ChattingActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onFailure(Call<List<Dummy3>> call1, Throwable t) {
+        public void onFailure(Call<List<Group>> call1, Throwable t) {
 
         }
     };

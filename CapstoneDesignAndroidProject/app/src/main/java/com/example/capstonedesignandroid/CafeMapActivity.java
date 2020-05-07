@@ -2,13 +2,16 @@ package com.example.capstonedesignandroid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstonedesignandroid.DTO.CafeCoreInfo;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
@@ -25,12 +28,17 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
     ArrayList<MapPOIItem> mapPOIItemArrayList;
     RelativeLayout mapViewContainer;
     MapView mapView;
+    protected BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_cafe_map);
+
+        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setSelectedItemId(R.id.action_cafe);
+        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //맵 뷰 생성 및 환경 설정
         mapView = new MapView(this);
@@ -144,4 +152,34 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
         return R.drawable.cafeplaceblack_18;//default
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item)
+        {
+            switch (item.getItemId()){
+                case R.id.action_group :
+                    Intent intent1 = new Intent(CafeMapActivity.this, StudyBulletinBoardActivity.class);
+                    startActivity(intent1);
+                    break;
+                case R.id.action_reservation :
+                    Intent intent2 = new Intent(CafeMapActivity.this, LectureroomReservationActivity.class);
+                    startActivity(intent2);
+                    break;
+                case R.id.action_check :
+                    Intent intent3 = new Intent(CafeMapActivity.this, LectureroomCheckActivity.class);
+                    startActivity(intent3);
+                    break;
+                case R.id.action_cafe :
+
+                    break;
+                case R.id.action_profile :
+                    Intent intent4 = new Intent(CafeMapActivity.this, ProfileActivity.class);
+                    startActivity(intent4);
+                    break;
+
+            }
+            return false;
+        }
+    };
 }

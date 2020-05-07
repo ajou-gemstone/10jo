@@ -25,8 +25,8 @@ import com.example.capstonedesignandroid.Adapter.MyNotiListAdapter;
 
 import java.util.ArrayList;
 
-//public class TabFragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
-public class TabFragment3 extends Fragment {
+//public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener   새로고침 사용하면 이걸로 바꿔야 함
+public class GroupFragment3 extends Fragment {
 
     Intent intent1,intent2;
     ArrayAdapter adapter;
@@ -47,7 +47,6 @@ public class TabFragment3 extends Fragment {
     String category = "";
 
     GroupListAdapter groupAdapter = new GroupListAdapter();
-    MyNotiListAdapter notiadapter = new MyNotiListAdapter(list);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,7 @@ public class TabFragment3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ListView listview;
-        View view = inflater.inflate(R.layout.tab_fragment_3, container, false);
+        View view = inflater.inflate(R.layout.group_fragment_3, container, false);
         //mSwipeRefreshLayout = view.findViewById(R.id.refresh);
         //mSwipeRefreshLayout.setOnRefreshListener(this);
         //mSwipeRefreshLayout.setColorSchemeResources(R.color.blue);
@@ -80,8 +79,7 @@ public class TabFragment3 extends Fragment {
         //db에서 가져오기
         listview = (ListView)view.findViewById(R.id.listview1);
         listview.setAdapter(groupAdapter);
-        groupAdapter.add(0, "삼성코테같이준비해요", "모든", "타이틀", "하반기무조건합격보장해드림", "없음", 1, 4);
-
+        groupAdapter.add(0, "#삼성 #코테", "삼성코테같이준비해요", "x000", 1, 4);
 //        titleArray=userInfo[2].split(",");
 //        likeArray=userInfo[6].split(",");
 //        categoryArray=userInfo[7].split(",");
@@ -110,42 +108,9 @@ public class TabFragment3 extends Fragment {
 
         });
 
-        ArrayList<String> list = new ArrayList<>();
-        for (int i=0; i<100; i++) {
-            list.add(String.format("my noti %d", i)) ;
-        }
-
-        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        RecyclerView recyclerView = view.findViewById(R.id.my_noti_list) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())) ;
-
-        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        notiadapter = new MyNotiListAdapter(list) ;
-        recyclerView.setAdapter(notiadapter) ;
-
-        // setup swipe to remove item
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-
         return view;
     } //onCreateView
 
-    ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
-        @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-            // 삭제되는 아이템의 포지션을 가져온다
-            final int position = viewHolder.getAdapterPosition();
-            // 아답타에게 알린다
-            list.remove(position);
-            notiadapter.notifyItemRemoved(position);
-        }
-    };
 
     //새로고침 코드
 //    @Override
@@ -162,7 +127,7 @@ public class TabFragment3 extends Fragment {
 //                        .build();
 //
 //                ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-//                Call<List<Dummy3>> call1 = chattingInformationInterface.listDummies(userId);
+//                Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
 //                call1.enqueue(dummies1);
 //
 //            }
