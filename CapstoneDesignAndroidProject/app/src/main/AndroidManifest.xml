@@ -20,8 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LectureroomReservationAdditionalActivity"></activity>
-        <!-- firebase FCM 수신 서비스 -->
+        <activity android:name=".Fragment.B_1_1"></activity>
+        <activity android:name=".CurrentManageReservationActivity" />
+        <activity android:name=".CurrentManageReservationChoiceBuildingActivity" />
+        <activity android:name=".MainBuildingGuardActivity" />
+        <activity android:name=".LectureroomReservationAdditionalActivity" /> <!-- firebase FCM 수신 서비스 -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:enabled="true"

@@ -61,6 +61,15 @@ public interface GetService {
     //동작: 예약 정보 저장
     //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
 
+    //예약에 강의실 목적, 모임원 정보 저장하기
+    @POST("/")
+    Call<DummyResponse> postReservationDetail(@Query("reservationId") String reservationId, @Query("reservationIntent") String reservationIntent,
+                                              @Query("userClassofsNum") int userClassofsNum, @Query("userClassofs") String[] userClassofs);
+    //입력: {reservationId: "reservationId", reservationIntent: "studying algorithm", userClassofsNum: "3",
+    // userClassofs: ["201520971", "201520000", "201520001"]}
+    //동작: 학번을 가지고 userid와 매칭을 한다.
+    //출력: {response: "success or fail"}
+
     //개인 예약정보 list를 받아온다.
     @GET("/")
     Call<List<DummyReservationList>> getReservationList(@Query("date") String date, @Query("tense") String tense, @Query("userid") String userid);
@@ -90,15 +99,6 @@ public interface GetService {
     Call<DummyResponse> postAfterPicture(@Query("reservationId") String reservationId, @Query("afteruri") String afteruri, @Query("afteruriuploadtime") String afteruriuploadtime);
     //입력: {reservationId: "reservationId", afteruri: "afteruri", afteruriuploadtime: "10:20"}
     //동작: 해당 reservationId에 afteruri 사진 추가, 저장
-    //출력: {response: "success or fail"}
-
-    //예약에 강의실 목적, 모임원 정보 저장
-    @POST("/")
-    Call<DummyResponse> postReservationDetail(@Query("reservationId") String reservationId, @Query("reservationIntent") String reservationIntent,
-                                              @Query("userClassofsNum") int userClassofsNum, @Query("userClassofs") String[] userClassofs);
-    //입력: {reservationId: "reservationId", reservationIntent: "studying algorithm", userClassofsNum: "3",
-    // userClassofs: ["201520971", "201520000", "201520001"]}
-    //동작: 학번을 가지고 userid와 매칭을 한다.
     //출력: {response: "success or fail"}
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.

@@ -56,6 +56,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private Fragment lectureroomReservationCanlendarFragment;
     public boolean dataSelected = false;
     public Date reserveDate;
+    public Date reserveCheckDate;
     public Date currentDate;
     private Button calendarReserveButton;
     private TextView reserveTimeTextView;
@@ -266,6 +267,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 //날짜, 강의실 등의 데이터를 서버에 전달하여 필터링을 거쳐 목록을 받는다.
                 //쿼리
                 //날짜
+                reserveCheckDate = reserveDate;
                 int year = DefinedMethod.getYear(reserveDate);
                 int month = DefinedMethod.getMonth(reserveDate) + 1;
                 int day = DefinedMethod.getDay(reserveDate);
@@ -305,7 +307,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         return;
                     }
                 }
-
+//
                 Log.d("retrofittt", "date:"+date+ " building:"+ buildingArray[0] + "..." +
                         " startTime:" + startTimePosition + " lastTime:"+ lastTimePosition);
 
@@ -486,17 +488,17 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     }
 
                     //실제 시간 position으로 맞춰준다.
-                    firstTag = startTimePosition + firstTag;
-                    secondTag = startTimePosition + secondTag;
+                    int firstActualTag = startTimePosition + firstTag;
+                    int secondActualTag = startTimePosition + secondTag;
 
-                    int year = DefinedMethod.getYear(reserveDate);
-                    int month = DefinedMethod.getMonth(reserveDate) + 1;
-                    int day = DefinedMethod.getDay(reserveDate);
+                    int year = DefinedMethod.getYear(reserveCheckDate);
+                    int month = DefinedMethod.getMonth(reserveCheckDate) + 1;
+                    int day = DefinedMethod.getDay(reserveCheckDate);
                     String date = "" + year + "-" + month + "-" + day;
                     String lectureroom = lectureRoomReservationStateArrayList.get(currentPosition).getLectureroom();//강의실
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);
-                    builder.setTitle("예약 내용:  " + lectureroom+ "   "+ month + "월" + " " + day + "일" + "\n" + "시작시간: " + DefinedMethod.getTimeByPosition(firstTag) +  "  종료시간: " + DefinedMethod.getTimeByPosition(secondTag+1));
+                    builder.setTitle("예약 내용:  " + lectureroom+ "   "+ month + "월" + " " + day + "일" + "\n" + "시작시간: " + DefinedMethod.getTimeByPosition(firstActualTag) +  "  종료시간: " + DefinedMethod.getTimeByPosition(secondActualTag+1));
                     final boolean[] checkedItems = {false};
                     if(!isFCFS){
                         final String[] items = {"추첨 실패 후 랜덤 강의실 배정"};
@@ -523,7 +525,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
                             GetService service = retrofit.create(GetService.class);
                             //retrofit service에 정의된 method를 사용하여
-                            Call<DummyReservationId> call = service.postReservation(date, lectureroom, firstTag, secondTag, userid, checkedItems[0]);
+                            Call<DummyReservationId> call = service.postReservation(date, lectureroom, firstActualTag, secondActualTag, userid, checkedItems[0]);
 
                             //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
                             Thread thread = new Thread(new Runnable() {
@@ -689,7 +691,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     secondClick = false;
                     secondTag = -1;
                     //배경을 모두 지움
-                    for(int i = 0; i < 6; i++){
+                    for(int i = 0; i < lastTimePosition-startTimePosition; i++){
                         currentPositionView.findViewWithTag(""+i).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
                     }
                     currentPosition = position;
@@ -755,7 +757,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                         secondClick = false;
                                         secondTag = -1;
                                         //배경을 first view빼고 모두 지움
-                                        for(int j = 0; j < 6; j++){
+                                        for(int j = 0; j < lastTimePosition-startTimePosition; j++){
                                             pv.findViewWithTag(""+j).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
                                         }
                                         pv.findViewWithTag(""+firstTag).setBackgroundColor(Color.argb(51,17,17,17));

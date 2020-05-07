@@ -159,6 +159,8 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
 
         //모임원 정보 보기 리사이클러뷰는 스터디 액티비피 부분에서 재사용 한다.
 
+        //Todo: 오늘의 예약이나 앞으로의 예약인 경우, 예약을 취소, 삭제하는 기능 넣기
+
         //------------초기 설정----------------
         takePictureButton1 = findViewById(R.id.takePictureButton1);
         pictureImageView1 = findViewById(R.id.pictureImageView1);
