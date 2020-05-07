@@ -19,16 +19,16 @@ public class GroupListAdapter extends BaseAdapter {
         private int groupId;
         private String tag;
         private String title;
-        private String classCode;
+        private String category;
         private int studentTotalNumber;
         private int studentCurrentNumber;
 
         // 매개변수가 있는 생성자로 받아와 값을 전달한다.
-        public listItem(int groupId, String tag, String title, String classCode, int studentCurrentNumber,int studentTotalNumber){
+        public listItem(int groupId, String tag, String title, String category, int studentCurrentNumber,int studentTotalNumber){
             this.groupId = groupId;
             this.tag = tag;
             this.title = title;
-            this.classCode = classCode;
+            this.category = category;
             this. studentCurrentNumber = studentCurrentNumber;
             this.studentTotalNumber = studentTotalNumber;
         }
@@ -46,8 +46,8 @@ public class GroupListAdapter extends BaseAdapter {
         list = new ArrayList();
     }
 
-    public void add(int groupId, String tag, String title, String classCode, int studentTotalNumber,int studentCurrentNumber) {
-        list.add(new listItem(groupId, tag, title, classCode, studentTotalNumber, studentCurrentNumber));
+    public void add(int groupId, String tag, String title, String category, int studentCurrentNumber,int studentTotalNumber) {
+        list.add(new listItem(groupId, tag, title, category, studentCurrentNumber, studentTotalNumber));
     }
 
     public void clear() {

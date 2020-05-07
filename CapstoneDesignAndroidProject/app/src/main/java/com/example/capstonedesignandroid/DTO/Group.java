@@ -11,16 +11,13 @@ public class Group {
     private Integer id;
     @SerializedName("category")
     @Expose
-    private int category;
+    private String category;
     @SerializedName("title")
     @Expose
     private String title;
     @SerializedName("textBody")
     @Expose
     private String textBody;
-   @SerializedName("classcode")
-    @Expose
-    private String classcode;
     @SerializedName("studyGroupNumTotal")
     @Expose
     private Integer studyGroupNumTotal;
@@ -42,11 +39,11 @@ public class Group {
         this.id = id;
     }
 
-    public int getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -58,9 +55,6 @@ public class Group {
         this.title = title;
     }
 
-    public String getClasscode() {
-        return classcode;
-    }
     public String getTextBody() {
         return textBody;
     }
@@ -69,9 +63,6 @@ public class Group {
         this.textBody = textBody;
     }
 
-    public void setClasscode(String classcode) {
-        this.classcode = classcode;
-    }
     public Integer getStudyGroupNumTotal() {
         return studyGroupNumTotal;
     }
