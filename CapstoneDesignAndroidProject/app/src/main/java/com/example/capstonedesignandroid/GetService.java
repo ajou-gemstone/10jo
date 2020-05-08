@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid;
 
 
+import com.example.capstonedesignandroid.DTO.DummyCurrentReservationBuildingFloor;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
@@ -102,7 +103,14 @@ public interface GetService {
     //입력: {reservationId: "reservationId"}
     //출력: {response: "success or fail"}
 
-    
+    //강의실 실시간 사용 상태 확인하기
+    @GET("/")
+    Call<List<DummyCurrentReservationBuildingFloor>> getCurrentReservationBuildingFloor(@Query("buildingName") String buildingName, @Query("floor") String floor);
+    //입력: 건물(하나), 층(하나)
+    //입력: {buildingName: "성호관", floor: "1"}
+    //출력: [배열]
+    //출력: [{lectureRoomId: "강의실id", lectureRoom: "성101", reservationId: "예약id", startTime: "2", lastTime: "6",
+    // reservationType: "R", userId: ["1, user2, user3"]}]
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
 //    @POST("/")

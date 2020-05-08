@@ -18,6 +18,7 @@
 
             <!--dp로 절대값으로 view를 그린다.-->
             <LinearLayout
+                android:id="@+id/l101"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_alignParentEnd="true"
@@ -27,6 +28,7 @@
                 android:background="#E0EC80">
 
                 <TextView
+                    android:id="@+id/l101t"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="성101" />

@@ -8,6 +8,7 @@ import androidx.loader.content.CursorLoader;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -83,6 +84,36 @@ public class DefinedMethod {
         String date = transFormat.format(nowDate);
 
         return date;
+    }
+
+    public static String getBuildingTagByBuildingName(String buildingName){
+        switch (buildingName){
+            case "성호관": return "1";
+            case "다산관": return "2";
+            case "원천정보관": return "3";
+            case "율곡관": return "4";
+            case "서관": return "5";
+            case "신학생회관": return "6";
+            case "연암관": return "7";
+            case "원천관": return "8";
+
+        }
+        return "0";
+    }
+
+    public static String getBuildingNameByBuildingTag(String buildingName){
+        switch (buildingName){
+            case "1": return "성호관";
+            case "2": return "다산관";
+            case "3": return "원천정보관";
+            case "4": return "율곡관";
+            case "5": return "서관";
+            case "6": return "신학생회관";
+            case "7": return "연암관";
+            case "8": return "원천관";
+
+        }
+        return "0";
     }
 
 }
