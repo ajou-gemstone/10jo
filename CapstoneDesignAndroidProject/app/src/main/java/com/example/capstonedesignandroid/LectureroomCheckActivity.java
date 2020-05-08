@@ -34,15 +34,6 @@ public class LectureroomCheckActivity extends AppCompatActivity {
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_check);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        Button button = findViewById(R.id.button);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LectureroomCheckPictureActivity.class);
-                startActivity(intent);
-            }
-        });
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
@@ -66,10 +57,12 @@ public class LectureroomCheckActivity extends AppCompatActivity {
                 case R.id.action_group :
                     Intent intent1 = new Intent(LectureroomCheckActivity.this, StudyBulletinBoardActivity.class);
                     startActivity(intent1);
+                    finish();
                     break;
                 case R.id.action_reservation :
                     Intent intent2 = new Intent(LectureroomCheckActivity.this, LectureroomReservationActivity.class);
                     startActivity(intent2);
+                    finish();
                     break;
                 case R.id.action_check :
 
@@ -77,10 +70,12 @@ public class LectureroomCheckActivity extends AppCompatActivity {
                 case R.id.action_cafe :
                     Intent intent4 = new Intent(LectureroomCheckActivity.this, CafeMapActivity.class);
                     startActivity(intent4);
+                    finish();
                     break;
                 case R.id.action_profile :
                     Intent intent5 = new Intent(LectureroomCheckActivity.this, ProfileActivity.class);
                     startActivity(intent5);
+                    finish();
                     break;
 
             }

@@ -83,18 +83,22 @@ public class ProfileActivity extends AppCompatActivity {
                 case R.id.action_group :
                     Intent intent1 = new Intent(ProfileActivity.this, StudyBulletinBoardActivity.class);
                     startActivity(intent1);
+                    finish();
                     break;
                 case R.id.action_reservation :
                     Intent intent2 = new Intent(ProfileActivity.this, LectureroomReservationActivity.class);
                     startActivity(intent2);
+                    finish();
                     break;
                 case R.id.action_check :
                     Intent intent3 = new Intent(ProfileActivity.this, LectureroomCheckActivity.class);
                     startActivity(intent3);
+                    finish();
                     break;
                 case R.id.action_cafe :
                     Intent intent4 = new Intent(ProfileActivity.this, CafeMapActivity.class);
                     startActivity(intent4);
+                    finish();
                     break;
             }
             return false;

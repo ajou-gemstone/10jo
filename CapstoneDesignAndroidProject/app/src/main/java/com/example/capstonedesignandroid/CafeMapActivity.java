@@ -161,14 +161,17 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
                 case R.id.action_group :
                     Intent intent1 = new Intent(CafeMapActivity.this, StudyBulletinBoardActivity.class);
                     startActivity(intent1);
+                    finish();
                     break;
                 case R.id.action_reservation :
                     Intent intent2 = new Intent(CafeMapActivity.this, LectureroomReservationActivity.class);
                     startActivity(intent2);
+                    finish();
                     break;
                 case R.id.action_check :
                     Intent intent3 = new Intent(CafeMapActivity.this, LectureroomCheckActivity.class);
                     startActivity(intent3);
+                    finish();
                     break;
                 case R.id.action_cafe :
 
@@ -176,6 +179,7 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
                 case R.id.action_profile :
                     Intent intent4 = new Intent(CafeMapActivity.this, ProfileActivity.class);
                     startActivity(intent4);
+                    finish();
                     break;
 
             }

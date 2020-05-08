@@ -26,12 +26,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
-import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,14 +38,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,6 +85,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
     private TextView reservationIntent;
     private TextView beforeUploadTime;
     private TextView afterUploadTime;
+    private Button cancelReservationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,13 +148,13 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                     "2020-05-01 08:05", "2020-05-01 10:23");
         }
 
+        //Todo: 유저 어댑터 코드 가져와서 쓰기
+
         Log.d("getFilesDir", "" + getFilesDir());
         Log.d("getPackageName", "" + getPackageName());
         Log.d("getExternalFilesDir", "" + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
 
         //모임원 정보 보기 리사이클러뷰는 스터디 액티비피 부분에서 재사용 한다.
-
-        //Todo: 오늘의 예약이나 앞으로의 예약인 경우, 예약을 취소, 삭제하는 기능 넣기
 
         //------------초기 설정----------------
         takePictureButton1 = findViewById(R.id.takePictureButton1);
@@ -169,6 +164,18 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         takePictureButton2 = findViewById(R.id.takePictureButton2);
         pictureImageView2 = findViewById(R.id.pictureImageView2);
         transportPictureButton2 = findViewById(R.id.transportPictureButton2);
+
+        cancelReservationButton = findViewById(R.id.cancelReservationButton);
+
+        //예약 삭제하기
+        cancelReservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GetService service = retrofit.create(GetService.class);
+                Call<DummyResponse> call = service.deleteMyReservation(resId);
+                call.enqueue(response);
+            }
+        });
 
 //        date = findViewById(R.id.date);
         day = findViewById(R.id.day);
@@ -194,9 +201,9 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         //스토리지의 레퍼런스(주소)를 가져온다.
         storageRef = storage.getReference();
 
-        if(!dummy.getBeforeuri().equals("")){
+        if(!dummy.getBeforeUri().equals("")){
             //downloadUrl을 이용하여 이미지를 다운로드한다.
-            StorageReference storageReference = storage.getReference(""+dummy.getBeforeuri());
+            StorageReference storageReference = storage.getReference(""+dummy.getBeforeUri());
             storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
@@ -213,9 +220,9 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             });
         }
 
-        if(!dummy.getAfteruri().equals("")){
+        if(!dummy.getAfterUri().equals("")){
             //downloadUrl을 이용하여 이미지를 다운로드한다.
-            StorageReference storageReference = storage.getReference(""+dummy.getAfteruri());
+            StorageReference storageReference = storage.getReference(""+dummy.getAfterUri());
             storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
@@ -408,7 +415,6 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             if(beforeOrAfter == 1){
                 pictureImageView1.setImageURI(photoUri1);
