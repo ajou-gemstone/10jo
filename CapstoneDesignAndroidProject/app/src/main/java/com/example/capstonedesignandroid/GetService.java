@@ -23,10 +23,11 @@ import retrofit2.http.Url;
 
 public interface GetService {
 
+    @FormUrlEncoded
     @POST("/login")
     Call<List<User>> postUser(@Field("id") String id, @Field("password") String password);
 
-    //강의실 예약 필터링
+    //강의실 예약 필터링o
     @GET("/reservation/list")
     Call<List<DummyLectureRoomReservationState>> getReservationList(@Query("date") String date, @Query("building") List<String> building,
                                                                     @Query("startTime") int startTime, @Query("lastTime") int lastTime);
@@ -34,13 +35,13 @@ public interface GetService {
     //입력: {date: "YYYY-M-D", building: "성호관 율곡관 연암관" startTime: "0" lastTime: "3"}
     //출력: [{lectureroom: "성101", stateList: "R 0 0 0 1 L"}, {lectureroom: "성103", stateList: "R A A A L L"}]
 
-    //강의실 정보 가져오기
+    //강의실 정보 가져오기o
     @GET("/lecture/info")
     Call<DummyLectureroomInfo> getLectureroomInfo(@Query("lectureRoom") String lectureroom);
     //입력: {lectureRoom: 성101}
-    //출력: {capacity: 50}
+    //출력: {{lectureRoomNum: 50}
 
-    //강의실 예약 저장하기
+    //강의실 예약 저장하기o
     @FormUrlEncoded
     @POST("/reservation/create")
     Call<DummyReservationId> postReservation(@Field("date") String date, @Field("lectureRoom") String lectureroom,
@@ -51,7 +52,7 @@ public interface GetService {
     //동작: 예약 정보 저장
     //출력: {reservationId: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
 
-    //예약에 강의실 목적, 모임원 정보 저장하기
+    //예약에 강의실 목적, 모임원 정보 저장하기o
     @FormUrlEncoded
     @POST("/reservation/updateInfo")
     Call<DummyResponse> postReservationDetail(@Field("reservationId") String reservationId, @Field("reservationIntent") String reservationIntent,
@@ -61,16 +62,16 @@ public interface GetService {
     //동작: 학번을 가지고 userid와 매칭을 한다.
     //출력: {response: "success or fail"} 추가로 학번에 해당하는 사람이 없으면 fail return
 
-    //개인 예약정보 list를 받아온다.
+    //개인 예약정보 list를 받아온다.x
     @GET("/")
     Call<List<DummyReservationList>> getReservationList(@Query("date") String date, @Query("tense") String tense, @Query("userId") String userid);
     //입력: 날짜, 과거, userid
     //입력: {date: "YYYY-M-D", tense: "future or past", userId: "userId"}
-    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}, ...]
+    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
     //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
-    //서버에서 하나의 예약 정보 가져오기
-    @GET("/")
+    //서버에서 하나의 예약 정보 가져오기x
+    @GET("/reservation/info")
     Call<DummyReservationDetail> getReservationDetail(@Query("reservationId") String reservationId);
     //입력: {reservationId: "reservationId"}
     //출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
@@ -78,17 +79,17 @@ public interface GetService {
     // beforeUploadTime: "8:05", afterUploadTime: "10:20"}
     //만약 uri가 존재하지 않으면 ""(null)로 보냄 uploadtime도 마찬가지
 
-    //예약내역에 사진 저장하기 (before)
+    //예약내역에 사진 저장하기 (before)o
     @FormUrlEncoded
-    @POST("/")
+    @POST("/reservation/beforeImage")
     Call<DummyResponse> postBeforePicture(@Field("reservationId") String reservationId, @Field("beforeUri") String beforeuri, @Field("beforeUriUploadTime") String beforeuriuploadtime);
     //입력: {reservationId: "reservationId", beforeUri: "beforeuri", beforeUriUploadTime: "08:05"}
     //동작: 해당 reservationId에 beforeuri 사진 추가, 저장
     //출력: {response: "success or fail"}
 
-    //예약내역에 사진 저장하기 (after)
+    //예약내역에 사진 저장하기 (after)o
     @FormUrlEncoded
-    @POST("/")
+    @POST("/reservation/afterImage")
     Call<DummyResponse> postAfterPicture(@Field("reservationId") String reservationId, @Field("afterUri") String afteruri, @Field("afterUriUploadTime") String afteruriuploadtime);
     //입력: {reservationId: "reservationId", afteruri: "afterUri", afterUriUploadTime: "10:20"}
     //동작: 해당 reservationId에 afteruri 사진 추가, 저장
@@ -100,6 +101,8 @@ public interface GetService {
     Call<DummyResponse> deleteMyReservation(@Field("reservationId") String reservationId);
     //입력: {reservationId: "reservationId"}
     //출력: {response: "success or fail"}
+
+    
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
 //    @POST("/")

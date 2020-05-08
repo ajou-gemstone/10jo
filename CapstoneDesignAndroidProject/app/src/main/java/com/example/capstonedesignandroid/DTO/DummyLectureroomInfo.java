@@ -1,17 +1,17 @@
 package com.example.capstonedesignandroid.DTO;
 
 public class DummyLectureroomInfo {
-    String capacity;
+    String lectureRoomNum;
 
-    public DummyLectureroomInfo(String capacity) {
-        this.capacity = capacity;
+    public DummyLectureroomInfo(String lectureRoomNum) {
+        this.lectureRoomNum = lectureRoomNum;
     }
 
-    public String getLectureroom() {
-        return capacity;
+    public String getLectureRoomNum() {
+        return lectureRoomNum;
     }
 
     public void setLectureroom(String capacity) {
-        this.capacity = capacity;
+        this.lectureRoomNum = capacity;
     }
 }

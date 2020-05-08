@@ -94,7 +94,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                     public void run() {
                         try {
                             DummyResponse dummy = call.execute().body();
-                            Toast.makeText(getApplicationContext(), "저장 성공", Toast.LENGTH_LONG).show();
+                            Log.d("saveAdditional", "저장 성공");
                         } catch (IOException e) {
                             e.printStackTrace();
                             Log.d("IOException: ", "IOException: ");

@@ -3,7 +3,6 @@ package com.example.capstonedesignandroid;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -546,7 +544,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                     try {
                                         reservationid = call.execute().body();
                                         success = true;
-                                        Log.d("run: ", "run: ");
+                                        Log.d("reservationid: ", ""+reservationid.getReservationId());
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                         success = false;
@@ -661,7 +659,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 DummyLectureroomInfo dummy = call.execute().body();
-                                capacity = dummy.getLectureroom();
+                                capacity = dummy.getLectureRoomNum();
                                 capacity = capacity + "명";
                                 Log.d("run: ", "run: ");
                             } catch (IOException e) {

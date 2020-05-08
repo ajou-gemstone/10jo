@@ -106,6 +106,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         resId = intent.getExtras().getString("reservationId");
+        Log.d("resId", ""+resId);
 
         //----------------서버에서 받기 코드-------------------
         retrofit = new Retrofit.Builder()
@@ -116,33 +117,33 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         GetService service = retrofit.create(GetService.class);
         Call<DummyReservationDetail> call = service.getReservationDetail(resId);
 
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    dummy = call.execute().body();
-//                    IOexception = false;
-//                    Log.d("run: ", "run: ");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    IOexception = true;
-//                    Log.d("IOException: ", "IOException: ");
-//                }
-//            }
-//        });
-//        thread.start();
-//        try {
-//            thread.join();
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//        }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    dummy = call.execute().body();
+                    IOexception = false;
+                    Log.d("getDetailed", "getDetailed");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    IOexception = true;
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
         //----------------서버에서 받기 코드-------------------
 
 //        mockup data로 대체
         if(IOexception){
             String[] userids = {"user1", "user2", "user3"};
-            dummy = new DummyReservationDetail("2020-05-01", "월", "8:00", "10:00", "성101",
+            dummy = new DummyReservationDetail("2020-05-01", "월", "2", "6", "성101",
                     userids, "/images/TEST_20200412_190805_1263752076698054948.png",
                     "/images/TEST_20200427_203734_8578526890362646423.png", "studying algorithm",
                     "2020-05-01 08:05", "2020-05-01 10:23");
@@ -189,8 +190,8 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
 //        date.setText(""+dummy.getDate());
         day.setText(""+dummy.getDay());
         lectureroom.setText(""+dummy.getLectureRoom());
-        startTime.setText(""+dummy.getStartTime());
-        lastTime.setText(""+dummy.getLastTime());
+        startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
+        lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())));
         reservationIntent.setText(""+dummy.getReservationIntent());
         beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
         afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
@@ -353,6 +354,24 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         });
     }
 
+    Callback<DummyResponse> response = new Callback<DummyResponse>() {
+        @Override
+        public void onResponse(Call<DummyResponse> call, Response<DummyResponse> response) {
+            if (response.isSuccessful()) {
+                DummyResponse dummy = response.body();
+                Log.d("response success", "");
+            } else {
+                Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
+            }
+        }
+
+        @Override
+        public void onFailure(Call<DummyResponse> call, Throwable t) {
+            Log.d("response fail", "onFailure: ");
+
+        }
+    };
+
     //사진을 찍는 인텐트를 실행하고, 인텐트 환경 설정을 한다.
     private void sendTakePhotoIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -425,23 +444,6 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             }
         }
     }
-
-    Callback response = new Callback<DummyResponse>() {
-        @Override
-        public void onResponse(Call<DummyResponse> call, Response<DummyResponse> response) {
-            if (response.isSuccessful()) {
-                DummyResponse dummy = response.body();
-            } else {
-                Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
-            }
-        }
-
-        @Override
-        public void onFailure(Call<DummyResponse> call, Throwable t) {
-            Log.d("response fail", "onFailure: ");
-
-        }
-    };
 
     //****-------------------------------------------------------------------------------------------------------------
     //****-------------------------------------------------------------------------------------------------------------
