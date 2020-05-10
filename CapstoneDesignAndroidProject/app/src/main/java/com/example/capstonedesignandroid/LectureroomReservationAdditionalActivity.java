@@ -33,6 +33,13 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
     private Button saveReservationDescButton;
     private Retrofit retrofit;
     private EditText reservationIntentEditText;
+    private boolean saveComplete = false;
+
+    //여기서는 뒤로가기를 막는다.
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +84,14 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
         saveReservationDescButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(classofArrayList.size() == 0){
+                    Toast.makeText(getApplicationContext(), "학번을 하나 이상 추가해주세요", Toast.LENGTH_LONG).show();
+                }
+
                 //예약에 강의실 목적, 모임원 정보 저장
                 //입력: {reservationId: "reservationId", reservationIntent: "studying algorithm", userClassofsNum: "3",
                 // userClassofs: ["201520971", "201520000", "201520001"]}
@@ -95,6 +106,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                         try {
                             DummyResponse dummy = call.execute().body();
                             Log.d("saveAdditional", "저장 성공");
+                            saveComplete = true;
                         } catch (IOException e) {
                             e.printStackTrace();
                             Log.d("IOException: ", "IOException: ");
@@ -106,6 +118,14 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                     thread.join();
                 } catch (Exception e) {
                     // TODO: handle exception
+                }
+                if(saveComplete){
+                    Toast.makeText(getApplicationContext(), "예약 신청이 성공했습니다.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), LectureroomCheckActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), "학번이 유효한지 확인해보세요.", Toast.LENGTH_LONG).show();
                 }
             }
         });

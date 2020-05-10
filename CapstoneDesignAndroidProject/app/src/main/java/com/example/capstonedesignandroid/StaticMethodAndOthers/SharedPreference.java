@@ -1,4 +1,4 @@
-package com.example.capstonedesignandroid;
+package com.example.capstonedesignandroid.StaticMethodAndOthers;
 
 import android.content.Context;
 import android.content.SharedPreferences;

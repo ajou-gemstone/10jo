@@ -123,8 +123,8 @@ public class B_1_1 extends Fragment {
             @Override
             public void onClick(View view) {
                 currentManageReservationActivity.goDetailedReservationActivity(
-                        dummyCurrentReservationBuildingFloorArrayList.get(0).getLectureRoomId(),
-                        dummyCurrentReservationBuildingFloorArrayList.get(0).getReservationId());
+                        dummyCurrentReservationBuildingFloorArrayList.get(0).getReservationId(),
+                        dummyCurrentReservationBuildingFloorArrayList.get(0).getLectureRoomId());
             }
         });
 

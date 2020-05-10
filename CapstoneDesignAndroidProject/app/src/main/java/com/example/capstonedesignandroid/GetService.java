@@ -64,9 +64,9 @@ public interface GetService {
     //동작: 학번을 가지고 userid와 매칭을 한다.
     //출력: {response: "success or fail"} 추가로 학번에 해당하는 사람이 없으면 fail return
 
-    //개인 예약정보 list를 받아온다.o
+    //개인 예약정보 list를 받아온다.o -> startTime, lastTime이 잘못될 수도 있음
     @GET("/reservation/myInfo")
-    Call<List<DummyReservationList>> getReservationList(@Query("date") String date, @Query("tense") String tense, @Query("userId") String userid);
+    Call<List<DummyReservationList>> getReservationList(@Query("tense") String tense, @Query("userId") String userid);
     //입력: 날짜, 과거, userid
     //입력: {date: "YYYY-M-D", tense: "future or past", userId: "userId"}
     //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
@@ -113,25 +113,21 @@ public interface GetService {
     //출력: [{lectureRoomId: "강의실id", lectureRoom: "성101", reservationId: "예약id", startTime: "2", lastTime: "6",
     // reservationType: "R", userId: ["1, user2, user3"]}]
 
-    //경비원 추가 예약 정보 가져오기
-    @GET("/")
+    //경비원 추가 예약 정보 가져오기o
+    @GET("/reservation/guardInfo")
     Call<DummyReservationDetailGuard> getReservationDetailGuard(@Query("reservationId") String reservationId);
     //입력: {reservationId: "1"}
     //출력: {leaderId: "1 (예약자 id)", score: "5 (1 ~ 5)", scoreReason: "더럽게 사용함", guardId: "100 (경비원 id)"}
     //score와 scoreReason이 존재하지 않는 경우는 null 출력, guardId도 이미 평가한 경우만 출력 아니면 null
 
-    //경비원 평가 저장하기
+    //경비원 평가 저장하기o
     @FormUrlEncoded
-    @POST("/")
+    @POST("/reservation/saveScore")
     Call<DummyResponse> postSaveReservationDetailGuard(@Field("reservationId") String reservationId, @Field("score") Float score
     , @Field("scoreReason") String scoreReason, @Field("leaderId") String leaderId, @Field("guardId") String guardId);
     //입력: {reservationId: "1 (예약 id)", leaderId: "1 (예약자 id)", score: "5 (1 ~ 5)", scoreReason: "더럽게 사용함", guardId: "100 (경비원 id)"}
     //동작: 예약 목록에 위 내용을 업데이트 하고, leaderId의 score에 score만큼 감점을 시킨다.
     //출력: {response: success}
-
-
-
-
 
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.

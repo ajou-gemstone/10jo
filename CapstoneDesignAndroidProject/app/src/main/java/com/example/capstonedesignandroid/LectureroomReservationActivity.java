@@ -35,6 +35,7 @@ import com.example.capstonedesignandroid.DTO.LectureRoomReservationState;
 import com.example.capstonedesignandroid.Fragment.LectureroomReservationCanlendar;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
@@ -529,13 +530,10 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             //입력: {date: "YYYY-M-D" lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: "userid", "" }
                             //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
 
-                            //userid는 sharedpreferece로 가져온다.
-                            String userid = "1";
-
                             GetService service = retrofit.create(GetService.class);
                             //retrofit service에 정의된 method를 사용하여
                             Log.d("postreservation", "date:" + date +" lectureroom:"+lectureroom + " firstActualTag:"+firstActualTag + " secondActualTag:"+secondActualTag + "checkedItems:" +checkedItems[0]);
-                            Call<DummyReservationId> call = service.postReservation(date, lectureroom, firstActualTag, secondActualTag, userid, checkedItems[0]);
+                            Call<DummyReservationId> call = service.postReservation(date, lectureroom, firstActualTag, secondActualTag, SharedPreference.getAttribute(getApplicationContext(), "userId"), checkedItems[0]);
 
                             //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
                             Thread thread = new Thread(new Runnable() {

@@ -119,7 +119,7 @@ public class ManageReservationActivity extends AppCompatActivity {
         }
         //        mockup data로 대체
         if(IOexception){
-            dummy2 = new DummyReservationDetailGuard("10", "5.0", "", "100");
+            dummy2 = new DummyReservationDetailGuard("10", "5.0", "", "2");
         }
 
 
@@ -153,8 +153,9 @@ public class ManageReservationActivity extends AppCompatActivity {
             }
         });
 
-        String tmpguardId = "100";
+        String tmpguardId = "2";
 
+        //평가내역 save
         rateSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,9 +164,6 @@ public class ManageReservationActivity extends AppCompatActivity {
                 call3.enqueue(response);
             }
         });
-
-
-
     }
 
     Callback<DummyResponse> response = new Callback<DummyResponse>() {

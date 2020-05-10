@@ -142,4 +142,8 @@ public class DefinedMethod {
         return "0";
     }
 
+    public static String getParsedDate(String date){
+        return date.substring(0, 10);
+    }
+
 }

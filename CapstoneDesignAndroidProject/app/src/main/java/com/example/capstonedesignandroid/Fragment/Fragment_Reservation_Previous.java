@@ -20,6 +20,7 @@ import com.example.capstonedesignandroid.LectureroomCheckDetailedActivity;
 import com.example.capstonedesignandroid.R;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,19 +54,18 @@ public class Fragment_Reservation_Previous extends Fragment {
         //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}, ]
         //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
-        String date = DefinedMethod.getCurrentDate();
-
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyConstants.BASE)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         String tense = "past";
-        String userid = "1";
+        String userid = SharedPreference.getAttribute(getContext(), "userId");
+        Log.d("SharedPreference", " " + userid);
 
         GetService service = retrofit.create(GetService.class);
-        Call<List<DummyReservationList>> call = service.getReservationList(date, tense, userid);
-
+        Call<List<DummyReservationList>> call = service.getReservationList(tense, userid);
+        
         dummyReservationListArrayList = new ArrayList<DummyReservationList>();
 
         Thread thread = new Thread(new Runnable() {
@@ -84,6 +84,7 @@ public class Fragment_Reservation_Previous extends Fragment {
             }
         });
         thread.start();
+
         try {
             thread.join();
         } catch (Exception e) {
@@ -98,6 +99,8 @@ public class Fragment_Reservation_Previous extends Fragment {
             dummyReservationListArrayList.add(new DummyReservationList("1", "2020-05-02", "화", "8:00", "10:00", "성101"));
             dummyReservationListArrayList.add(new DummyReservationList("resId2", "2020-05-03", "수", "8:00", "10:00", "성101"));
         }
+
+//        Todo: dummyReservationListArrayList 정렬
     }
 
     @Override
@@ -116,6 +119,7 @@ public class Fragment_Reservation_Previous extends Fragment {
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(getContext(), LectureroomCheckDetailedActivity.class);
                 intent.putExtra("reservationId", dummyReservationListArrayList.get(position).getReservationId());
+                intent.putExtra("tense", "past");
                 startActivity(intent);
             }
         });
