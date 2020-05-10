@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ManageReservationActivity"></activity>
+        <activity android:name=".LectureroomReservationGuardActivity"></activity>
+        <activity android:name=".ManageReservationActivity" />
         <activity android:name=".CurrentManageReservationActivity" />
         <activity android:name=".CurrentManageReservationChoiceBuildingActivity" />
         <activity android:name=".MainBuildingGuardActivity" />

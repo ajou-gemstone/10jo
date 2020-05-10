@@ -61,38 +61,38 @@ public class Fragment_Reservation_Previous extends Fragment {
                 .build();
 
         String tense = "past";
-        String userid = "leehyunju";
+        String userid = "1";
 
         GetService service = retrofit.create(GetService.class);
         Call<List<DummyReservationList>> call = service.getReservationList(date, tense, userid);
 
         dummyReservationListArrayList = new ArrayList<DummyReservationList>();
 
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    List<DummyReservationList> dummies = call.execute().body();
-//                    dummyReservationListArrayList = new ArrayList<DummyReservationList>(dummies);
-//                    IOexception = false;
-//                    Log.d("run: ", "run: ");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    IOexception = true;
-//                    Log.d("IOException: ", "IOException: ");
-//                }
-//            }
-//        });
-//        thread.start();
-//        try {
-//            thread.join();
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//        }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<DummyReservationList> dummies = call.execute().body();
+                    dummyReservationListArrayList = new ArrayList<DummyReservationList>(dummies);
+                    IOexception = false;
+                    Log.d("run: ", "run: ");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    IOexception = true;
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         //----------------서버에서 받기 코드-------------------
         //출력: {reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}
 
-//        mockup data로 대체
+        //mockup data로 대체
         if(IOexception){
             dummyReservationListArrayList.add(new DummyReservationList("resId0", "2020-05-01", "월", "8:00", "10:00", "성101"));
             dummyReservationListArrayList.add(new DummyReservationList("1", "2020-05-02", "화", "8:00", "10:00", "성101"));

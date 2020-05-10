@@ -140,6 +140,10 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
 
         //----------------서버에서 받기 코드-------------------
 
+        Log.d("retrofitget", " date: "+ dummy.getDate() + " day:"+dummy.getDay()+ " lectureroom: "+dummy.getLectureRoom()
+                + " startTime:" + dummy.getStartTime() + " lastTime:" + dummy.getLastTime() + " beforeUploadTime:" +
+                dummy.getBeforeUploadTime() + " afterUploadTime:" + dummy.getAfterUploadTime());
+
 //        mockup data로 대체
         if(IOexception){
             String[] userids = {"user1", "user2", "user3"};
@@ -174,11 +178,12 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             public void onClick(View view) {
                 GetService service = retrofit.create(GetService.class);
                 Call<DummyResponse> call = service.deleteMyReservation(resId);
+                //Todo: 삭제 내역도 UI에 그려준다.
                 call.enqueue(response);
             }
         });
 
-//        date = findViewById(R.id.date);
+        date = findViewById(R.id.date);
         day = findViewById(R.id.day);
         lectureroom = findViewById(R.id.lectureroom);
         startTime = findViewById(R.id.startTime);
@@ -187,8 +192,8 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         beforeUploadTime = findViewById(R.id.beforeUploadTime);
         afterUploadTime = findViewById(R.id.afterUploadTime);
 
-//        date.setText(""+dummy.getDate());
-        day.setText(""+dummy.getDay());
+        date.setText(""+dummy.getDate());
+        day.setText(""+DefinedMethod.getDayNamebyAlpabet(dummy.getDay()));
         lectureroom.setText(""+dummy.getLectureRoom());
         startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
         lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())));

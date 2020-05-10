@@ -101,8 +101,8 @@ public class DefinedMethod {
         return "0";
     }
 
-    public static String getBuildingNameByBuildingTag(String buildingName){
-        switch (buildingName){
+    public static String getBuildingNameByBuildingTag(String buildingTag){
+        switch (buildingTag){
             case "1": return "성호관";
             case "2": return "다산관";
             case "3": return "원천정보관";
@@ -112,6 +112,32 @@ public class DefinedMethod {
             case "7": return "연암관";
             case "8": return "원천관";
 
+        }
+        return "0";
+    }
+
+    public static String getDayNamebyAlpabet(String alp){
+        switch (alp){
+            case "A": return "월";
+            case "B": return "화";
+            case "C": return "수";
+            case "D": return "목";
+            case "E": return "금";
+            case "F": return "토";
+            case "G": return "일";
+        }
+        return "0";
+    }
+
+    public static String getAlpabetbyDayName(String day){
+        switch (day){
+            case "월": return "A";
+            case "화": return "B";
+            case "수": return "C";
+            case "목": return "D";
+            case "금": return "E";
+            case "토": return "F";
+            case "일": return "G";
         }
         return "0";
     }

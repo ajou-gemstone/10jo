@@ -65,7 +65,9 @@ public class B_1_1 extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_b_1_1, container, false);
 
         //Todo: 서버에서 건물, 층에 대한 data를 받고 고유의 강의실을 클릭하면 강의실의 실시간 reservationId를 activity로 전달
-        //Todo: , activity에서는 예약 내용을 볼 수 있는 intent인 xml: activity_lectureroom_checkdetailed을 이용한 activity로 이동한다.
+        //Todo: , activity에서는 예약 내용을 볼 수 있는 intent인 xml: activity_lectureroom_checkdetailed을 참고하여 작성한다.
+        //Todo: 다른 건물의 층도 fragment, xml을 각각 다로 작성을 해야 한다.
+
         //-----------복사 코드 (서버)----------------
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyConstants.BASE)
@@ -111,7 +113,8 @@ public class B_1_1 extends Fragment {
         LinearLayout l101 = rootView.findViewById(R.id.l101);
         TextView l101t = rootView.findViewById(R.id.l101t);
         l101t.setText("시작시간: "+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummyCurrentReservationBuildingFloorArrayList.get(0).getStartTime())) +
-                "종료시간: " +  DefinedMethod.getTimeByPosition(Integer.parseInt(dummyCurrentReservationBuildingFloorArrayList.get(0).getLastTime())));
+                "종료시간: " +  DefinedMethod.getTimeByPosition(Integer.parseInt(dummyCurrentReservationBuildingFloorArrayList.get(0).getLastTime()))
+                + " resId:" + dummyCurrentReservationBuildingFloorArrayList.get(0).getReservationId());
 
         //강의실 클릭시 액티비티에서 나머지를 처리
 
@@ -124,9 +127,6 @@ public class B_1_1 extends Fragment {
                         dummyCurrentReservationBuildingFloorArrayList.get(0).getReservationId());
             }
         });
-
-
-
 
         return rootView;
     }

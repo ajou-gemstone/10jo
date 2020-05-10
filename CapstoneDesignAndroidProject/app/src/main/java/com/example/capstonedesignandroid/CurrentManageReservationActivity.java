@@ -16,19 +16,13 @@ import com.example.capstonedesignandroid.Fragment.B_1_2;
 import com.example.capstonedesignandroid.Fragment.B_2_1;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import retrofit2.Retrofit;
-
 public class CurrentManageReservationActivity extends AppCompatActivity {
 
-    private RelativeLayout baselayout;
     private FloatingActionButton floatingActionButton;
     private boolean floatingActionButtonClicked = false;
     private String buildingTag;
     private ScrollView scrollViewOneToTwo;
     private ScrollView scrollViewOne;
-    private Retrofit retrofit;
-    private GetService service;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,7 +115,7 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
     public void goDetailedReservationActivity(String resId, String lecId){
         Intent intent = new Intent(getApplicationContext(), ManageReservationActivity.class);
         intent.putExtra("reservationId", resId);
-        intent.putExtra("lectureId", lecId);
+        intent.putExtra("lectureRoomId", lecId);
         startActivity(intent);
     }
 
