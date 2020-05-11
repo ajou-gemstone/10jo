@@ -64,7 +64,7 @@ public interface GetService {
     //동작: 학번을 가지고 userid와 매칭을 한다.
     //출력: {response: "success or fail"} 추가로 학번에 해당하는 사람이 없으면 fail return
 
-    //개인 예약정보 list를 받아온다.o -> startTime, lastTime이 잘못될 수도 있음
+    //개인 예약정보 list를 받아온다.o
     @GET("/reservation/myInfo")
     Call<List<DummyReservationList>> getReservationList(@Query("tense") String tense, @Query("userId") String userid);
     //입력: 날짜, 과거, userid

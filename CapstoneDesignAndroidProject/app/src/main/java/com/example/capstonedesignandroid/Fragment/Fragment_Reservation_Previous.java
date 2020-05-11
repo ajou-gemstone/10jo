@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.capstonedesignandroid.Adapter.ReservationListAdapter;
+import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
+import com.example.capstonedesignandroid.DTO.LectureRoomReservationState;
 import com.example.capstonedesignandroid.GetService;
 import com.example.capstonedesignandroid.LectureroomCheckDetailedActivity;
 import com.example.capstonedesignandroid.R;
@@ -24,6 +26,8 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -100,7 +104,29 @@ public class Fragment_Reservation_Previous extends Fragment {
             dummyReservationListArrayList.add(new DummyReservationList("resId2", "2020-05-03", "수", "8:00", "10:00", "성101"));
         }
 
-//        Todo: dummyReservationListArrayList 정렬
+        //dummyReservationListArrayList 정렬
+        //dummyReservationListArrayList 정렬
+        for(DummyReservationList dummyReservationList: dummyReservationListArrayList){
+            ArrayList<Integer> ymz = DefinedMethod.getYearMonthDaybyDate(dummyReservationList.getDate());
+            Date date = DefinedMethod.getDate(ymz.get(0), ymz.get(1), ymz.get(2));
+            float dateTime = date.getTime();
+            dummyReservationList.setTimePriority(dateTime);
+        }
+
+        Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
+            @Override
+            public int compare(DummyReservationList t1, DummyReservationList t2) {
+                if(t1.getTimePriority() > t2.getTimePriority()){
+                    return 1;
+                }else if(t1.getTimePriority() < t2.getTimePriority()){
+                    return -1;
+                }
+                return 0;
+            }
+        });
+
+
+
     }
 
     @Override

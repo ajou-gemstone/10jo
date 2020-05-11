@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                         // Log and toast
                         Log.d("token", token);
                         Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
+                        //Todo: 이 토큰은 주기적으로 자동으로 변경된다.
                     }
                 });
 

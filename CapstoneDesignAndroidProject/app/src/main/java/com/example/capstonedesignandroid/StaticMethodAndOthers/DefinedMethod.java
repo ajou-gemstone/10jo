@@ -146,4 +146,15 @@ public class DefinedMethod {
         return date.substring(0, 10);
     }
 
+    public static ArrayList<Integer> getYearMonthDaybyDate(String date){
+        int y = Integer.parseInt(date.substring(0,4));
+        int m = Integer.parseInt(date.substring(5,6));
+        int z = Integer.parseInt(date.substring(8,10));
+        ArrayList<Integer> ymz = new ArrayList<>();
+        ymz.add(y);
+        ymz.add(m);
+        ymz.add(z);
+        return ymz;
+    }
+
 }

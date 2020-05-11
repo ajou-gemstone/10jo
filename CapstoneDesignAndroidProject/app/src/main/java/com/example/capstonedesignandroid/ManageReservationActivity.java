@@ -131,7 +131,7 @@ public class ManageReservationActivity extends AppCompatActivity {
 
         //이미 강의실 예약 점수가 있는 경우 예약 점수를 바꿀 수 없다.
         if(!(dummy2.getScore()).equals("")){
-            ratingBar.setNumStars(Integer.parseInt(dummy2.getScore()));
+            ratingBar.setRating(Integer.parseInt(dummy2.getScore()));
             ratingTextView.setText(dummy2.getScore());
             scoreReasonEditText.setText(dummy2.getScoreReason());
             ratingBar.setEnabled(false);
