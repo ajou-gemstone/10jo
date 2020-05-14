@@ -12,7 +12,6 @@ import android.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstonedesignandroid.DTO.DummyResponse;
-import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
 import java.io.IOException;
@@ -59,23 +58,14 @@ public class SignUpActivity extends AppCompatActivity {
                 GetService service = retrofit2.create(GetService.class);
                 Call<DummyResponse> call2 = service.getIdConfirm(id.getText().toString());
                 CallThread(call2);
+
                 if(already){
                     checked=false;
-                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(SignUpActivity.this);
-                    alert_confirm.setMessage("이미 존재하는 아이디입니다.");
-                    alert_confirm.setPositiveButton("확인", null);
-                    AlertDialog alert = alert_confirm.create();
-                    alert.setIcon(R.drawable.app);
-                    alert.show();
+                    AlertMessage("이미 존재하는 아이디입니다.");
                 }
                 else{
                     checked=true;
-                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(SignUpActivity.this);
-                    alert_confirm.setMessage("사용할 수 있는 아이디입니다.");
-                    alert_confirm.setPositiveButton("확인", null);
-                    AlertDialog alert = alert_confirm.create();
-                    alert.setIcon(R.drawable.app);
-                    alert.show();
+                    AlertMessage("사용할 수 있는 아이디입니다.");
                 }
 
             }
@@ -125,20 +115,13 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!checked){
-                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(SignUpActivity.this);
-                    alert_confirm.setMessage("아이디를 확인해주세요.");
-                    alert_confirm.setPositiveButton("확인", null);
-                    AlertDialog alert = alert_confirm.create();
-                    alert.setIcon(R.drawable.app);
-                    alert.show();
+                    AlertMessage("아이디를 확인해주세요.");
                 }
                 else if(already){
-                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(SignUpActivity.this);
-                    alert_confirm.setMessage("이미 존재하는 아이디입니다.");
-                    alert_confirm.setPositiveButton("확인", null);
-                    AlertDialog alert = alert_confirm.create();
-                    alert.setIcon(R.drawable.app);
-                    alert.show();
+                    AlertMessage("이미 존재하는 아이디입니다.");
+                }
+                else if(id.getText().toString().equals("") || password.getText().toString().equals("") || name.getText().toString().equals("") || studentNum.getText().toString().equals("") || email.getText().toString().equals("")){
+                    AlertMessage("모든 정보를 입력해주세요.");
                 }
                 else {
                     String id1 = id.getText().toString();
@@ -183,6 +166,15 @@ public class SignUpActivity extends AppCompatActivity {
             thread.join();
         } catch (Exception e) {
         }
+    }
+
+    public void AlertMessage(String str){
+        AlertDialog.Builder alert_confirm = new AlertDialog.Builder(SignUpActivity.this);
+        alert_confirm.setMessage(str);
+        alert_confirm.setPositiveButton("확인", null);
+        AlertDialog alert = alert_confirm.create();
+        alert.setIcon(R.drawable.app);
+        alert.show();
     }
 
 }
