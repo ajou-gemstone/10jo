@@ -42,28 +42,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
         navigationView.setSelectedItemId(R.id.action_group);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Intent intent1 = getIntent();
-        String signup = "fromsignup";
-        String fromsignup = intent1.getStringExtra("signup");
         userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
-
-        //회원가입 끝났을 때만 팝업 띄우기 위해
-        if(signup.equals(fromsignup)) {
-            AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
-            // 메세지
-            alert_confirm.setMessage("아주대학생 인증 성공");
-            // 확인 버튼 리스너
-            alert_confirm.setPositiveButton("확인", null);
-            // 다이얼로그 생성
-            AlertDialog alert = alert_confirm.create();
-
-            // 아이콘
-            alert.setIcon(R.drawable.app);
-            // 다이얼로그 타이틀
-            alert.setTitle("환영합니다!");
-            // 다이얼로그 보기
-            alert.show();
-        }
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         final ArrayList<String> list = new ArrayList<>();
