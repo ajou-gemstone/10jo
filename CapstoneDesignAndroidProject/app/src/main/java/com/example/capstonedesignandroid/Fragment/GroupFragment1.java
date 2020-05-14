@@ -1,4 +1,4 @@
-package com.example.capstonedesignandroid;
+package com.example.capstonedesignandroid.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +23,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.capstonedesignandroid.Adapter.GroupListAdapter;
 import com.example.capstonedesignandroid.DTO.Group;
+import com.example.capstonedesignandroid.DTO.User;
+import com.example.capstonedesignandroid.GroupService;
+import com.example.capstonedesignandroid.R;
+import com.example.capstonedesignandroid.ReadGroupActivity;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,13 +43,11 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
     Intent intent1,intent2;
     ArrayAdapter adapter;
     Button search;
-    String userId,userPassword, maintext, name, trust,emotion, selecttitle, like;
-    String chattingroom_id = "0";
-    TextView text, text_sorted;
+    String userId;
+    TextView text;
     SwipeRefreshLayout mSwipeRefreshLayout;
     Context context;
-    ArrayAdapter<String> adapter1;
-    ArrayList<String> list, titleArray, tagArray, categoryArray;
+    ArrayList<String> list, titleArray, tagArray, categoryArray, tempArray;
     ArrayList<Integer> idArray, currentNumArray, totalNumArray;
     EditText editSearch;
     GroupListAdapter grouplistAdapter = new GroupListAdapter();
@@ -60,7 +63,7 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
         View view = inflater.inflate(R.layout.group_fragment_1, container, false);
         mSwipeRefreshLayout = view.findViewById(R.id.refresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.blue);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         context = container.getContext();
         editSearch = view.findViewById(R.id.editSearch);
         search = view.findViewById(R.id.search);
@@ -70,21 +73,23 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
         idArray = new ArrayList<>();
         currentNumArray = new ArrayList<>();
         totalNumArray = new ArrayList<>();
+        tempArray = new ArrayList<>();
 
         text = (TextView) view.findViewById(R.id.text);
         list = new ArrayList<>();
         adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
 
-        final String BASE = MyConstants.BASE;
+        userId = SharedPreference.getAttribute(getActivity().getApplicationContext(), "userId");
 
         Retrofit retrofit2 = new Retrofit.Builder()
-                .baseUrl(BASE)
+                .baseUrl(MyConstants.BASE)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         GroupService groupservice = retrofit2.create(GroupService.class);
         Call<List<Group>> call = groupservice.getStudyList();
         CallThread(call);
+
 
         listview = (ListView)view.findViewById(R.id.listview1);
         listview.setAdapter(grouplistAdapter);
@@ -125,7 +130,7 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent2 = new Intent(getActivity(), ReadGroupActivity.class);
-                intent2.putExtra("groupId", idArray.get(position));
+                intent2.putExtra("groupId", idArray.get(position).toString());
                 startActivity(intent2);
             }
         });
@@ -140,18 +145,20 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
                 try {
                     List<Group> dummies = call.execute().body();
                     for(int i = 0; i< dummies.size(); i++){
-                        String tag = "";
-                        if(dummies.get(i).getTagName().size() != 0) {
-                            for (int t = 0; t < dummies.get(i).getTagName().size(); t++) {
-                                tag = tag + "#" + dummies.get(i).getTagName().get(t).getTagName() + " ";
+                        if(dummies.get(i).getCategory().equals("all")) {
+                            String tag = "";
+                            if (dummies.get(i).getTagName().size() != 0) {
+                                for (int t = 0; t < dummies.get(i).getTagName().size(); t++) {
+                                    tag = tag + "#" + dummies.get(i).getTagName().get(t).getTagName() + " ";
+                                }
                             }
+                            tagArray.add(tag);
+                            idArray.add(dummies.get(i).getId());
+                            titleArray.add(dummies.get(i).getTitle());
+                            categoryArray.add(dummies.get(i).getCategory());
+                            currentNumArray.add(dummies.get(i).getStudyGroupNumCurrent());
+                            totalNumArray.add(dummies.get(i).getStudyGroupNumTotal());
                         }
-                        tagArray.add(tag);
-                        idArray.add(dummies.get(i).getId());
-                        titleArray.add(dummies.get(i).getTitle());
-                        categoryArray.add(dummies.get(i).getCategory());
-                        currentNumArray.add(dummies.get(i).getStudyGroupNumCurrent());
-                        totalNumArray.add(dummies.get(i).getStudyGroupNumTotal());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -195,13 +202,11 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
     @Override
     public void onRefresh(){
         mSwipeRefreshLayout.setRefreshing(true);
-        final String BASE = MyConstants.BASE;
-        Log.d("Aaaaaaaaaaaaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() { // 여기에 코드 추가
                 Retrofit retrofit1 = new Retrofit.Builder()
-                        .baseUrl(BASE)
+                        .baseUrl(MyConstants.BASE)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
