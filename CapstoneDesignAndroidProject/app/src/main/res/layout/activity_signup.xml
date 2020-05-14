@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.capstonedesignandroid.SignUpActivity">
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edittext_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#555555"
+                    android:layout_weight="0.8"
+                    android:privateImeOptions="defaultInputmode=english"
+                    android:theme="@style/MyEditTextTheme"
+                    android:hint="아이디"/>
+            <Button
+                android:id="@+id/button_check_id"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_weight="0.15"
+                android:layout_marginLeft="10dp"
+                android:textSize="13dp"
+                android:textColor="#ffffff"
+                android:background="@color/asmr_green2"
+                android:text="아이디 확인" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/edittext_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="#000000"
+            android:textColorHint="#555555"
+            android:privateImeOptions="defaultInputmode=english"
+            android:password="true"
+            android:theme="@style/MyEditTextTheme"
+            android:hint="비밀번호"/>
+        <EditText
+            android:id="@+id/edittext_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="#000000"
+            android:textColorHint="#555555"
+            android:theme="@style/MyEditTextTheme"
+            android:hint="이름"/>
+        <EditText
+            android:id="@+id/edittext_studentnumber"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="#000000"
+            android:textColorHint="#555555"
+            android:inputType="number"
+            android:theme="@style/MyEditTextTheme"
+            android:hint="학번"/>
+        <EditText
+            android:id="@+id/edittext_email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="#000000"
+            android:textColorHint="#555555"
+            android:privateImeOptions="defaultInputmode=english"
+            android:theme="@style/MyEditTextTheme"
+            android:hint="이메일@ajou.ac.kr"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"/>
+        <Button
+            android:id="@+id/button_email_auth"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:text="본인인증하기" />
+
+    </LinearLayout>
+
+</RelativeLayout>

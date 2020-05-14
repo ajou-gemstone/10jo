@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.capstonedesignandroid.DTO.ItemObject;
 import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;
@@ -93,7 +92,7 @@ public class GroupListAdapter extends BaseAdapter {
         if ( convertView == null ) {
             // view가 null일 경우 커스텀 레이아웃을 얻어 옴
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.activity_study_group_list, parent, false);
+            convertView = inflater.inflate(R.layout.study_group_list, parent, false);
 
             layout    = (LinearLayout) convertView.findViewById(R.id.layout);
             textView1    = (TextView) convertView.findViewById(R.id.title);

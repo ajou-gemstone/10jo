@@ -97,7 +97,7 @@ public class GroupMemberAdapter extends BaseAdapter {
         if ( convertView == null ) {
             // view가 null일 경우 커스텀 레이아웃을 얻어 옴
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.activity_study_group_list, parent, false);
+            convertView = inflater.inflate(R.layout.study_group_list, parent, false);
 
             layout    = (LinearLayout) convertView.findViewById(R.id.layout);
             textView1    = (TextView) convertView.findViewById(R.id.title);
@@ -129,15 +129,12 @@ public class GroupMemberAdapter extends BaseAdapter {
         }
 
         // Text 등록
-        switch(getItem(pos).groupId) {
+        switch(Integer.parseInt(getItem(pos).groupType)) {
             case 0:
-                imageView.setImageResource(R.drawable.profile);
+                imageView.setImageResource(R.drawable.member);
                 break;
             case 1:
-                imageView.setImageResource(R.drawable.profile);
-                break;
-            case 2:
-                imageView.setImageResource(R.drawable.profile);
+                imageView.setImageResource(R.drawable.leader);
                 break;
             default: break;
 

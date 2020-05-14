@@ -1,23 +1,19 @@
 package com.example.capstonedesignandroid.DTO;
 
-public class ItemObject {
+public class Lecture {
     private String title;
 
-
-
-    public ItemObject(String title){
+    public Lecture(String title){
         this.title = title;
     }
-
 
     public String getTitle() {
         return title;
     }
 
-
 }
 
-//public class ItemObject {
+//public class Lecture {
 //    private String title;
 //    private String img_url;
 //    private String detail_link;
@@ -25,7 +21,7 @@ public class ItemObject {
 //    private String director;
 //
 //
-//    public ItemObject(String title, String url, String link, String release, String director){
+//    public Lecture(String title, String url, String link, String release, String director){
 //        this.title = title;
 //        this.img_url = url;
 //        this.detail_link = link;

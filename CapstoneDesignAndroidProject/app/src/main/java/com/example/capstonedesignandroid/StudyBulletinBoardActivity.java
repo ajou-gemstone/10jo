@@ -3,35 +3,31 @@ package com.example.capstonedesignandroid;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.capstonedesignandroid.Fragment.GroupFragment1;
+import com.example.capstonedesignandroid.Fragment.GroupFragment2;
+import com.example.capstonedesignandroid.Fragment.GroupFragment3;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import es.dmoral.toasty.Toasty;
-
 public class StudyBulletinBoardActivity extends AppCompatActivity {
 
-    ImageView imageView;
-    Intent intent3,intent2,intent4,intent5,intent6,intent7;
-    String[] userInfo, usertitle;
-    ListView favorite;
-    String[] titleArray;
-    String[] likeArray;
-    String[] categoryArray;
-    String[] profileArray;
-    String selecttitle;
+    String userId;
     private long backKeyPressedTime = 0;
     private Toast toast;
     protected BottomNavigationView navigationView;
@@ -47,13 +43,27 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Intent intent1 = getIntent();
-//        userInfo = intent1.getStringArrayExtra("strings");
-//        usertitle = intent1.getStringArrayExtra("usertitle");
-//
-//        titleArray=userInfo[2].split(",");
-//        likeArray=userInfo[6].split(",");
-//        categoryArray=userInfo[7].split(",");
-//        profileArray=userInfo[8].split(",");
+        String signup = "fromsignup";
+        String fromsignup = intent1.getStringExtra("signup");
+        userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
+
+        //회원가입 끝났을 때만 팝업 띄우기 위해
+        if(signup.equals(fromsignup)) {
+            AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
+            // 메세지
+            alert_confirm.setMessage("아주대학생 인증 성공");
+            // 확인 버튼 리스너
+            alert_confirm.setPositiveButton("확인", null);
+            // 다이얼로그 생성
+            AlertDialog alert = alert_confirm.create();
+
+            // 아이콘
+            alert.setIcon(R.drawable.app);
+            // 다이얼로그 타이틀
+            alert.setTitle("환영합니다!");
+            // 다이얼로그 보기
+            alert.show();
+        }
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         final ArrayList<String> list = new ArrayList<>();
