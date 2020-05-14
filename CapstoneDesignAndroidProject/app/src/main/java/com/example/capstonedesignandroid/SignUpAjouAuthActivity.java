@@ -55,7 +55,7 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
                 // 자바스크립트 인터페이스로 연결되어 있는 getHTML를 실행
                 // 자바스크립트 기본 메소드로 html 소스를 통째로 지정해서 인자로 넘김
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
