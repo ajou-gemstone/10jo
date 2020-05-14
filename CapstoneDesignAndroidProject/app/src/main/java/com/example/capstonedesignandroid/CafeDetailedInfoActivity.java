@@ -18,6 +18,7 @@ public class CafeDetailedInfoActivity extends AppCompatActivity {
         //cafeID에 해당하는 정보들을 불러온다.
 
 
+
     }
 
 }

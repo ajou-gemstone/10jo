@@ -1,24 +1,23 @@
 package com.example.capstonedesignandroid;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
 import com.example.capstonedesignandroid.Adapter.ClassofAdapter;
-import com.example.capstonedesignandroid.Adapter.ReservationAdapter;
-import com.example.capstonedesignandroid.DTO.Dummy;
-import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -34,6 +33,13 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
     private Button saveReservationDescButton;
     private Retrofit retrofit;
     private EditText reservationIntentEditText;
+    private boolean saveComplete = false;
+
+    //여기서는 뒤로가기를 막는다.
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +63,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         classofAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                classofArrayList.add(""+classofEdittext.getText());
+                classofArrayList.add("" + classofEdittext.getText());
                 classofEdittext.setText("");
                 adapter.notifyDataSetChanged();
             }
@@ -78,42 +84,49 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
         saveReservationDescButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(classofArrayList.size() == 0){
+                    Toast.makeText(getApplicationContext(), "학번을 하나 이상 추가해주세요", Toast.LENGTH_LONG).show();
+                }
+
                 //예약에 강의실 목적, 모임원 정보 저장
                 //입력: {reservationId: "reservationId", reservationIntent: "studying algorithm", userClassofsNum: "3",
                 // userClassofs: ["201520971", "201520000", "201520001"]}
                 //출력: {response: "success or fail"}
                 GetService service = retrofit.create(GetService.class);
-                Call<DummyResponse> call = service.postReservationDetail(resId, ""+reservationIntentEditText.getText(),
+                Call<DummyResponse> call = service.postReservationDetail(resId, "" + reservationIntentEditText.getText(),
                         classofArrayList.size(), classofArrayList.toArray(new String[classofArrayList.size()]));
 
-                //        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    List<DummyReservationList> dummies = call.execute().body();
-//                    dummyReservationListArrayList = new ArrayList<DummyReservationList>(dummies);
-//                    IOexception = false;
-//                    Log.d("run: ", "run: ");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    IOexception = true;
-//                    Log.d("IOException: ", "IOException: ");
-//                }
-//            }
-//        });
-//        thread.start();
-//        try {
-//            thread.join();
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//        }
-                //----------------서버에서 받기 코드-------------------
-                //출력: {reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}
-
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            DummyResponse dummy = call.execute().body();
+                            Log.d("saveAdditional", "저장 성공");
+                            saveComplete = true;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.d("IOException: ", "IOException: ");
+                        }
+                    }
+                });
+                thread.start();
+                try {
+                    thread.join();
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+                if(saveComplete){
+                    Toast.makeText(getApplicationContext(), "예약 신청이 성공했습니다.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), LectureroomCheckActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), "학번이 유효한지 확인해보세요.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

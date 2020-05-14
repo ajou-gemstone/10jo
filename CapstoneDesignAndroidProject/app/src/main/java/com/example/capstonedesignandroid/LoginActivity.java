@@ -124,13 +124,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 String id1 = String.valueOf(id.getText().toString());
                 String password1 = String.valueOf(password.getText().toString());
-
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(MyConstants.BASE)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 GetService service = retrofit.create(GetService.class);
                 Call<User> call = service.login(id1, password1);
+                Log.d("idid", "id: "+id1);
                 CallThread(call);
 
                 Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
@@ -168,6 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     User dummies = call.execute().body();
                     primary_id = dummies.getId();
+                    Log.d("primary_id", "primaryId:" + primary_id);
                     SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
                 } catch (IOException e) {
                     e.printStackTrace();

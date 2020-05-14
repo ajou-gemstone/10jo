@@ -3,18 +3,19 @@ package com.example.capstonedesignandroid.DTO;
 public class DummyReservationList {
 
     String reservationId;
-    String reservationDate;
+    String date;
     String day;
     String startTime;
-    String listTime;
+    String lastTime;
     String lectureRoom;
+    float timePriority;
 
     public DummyReservationList(String reservationId, String reservationDate, String day, String startTime, String listTime, String lectureRoom) {
         this.reservationId = reservationId;
-        this.reservationDate = reservationDate;
+        this.date = reservationDate;
         this.day = day;
         this.startTime = startTime;
-        this.listTime = listTime;
+        this.lastTime = listTime;
         this.lectureRoom = lectureRoom;
     }
 
@@ -22,8 +23,8 @@ public class DummyReservationList {
         return reservationId;
     }
 
-    public String getReservationDate() {
-        return reservationDate;
+    public String getDate() {
+        return date;
     }
 
     public String getDay() {
@@ -34,11 +35,19 @@ public class DummyReservationList {
         return startTime;
     }
 
-    public String getListTime() {
-        return listTime;
+    public String getLastTime() {
+        return lastTime;
     }
 
     public String getLectureRoom() {
         return lectureRoom;
+    }
+
+    public float getTimePriority() {
+        return timePriority;
+    }
+
+    public void setTimePriority(float timePriority) {
+        this.timePriority = timePriority;
     }
 }

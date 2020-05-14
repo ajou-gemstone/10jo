@@ -26,12 +26,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
-import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,14 +38,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,26 +85,19 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
     private TextView reservationIntent;
     private TextView beforeUploadTime;
     private TextView afterUploadTime;
+    private Button cancelReservationButton;
+    private String tense;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lectureroom_checkdetailed);
 
-        //------------------퍼미션 코드----------------
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            //퍼미션 상태 확인
-            if (!hasPermissions(PERMISSIONS)) {
-                //퍼미션 허가 안되어있다면 사용자에게 요청
-                requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
-            } else {
-
-            }
-        }
-        //------------------퍼미션 코드----------------
-
         Intent intent = getIntent();
         resId = intent.getExtras().getString("reservationId");
+        tense = intent.getExtras().getString("tense");
+
+        Log.d("resId", ""+resId);
 
         //----------------서버에서 받기 코드-------------------
         retrofit = new Retrofit.Builder()
@@ -121,45 +108,49 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         GetService service = retrofit.create(GetService.class);
         Call<DummyReservationDetail> call = service.getReservationDetail(resId);
 
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    dummy = call.execute().body();
-//                    IOexception = false;
-//                    Log.d("run: ", "run: ");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    IOexception = true;
-//                    Log.d("IOException: ", "IOException: ");
-//                }
-//            }
-//        });
-//        thread.start();
-//        try {
-//            thread.join();
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//        }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    dummy = call.execute().body();
+                    IOexception = false;
+                    Log.d("getDetailed", "getDetailed");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    IOexception = true;
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
         //----------------서버에서 받기 코드-------------------
+
+        Log.d("retrofitget", " date: "+ dummy.getDate() + " day:"+dummy.getDay()+ " lectureroom: "+dummy.getLectureRoom()
+                + " startTime:" + dummy.getStartTime() + " lastTime:" + dummy.getLastTime() + " beforeUploadTime:" +
+                dummy.getBeforeUploadTime() + " afterUploadTime:" + dummy.getAfterUploadTime());
 
 //        mockup data로 대체
         if(IOexception){
             String[] userids = {"user1", "user2", "user3"};
-            dummy = new DummyReservationDetail("2020-05-01", "월", "8:00", "10:00", "성101",
+            dummy = new DummyReservationDetail("2020-05-01", "월", "2", "6", "성101",
                     userids, "/images/TEST_20200412_190805_1263752076698054948.png",
                     "/images/TEST_20200427_203734_8578526890362646423.png", "studying algorithm",
                     "2020-05-01 08:05", "2020-05-01 10:23");
         }
+
+        //Todo: 유저 어댑터 코드 가져와서 쓰기
 
         Log.d("getFilesDir", "" + getFilesDir());
         Log.d("getPackageName", "" + getPackageName());
         Log.d("getExternalFilesDir", "" + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
 
         //모임원 정보 보기 리사이클러뷰는 스터디 액티비피 부분에서 재사용 한다.
-
-        //Todo: 오늘의 예약이나 앞으로의 예약인 경우, 예약을 취소, 삭제하는 기능 넣기
 
         //------------초기 설정----------------
         takePictureButton1 = findViewById(R.id.takePictureButton1);
@@ -170,7 +161,36 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         pictureImageView2 = findViewById(R.id.pictureImageView2);
         transportPictureButton2 = findViewById(R.id.transportPictureButton2);
 
-//        date = findViewById(R.id.date);
+        cancelReservationButton = findViewById(R.id.cancelReservationButton);
+
+        //예약 삭제하기
+        cancelReservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setTitle("정말로 예약을 취소하시겠습니까?").setMessage("강의실 사용 전 3시간 이내에 취소하면 패널티가 부과됩니다.");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        GetService service = retrofit.create(GetService.class);
+                        Call<DummyResponse> call = service.deleteMyReservation(resId);
+                        //Todo: 삭제 내역도 UI에 그려준다.
+                        call.enqueue(response);
+                    }
+                });
+                builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+
+        date = findViewById(R.id.date);
         day = findViewById(R.id.day);
         lectureroom = findViewById(R.id.lectureroom);
         startTime = findViewById(R.id.startTime);
@@ -179,11 +199,11 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         beforeUploadTime = findViewById(R.id.beforeUploadTime);
         afterUploadTime = findViewById(R.id.afterUploadTime);
 
-//        date.setText(""+dummy.getDate());
-        day.setText(""+dummy.getDay());
+        date.setText(""+DefinedMethod.getParsedDate(dummy.getDate()));
+        day.setText(""+DefinedMethod.getDayNamebyAlpabet(dummy.getDay()));
         lectureroom.setText(""+dummy.getLectureRoom());
-        startTime.setText(""+dummy.getStartTime());
-        lastTime.setText(""+dummy.getLastTime());
+        startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
+        lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())));
         reservationIntent.setText(""+dummy.getReservationIntent());
         beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
         afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
@@ -194,9 +214,9 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         //스토리지의 레퍼런스(주소)를 가져온다.
         storageRef = storage.getReference();
 
-        if(!dummy.getBeforeuri().equals("")){
+        if(!dummy.getBeforeUri().equals("")){
             //downloadUrl을 이용하여 이미지를 다운로드한다.
-            StorageReference storageReference = storage.getReference(""+dummy.getBeforeuri());
+            StorageReference storageReference = storage.getReference(""+dummy.getBeforeUri());
             storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
@@ -213,9 +233,9 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             });
         }
 
-        if(!dummy.getAfteruri().equals("")){
+        if(!dummy.getAfterUri().equals("")){
             //downloadUrl을 이용하여 이미지를 다운로드한다.
-            StorageReference storageReference = storage.getReference(""+dummy.getAfteruri());
+            StorageReference storageReference = storage.getReference(""+dummy.getAfterUri());
             storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
@@ -344,7 +364,36 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                 });
             }
         });
+
+        //미래, 과거의 예약일 때
+        if(tense.equals("future") || tense.equals("past")){
+            takePictureButton1.setVisibility(View.INVISIBLE);
+            transportPictureButton1.setVisibility(View.INVISIBLE);
+            takePictureButton2.setVisibility(View.INVISIBLE);
+            transportPictureButton2.setVisibility(View.INVISIBLE);
+        }
+        if(tense.equals("past")) {//과거의 예약일 때
+            cancelReservationButton.setVisibility(View.INVISIBLE);
+        }
     }
+
+    Callback<DummyResponse> response = new Callback<DummyResponse>() {
+        @Override
+        public void onResponse(Call<DummyResponse> call, Response<DummyResponse> response) {
+            if (response.isSuccessful()) {
+                DummyResponse dummy = response.body();
+                Log.d("response success", "");
+            } else {
+                Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
+            }
+        }
+
+        @Override
+        public void onFailure(Call<DummyResponse> call, Throwable t) {
+            Log.d("response fail", "onFailure: ");
+
+        }
+    };
 
     //사진을 찍는 인텐트를 실행하고, 인텐트 환경 설정을 한다.
     private void sendTakePhotoIntent() {
@@ -408,7 +457,6 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             if(beforeOrAfter == 1){
                 pictureImageView1.setImageURI(photoUri1);
@@ -418,86 +466,6 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                 after = true;
             }
         }
-    }
-
-    Callback response = new Callback<DummyResponse>() {
-        @Override
-        public void onResponse(Call<DummyResponse> call, Response<DummyResponse> response) {
-            if (response.isSuccessful()) {
-                DummyResponse dummy = response.body();
-            } else {
-                Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
-            }
-        }
-
-        @Override
-        public void onFailure(Call<DummyResponse> call, Throwable t) {
-            Log.d("response fail", "onFailure: ");
-
-        }
-    };
-
-    //****-------------------------------------------------------------------------------------------------------------
-    //****-------------------------------------------------------------------------------------------------------------
-    //****-------------------------------------------------------------------------------------------------------------
-    // 여기서부터는 퍼미션 관련 코드
-    static final int PERMISSIONS_REQUEST_CODE = 1000;
-    String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
-    private boolean hasPermissions(String[] permissions) {
-        int result;
-
-        //스트링 배열에 있는 퍼미션들의 허가 상태 여부 확인
-        for (String perms : permissions) {
-            result = ContextCompat.checkSelfPermission(this, perms);
-            if (result == PackageManager.PERMISSION_DENIED) {
-                //허가 안된 퍼미션 발견
-                return false;
-            }
-        }
-        //모든 퍼미션이 허가되었음
-        return true;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_CODE:
-                if (grantResults.length > 0) {
-                    boolean cameraPermissionAccepted = grantResults[0]
-                            == PackageManager.PERMISSION_GRANTED;
-                    boolean diskPermissionAccepted = grantResults[1]
-                            == PackageManager.PERMISSION_GRANTED;
-                    if (!cameraPermissionAccepted || !diskPermissionAccepted)
-                        showDialogForPermission("앱을 실행하려면 퍼미션을 허가하셔야합니다.");
-                    else {
-                    }
-                }
-                break;
-        }
-    }
-
-
-    @TargetApi(Build.VERSION_CODES.M)
-    private void showDialogForPermission(String msg) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("알림");
-        builder.setMessage(msg);
-        builder.setCancelable(false);
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
-            }
-        });
-        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-                finish();
-            }
-        });
-        builder.create().show();
     }
 
 }
