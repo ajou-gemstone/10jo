@@ -7,47 +7,49 @@
     android:layout_height="match_parent"
     tools:context=".LectureroomReservationActivity">
 
-    <Button
-        android:id="@+id/calendarReserveButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="날짜 예약하기" />
-
-    <TextView
-        android:id="@+id/reserveTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/calendarReserveButton" />
-
-    <TextView
-        android:id="@+id/reserveTypeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/reserveTimeTextView"
-        android:text="예약 타입: 선착순">
-
-    </TextView>
+        android:id="@+id/calendar_layout"
+        android:padding="20dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/calendarReserveButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/calendar" />
+        <TextView
+            android:id="@+id/reserveTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/calendarReserveButton" />
+        <TextView
+            android:id="@+id/reserveTypeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/reserveTimeTextView"
+            android:text="예약 타입: 선착순"/>
+    </LinearLayout>
 
     <HorizontalScrollView
         android:id="@+id/reserveHorizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/calendarReserveButton">
-
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/calendar_layout">
         <LinearLayout
             android:id="@+id/LectureBuildingFilterLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <CheckBox
                 android:id="@+id/LectureBuildingAllCheckbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="모두"></CheckBox>
-
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -60,36 +62,37 @@
         android:id="@+id/reserveTimeSpinnerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
         android:layout_below="@+id/reserveHorizontalScrollView"
         android:orientation="horizontal">
-
         <CheckBox
             android:id="@+id/reserveTimeAllCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="모든 시간" />
-
         <LinearLayout
             android:id="@+id/reserveTimeSpinnerInnerLayout"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="희망시간" />
-
             <Spinner
                 android:id="@+id/reserveStartTimeSpinner"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
             <Spinner
                 android:id="@+id/reserveEndTimeSpinner"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
         </LinearLayout>
 
     </LinearLayout>
@@ -98,9 +101,9 @@
         android:id="@+id/reserveButtonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_below="@+id/reserveTimeSpinnerLayout"
         android:orientation="horizontal">
-
         <Button
             android:id="@+id/reserveRandomButton"
             android:layout_width="100dp"
@@ -108,7 +111,6 @@
             android:visibility="invisible"
             android:background="@drawable/randomreservebutton">
         </Button>
-
         <Button
             android:id="@+id/reserveDetermineButton"
             android:layout_centerInParent="true"
@@ -117,14 +119,12 @@
             android:layout_height="40dp"
             android:visibility="invisible">
         </Button>
-
         <Button
             android:id="@+id/reserveButton"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/lectureroom_inquiry"/>
-
     </RelativeLayout>
 
     <LinearLayout
@@ -133,6 +133,7 @@
         android:layout_above="@id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
         android:orientation="vertical"
         android:visibility="invisible">
 
@@ -162,7 +163,7 @@
         <LinearLayout
             android:id="@+id/lectureRoomPriority"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -170,7 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="R: 선예약  L: 강의  A: 예약가능  숫자: 예약 팀수"
-                android:textSize="20dp"/>
+                android:textSize="12dp"/>
 
         </LinearLayout>
 
