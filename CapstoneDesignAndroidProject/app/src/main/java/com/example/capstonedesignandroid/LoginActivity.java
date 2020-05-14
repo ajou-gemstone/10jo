@@ -2,8 +2,10 @@ package com.example.capstonedesignandroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -148,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                     User dummies = call.execute().body();
                     primary_id = dummies.getId();
                     Log.d("primary_id", "primaryId:" + primary_id);
+                    SharedPreference.removeAllAttribute(getApplicationContext());
                     SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
                 } catch (IOException e) {
                     e.printStackTrace();
