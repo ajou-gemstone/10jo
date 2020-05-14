@@ -3,27 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.capstonedesignandroid.LoginActivity">
 
     <LinearLayout
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp">
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            app:srcCompat="@drawable/asmr" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
         <EditText
-            android:id="@+id/edittext_id"
+            android:id="@+id/id"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColor="#000000"
             android:textColorHint="#222222"
             android:privateImeOptions="defaultInputmode=english"
-            android:fontFamily="@font/d"
-            android:textStyle="bold"
             android:theme="@style/MyEditTextTheme"
-            android:hint="ID"/>
+            android:hint="아이디"/>
         <EditText
             android:id="@+id/edittext_password"
             android:layout_width="match_parent"
@@ -32,36 +45,46 @@
             android:textColorHint="#222222"
             android:privateImeOptions="defaultInputmode=english"
             android:password="true"
-            android:textStyle="bold"
-            android:fontFamily="@font/d"
             android:theme="@style/MyEditTextTheme"
-            android:hint="PASSWORD"/>
+            android:hint="비밀번호"/>
 
         <CheckBox
             android:id="@+id/remember"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:textColor="#000000"
-            android:fontFamily="@font/d"
-            android:text="Remember Me" />
+            android:text="자동 로그인" />
 
         <Button
-            android:id="@+id/button_login"
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:text="로 그 인" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"/>
+        <Button
+            android:id="@+id/button_signup"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:fontFamily="@font/d"
-            android:textSize="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
-            android:text="로 그 인" />
+            android:background="#00ffffff"
+            android:text="처음이신가요?  가입하기" />
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:gravity="center"
-            android:text=""/>
-
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:orientation="horizontal">
         <Button
             android:id="@+id/button_developer"
             android:layout_width="wrap_content"
@@ -69,14 +92,10 @@
             android:background="#00000000"
             android:text="개발자 모드"
             android:textColor="#444349" />
-        <Button
-            android:id="@+id/button_crawl"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:background="#00000000"
-            android:layout_marginTop="20dp"
-            android:text="크롤링 테스트"
-            android:textColor="#444349" />
+    <View
+        android:layout_width="50dp"
+        android:layout_height="0dp"/>
+</LinearLayout>
 
     </LinearLayout>
 
