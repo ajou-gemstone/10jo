@@ -3,6 +3,7 @@ package com.example.capstonedesignandroid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,14 +13,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.capstonedesignandroid.DTO.Group;
+import com.example.capstonedesignandroid.DTO.TagName;
+import com.example.capstonedesignandroid.DTO.User;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView name;
-    Intent intent,intent1;
-    ImageView emotion;
+    TextView name, num, email, myname;
+    Intent intent;
+    ImageView leader, member;
     Button noti_zero, noti_yes;
+    String userId;
     protected BottomNavigationView navigationView;
 
     @Override
@@ -28,7 +41,12 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        myname =(TextView) findViewById(R.id.myname);
         name =(TextView) findViewById(R.id.name);
+        num = findViewById(R.id.studentnum);
+        email = findViewById(R.id.email);
+        leader = findViewById(R.id.leader_image);
+        member = findViewById(R.id.member_image);
         noti_zero = findViewById(R.id.noti_zero);
         noti_yes = findViewById(R.id.noti_yes);
 
@@ -36,24 +54,16 @@ public class ProfileActivity extends AppCompatActivity {
         navigationView.setSelectedItemId(R.id.action_profile);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        intent1 = getIntent();
-        emotion = (ImageView)findViewById(R.id.image_emotion);
+        userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
 
-        final String[] userInfo = intent1.getStringArrayExtra("strings");
-        final String[] usertitle = intent1.getStringArrayExtra("usertitle");
-//        switch(Integer.parseInt(userInfo[5])) {
-//            case 0:
-//                emotion.setImageResource(R.drawable.profile);
-//                break;
-//            case 1:
-//                emotion.setImageResource(R.drawable.profile);
-//                break;
-//
-//            default: break;
-//        }
+        Retrofit retrofit2 = new Retrofit.Builder()
+        .baseUrl(MyConstants.BASE)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build();
 
-//        name.setText(userInfo[3].toString());
-//        sinredo.setText(userInfo[4].toString());
+        GetService service = retrofit2.create(GetService.class);
+        Call<User> call = service.getUserInfo(userId);
+        CallThread(call);
 
         noti_zero.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -68,6 +78,29 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+    }//onCreate
+
+    private void CallThread(Call<User> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    User dummies = call.execute().body();
+                    myname.setText(dummies.getName());
+                    name.setText(dummies.getName());
+                    num.setText(dummies.getStudentNum());
+                    email.setText(dummies.getEmail());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
     }
 
     @Override
