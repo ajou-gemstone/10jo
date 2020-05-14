@@ -169,6 +169,7 @@ public class LoginActivity extends AppCompatActivity {
                     User dummies = call.execute().body();
                     primary_id = dummies.getId();
                     Log.d("primary_id", "primaryId:" + primary_id);
+                    SharedPreference.removeAllAttribute(getApplicationContext());
                     SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
                 } catch (IOException e) {
                     e.printStackTrace();

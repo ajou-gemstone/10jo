@@ -55,8 +55,10 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
 
-        <activity android:name=".LectureroomCheckDetailedActivity" />
-        <activity android:name=".LectureroomCheckActivity" />
+        <activity android:name=".LectureroomCheckDetailedActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".LectureroomCheckActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".testActivity"
             android:label="@string/title_activity_test"
