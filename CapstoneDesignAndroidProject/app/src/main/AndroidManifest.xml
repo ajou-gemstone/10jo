@@ -59,6 +59,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignUpEmailAuthActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignUpLectureSelectActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
@@ -84,7 +90,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".NotificationActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".test1"
+        <activity android:name=".SignUpAjouAuthActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SplashActivity"

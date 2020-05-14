@@ -40,7 +40,7 @@ public class ChattingActivity extends AppCompatActivity {
 
     int userKey = 0;
     EditText sendChatText;
-    Button sendButton, mainButton;
+    Button sendButton;
     private Socket socket;
     String title;
     int mainbutton1 = 0;
@@ -81,7 +81,6 @@ public class ChattingActivity extends AppCompatActivity {
         layout1 = (RelativeLayout) findViewById(R.id.chattingview);
         sendChatText = (EditText) findViewById(R.id.chat_content);
         sendButton = (Button) findViewById(R.id.send_btn);
-        mainButton = (Button) findViewById(R.id.mainbutton);
         chattingroomname = (TextView) findViewById(R.id.chattingroomname);
         scrollview_chatting = (ScrollView) findViewById(R.id.scrollview_chatting);
         roomnum = (TextView) findViewById(R.id.roomnum);

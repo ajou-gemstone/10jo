@@ -9,6 +9,7 @@ import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -16,22 +17,29 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface GetService {
 
-    @POST("/signup")
+    @POST("user/signup")
     @FormUrlEncoded
-    Call<List<User>> signup(@Field("userId") String userId, @Field("password") String password);
+    Call<DummyResponse> signup(@Field("userId") String userId, @Field("password") String password, @Field("name") String name, @Field("studentNumber") String studentNumber, @Field("email") String email, @Field("lecture") ArrayList<String> lecture);
+    //출력: success or fail
 
-    @GET("/login")
-    Call<List<User>> login(@Query("userId") String userId, @Field("password") String password);
+    @POST("user/login")
+    @FormUrlEncoded
+    Call<User> login(@Field("userId") String userId, @Field("password") String password);
     //출력 : id
 
-    @GET("/user/{userId}")
-    Call<List<User>> getUserInfo(@Query("userId") String userId);
-    //출력 : name, userType, email
+    @GET("/user")
+    Call<User> getUserInfo(@Query("userId") String userId);
+    //출력 : name, userType, email, studentNum, lecture리스트
+
+    //회원가입할 때 아이디 중복확인
+    @POST("/user/confirm")
+    @FormUrlEncoded
+    Call<DummyResponse> getIdConfirm(@Field("userId") String userId);
+    //출력 : success or fail
 
     //강의실 예약 필터링
     @GET("/reservation/list")

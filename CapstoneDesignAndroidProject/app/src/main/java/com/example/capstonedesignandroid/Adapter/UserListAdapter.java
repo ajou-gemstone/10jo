@@ -17,17 +17,13 @@ public class UserListAdapter extends BaseAdapter {
     private class listItem {
 
         private String userId;
-        private String userPassword;
-        private String email;
-        private int userType;
+        private int leader;
         private String name;
 
         // 매개변수가 있는 생성자로 받아와 값을 전달한다.
-        public listItem(String userId, String userPassword, String email, int userType, String name){
+        public listItem(String userId, int leader, String name){
             this.userId = userId;
-            this.userPassword = userPassword;
-            this.email = email;
-            this.userType = userType;
+            this.leader = leader;
             this. name = name;
         }
     }
@@ -44,8 +40,8 @@ public class UserListAdapter extends BaseAdapter {
         list = new ArrayList();
     }
 
-    public void add(String userId, String userPassword, String email, int userType, String name) {
-        list.add(new listItem(userId, userPassword, email, userType, name));
+    public void add(String userId, int leader, String name) {
+        list.add(new listItem(userId, leader, name));
     }
 
     public void clear() {
@@ -106,6 +102,16 @@ public class UserListAdapter extends BaseAdapter {
         }
 
         //imageView.setImageResource()
+        switch(getItem(pos).leader) {
+            case 0:
+                imageView.setImageResource(R.drawable.member);
+                break;
+            case 1:
+                imageView.setImageResource(R.drawable.leader);
+                break;
+            default: break;
+
+        }
         textView1.setText(getItem(pos).name);
 
         return convertView;

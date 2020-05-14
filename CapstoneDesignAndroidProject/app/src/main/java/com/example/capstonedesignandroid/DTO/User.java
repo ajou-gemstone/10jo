@@ -1,13 +1,28 @@
 package com.example.capstonedesignandroid.DTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
+    private String id;
     private String userId;
     private String userPassword;
     private String email;
-    private int userType;
+    private String studentNum;
+    private Integer userType;
     private String name;
-    private int score;
+    private Integer score;
+    private Integer leader;
+    private ArrayList<String> lectureList = null;
+
+    public String getId() {
+        return id;
+    } //primary key
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUserId() {
         return userId;
@@ -33,19 +48,19 @@ public class User {
         this.email = email;
     }
 
-    public int getUserType() {
+    public Integer getUserType() {
         return userType;
     }
 
-    public void setUserType(int userType) {
+    public void setUserType(Integer userType) {
         this.userType = userType;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
@@ -55,6 +70,30 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStudentNum() {
+        return studentNum;
+    }
+
+    public void setStudentNum(String studentNum) {
+        this.studentNum = studentNum;
+    }
+
+    public Integer getLeader() {
+        return leader;
+    }
+
+    public void setLeader(Integer leader) {
+        this.leader = leader;
+    }
+
+    public ArrayList<String> getLecture() {
+        return lectureList;
+    }
+
+    public void setLecture(ArrayList<String> lectureList) {
+        this.lectureList = lectureList;
     }
 
 }

@@ -15,7 +15,7 @@ public class Group {
     private Integer studyGroupNumCurrent;
     private Integer imageUri;
     private List<TagName> tagName = null;
-    private List<User> user = null;
+    private List<User> userList = null;
 
     public Integer getId() {
         return id;
@@ -82,10 +82,10 @@ public class Group {
     }
 
     public List<User> getUser() {
-        return user;
+        return userList;
     }
 
-    public void setUser(List<User> user) {
-        this.user = user;
+    public void setUser(List<User> userList) {
+        this.userList = userList;
     }
 }
