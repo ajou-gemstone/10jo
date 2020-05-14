@@ -64,6 +64,17 @@ public class DefinedMethod {
         return "";
     }
 
+    public static int getPositionByTime(String time){
+        switch (time){
+            case "7:00": return 0; case "7:30": return 1; case "8:00": return 2; case "8:30": return 3; case "9:00": return 4; case "9:30": return 5;
+            case "10:00": return 6; case "10:30": return 7; case "11:00": return 8; case "11:30": return 9; case "12:00": return 10; case "12:30": return 11;
+            case "13:00": return 12; case "13:30": return 13; case "14:00": return 14; case "14:30": return 15; case "15:00": return 16; case "15:30": return 17;
+            case "16:00": return 18; case "16:30": return 19; case "17:00": return 20; case "17:30": return 21; case "18:00": return 22; case "18:30": return 23;
+            case "19:00": return 24; case "19:30": return 25; case "20:00": return 26; case "20:30": return 27; case "21:00": return 28;
+        }
+        return -1;
+    }
+
     public static String getCurrentDate(){
         long nowTime = System.currentTimeMillis();
         Date nowDate = new Date(nowTime);

@@ -27,6 +27,7 @@ public class MainBuildingGuardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent activityintent;
                 activityintent = new Intent(getApplicationContext(), CurrentManageReservationChoiceBuildingActivity.class);
+                activityintent.putExtra("activityType", "current");
                 startActivity(activityintent);
             }
         });
@@ -34,7 +35,8 @@ public class MainBuildingGuardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent activityintent;
-                activityintent = new Intent(getApplicationContext(), LectureroomCheckActivity.class);
+                activityintent = new Intent(getApplicationContext(), CurrentManageReservationChoiceBuildingActivity.class);
+                activityintent.putExtra("activityType", "total");
                 startActivity(activityintent);
             }
         });

@@ -108,6 +108,17 @@ public class LectureroomCheckActivity extends AppCompatActivity {
         }
     };
 
+    //어떠한 이벤트가 발생 시, UI를 즉각 다시 그려준다.
+    public void reInflateFragment(String tense){
+        switch (tense){
+            case "today":
+                Log.d("reent", "reInflateFragment: ");
+                adapter = new ReservationCheckAdapter(getSupportFragmentManager());
+                setupViewPager(mViewPager);
+                adapter.notifyDataSetChanged();
+        }
+    }
+
     //****-------------------------------------------------------------------------------------------------------------
     //****-------------------------------------------------------------------------------------------------------------
     //****-------------------------------------------------------------------------------------------------------------

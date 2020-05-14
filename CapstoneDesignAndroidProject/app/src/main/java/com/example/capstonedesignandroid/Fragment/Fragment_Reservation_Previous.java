@@ -42,6 +42,7 @@ public class Fragment_Reservation_Previous extends Fragment {
     private Retrofit retrofit;
     private ArrayList<DummyReservationList> dummyReservationListArrayList;
     private boolean IOexception = true;
+    private View noReservationView;
 
     public Fragment_Reservation_Previous(){
 
@@ -132,6 +133,11 @@ public class Fragment_Reservation_Previous extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reservation_list,container,false);
+
+        if(dummyReservationListArrayList.size() == 0){
+            noReservationView = inflater.inflate(R.layout.there_is_no_reservation, container, false);
+            return noReservationView;
+        }
 
         recyclerViewReservationList = view.findViewById(R.id.recyclerViewReservationList);
 

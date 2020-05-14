@@ -26,6 +26,7 @@ import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.GetService;
+import com.example.capstonedesignandroid.LectureroomCheckActivity;
 import com.example.capstonedesignandroid.R;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
@@ -84,6 +85,10 @@ public class Fragment_Reservation_Today extends Fragment {
     private String imageFilePath2;
     private Uri photoUri1;
     private Uri photoUri2;
+    private boolean thereisnoreservation = false;
+    private View noReservationView;
+    private LectureroomCheckActivity lectureroomCheckActivity;
+    private boolean deleteReservation;
 
     public Fragment_Reservation_Today(){
 
@@ -114,10 +119,12 @@ public class Fragment_Reservation_Today extends Fragment {
                 try {
                     List<DummyReservationList> dummies = call.execute().body();
                     dummyReservationListArrayList = new ArrayList<DummyReservationList>(dummies);
-                    Log.d("run: ", "run: ");
+                    Log.d("run: runnn", "run: runnn");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");
+                    noReservationView = inflater.inflate(R.layout.there_is_no_reservation, container, false);
+                    thereisnoreservation = true;
                 }
             }
         });
@@ -129,8 +136,15 @@ public class Fragment_Reservation_Today extends Fragment {
             // TODO: handle exception
         }
 
-        if(dummyReservationListArrayList.size() == 0){
+        //받아오는데 오류면 예약 없음 화면
+        if(thereisnoreservation){
+            return noReservationView;
+        }
 
+        //예약이 없으면 바로 return
+        if(dummyReservationListArrayList.size() == 0){
+            noReservationView = inflater.inflate(R.layout.there_is_no_reservation, container, false);
+            return noReservationView;
         }else{
             resId = dummyReservationListArrayList.get(0).getReservationId();
             Call<DummyReservationDetail> call2 = service.getReservationDetail(resId);
@@ -186,8 +200,11 @@ public class Fragment_Reservation_Today extends Fragment {
                 public void onClick(View view) {
                     GetService service = retrofit.create(GetService.class);
                     Call<DummyResponse> call = service.deleteMyReservation(resId);
-                    //Todo: 삭제 내역도 UI에 그려준다.
-                    call.enqueue(response);
+                    //다시 화면을 그려준다.
+                    lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
+                    lectureroomCheckActivity.reInflateFragment("today");
+                    deleteReservation = true;
+                    call.enqueue(response1);
                 }
             });
 
@@ -318,7 +335,7 @@ public class Fragment_Reservation_Today extends Fragment {
                             //db에 파일 이름 저장
                             GetService service = retrofit.create(GetService.class);
                             Call<DummyResponse> call = service.postBeforePicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
-                            call.enqueue(response);
+                            call.enqueue(response2);
                         }
                     });
                 }
@@ -360,7 +377,7 @@ public class Fragment_Reservation_Today extends Fragment {
                             //db에 파일 이름 저장
                             GetService service = retrofit.create(GetService.class);
                             Call<DummyResponse> call = service.postAfterPicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
-                            call.enqueue(response);
+                            call.enqueue(response3);
                         }
                     });
                 }
@@ -370,12 +387,16 @@ public class Fragment_Reservation_Today extends Fragment {
         return view;
     }
 
-    Callback<DummyResponse> response = new Callback<DummyResponse>() {
+    private Callback<DummyResponse> response1 = new Callback<DummyResponse>() {
         @Override
         public void onResponse(Call<DummyResponse> call, Response<DummyResponse> response) {
             if (response.isSuccessful()) {
                 DummyResponse dummy = response.body();
                 Log.d("response success", "");
+                if(deleteReservation){
+                    lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
+                    lectureroomCheckActivity.reInflateFragment("today");
+                }
             } else {
                 Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
             }
@@ -383,7 +404,63 @@ public class Fragment_Reservation_Today extends Fragment {
 
         @Override
         public void onFailure(Call<DummyResponse> call, Throwable t) {
-            Log.d("response fail", "onFailure: ");
+            if(deleteReservation){
+                lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
+                lectureroomCheckActivity.reInflateFragment("today");
+            }
+            Log.d("responsefail..", "onFailure: ");
+
+        }
+    };
+
+    private Callback<DummyResponse> response2 = new Callback<DummyResponse>() {
+        @Override
+        public void onResponse(Call<DummyResponse> call, Response<DummyResponse> response) {
+            if (response.isSuccessful()) {
+                DummyResponse dummy = response.body();
+                Log.d("response success", "");
+                if(deleteReservation){
+                    lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
+                    lectureroomCheckActivity.reInflateFragment("today");
+                }
+            } else {
+                Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
+            }
+        }
+
+        @Override
+        public void onFailure(Call<DummyResponse> call, Throwable t) {
+            if(deleteReservation){
+                lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
+                lectureroomCheckActivity.reInflateFragment("today");
+            }
+            Log.d("responsefail..", "onFailure: ");
+
+        }
+    };
+
+    private Callback<DummyResponse> response3 = new Callback<DummyResponse>() {
+        @Override
+        public void onResponse(Call<DummyResponse> call, Response<DummyResponse> response) {
+            if (response.isSuccessful()) {
+                DummyResponse dummy = response.body();
+                Log.d("response success", "");
+                if(deleteReservation){
+                    lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
+                    lectureroomCheckActivity.reInflateFragment("today");
+                }
+            } else {
+                Log.d("onResponse:", "Fail, " + String.valueOf(response.code()));
+            }
+        }
+
+        @Override
+        public void onFailure(Call<DummyResponse> call, Throwable t) {
+            if(deleteReservation){
+                lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
+                lectureroomCheckActivity.reInflateFragment("today");
+            }
+            Log.d("responsefail..", "onFailure: ");
 
         }
     };

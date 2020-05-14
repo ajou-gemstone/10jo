@@ -562,12 +562,14 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), LectureroomReservationAdditionalActivity.class);
                                 intent.putExtra("reservationId", reservationid.getReservationId());
                                 startActivity(intent);
+                                finish();
                             }else{
                                 Toast.makeText(getApplicationContext(), "강의실 예약에 실패하였습니다. (테스트)", Toast.LENGTH_LONG).show();
                                 //아래부분 나중에 삭제
                                 Intent intent = new Intent(getApplicationContext(), LectureroomReservationAdditionalActivity.class);
                                 intent.putExtra("reservationId", "resId0");
                                 startActivity(intent);
+                                finish();
                             }
                             //리턴
                             //강의실 정보

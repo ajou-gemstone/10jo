@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class CurrentManageReservationChoiceBuildingActivity extends AppCompatActivity implements View.OnClickListener {
+public class GuardChoiceBuildingActivity extends AppCompatActivity implements View.OnClickListener {
+
 
     private Button button1;
     private Button button2;
@@ -17,15 +18,11 @@ public class CurrentManageReservationChoiceBuildingActivity extends AppCompatAct
     private Button button6;
     private Button button7;
     private Button button8;
-    private String activityType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_manage_reservation_choice_building);
-
-        Intent intent = getIntent();
-        activityType = intent.getStringExtra("activityType");
 
         button1 = findViewById(R.id.button1);
         button1.setOnClickListener(this);
@@ -56,13 +53,7 @@ public class CurrentManageReservationChoiceBuildingActivity extends AppCompatAct
     @Override
     public void onClick(View view) {
         Intent activityIntent;
-        if(activityType.equals("current")){
-            activityIntent = new Intent(getApplicationContext(), CurrentManageReservationActivity.class);
-        }else if(activityType.equals("total")){
-            activityIntent = new Intent(getApplicationContext(), GuardReservationCheckActivity.class);
-        }else{
-            activityIntent = new Intent(getApplicationContext(), GuardReservationCheckActivity.class);
-        }
+        activityIntent = new Intent(getApplicationContext(), GuardReservationCheckActivity.class);
         activityIntent.putExtra("buildingTag", (String) view.getTag());
         startActivity(activityIntent);
     }
