@@ -82,7 +82,7 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
                 CallThread(call);
 
 
-                Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.putExtra("signup", "fromsignup");
                 startActivityForResult(intent,100);
             }

@@ -86,9 +86,10 @@
         <EditText
             android:id="@+id/chat_content"
             android:layout_height="30dp"
+            android:layout_width="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_gravity="center"
-            android:layout_weight="0.8"
+            android:layout_weight="0.9"
             android:background="@drawable/round_edittext"/>
 
         <View
@@ -99,7 +100,8 @@
         <Button
             android:id="@+id/send_btn"
             android:layout_height="30dp"
-            android:layout_weight="0.15"
+            android:layout_width="50dp"
+            android:layout_weight="0.05"
             android:background="@color/asmr_blue"
             android:layout_below="@+id/chat_content"
             android:layout_gravity="right|center"

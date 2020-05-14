@@ -55,6 +55,27 @@ public class LoginActivity extends AppCompatActivity {
         Button developer = (Button) findViewById(R.id.button_developer);
         Button signup = findViewById(R.id.button_signup);
 
+        Intent intent1 = getIntent();
+        String signedup = "fromsignup";
+        String fromsignup = intent1.getStringExtra("signup");
+        //회원가입 끝났을 때만 팝업 띄우기 위해
+        if(signedup.equals(fromsignup)) {
+            AlertDialog.Builder alert_confirm = new AlertDialog.Builder(this);
+            // 메세지
+            alert_confirm.setMessage("아주대학생 인증 성공");
+            // 확인 버튼 리스너
+            alert_confirm.setPositiveButton("확인", null);
+            // 다이얼로그 생성
+            AlertDialog alert = alert_confirm.create();
+
+            // 아이콘
+            alert.setIcon(R.drawable.app);
+            // 다이얼로그 타이틀
+            alert.setTitle("환영합니다!");
+            // 다이얼로그 보기
+            alert.show();
+        }
+
         //----------------------firebase--------------
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -148,6 +169,7 @@ public class LoginActivity extends AppCompatActivity {
                     User dummies = call.execute().body();
                     primary_id = dummies.getId();
                     Log.d("primary_id", "primaryId:" + primary_id);
+                    SharedPreference.removeAllAttribute(getApplicationContext());
                     SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
                 } catch (IOException e) {
                     e.printStackTrace();
