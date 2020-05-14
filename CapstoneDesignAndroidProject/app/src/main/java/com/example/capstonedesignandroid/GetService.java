@@ -19,15 +19,29 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 
 public interface GetService {
 
+    @POST("user/signup")
     @FormUrlEncoded
-    @POST("/login")
-    Call<List<User>> postUser(@Field("id") String id, @Field("password") String password);
+    Call<DummyResponse> signup(@Field("userId") String userId, @Field("password") String password, @Field("name") String name, @Field("studentNumber") String studentNumber, @Field("email") String email, @Field("lecture") ArrayList<String> lecture);
+    //출력: success or fail
+
+    @POST("user/login")
+    @FormUrlEncoded
+    Call<User> login(@Field("userId") String userId, @Field("password") String password);
+    //출력 : id
+
+    @GET("/user")
+    Call<User> getUserInfo(@Query("userId") String userId);
+    //출력 : name, userType, email, studentNum, lecture리스트
+
+    //회원가입할 때 아이디 중복확인
+    @POST("/user/confirm")
+    @FormUrlEncoded
+    Call<DummyResponse> getIdConfirm(@Field("userId") String userId);
+    //출력 : success or fail
 
     //강의실 예약 필터링o
     @GET("/reservation/list")
@@ -130,7 +144,7 @@ public interface GetService {
     //출력: {response: success}
 
     //경비원이 예약정보 list를 받아온다.x
-    @GET("/reservation/guardInfo")
+    @GET("/reservation/guardBuildingInfo")
     Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
     //입력: 시제, 건물명
     //입력: {tense: "future or past", buildingName: "성호관"}

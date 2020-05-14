@@ -38,7 +38,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
     //여기서는 뒤로가기를 막는다.
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
+        super.onBackPressed();
     }
 
     @Override

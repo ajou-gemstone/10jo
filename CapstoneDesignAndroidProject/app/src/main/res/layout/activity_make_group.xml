@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash"
+    android:gravity="center"
     android:fitsSystemWindows="true"
     tools:context="com.example.capstonedesignandroid.MakeGroupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_above="@+id/info_layout"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,20 +27,20 @@
                 android:layout_width="match_parent"
                 android:backgroundTint = "#c0c0c0"
                 android:textColorHint="#c0c0c0"
-                android:hint="  모임을 잘 설명할 수 있는 제목을 적어주세요"
+                android:hint="모임을 잘 설명할 수 있는 제목을 적어주세요"
                 android:layout_height="wrap_content" />
             <EditText
                 android:id="@+id/tag"
                 android:layout_width="match_parent"
                 android:backgroundTint = "#c0c0c0"
                 android:textColorHint="#c0c0c0"
-                android:hint="  #태그, #태그 ..."
+                android:hint="#태그, #태그 ..."
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
             android:layout_above="@id/info_layout"
             android:fillViewport="true"
             android:gravity="center"
@@ -47,14 +48,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/body"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#80fffdde"
                     android:textColorHint="#c0c0c0"
                     android:textColor="#c0c0c0"
                     android:hint="모임을 자세히 소개해주세요"
@@ -71,8 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
         <LinearLayout
@@ -83,71 +83,64 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp">
-
+                android:layout_height="40dp">
                 <TextView
                     android:layout_width="87dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="모임종류"/>
-
                 <RadioGroup
                     android:id="@+id/grouptype"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:checkedButton="@+id/checkbox_all"
                     android:orientation="horizontal">
-
                     <RadioButton
                         android:id="@+id/checkbox_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
+                        android:layout_gravity="center"
                         android:text="모든 스터디"/>
-
                     <RadioButton
                         android:id="@+id/checkbox_lec"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="과목별 스터디"/>
-
                 </RadioGroup>
-
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lecture_layout"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="174dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="과목" />
-
                 <Spinner
                     android:id="@+id/spinner_lecture"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dialog"
+                    android:layout_gravity="center"
                     android:layout_weight="1" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="40dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
-
                 <TextView
                     android:layout_width="71dp"
                     android:layout_height="wrap_content"
                     android:text="모집 인원"/>
-
                 <EditText
                     android:id="@+id/totalnum"
                     android:layout_width="80dp"
@@ -158,7 +151,6 @@
                     android:maxLength="2"
                     android:textSize="15dp"
                     android:text="0"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -169,21 +161,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp">
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp">
             <Button
                 android:id="@+id/button_makeroom2"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/asmr_blue"
                 android:textStyle="bold"
+                android:textColor="#ffffff"
                 android:text="모임 결성하기" />
         </LinearLayout>
 

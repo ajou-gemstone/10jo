@@ -15,8 +15,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:clickable="true"
-        app:srcCompat="@color/blue"/>
+        android:clickable="true"/>
 
     <ScrollView
         android:id="@+id/scrollViewOneToTwo"

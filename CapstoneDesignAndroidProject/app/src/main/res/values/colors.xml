@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#86B68B</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#86B68B</color>
-    <color name="blue">#0054FF</color>
+    <color name="colorPrimary">#517BC1</color>
+    <color name="colorPrimaryDark">#223E8E</color>
+    <color name="colorAccent">#517BC1</color>
+
+    <color name="asmr_yellow">#D9C12A</color>
+    <color name="asmr_green">#A8BB63</color>
+    <color name="asmr_green2">#82B590</color>
+    <color name="asmr_blue">#517BC1</color>
 </resources>

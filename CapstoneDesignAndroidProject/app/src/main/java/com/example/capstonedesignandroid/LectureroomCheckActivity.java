@@ -66,6 +66,10 @@ public class LectureroomCheckActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
     }
 
+    @Override
+    public void onBackPressed() { //super.onBackPressed();비워두면 실행안되서 뒤로가기 안됨
+    }
+
     public void setupViewPager(ViewPager viewPager) {
         fragment_Reservation_Today = new Fragment_Reservation_Today();
         adapter.addFragment(fragment_Reservation_Today, "오늘의 예약");

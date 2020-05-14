@@ -599,6 +599,10 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         recyclerViewReservation = findViewById(R.id.recyclerPPDrecyclerView);
     }
 
+    @Override
+    public void onBackPressed() { //super.onBackPressed();비워두면 실행안되서 뒤로가기 안됨
+    }
+
     private void inflateReservationUI(){
         lectureRoomLayout.setVisibility(View.VISIBLE);
         reserveDetermineButton.setVisibility(View.VISIBLE);

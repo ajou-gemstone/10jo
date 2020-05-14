@@ -81,6 +81,10 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
     }
 
     @Override
+    public void onBackPressed() { //super.onBackPressed();비워두면 실행안되서 뒤로가기 안됨
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mapViewContainer.removeView(mapView);
@@ -122,7 +126,7 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
         public View getCalloutBalloon(MapPOIItem poiItem) {
             CafeCoreInfo tmpCafeCoreInfo = (CafeCoreInfo)poiItem.getUserObject();
             ((TextView) mCalloutBalloon.findViewById(R.id.cafeName)).setText(tmpCafeCoreInfo.getCafeName());
-            ((TextView) mCalloutBalloon.findViewById(R.id.cafeCongestion)).setText("혼잡도: "+tmpCafeCoreInfo.getCafeCongestion() + "/5");
+           // ((TextView) mCalloutBalloon.findViewById(R.id.cafeCongestion)).setText("혼잡도: "+tmpCafeCoreInfo.getCafeCongestion() + "/5");
             ((TextView) mCalloutBalloon.findViewById(R.id.cafeTotalSeat)).setText("총 자리수: "+tmpCafeCoreInfo.getCafeTotalSeat());
 
             return mCalloutBalloon;
@@ -138,18 +142,18 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
     private int selectImageResourceIdBycongestion(int congestion) {
         switch (congestion) {
             case 1:
-                return R.drawable.cafeplaceblack_18;//default
+                return R.drawable.cafeplace1;//default
             case 2:
-                return R.drawable.cafeplaceyellow_18;
+                return R.drawable.cafeplace2;
             case 3:
-                return R.drawable.cafeplacegreen_18;
+                return R.drawable.cafeplace3;
             case 4:
-                return R.drawable.cafeplaceblue_18;
+                return R.drawable.cafeplace4;
             case 5:
-                return R.drawable.cafeplacered_18;
+                return R.drawable.cafeplace5;
         }
 
-        return R.drawable.cafeplaceblack_18;//default
+        return R.drawable.cafeplace_default;//default
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

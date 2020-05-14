@@ -20,9 +20,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.example.capstonedesignandroid.DTO.Dummy;
+import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.Group;
+import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +48,9 @@ public class MakeGroupActivity extends AppCompatActivity {
     RadioGroup grouptype;
     RadioButton lecturechecked, allchecked;
     LinearLayout lecture_layout;
-    int category = 0;
-
-    String userId, userPassword;
-    String name, trust1, emotion;
-
+    String category = "all";
+    ArrayList<String> mylectureArray = new ArrayList<>();
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,25 +68,22 @@ public class MakeGroupActivity extends AppCompatActivity {
         body = (EditText) findViewById(R.id.body);
         lecture_layout =findViewById(R.id.lecture_layout);
 
-//        Intent intent1 = getIntent();
-//        final String[] userInfo = intent1.getStringArrayExtra("strings");
-//        userId = userInfo[0];
-//        userPassword = userInfo[1];
-//        name = userInfo[2];
-//        trust1 = userInfo[3];
-//        emotion = userInfo[4];
+        userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
+
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit2.create(GetService.class);
+        Call<User> call2 = service.getUserInfo(userId);
+        CallThread2(call2);
 
         ArrayAdapter<String> adapter;
-        List<String> list;
-
-        list = new ArrayList<String>();
-        list.add("캡디");
-        list.add("자주연");
-        list.add("환경과인간");
-        list.add("인공지능");
-        list.add("과학사");
-        list.add("도분설");
-
+        List<String> list = new ArrayList<String>();
+        for(String lec : mylectureArray){
+            list.add(lec);
+        }
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
@@ -102,7 +102,6 @@ public class MakeGroupActivity extends AppCompatActivity {
             }
         });
 
-
         //과목별 스터디 선택할 때만 보이기
         lecture_layout.setVisibility(View.GONE);
         grouptype.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {  // 라디오 그룹 리스너 입니다.
@@ -111,7 +110,7 @@ public class MakeGroupActivity extends AppCompatActivity {
                 RadioButton rb = (RadioButton) grouptype.findViewById(checkedId); //체크된 것을 입력받습니다.
                 if( rb.getText().toString().equals("과목별 스터디") ) {
                     lecture_layout.setVisibility(View.VISIBLE);
-                    category=1;
+                    category = spinner_lecture.getSelectedItem().toString();
                 }
                 else lecture_layout.setVisibility(View.GONE);
             }
@@ -125,12 +124,12 @@ public class MakeGroupActivity extends AppCompatActivity {
                 String title = grouptitle.getText().toString();
                 String textBody = body.getText().toString();
                 int studyGroupNumTot = parseInt(totalnum.getText().toString());
-                String[] tagName = new String[10];
-
-//                RadioButton rd = (RadioButton) findViewById(sex.getCheckedRadioButtonId());
-//                String sex1 = String.valueOf(rd.getText().toString());
-//                String trust1 = String.valueOf(trust.getText().toString());
-//
+                String t = tag.getText().toString();
+                String[] tArray = t.split("[#| |,]");
+                ArrayList<String> tagName = new ArrayList<>();
+                for(String tag : tArray)
+                    if( !tag.equals("") )
+                        tagName.add(tag);
 
                 Retrofit retrofit2 = new Retrofit.Builder()
                         .baseUrl(MyConstants.BASE)
@@ -138,8 +137,8 @@ public class MakeGroupActivity extends AppCompatActivity {
                         .build();
 
                 GroupService groupService = retrofit2.create(GroupService.class);
-                Call<List<Group>> call2 = groupService.postStudy(category, title, textBody, tagName, studyGroupNumTot);
-                call2.enqueue(dummies);
+                Call<DummyResponse> call2 = groupService.createStudy(userId, category, title, textBody, tagName, studyGroupNumTot);
+                CallThread(call2);
 
 //                ChattingRoomInterface chattingRoomInterface = retrofit.create(ChattingRoomInterface.class);
 //                title = e1.getText().toString();
@@ -157,14 +156,49 @@ public class MakeGroupActivity extends AppCompatActivity {
 
     }//onCreate
 
-    Callback dummies = new Callback<List<Group>>() {
-        @Override
-        public void onResponse(Call<List<Group>> call, Response<List<Group>> response) {
+    private void CallThread(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
         }
-        @Override
-        public void onFailure(Call<List<Group>> call1, Throwable t) {
+    }//callthread
+
+    private void CallThread2(Call<User> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    User dummies = call.execute().body();
+                    Log.d("getlecture", dummies.getLecture().toString());
+                    for( String lec : dummies.getLecture()){
+                        mylectureArray.add(lec);
+                    }
+                    Log.d("mylecarray", mylectureArray.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
         }
-    };
+    }
+
 
 
 }
