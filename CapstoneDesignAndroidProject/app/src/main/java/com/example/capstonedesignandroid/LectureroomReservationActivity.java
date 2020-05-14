@@ -3,7 +3,6 @@ package com.example.capstonedesignandroid;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,6 +35,7 @@ import com.example.capstonedesignandroid.DTO.LectureRoomReservationState;
 import com.example.capstonedesignandroid.Fragment.LectureroomReservationCanlendar;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
@@ -294,9 +293,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     return;
                 }
 
-                String[] buildingArray = new String[buildingArr.size()];
-                buildingArray = buildingArr.toArray(buildingArray);
-
                 //사용 시간대
                 //모든 시간
                 if(reserveTimeAllCheckbox.isChecked()){
@@ -311,6 +307,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     //마지막 시간
                     lastTime = reserveEndTimeSpinner.getSelectedItem().toString();
                     lastTimePosition = reserveEndTimeSpinner.getSelectedItemPosition();
+                    lastTimePosition = lastTimePosition - 1;
                     //순서가 바뀌는 경우도 따로 오류 처리
                     if(startTimePosition > lastTimePosition){
                         Toast.makeText(getApplicationContext(), "시간대를 적절히 선택해주세요", Toast.LENGTH_LONG).show();
@@ -318,13 +315,13 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     }
                 }
 //
-                Log.d("retrofittt", "date:"+date+ " building:"+ buildingArray[0] + "..." +
+                Log.d("retrofittt", "date:"+date+ " building:"+ buildingArr.get(0) + "..." +
                         " startTime:" + startTimePosition + " lastTime:"+ lastTimePosition);
 
                 //서버 DB에서 목록을 가져온다.
                 GetService service = retrofit.create(GetService.class);
                 //retrofit service에 정의된 method를 사용하여
-                Call<List<DummyLectureRoomReservationState>> call = service.getReservationList(date, buildingArray, startTimePosition, lastTimePosition);
+                Call<List<DummyLectureRoomReservationState>> call = service.getReservationList(date, buildingArr, startTimePosition, lastTimePosition);
 
                 //비동기 호출
 //                call.enqueue(dummyLectureRoomReservationState);
@@ -336,6 +333,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         try {
                             List<DummyLectureRoomReservationState> dummies = call.execute().body();
                             dummyLectureRoomReservationList = new ArrayList<DummyLectureRoomReservationState>(dummies);
+                            Log.d("dummyLectureRoomReservationList", ""+dummyLectureRoomReservationList.get(0).getLectureroom());
+                            Log.d("dummyLectureRoomReservationList", ""+dummyLectureRoomReservationList.get(0).getStateList());
                             dummyLectureRoomReservationState_state = true;
                             Log.d("run: ", "run: ");
                         } catch (IOException e) {
@@ -434,6 +433,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     int i = 0;
                     for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
                         String eachStateList =  data.getStateList();
+                        Log.d("eachStateList", "aa"+eachStateList);
                         String[] splitState = eachStateList.split("\\s+");
                         for(String eachState : splitState){
                             if(num.contains(eachState)){
@@ -530,12 +530,10 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             //입력: {date: "YYYY-M-D" lectureRoom: "성101" startTime: "9:00" lastTime: "10:00", userid: "userid", "" }
                             //출력: {예약내역id: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
 
-                            //userid는 sharedpreferece로 가져온다.
-                            String userid = "leehyunju";
-
                             GetService service = retrofit.create(GetService.class);
                             //retrofit service에 정의된 method를 사용하여
-                            Call<DummyReservationId> call = service.postReservation(date, lectureroom, firstActualTag, secondActualTag, userid, checkedItems[0]);
+                            Log.d("postreservation", "date:" + date +" lectureroom:"+lectureroom + " firstActualTag:"+firstActualTag + " secondActualTag:"+secondActualTag + "checkedItems:" +checkedItems[0]);
+                            Call<DummyReservationId> call = service.postReservation(date, lectureroom, firstActualTag, secondActualTag, SharedPreference.getAttribute(getApplicationContext(), "userId"), checkedItems[0]);
 
                             //동기 호출, network를 사용한 thread는 main thread에서 처리를 할 수 없기 때문에
                             Thread thread = new Thread(new Runnable() {
@@ -544,7 +542,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                     try {
                                         reservationid = call.execute().body();
                                         success = true;
-                                        Log.d("run: ", "run: ");
+                                        Log.d("reservationid: ", ""+reservationid.getReservationId());
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                         success = false;
@@ -564,18 +562,20 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), LectureroomReservationAdditionalActivity.class);
                                 intent.putExtra("reservationId", reservationid.getReservationId());
                                 startActivity(intent);
+                                finish();
                             }else{
                                 Toast.makeText(getApplicationContext(), "강의실 예약에 실패하였습니다. (테스트)", Toast.LENGTH_LONG).show();
                                 //아래부분 나중에 삭제
                                 Intent intent = new Intent(getApplicationContext(), LectureroomReservationAdditionalActivity.class);
                                 intent.putExtra("reservationId", "resId0");
                                 startActivity(intent);
+                                finish();
                             }
-
                             //리턴
                             //강의실 정보
                         }
                     });
+
                     builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -586,6 +586,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             }
                         }
                     });
+
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 }else{
@@ -662,7 +663,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 DummyLectureroomInfo dummy = call.execute().body();
-                                capacity = dummy.getLectureroom();
+                                capacity = dummy.getLectureRoomNum();
                                 capacity = capacity + "명";
                                 Log.d("run: ", "run: ");
                             } catch (IOException e) {
@@ -839,23 +840,25 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 case R.id.action_group :
                     Intent intent1 = new Intent(LectureroomReservationActivity.this, StudyBulletinBoardActivity.class);
                     startActivity(intent1);
+                    finish();
                     break;
                 case R.id.action_reservation :
-
                     break;
                 case R.id.action_check :
                     Intent intent3 = new Intent(LectureroomReservationActivity.this, LectureroomCheckActivity.class);
                     startActivity(intent3);
+                    finish();
                     break;
                 case R.id.action_cafe :
                     Intent intent4 = new Intent(LectureroomReservationActivity.this, CafeMapActivity.class);
                     startActivity(intent4);
+                    finish();
                     break;
                 case R.id.action_profile :
                     Intent intent5 = new Intent(LectureroomReservationActivity.this, ProfileActivity.class);
                     startActivity(intent5);
+                    finish();
                     break;
-
             }
             return false;
         }

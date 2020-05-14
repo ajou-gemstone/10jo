@@ -14,21 +14,19 @@
             android:id="@+id/baselayout"
             android:layout_width="3000dp"
             android:layout_height="3000dp"
-            android:background="@drawable/reserve">
+            android:background="@drawable/cafeplacered_18">
 
             <!--dp로 절대값으로 view를 그린다.-->
             <LinearLayout
-                android:id="@+id/l101"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="50dp"
                 android:background="#E0EC80">
 
                 <TextView
-                    android:id="@+id/l101t"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="성101" />

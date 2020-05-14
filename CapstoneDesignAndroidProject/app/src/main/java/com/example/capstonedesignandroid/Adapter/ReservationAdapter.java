@@ -63,7 +63,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             for (String eachState : splitState) {
                 TextView textView = new TextView(itemView.getContext());//이 itemview의 context를 가져옴
                 textView.setLayoutParams(textViewParams);
-//                textView.setText(eachState);
+//                resIdTextView.setText(eachState);
                 //동적으로 할당하였을 때는 tag를 붙이는게 편하다.
                 textView.setTag(""+i);
                 i++;

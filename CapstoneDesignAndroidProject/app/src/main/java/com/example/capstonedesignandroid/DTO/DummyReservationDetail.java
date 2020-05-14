@@ -2,15 +2,15 @@ package com.example.capstonedesignandroid.DTO;
 
 public class DummyReservationDetail {
 //    {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
-//              userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri}
+//              userId: ["user1", "user2", ...], beforeUri: "beforeUri", afterUri: "afterUri}
     String date;
     String day;
     String startTime;
     String lastTime;
     String lectureRoom;
-    String[] userid;
-    String beforeuri;
-    String afteruri;
+    String[] userId;
+    String beforeUri;
+    String afterUri;
     String reservationIntent;
     String beforeUploadTime;
     String afterUploadTime;
@@ -22,9 +22,9 @@ public class DummyReservationDetail {
         this.startTime = startTime;
         this.lastTime = lastTime;
         this.lectureRoom = lectureRoom;
-        this.userid = userid;
-        this.beforeuri = beforeuri;
-        this.afteruri = afteruri;
+        this.userId = userid;
+        this.beforeUri = beforeuri;
+        this.afterUri = afteruri;
         this.reservationIntent = reservationIntent;
         this.beforeUploadTime = beforeUploadTime;
         this.afterUploadTime = afterUploadTime;
@@ -50,16 +50,16 @@ public class DummyReservationDetail {
         return lectureRoom;
     }
 
-    public String[] getUserid() {
-        return userid;
+    public String[] getUserId() {
+        return userId;
     }
 
-    public String getBeforeuri() {
-        return beforeuri;
+    public String getBeforeUri() {
+        return beforeUri;
     }
 
-    public String getAfteruri() {
-        return afteruri;
+    public String getAfterUri() {
+        return afterUri;
     }
 
     public String getReservationIntent() {

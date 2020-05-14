@@ -8,6 +8,7 @@ import androidx.loader.content.CursorLoader;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -63,6 +64,17 @@ public class DefinedMethod {
         return "";
     }
 
+    public static int getPositionByTime(String time){
+        switch (time){
+            case "7:00": return 0; case "7:30": return 1; case "8:00": return 2; case "8:30": return 3; case "9:00": return 4; case "9:30": return 5;
+            case "10:00": return 6; case "10:30": return 7; case "11:00": return 8; case "11:30": return 9; case "12:00": return 10; case "12:30": return 11;
+            case "13:00": return 12; case "13:30": return 13; case "14:00": return 14; case "14:30": return 15; case "15:00": return 16; case "15:30": return 17;
+            case "16:00": return 18; case "16:30": return 19; case "17:00": return 20; case "17:30": return 21; case "18:00": return 22; case "18:30": return 23;
+            case "19:00": return 24; case "19:30": return 25; case "20:00": return 26; case "20:30": return 27; case "21:00": return 28;
+        }
+        return -1;
+    }
+
     public static String getCurrentDate(){
         long nowTime = System.currentTimeMillis();
         Date nowDate = new Date(nowTime);
@@ -83,6 +95,77 @@ public class DefinedMethod {
         String date = transFormat.format(nowDate);
 
         return date;
+    }
+
+    public static String getBuildingTagByBuildingName(String buildingName){
+        switch (buildingName){
+            case "성호관": return "1";
+            case "다산관": return "2";
+            case "원천정보관": return "3";
+            case "율곡관": return "4";
+            case "서관": return "5";
+            case "신학생회관": return "6";
+            case "연암관": return "7";
+            case "원천관": return "8";
+
+        }
+        return "0";
+    }
+
+    public static String getBuildingNameByBuildingTag(String buildingTag){
+        switch (buildingTag){
+            case "1": return "성호관";
+            case "2": return "다산관";
+            case "3": return "원천정보관";
+            case "4": return "율곡관";
+            case "5": return "서관";
+            case "6": return "신학생회관";
+            case "7": return "연암관";
+            case "8": return "원천관";
+
+        }
+        return "0";
+    }
+
+    public static String getDayNamebyAlpabet(String alp){
+        switch (alp){
+            case "A": return "월";
+            case "B": return "화";
+            case "C": return "수";
+            case "D": return "목";
+            case "E": return "금";
+            case "F": return "토";
+            case "G": return "일";
+        }
+        return "0";
+    }
+
+    public static String getAlpabetbyDayName(String day){
+        switch (day){
+            case "월": return "A";
+            case "화": return "B";
+            case "수": return "C";
+            case "목": return "D";
+            case "금": return "E";
+            case "토": return "F";
+            case "일": return "G";
+        }
+        return "0";
+    }
+
+    public static String getParsedDate(String date){
+        return date.substring(0, 10);
+    }
+
+    public static ArrayList<Integer> getYearMonthDaybyDate(String date){
+        int y = Integer.parseInt(date.substring(0,4));
+        int m = Integer.parseInt(date.substring(5,6));
+        int z = Integer.parseInt(date.substring(8,10));
+        ArrayList<Integer> ymz = new ArrayList<>();
+        ymz.add(y);
+        ymz.add(m);
+        ymz.add(z);
+        return ymz;
     }
 
 }

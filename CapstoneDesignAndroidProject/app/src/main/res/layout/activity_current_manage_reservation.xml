@@ -18,7 +18,7 @@
         android:clickable="true"/>
 
     <ScrollView
-        android:id="@+id/scrollViewOneToThree"
+        android:id="@+id/scrollViewOneToTwo"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
@@ -52,6 +52,38 @@
                 android:textSize="25dp"
                 android:tag="3"
                 android:text = "3F"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollViewOne"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_toLeftOf="@+id/floatingActionButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:tag="1"
+                android:text = "1F"/>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:tag="2"
+                android:text = "2F"/>
 
         </LinearLayout>
 

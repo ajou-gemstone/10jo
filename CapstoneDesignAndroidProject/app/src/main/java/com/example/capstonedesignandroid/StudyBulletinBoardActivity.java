@@ -147,18 +147,22 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
                 case R.id.action_reservation :
                     Intent intent2 = new Intent(StudyBulletinBoardActivity.this, LectureroomReservationActivity.class);
                     startActivity(intent2);
+                    finish();
                     break;
                 case R.id.action_check :
                     Intent intent3 = new Intent(StudyBulletinBoardActivity.this, LectureroomCheckActivity.class);
                     startActivity(intent3);
+                    finish();
                     break;
                 case R.id.action_cafe :
                     Intent intent4 = new Intent(StudyBulletinBoardActivity.this, CafeMapActivity.class);
                     startActivity(intent4);
+                    finish();
                     break;
                 case R.id.action_profile :
                     Intent intent5 = new Intent(StudyBulletinBoardActivity.this, ProfileActivity.class);
                     startActivity(intent5);
+                    finish();
                     break;
             }
             return false;
