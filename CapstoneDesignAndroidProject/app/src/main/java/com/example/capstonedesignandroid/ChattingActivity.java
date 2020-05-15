@@ -67,7 +67,7 @@ public class ChattingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       // BASE = SharedPreference.getAttribute(getApplicationContext(), "IP");
+        userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatting);
@@ -109,7 +109,7 @@ public class ChattingActivity extends AppCompatActivity {
 //        socket.connect();
 //
 //        Retrofit retrofit6 = new Retrofit.Builder()
-//                .baseUrl(BASE)
+//                .baseUrl(MyConstants.BASE)
 //                .addConverterFactory(GsonConverterFactory.create())
 //                .build();
 //
