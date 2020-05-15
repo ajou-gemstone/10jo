@@ -15,17 +15,25 @@
 
         <Button
             android:id="@+id/calendarDateCancelButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/green2_button"
             android:text="취소"
+            android:textColor="#ffffff"
             android:layout_alignLeft="@+id/calendarReservationView"/>
 
 
         <Button
             android:id="@+id/calendarDateReserveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/blue_button"
             android:text="확인"
+            android:textColor="#ffffff"
             android:layout_alignRight="@+id/calendarReservationView"/>
 
         <CalendarView

@@ -10,8 +10,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,12 +29,12 @@
             <Button
                 android:id="@+id/button_check_id"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="30dp"
                 android:layout_weight="0.15"
                 android:layout_marginLeft="10dp"
                 android:textSize="13dp"
                 android:textColor="#ffffff"
-                android:background="@color/asmr_green2"
+                android:background="@drawable/green2_button"
                 android:text="아이디 확인" />
         </LinearLayout>
         <EditText
@@ -83,7 +83,7 @@
             android:textSize="20dp"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/blue_button"
             android:text="본인인증하기" />
 
     </LinearLayout>

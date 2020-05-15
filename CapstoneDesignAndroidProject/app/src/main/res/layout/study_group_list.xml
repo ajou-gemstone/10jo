@@ -7,12 +7,13 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:background="@drawable/listview"
-    android:padding="10dp">
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="10dp">
 
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:gravity="left"
         app:srcCompat="@drawable/profile"/>
 
@@ -21,8 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:orientation="vertical"
-        android:gravity="left"
-        android:padding="10dp">
+        android:gravity="left">
 
         <TextView
             android:id="@+id/title"
@@ -54,14 +54,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="0dp"
             android:textSize="16dp"
             android:text="3"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="0dp"
             android:textSize="16dp"
             android:text=" / "/>
         <TextView
@@ -76,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="0dp"
             android:textSize="16dp"
             android:text=" 명"/>
 
