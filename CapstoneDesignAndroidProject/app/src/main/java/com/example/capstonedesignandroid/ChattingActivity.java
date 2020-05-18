@@ -1,41 +1,32 @@
 package com.example.capstonedesignandroid;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstonedesignandroid.Adapter.ChattingAdapter;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
+//import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
 public class ChattingActivity extends AppCompatActivity {
 
@@ -43,32 +34,19 @@ public class ChattingActivity extends AppCompatActivity {
     EditText sendChatText;
     Button sendButton;
     private Socket socket;
-    String title;
-    int mainbutton1 = 0;
-    String userId, userPassword;
     ChattingAdapter m_Adapter;
     int num;
     TextView chattingroomname;
-    String msg;
-    String name, trust, emotion;
-    String BASE;
+    String userId, msg, name, title;
     RelativeLayout layout1;
-    int backnum;
-    StringBuilder builder_like = new StringBuilder();
-    StringBuilder builder_title = new StringBuilder();
-    StringBuilder builder_category = new StringBuilder();
-    StringBuilder builder_profile = new StringBuilder();
-    String updatetrust;
-    String[] userkey;
     ScrollView scrollview_chatting;
-    int backbutton = 0;
     TextView roomnum;
     int num1 = 0;
+    int leaderormember;
     int tmp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatting);
@@ -86,29 +64,27 @@ public class ChattingActivity extends AppCompatActivity {
         scrollview_chatting = (ScrollView) findViewById(R.id.scrollview_chatting);
         roomnum = (TextView) findViewById(R.id.roomnum);
 
-//
-//        Intent intent1 = getIntent();
-//        final String[] userInfo = intent1.getStringArrayExtra("strings");
-//
-//        userId = userInfo[0];
-//        userPassword = userInfo[1];
-//        userKey = Integer.parseInt(userInfo[2]);
-//        name = userInfo[3];
-//        trust = userInfo[4];
-//        emotion = userInfo[5];
-//        title = userInfo[6];
-//
-//        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-//
-//        try {
-//            socket = IO.socket("http://15.165.101.224:3000"); //로컬호스트 ip주소 수정하기
-//        } catch (Exception e) {
-//            Log.i("THREADSERVICE", "Server not connected");
-//            e.printStackTrace();
-//        }
-//
-//        socket.connect();
-//
+
+        Intent intent1 = getIntent();
+        leaderormember = intent1.getIntExtra("leaderormember", -1);
+        name = intent1.getStringExtra("username");
+        title = intent1.getStringExtra("grouptitle");
+
+        //고민한잔 userkey랑 같은 변수
+        userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
+        userKey = Integer.parseInt(SharedPreference.getAttribute(getApplicationContext(), "userId"));
+
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        try {
+            socket = IO.socket(MyConstants.BASE); //로컬호스트 ip주소 수정하기
+        } catch (Exception e) {
+            Log.i("THREADSERVICE", "Server not connected");
+            e.printStackTrace();
+        }
+
+        socket.connect();
+
 //        Retrofit retrofit6 = new Retrofit.Builder()
 //                .baseUrl(MyConstants.BASE)
 //                .addConverterFactory(GsonConverterFactory.create())
@@ -117,38 +93,39 @@ public class ChattingActivity extends AppCompatActivity {
 //        ChattingService chattingNumInterface = retrofit6.create(ChattingService.class);
 //        Call<List<Group>> call6 = chattingNumInterface.getchattingnum(title);
 //        call6.enqueue(dummies6);
-//
-//        sendChatText.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-//                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && i == KeyEvent.KEYCODE_ENTER) {
-//                    sendButton.performClick();
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
-//
-//        sendButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                JSONObject obj = new JSONObject();
-//                String message = sendChatText.getText().toString(); //전송할 메시지
-//                try {
-//                    obj.put("roomname", title);
-//                    obj.put("message", message);
-//                    obj.put("key", userKey);
-//                    obj.put("profile", emotion);
-//                    obj.put("roomnum", num1);
-//                    socket.emit("message", obj);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                sendChatText.setText("");
-//            }
-//        });
-//
-//        //말풍선 클릭했을 때
+
+        sendChatText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && i == KeyEvent.KEYCODE_ENTER) {
+                    sendButton.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JSONObject obj = new JSONObject();
+                String message = sendChatText.getText().toString(); //전송할 메시지
+                num1= 1;
+                try {
+                    obj.put("roomname", title);
+                    obj.put("message", message);
+                    obj.put("key", userKey);
+                    obj.put("profile", leaderormember);
+                    obj.put("roomnum", num1);
+                    socket.emit("message", obj);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                sendChatText.setText("");
+            }
+        });
+
+        //말풍선 클릭했을 때
 //        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -162,14 +139,6 @@ public class ChattingActivity extends AppCompatActivity {
 //                        @Override
 //                        public void onClick(DialogInterface dialog, int pos) {
 //                            String[] items = getResources().getStringArray(R.array.LAN);
-//                            Retrofit retrofit = new Retrofit.Builder()
-//                                    .baseUrl(BASE)
-//                                    .addConverterFactory(GsonConverterFactory.create())
-//                                    .build();
-//
-//                            TrustInterface trustInterface = retrofit.create(TrustInterface.class);
-//                            Call<List<Dummy>> call = trustInterface.listDummies(m_Adapter.getUserkey(position), String.valueOf(userKey), items[pos]);
-//                            call.enqueue(dummies);
 //                        }
 //                    });
 //
@@ -235,15 +204,15 @@ public class ChattingActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-//
-//        listview.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                scrollview_chatting.requestDisallowInterceptTouchEvent(true);
-//                return false;
-//            }
-//        });
-//
+
+        listview.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                scrollview_chatting.requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
 //        mainButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -268,86 +237,86 @@ public class ChattingActivity extends AppCompatActivity {
 //                call1.enqueue(dummies1);
 //            }
 //        });
-//
-//        Emitter.Listener onMessageReceived = new Emitter.Listener() {
-//            @Override
-//            public void call(final Object... args) {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        JSONObject received = (JSONObject) args[0];
-//                        String msg1 = null;
-//                        String key = null;
-//                        String profile = null;
-//                        try {
-//                            msg1 = received.get("message").toString(); //받는 메시지
-//                            key = received.get("key").toString(); //유저 식별키
-//                            profile = received.get("profile").toString();
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        if (key.equals(Integer.toString(userKey))) {
-//                            num = 0;
-//                            if (msg1.length() > 24) {
-//                                for (int i = 0; i < (msg1.length() / 24); i++) {
-//                                    if (i == 0) {
-//                                        msg = msg1.substring((i * 25), 24 * (i + 1)) + "\n";
-//                                    } else {
-//                                        msg = msg + msg1.substring((i * 25), 24 * (i + 1) + 1) + "\n";
-//                                    }
-//                                }
-//                                msg = msg + msg1.substring(msg1.length() - (msg1.length() % 24), msg1.length()) + "\n";
-//                            } else {
-//                                msg = msg1;
-//                            }
-//
-//                            m_Adapter.add(Integer.parseInt(profile), msg, num, String.valueOf(key));
-//                            m_Adapter.notifyDataSetChanged();
-//                        } else {
-//                            num = 1;
-//                            if (msg1.length() > 24) {
-//                                for (int i = 0; i < (msg1.length() / 24); i++) {
-//                                    if (i == 0) {
-//                                        msg = msg1.substring((i * 25), 25 * (i + 1) - 1) + "\n";
-//                                    } else {
-//                                        msg = msg + msg1.substring((i * 25), 25 * (i + 1) - 1) + "\n";
-//                                    }
-//                                }
-//                                msg = msg + msg1.substring(msg1.length() - (msg1.length() % 24), msg1.length()) + "\n";
-//                            } else {
-//                                msg = msg1;
-//                            }
-//                            m_Adapter.add(Integer.parseInt(profile), msg, num, String.valueOf(key));
-//                            m_Adapter.notifyDataSetChanged();
-//                        }
-//                    }
-//                });
-//            }
-//        };
-//        socket.on("receiveMsg", onMessageReceived);
-//
-//        Emitter.Listener roomleave = new Emitter.Listener() {
-//            @Override
-//            public void call(final Object... args) {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        JSONObject received = (JSONObject) args[0];
-//                        int exit;
-//                        try {
-//                            exit = (int) received.get("roomnum"); //받는 메시지
-//                            roomnum.setText(Integer.toString(exit - 1));
-//                            tmp = exit - 1;
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
-//            }
-//        };
-//        socket.on("exit", roomleave);
-//
+
+        Emitter.Listener onMessageReceived = new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject received = (JSONObject) args[0];
+                        String msg1 = null;
+                        String key = null;
+                        String profile = null;
+                        try {
+                            msg1 = received.get("message").toString(); //받는 메시지
+                            key = received.get("key").toString(); //유저 식별키
+                            profile = received.get("profile").toString();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (key.equals(Integer.toString(userKey))) {
+                            num = 0;
+                            if (msg1.length() > 24) {
+                                for (int i = 0; i < (msg1.length() / 24); i++) {
+                                    if (i == 0) {
+                                        msg = msg1.substring((i * 25), 24 * (i + 1)) + "\n";
+                                    } else {
+                                        msg = msg + msg1.substring((i * 25), 24 * (i + 1) + 1) + "\n";
+                                    }
+                                }
+                                msg = msg + msg1.substring(msg1.length() - (msg1.length() % 24), msg1.length()) + "\n";
+                            } else {
+                                msg = msg1;
+                            }
+
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, String.valueOf(key));
+                            m_Adapter.notifyDataSetChanged();
+                        } else {
+                            num = 1;
+                            if (msg1.length() > 24) {
+                                for (int i = 0; i < (msg1.length() / 24); i++) {
+                                    if (i == 0) {
+                                        msg = msg1.substring((i * 25), 25 * (i + 1) - 1) + "\n";
+                                    } else {
+                                        msg = msg + msg1.substring((i * 25), 25 * (i + 1) - 1) + "\n";
+                                    }
+                                }
+                                msg = msg + msg1.substring(msg1.length() - (msg1.length() % 24), msg1.length()) + "\n";
+                            } else {
+                                msg = msg1;
+                            }
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, String.valueOf(key));
+                            m_Adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+        };
+        socket.on("receiveMsg", onMessageReceived);
+
+        Emitter.Listener roomleave = new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject received = (JSONObject) args[0];
+                        int exit;
+                        try {
+                            exit = (int) received.get("roomnum"); //받는 메시지
+                            roomnum.setText(Integer.toString(exit - 1));
+                            tmp = exit - 1;
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        };
+        socket.on("exit", roomleave);
+
 //        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 //
