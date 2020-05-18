@@ -21,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstonedesignandroid.Adapter.ChattingAdapter;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
