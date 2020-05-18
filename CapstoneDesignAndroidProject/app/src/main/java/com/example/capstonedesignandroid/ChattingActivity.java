@@ -389,6 +389,8 @@ public class ChattingActivity extends AppCompatActivity {
         socket.disconnect();
 
         Intent intent2 = new Intent(ChattingActivity.this, StudyBulletinBoardActivity.class);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
     }
 
 //    Callback dummies1 = new Callback<List<Group>>() {
