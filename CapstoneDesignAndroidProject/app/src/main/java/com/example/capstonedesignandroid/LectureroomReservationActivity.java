@@ -108,6 +108,9 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lectureroom_reservation);
 
+        Intent intent6 = getIntent();
+        String groupId = intent6.getStringExtra("groupId");
+
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_reservation);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -561,6 +564,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                 //강의실 예약 목적 입력 intent로 이동, 예약내역 id도 이동
                                 Intent intent = new Intent(getApplicationContext(), LectureroomReservationAdditionalActivity.class);
                                 intent.putExtra("reservationId", reservationid.getReservationId());
+
                                 startActivity(intent);
                                 finish();
                             }else{
@@ -855,7 +859,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.action_profile :
-                    Intent intent5 = new Intent(LectureroomReservationActivity.this, ProfileActivity.class);
+                    Intent intent5 = new Intent(LectureroomReservationActivity.this, MyProfileActivity.class);
                     startActivity(intent5);
                     finish();
                     break;

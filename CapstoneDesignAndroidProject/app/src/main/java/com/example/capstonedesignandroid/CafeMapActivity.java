@@ -181,7 +181,7 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
 
                     break;
                 case R.id.action_profile :
-                    Intent intent4 = new Intent(CafeMapActivity.this, ProfileActivity.class);
+                    Intent intent4 = new Intent(CafeMapActivity.this, MyProfileActivity.class);
                     startActivity(intent4);
                     finish();
                     break;

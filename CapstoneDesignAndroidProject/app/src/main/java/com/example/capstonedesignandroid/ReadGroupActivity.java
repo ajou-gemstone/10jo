@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.capstonedesignandroid.Adapter.UserListAdapter;
-import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.TagName;
@@ -23,6 +22,7 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -39,6 +39,9 @@ public class ReadGroupActivity extends AppCompatActivity {
     ListView listview;
     boolean registered = false;
     boolean leader = false;
+    ArrayList<String> useridarray = new ArrayList<>();
+    ArrayList<String> leaderarray = new ArrayList<>();
+    ArrayList<String> usernamearray = new ArrayList<>();
     UserListAdapter userListAdapter = new UserListAdapter();
 
     @Override
@@ -156,7 +159,9 @@ public class ReadGroupActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent2 = new Intent(getApplicationContext(), ProfileActivity.class);
+                Intent intent2 = new Intent(getApplicationContext(), UserProfileActivity.class);
+                intent2.putExtra("leaderormember", leaderarray.get(position));
+                intent2.putExtra("userId", useridarray.get(position));
                 startActivity(intent2);
             }
         });
@@ -181,6 +186,9 @@ public class ReadGroupActivity extends AppCompatActivity {
                     tags.setText(tag);
                     for(User user : dummies.getUser()){
                         userListAdapter.add(user.getUserId(), user.getLeader(), user.getName());
+                        useridarray.add(user.getUserId());
+                        leaderarray.add(Integer.toString(user.getLeader()));
+                        usernamearray.add(user.getName());
                         if(userId.equals(user.getUserId())) {
                             registered = true;
                             username = user.getName();
