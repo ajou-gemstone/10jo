@@ -31,7 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView name, num, email, myname;
     Intent intent;
     ImageView leader, member;
-    Button noti_zero, noti_yes;
+    Button noti_zero, noti_yes, logout;
     String userId;
     protected BottomNavigationView navigationView;
 
@@ -49,6 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
         member = findViewById(R.id.member_image);
         noti_zero = findViewById(R.id.noti_zero);
         noti_yes = findViewById(R.id.noti_yes);
+        logout = findViewById(R.id.logout);
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_profile);
@@ -74,6 +75,13 @@ public class ProfileActivity extends AppCompatActivity {
         noti_yes.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SharedPreference.removeAllAttribute(getApplicationContext());
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });

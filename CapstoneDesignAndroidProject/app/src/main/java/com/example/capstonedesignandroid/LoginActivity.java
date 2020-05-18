@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText position;
     String primary_id = "";
+    boolean loginsucess= true;
     ArrayList<String> mylectureArray = new ArrayList<>();
 
     String[] usertitle;
@@ -48,10 +49,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        String autologin = SharedPreference.getAttribute(getApplicationContext(), "userId");
+        Log.d("uuu", autologin);
+
+        if( ! autologin.equals("-100") ){
+           Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+            startActivityForResult(intent, 100);
+        }
+
         final EditText id = (EditText) findViewById(R.id.id);
         final EditText password = (EditText) findViewById(R.id.edittext_password);
         final Button login = (Button) findViewById(R.id.login);
-        CheckBox remember = findViewById(R.id.remember);
         Button developer = (Button) findViewById(R.id.button_developer);
         Button signup = findViewById(R.id.button_signup);
 
@@ -118,23 +126,32 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String id1 = String.valueOf(id.getText().toString());
                 String password1 = String.valueOf(password.getText().toString());
+
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(MyConstants.BASE)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 GetService service = retrofit.create(GetService.class);
                 Call<User> call = service.login(id1, password1);
-                Log.d("idid", "id: "+id1);
                 CallThread(call);
-
-                Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
-                startActivityForResult(intent,100);
+                if(loginsucess) {
+                    Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+                    startActivityForResult(intent, 100);
+                }
+                else{
+                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(LoginActivity.this);
+                    alert_confirm.setMessage("올바르지 않은 입력입니다.");
+                    alert_confirm.setPositiveButton("확인", null);
+                    AlertDialog alert = alert_confirm.create();
+                    alert.show();
+                }
             }
         });
 
@@ -161,6 +178,7 @@ public class LoginActivity extends AppCompatActivity {
 
     } //onCreate
 
+
     private void CallThread(Call<User> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -168,9 +186,14 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     User dummies = call.execute().body();
                     primary_id = dummies.getId();
-                    Log.d("primary_id", "primaryId:" + primary_id);
-                    SharedPreference.removeAllAttribute(getApplicationContext());
-                    SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
+                    Log.d("primary_id", dummies.getId());
+                    if(!primary_id.equals(-1)) {
+                        SharedPreference.removeAllAttribute(getApplicationContext());
+                        SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
+                    }
+                    else{
+                        loginsucess = false;
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");

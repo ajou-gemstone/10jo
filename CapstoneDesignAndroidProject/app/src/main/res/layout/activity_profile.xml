@@ -52,6 +52,13 @@
                 android:layout_height="30dp"
                 android:layout_gravity="right|center"
                 android:background="@drawable/noti_yes" />
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right|center"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/logout" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,6 +151,10 @@
                     android:textStyle="bold"
                     android:background="@drawable/blue_button"
                     android:text="시간표 수정하기" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
