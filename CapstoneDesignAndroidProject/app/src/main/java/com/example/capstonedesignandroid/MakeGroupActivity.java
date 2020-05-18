@@ -48,7 +48,7 @@ public class MakeGroupActivity extends AppCompatActivity {
     RadioGroup grouptype;
     RadioButton lecturechecked, allchecked;
     LinearLayout lecture_layout;
-    String category = "all";
+    String category = "";
     ArrayList<String> mylectureArray = new ArrayList<>();
     String userId;
 
@@ -112,7 +112,10 @@ public class MakeGroupActivity extends AppCompatActivity {
                     lecture_layout.setVisibility(View.VISIBLE);
                     category = spinner_lecture.getSelectedItem().toString();
                 }
-                else lecture_layout.setVisibility(View.GONE);
+                else {
+                    lecture_layout.setVisibility(View.GONE);
+                    category = "all";
+                }
             }
         });
 
