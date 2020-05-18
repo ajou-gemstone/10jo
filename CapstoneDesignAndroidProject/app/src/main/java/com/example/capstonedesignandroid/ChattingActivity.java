@@ -64,7 +64,6 @@ public class ChattingActivity extends AppCompatActivity {
         scrollview_chatting = (ScrollView) findViewById(R.id.scrollview_chatting);
         roomnum = (TextView) findViewById(R.id.roomnum);
 
-
         Intent intent1 = getIntent();
         leaderormember = intent1.getIntExtra("leaderormember", -1);
         name = intent1.getStringExtra("username");
@@ -93,6 +92,15 @@ public class ChattingActivity extends AppCompatActivity {
 //        ChattingService chattingNumInterface = retrofit6.create(ChattingService.class);
 //        Call<List<Group>> call6 = chattingNumInterface.getchattingnum(title);
 //        call6.enqueue(dummies6);
+
+        JSONObject obj1 = new JSONObject();
+        try {
+            obj1.put("roomname", title);
+            obj1.put("roomnum", num1);
+            socket.emit("join", obj1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         sendChatText.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -317,6 +325,35 @@ public class ChattingActivity extends AppCompatActivity {
         };
         socket.on("exit", roomleave);
 
+        //roomnum.setText(Integer.toString(num1));
+        Emitter.Listener roomenter = new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject received = (JSONObject) args[0];
+                        String enter = null;
+                        try {
+                            enter = received.get("roomnum").toString(); //받는 메시지
+                            if(num1<Integer.parseInt(enter)){
+                                roomnum.setText(enter.toString());
+                                tmp = Integer.parseInt(enter);
+                            }
+                            else{
+                                roomnum.setText(Integer.toString(num1));
+                                tmp = num1;
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        };
+        socket.on("enter", roomenter);
+
 //        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 //
@@ -489,43 +526,7 @@ public class ChattingActivity extends AppCompatActivity {
                 }
                 chattingroomname.setText(title+"   ");
 
-                JSONObject obj1 = new JSONObject();
-                try {
-                    obj1.put("roomname", title);
-                    obj1.put("roomnum", num1);
-                    socket.emit("join", obj1);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
-                //roomnum.setText(Integer.toString(num1));
-                Emitter.Listener roomenter = new Emitter.Listener() {
-                    @Override
-                    public void call(final Object... args) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                JSONObject received = (JSONObject) args[0];
-                                String enter = null;
-                                try {
-                                    enter = received.get("roomnum").toString(); //받는 메시지
-                                    if(num1<Integer.parseInt(enter)){
-                                        roomnum.setText(enter.toString());
-                                        tmp = Integer.parseInt(enter);
-                                    }
-                                    else{
-                                        roomnum.setText(Integer.toString(num1));
-                                        tmp = num1;
-                                    }
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-                    }
-                };
-                socket.on("enter", roomenter);
             }
         }
 
