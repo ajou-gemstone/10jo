@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -110,12 +111,22 @@ public class MakeGroupActivity extends AppCompatActivity {
                 RadioButton rb = (RadioButton) grouptype.findViewById(checkedId); //체크된 것을 입력받습니다.
                 if( rb.getText().toString().equals("과목별 스터디") ) {
                     lecture_layout.setVisibility(View.VISIBLE);
-                    category = spinner_lecture.getSelectedItem().toString();
                 }
                 else {
                     lecture_layout.setVisibility(View.GONE);
                     category = "all";
                 }
+            }
+        });
+
+        spinner_lecture.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                category = spinner_lecture.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
             }
         });
 
@@ -143,16 +154,6 @@ public class MakeGroupActivity extends AppCompatActivity {
                 Call<DummyResponse> call2 = groupService.createStudy(userId, category, title, textBody, tagName, studyGroupNumTot);
                 CallThread(call2);
 
-//                ChattingRoomInterface chattingRoomInterface = retrofit.create(ChattingRoomInterface.class);
-//                title = e1.getText().toString();
-//                String maintext = e2.getText().toString();
-//                RadioButton rd = (RadioButton) findViewById(sex.getCheckedRadioButtonId());
-//                String sex1 = String.valueOf(rd.getText().toString());
-//                String trust1 = String.valueOf(trust.getText().toString());
-//                String category1 = String.valueOf(category.getSelectedItem().toString());
-//
-//                Call<List<Dummy2>> call2 = chattingRoomInterface.listDummies(title, maintext, category1, agemin1, agemax1, sex1, trust1, userInfo[0], userInfo[1], emotion);
-//                call2.enqueue(dummies2);
             }
         });
 

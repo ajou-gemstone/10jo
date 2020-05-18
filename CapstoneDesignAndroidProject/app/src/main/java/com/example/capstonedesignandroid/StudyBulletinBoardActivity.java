@@ -4,23 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.capstonedesignandroid.Fragment.GroupFragment1;
-import com.example.capstonedesignandroid.Fragment.GroupFragment2;
-import com.example.capstonedesignandroid.Fragment.GroupFragment3;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -139,7 +133,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.action_profile :
-                    Intent intent5 = new Intent(StudyBulletinBoardActivity.this, ProfileActivity.class);
+                    Intent intent5 = new Intent(StudyBulletinBoardActivity.this, MyProfileActivity.class);
                     startActivity(intent5);
                     finish();
                     break;

@@ -65,22 +65,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp">
-            <ImageView
-                android:id="@+id/leader_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/leader"/>
-            <ImageView
-                android:id="@+id/member_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/member"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/name"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 android:gravity="left"
                 android:text="강찬혁"
                 android:textSize="15dp" />

@@ -13,8 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.capstonedesignandroid.DTO.Group;
-import com.example.capstonedesignandroid.DTO.TagName;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
@@ -26,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProfileActivity extends AppCompatActivity {
+public class MyProfileActivity extends AppCompatActivity {
 
     TextView name, num, email, myname;
     Intent intent;
@@ -39,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_profile_my);
 
         myname =(TextView) findViewById(R.id.myname);
         name =(TextView) findViewById(R.id.name);
@@ -125,22 +123,22 @@ public class ProfileActivity extends AppCompatActivity {
 
                     break;
                 case R.id.action_group :
-                    Intent intent1 = new Intent(ProfileActivity.this, StudyBulletinBoardActivity.class);
+                    Intent intent1 = new Intent(MyProfileActivity.this, StudyBulletinBoardActivity.class);
                     startActivity(intent1);
                     finish();
                     break;
                 case R.id.action_reservation :
-                    Intent intent2 = new Intent(ProfileActivity.this, LectureroomReservationActivity.class);
+                    Intent intent2 = new Intent(MyProfileActivity.this, LectureroomReservationActivity.class);
                     startActivity(intent2);
                     finish();
                     break;
                 case R.id.action_check :
-                    Intent intent3 = new Intent(ProfileActivity.this, LectureroomCheckActivity.class);
+                    Intent intent3 = new Intent(MyProfileActivity.this, LectureroomCheckActivity.class);
                     startActivity(intent3);
                     finish();
                     break;
                 case R.id.action_cafe :
-                    Intent intent4 = new Intent(ProfileActivity.this, CafeMapActivity.class);
+                    Intent intent4 = new Intent(MyProfileActivity.this, CafeMapActivity.class);
                     startActivity(intent4);
                     finish();
                     break;
