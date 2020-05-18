@@ -32,7 +32,10 @@ public class ReadGroupActivity extends AppCompatActivity {
     Button register, reservation, chatting, edit, full;
     TextView title, maintext, currentnum, totalnum, tags;
     String userId;
+    int leaderormember = 0;
     String tag = "";
+    String username = "";
+    String grouptitle = "";
     ListView listview;
     boolean registered = false;
     boolean leader = false;
@@ -112,16 +115,8 @@ public class ReadGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),LectureroomReservationActivity.class);
+                intent.putExtra("groupId", groupId);
                 startActivity(intent);
-
-//                Retrofit retrofit2 = new Retrofit.Builder()
-//                        .baseUrl(BASE)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                UserKeyInterface userKeyInterface = retrofit2.create(UserKeyInterface.class);
-//                Call<List<Dummy>> call2 = userKeyInterface.listDummies(userInfo[0], userInfo[1]);
-//                call2.enqueue(dummies2);
             }
         });
         full.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +136,9 @@ public class ReadGroupActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(),ChattingActivity.class);
+                intent.putExtra("leaderormember", leaderormember);
+                intent.putExtra("username", username);
+                intent.putExtra("grouptitle", grouptitle);
                 startActivity(intent);
 
 //                Retrofit retrofit2 = new Retrofit.Builder()
@@ -176,6 +174,7 @@ public class ReadGroupActivity extends AppCompatActivity {
                     maintext.setText(dummies.getTextBody());
                     currentnum.setText(dummies.getStudyGroupNumCurrent().toString());
                     totalnum.setText(dummies.getStudyGroupNumTotal().toString());
+                    grouptitle = dummies.getTitle();
                     for(TagName t : dummies.getTagName()){
                         tag = tag +"#"+t.getTagName()+" ";
                     }
@@ -184,8 +183,11 @@ public class ReadGroupActivity extends AppCompatActivity {
                         userListAdapter.add(user.getUserId(), user.getLeader(), user.getName());
                         if(userId.equals(user.getUserId())) {
                             registered = true;
-                            if(userId.equals(user.getUserId()) && user.getLeader() == 1)
+                            username = user.getName();
+                            if(userId.equals(user.getUserId()) && user.getLeader() == 1) {
                                 leader = true;
+                                leaderormember = 1;
+                            }
                         }
 
                     }

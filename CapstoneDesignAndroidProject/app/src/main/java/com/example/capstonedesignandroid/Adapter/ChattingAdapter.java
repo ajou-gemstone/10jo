@@ -116,10 +116,10 @@ public class ChattingAdapter extends BaseAdapter {
 
         switch(m_List.get(position).profile) {
             case 0:
-                imageView.setImageResource(R.drawable.profile);
+                imageView.setImageResource(R.drawable.member);
                 break;
             case 1:
-                imageView.setImageResource(R.drawable.profile);
+                imageView.setImageResource(R.drawable.leader);
                 break;
 
             default: break;
