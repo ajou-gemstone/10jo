@@ -133,7 +133,15 @@ public class ReadGroupActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent = new Intent(getApplicationContext(),EditGroupActivity.class);
+                intent.putExtra("groupId", groupId);
+                startActivity(intent);
+            }
+        });
         chatting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,15 +151,6 @@ public class ReadGroupActivity extends AppCompatActivity {
                 intent.putExtra("username", username);
                 intent.putExtra("grouptitle", grouptitle);
                 startActivity(intent);
-
-//                Retrofit retrofit2 = new Retrofit.Builder()
-//                        .baseUrl(BASE)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                UserKeyInterface userKeyInterface = retrofit2.create(UserKeyInterface.class);
-//                Call<List<Dummy>> call2 = userKeyInterface.listDummies(userInfo[0], userInfo[1]);
-//                call2.enqueue(dummies2);
             }
         });
 

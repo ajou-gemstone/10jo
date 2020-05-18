@@ -91,6 +91,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ReadGroupActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".EditGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ChattingActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MyProfileActivity"

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:fitsSystemWindows="true"
-    tools:context="com.example.capstonedesignandroid.MakeGroupActivity">
+    tools:context="com.example.capstonedesignandroid.EditGroupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,57 +81,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <TextView
-                    android:layout_width="87dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="모임종류"/>
-                <RadioGroup
-                    android:id="@+id/grouptype"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:checkedButton="@+id/checkbox_all"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:id="@+id/checkbox_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:layout_gravity="center"
-                        android:text="모든 스터디"/>
-                    <RadioButton
-                        android:id="@+id/checkbox_lec"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="과목별 스터디"/>
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lecture_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="174dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="과목" />
-                <Spinner
-                    android:id="@+id/spinner_lecture"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:spinnerMode="dialog"
-                    android:layout_gravity="center"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
@@ -162,15 +110,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp">
+
             <Button
                 android:id="@+id/button_makeroom2"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@drawable/blue_button"
-                android:textStyle="bold"
-                android:textSize="17dp"
+                android:text="모임 정보 수정하기"
                 android:textColor="#ffffff"
-                android:text="모임 결성하기" />
+                android:textSize="17dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>

@@ -78,6 +78,7 @@
             android:layout_gravity="center"
             android:text="강의실 예약"
             android:textColor="#ffffff"
+            android:textSize="17dp"
             android:background="@drawable/green2_button"
             android:textStyle="bold"/>
         <Button
@@ -87,6 +88,7 @@
             android:layout_gravity="center"
             android:background="@drawable/blue_button"
             android:textColor="#ffffff"
+            android:textSize="17dp"
             android:text="모임 신청하기"
             android:textStyle="bold"/>
         <Button
@@ -96,6 +98,7 @@
             android:layout_gravity="center"
             android:background="#bbbbbb"
             android:textColor="#ffffff"
+            android:textSize="17dp"
             android:text="모임 신청하기"
             android:textStyle="bold"/>
     </LinearLayout>
