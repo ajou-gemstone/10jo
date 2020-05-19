@@ -34,6 +34,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
     private Retrofit retrofit;
     private EditText reservationIntentEditText;
     private boolean saveComplete = false;
+    private boolean saveComplete2 = false;
 
     //여기서는 뒤로가기를 막는다.
     @Override
@@ -63,9 +64,40 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         classofAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                classofArrayList.add("" + classofEdittext.getText());
-                classofEdittext.setText("");
-                adapter.notifyDataSetChanged();
+                GetService service = retrofit.create(GetService.class);
+                Call<DummyResponse> call = service.searchStudentId(classofEdittext.getText().toString());
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            DummyResponse dummy = call.execute().body();
+                            if(dummy.getResponse().equals("success")){
+                                Log.d("saveAdditional", "학번이 추가되었습니다.");
+                                saveComplete2 = true;
+                            }else
+                                saveComplete2 = false;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.d("IOException: ", "IOException: ");
+                            saveComplete2 = false;
+                        }
+                    }
+                });
+                thread.start();
+                try {
+                    thread.join();
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+                if(saveComplete2){
+                    classofArrayList.add("" + classofEdittext.getText());
+                    classofEdittext.setText("");
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(), "학번이 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "유효하지 않은 학번입니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

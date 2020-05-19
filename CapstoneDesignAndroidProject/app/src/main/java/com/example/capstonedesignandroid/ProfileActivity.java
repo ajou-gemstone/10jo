@@ -3,11 +3,13 @@ package com.example.capstonedesignandroid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,11 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.TagName;
 import com.example.capstonedesignandroid.DTO.User;
+import com.example.capstonedesignandroid.Fragment.TimeTableFragment;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -34,6 +39,10 @@ public class ProfileActivity extends AppCompatActivity {
     Button noti_zero, noti_yes;
     String userId;
     protected BottomNavigationView navigationView;
+    private TimeTableFragment timeTableFragment;
+    private TimeTableFragment timeTableBigFragment;
+    private RelativeLayout timaTableBigRL;
+    private Button timeTableBigCancel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +86,71 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //---------시간표 retrofit----------
+        //시간표 가져오기
+        //
+//        Call<User> call = service.getUserInfo(userId);
+//        CallThread(call);
+
+        //------------시간표-------------
+        timeTableFragment = new TimeTableFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.timeTableFrame, timeTableFragment).commit();
+
+        //시간표 크게 보기
+        Button timeTableBigButton = findViewById(R.id.timeTableBigButton);
+        timaTableBigRL = findViewById(R.id.timaTableBigRL);
+        timeTableBigCancel = findViewById(R.id.timeTableBigCancel);
+        timeTableBigButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timaTableBigRL.setVisibility(View.VISIBLE);
+                timeTableBigFragment = new TimeTableFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.timeTableBigFrame, timeTableBigFragment).commit();
+
+                com.otaliastudios.zoom.ZoomLayout timeTableBigZoomLayout = findViewById(R.id.timeTableBigZoomLayout);
+                //UI작업을 위해 handler로 처리, onCreate에서 바로 zoom같은 animation이 작동하지 않는다.
+                Handler mHandler = new Handler();
+                TimerTask mTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        try {
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    timeTableBigZoomLayout.moveTo(2.5f, 0, 1, true);
+                                }
+                            });
+                        } catch (Exception e) {
+                            Log.d("ExceptionTimer", ": " + e);
+                        }
+                    }
+                };
+
+                Timer mTimer = new Timer();
+                mTimer.schedule(mTask, 200);
+            }
+        });
+
+        //시간표 크게 보기 - 뒤로 가기
+        timeTableBigCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timaTableBigRL.setVisibility(View.INVISIBLE);
+                getSupportFragmentManager().beginTransaction().remove(timeTableBigFragment).commit();
+            }
+        });
+
+        //시간표 수정하기
+        Button timeTableModifyButton = findViewById(R.id.timeTableModifyButton);
+        timeTableModifyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent activityIntent = new Intent(getApplicationContext(), TimetableModifyActivity.class);
+                startActivity(activityIntent);
+            }
+        });
+
+
 
     }//onCreate
 
@@ -140,5 +214,6 @@ public class ProfileActivity extends AppCompatActivity {
             return false;
         }
     };
+
 
 }

@@ -28,6 +28,7 @@ import com.example.capstonedesignandroid.Fragment.Fragment_Reservation_Future;
 import com.example.capstonedesignandroid.Fragment.Fragment_Reservation_Previous;
 import com.example.capstonedesignandroid.Fragment.Fragment_Reservation_Today;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 public class LectureroomCheckActivity extends AppCompatActivity {
@@ -64,6 +65,16 @@ public class LectureroomCheckActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        //테스트용
+        FloatingActionButton testGuardButton = findViewById(R.id.testGuardButton);
+        testGuardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainBuildingGuardActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

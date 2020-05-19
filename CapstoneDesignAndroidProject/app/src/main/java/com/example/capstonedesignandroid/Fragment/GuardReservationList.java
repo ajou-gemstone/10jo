@@ -20,6 +20,7 @@ import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.GetService;
 import com.example.capstonedesignandroid.GuardReservationCheckActivity;
 import com.example.capstonedesignandroid.LectureroomCheckDetailedActivity;
+import com.example.capstonedesignandroid.ManageReservationActivity;
 import com.example.capstonedesignandroid.R;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
@@ -86,10 +87,14 @@ public class GuardReservationList extends Fragment {
                     dummyReservationListArrayList = new ArrayList<DummyReservationList>(dummies);
                     IOexception = false;
                     Log.d("run:", "run:dummyReservationListArrayList");
-                    Log.d("run", "startTime" + dummyReservationListArrayList.get(0).getStartTime() +
-                            "reservationId" + dummyReservationListArrayList.get(0).getReservationId() +
-                            "date" + dummyReservationListArrayList.get(0).getDate() +
-                            "lectureRoom" + dummyReservationListArrayList.get(0).getLectureRoom());
+                    try{
+                        Log.d("run", "startTime" + dummyReservationListArrayList.get(0).getStartTime() +
+                                "reservationId" + dummyReservationListArrayList.get(0).getReservationId() +
+                                "date" + dummyReservationListArrayList.get(0).getDate() +
+                                "lectureRoom" + dummyReservationListArrayList.get(0).getLectureRoom());
+                    }catch (Exception e){
+
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     IOexception = true;
@@ -150,7 +155,7 @@ public class GuardReservationList extends Fragment {
         reservationListAdapter.setOnItemClickListener(new ReservationListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Intent intent = new Intent(getContext(), GuardReservationCheckActivity.class);
+                Intent intent = new Intent(getContext(), ManageReservationActivity.class);
                 intent.putExtra("reservationId", dummyReservationListArrayList.get(position).getReservationId());
                 intent.putExtra("tense", ""+tense);
                 startActivity(intent);

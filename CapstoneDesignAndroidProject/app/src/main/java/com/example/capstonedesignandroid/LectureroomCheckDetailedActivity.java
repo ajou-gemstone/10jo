@@ -2,6 +2,7 @@ package com.example.capstonedesignandroid;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,7 +21,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -313,6 +313,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
 
                         Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다.", Toast.LENGTH_LONG).show();
+                        beforeUploadTime.setText("업로드 시간: "+ DefinedMethod.getCurrentDate2());
 
                         //db에 파일 이름 저장
                         GetService service = retrofit.create(GetService.class);
@@ -356,6 +357,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                         Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_LONG).show();
+                        afterUploadTime.setText("업로드 시간: "+ DefinedMethod.getCurrentDate2());
                         //db에 파일 이름 저장
                         GetService service = retrofit.create(GetService.class);
                         Call<DummyResponse> call = service.postAfterPicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());

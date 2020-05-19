@@ -14,6 +14,7 @@ import android.util.Log;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kakao.util.maps.helper.Utility;
@@ -30,48 +31,68 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity{
 
-    private Button StudyBulletinBoardActivityButton;
-    private Button LectureroomReservationActivityButton;
-    private Button CafeMapActivityButton;
     private Button testActivity;
     private Button LectureroomCheckActivityButton;
-    private Button test2Button;
     private Button buildingGuardActivityButton;
+    private Button zoomTest;
+    private Button zoomTest2;
+    private Button zoomTest3;
+    private Button timeTableModifyActivity;
+    private TextView textView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        StudyBulletinBoardActivityButton = findViewById(R.id.StudyBulletinBoardActivityButton);
-        LectureroomReservationActivityButton = findViewById(R.id.LectureroomReservationActivityButton);
-        CafeMapActivityButton = findViewById(R.id.CafeMapActivityButton);
         testActivity = findViewById(R.id.testButton);
         LectureroomCheckActivityButton = findViewById(R.id.LectureroomCheckActivityButton);
-        test2Button = findViewById(R.id.test2Button);
         buildingGuardActivityButton = findViewById(R.id.buildingGuardActivityButton);
+        zoomTest = findViewById(R.id.zoomTest);
+        zoomTest2 = findViewById(R.id.zoomTest2);
+        zoomTest3 = findViewById(R.id.zoomTest3);
+        timeTableModifyActivity = findViewById(R.id.timeTableModifyActivity);
+        textView3 = findViewById(R.id.textView3);
 
-        StudyBulletinBoardActivityButton.setOnClickListener(new View.OnClickListener() {
+        textView3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
+            public void onClick(View view) {
+
+            }
+        });
+
+        timeTableModifyActivity.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), TimetableModifyActivity.class);
                 startActivity(intent);
             }
         });
-        LectureroomReservationActivityButton.setOnClickListener(new View.OnClickListener() {
+
+        zoomTest3.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),LectureroomReservationActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ZoomTest3Activity.class);
                 startActivity(intent);
             }
         });
-        CafeMapActivityButton.setOnClickListener(new View.OnClickListener() {
+
+        zoomTest2.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),CafeMapActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ZoomTest2Activity.class);
                 startActivity(intent);
             }
         });
+
+        zoomTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ZoomTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
         testActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

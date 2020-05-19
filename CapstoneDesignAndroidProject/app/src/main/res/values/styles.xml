@@ -31,5 +31,26 @@
         <item name="checkboxStyle">@style/Widget.MaterialComponents.CompoundButton.CheckBox</item>
     </style>
 
+<!--    <style name="timeTableSelected">-->
+<!--        <item name = "android:background">@drawable/back</item>-->
+<!--        <item name = "android:layout_width">45dp</item>-->
+<!--&lt;!&ndash;        <item name = "android:layout_weight">1</item>&ndash;&gt;-->
+<!--        <item name = "android:layout_height">45dp</item>-->
+<!--    </style>-->
+
+    <style name="timeTable">
+        <item name = "android:background">@drawable/back</item>
+        <item name = "android:layout_width">45dp</item>
+        <!--        <item name = "android:layout_weight">1</item>-->
+        <item name = "android:layout_height">45dp</item>
+    </style>
+    <style name="timeTableContent">
+        <item name = "android:textSize">8dp</item>
+    </style>
+
+    <style name="timeTableLocation">
+        <item name = "android:textSize">6dp</item>
+    </style>
+
 
 </resources>

@@ -151,6 +151,18 @@ public interface GetService {
     //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
     //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
+    //학번이 유효한지 확인한다.
+    @FormUrlEncoded
+    @POST("/reservation/searchStudentId")
+    Call<DummyResponse> searchStudentId(@Field("studentId") String studentId);
+
+    //학생이 시간표 정보를 가져온다.
+//    @GET("/")
+//    Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
+//    //입력: 시제, 건물명
+//    //입력: {tense: "future or past", buildingName: "성호관"}
+//    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
+//    //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
 //    @POST("/")

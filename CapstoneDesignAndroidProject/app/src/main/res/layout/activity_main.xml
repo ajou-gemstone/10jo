@@ -11,33 +11,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <CheckBox
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/zoomTest3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:useMaterialThemeColors="false"
-            style="@style/a"/>
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="zoomTest3" />
 
         <Button
-            android:id="@+id/StudyBulletinBoardActivityButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/zoomTest2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:text="스터디"/>
+            android:layout_centerHorizontal="true"
+            android:text="zoomTest2" />
 
         <Button
-            android:id="@+id/LectureroomReservationActivityButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/zoomTest"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="강의실"/>
-
-        <Button
-            android:id="@+id/CafeMapActivityButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:text="카페" />
+            android:layout_alignParentEnd="true"
+            android:text="zoomTest" />
 
         <Button
             android:id="@+id/testButton"
@@ -61,6 +55,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="경비원 관리 액티비티" />
+
+        <Button
+            android:id="@+id/timeTableModifyActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="timeTableModifyActivity" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_time_table"
+            android:textSize="30dp"
+            android:text="클릭" />
 
     </LinearLayout>
 

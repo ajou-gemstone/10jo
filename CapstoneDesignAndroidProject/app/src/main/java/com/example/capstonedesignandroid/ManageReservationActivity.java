@@ -16,6 +16,7 @@ import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
 import java.io.IOException;
@@ -40,6 +41,7 @@ public class ManageReservationActivity extends AppCompatActivity {
     private EditText scoreReasonEditText;
     private DummyReservationDetailGuard dummy2;
     private float currentScore;
+    private View date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +140,25 @@ public class ManageReservationActivity extends AppCompatActivity {
             rateSaveButton.setEnabled(false);
             scoreReasonEditText.setEnabled(false);
         }
+
+        //기본 뷰들 초기화
+//        date = findViewById(R.id.date);
+//        day = findViewById(R.id.day);
+//        lectureroom = findViewById(R.id.lectureroom);
+//        startTime = findViewById(R.id.startTime);
+//        lastTime = findViewById(R.id.lastTime);
+//        reservationIntent = findViewById(R.id.reservationIntent);
+//        beforeUploadTime = findViewById(R.id.beforeUploadTime);
+//        afterUploadTime = findViewById(R.id.afterUploadTime);
+//
+//        date.setText(""+ DefinedMethod.getParsedDate(dummy.getDate()));
+//        day.setText(""+DefinedMethod.getDayNamebyAlpabet(dummy.getDay()));
+//        lectureroom.setText(""+dummy.getLectureRoom());
+//        startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
+//        lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())));
+//        reservationIntent.setText(""+dummy.getReservationIntent());
+//        beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
+//        afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
         //----------------초기화------------------
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
