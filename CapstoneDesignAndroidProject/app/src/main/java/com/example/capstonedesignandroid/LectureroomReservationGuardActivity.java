@@ -13,7 +13,5 @@ public class LectureroomReservationGuardActivity extends AppCompatActivity {
 
         //Todo: 학생 예약 화면과 유사하게 작성
 
-
-
     }
 }

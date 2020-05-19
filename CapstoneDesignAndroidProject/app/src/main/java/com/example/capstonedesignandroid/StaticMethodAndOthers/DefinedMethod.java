@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class DefinedMethod {
 
@@ -97,6 +99,17 @@ public class DefinedMethod {
         return date;
     }
 
+    public static Boolean compareTime(String lastTime){
+        lastTime = lastTime.replaceAll(":", "");
+        long nowTime = System.currentTimeMillis();
+        Date nowDate = new Date(nowTime);
+        SimpleDateFormat transFormat = new SimpleDateFormat("HHmm");
+        String date = transFormat.format(nowDate);
+        if(Integer.parseInt(lastTime) > Integer.parseInt(date))
+            return true;
+        return false;
+    }
+
     public static String getBuildingTagByBuildingName(String buildingName){
         switch (buildingName){
             case "성호관": return "1";
@@ -167,5 +180,26 @@ public class DefinedMethod {
         ymz.add(z);
         return ymz;
     }
+
+    public static boolean isEmpty(Object s) {
+        if (s == null) {
+            return true;
+        }
+        if ((s instanceof String) && (((String) s).trim().length() == 0)) {
+            return true;
+        }
+        if (s instanceof Map) {
+            return ((Map<?, ?>) s).isEmpty();
+        }
+        if (s instanceof List) {
+            return ((List<?>) s).isEmpty();
+        }
+        if (s instanceof Object[]) {
+            return (((Object[]) s).length == 0);
+        }
+        return false;
+    }
+
+
 
 }

@@ -210,6 +210,43 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RatingBar
+            android:id="@+id/scoreRatingBar"
+            android:isIndicator="false"
+            android:stepSize="1"
+            android:numStars="5"
+            android:rating="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/scoreDescription"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="아직 채점되지 않음"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/scoreReasonEditText"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine" />
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="15dp"
         android:layout_width="wrap_content"

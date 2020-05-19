@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 
@@ -148,6 +151,26 @@ public class TimetableModifyActivity extends AppCompatActivity {
 
         timetablemodify.setVisibility(View.INVISIBLE);
 
+        com.otaliastudios.zoom.ZoomLayout zoomLayout = findViewById(R.id.zoomLayout);
 
+        Handler mHandler = new Handler();
+        TimerTask mTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            zoomLayout.moveTo(2.0f, 0, 1, true);
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.d("ExceptionTimer", ": " + e);
+                }
+            }
+        };
+
+        Timer mTimer = new Timer();
+        mTimer.schedule(mTask, 100);
     }
 }

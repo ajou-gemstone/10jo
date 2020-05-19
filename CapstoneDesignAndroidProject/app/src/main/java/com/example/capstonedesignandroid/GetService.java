@@ -143,7 +143,7 @@ public interface GetService {
     //동작: 예약 목록에 위 내용을 업데이트 하고, leaderId의 score에 score만큼 감점을 시킨다.
     //출력: {response: success}
 
-    //경비원이 예약정보 list를 받아온다.x
+    //경비원이 예약정보 list를 받아온다.o
     @GET("/reservation/guardBuildingInfo")
     Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
     //입력: 시제, 건물명
@@ -157,6 +157,14 @@ public interface GetService {
     Call<DummyResponse> searchStudentId(@Field("studentId") String studentId);
 
     //학생이 시간표 정보를 가져온다.
+//    @GET("/")
+//    Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
+//    //입력: 시제, 건물명
+//    //입력: {tense: "future or past", buildingName: "성호관"}
+//    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
+//    //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
+
+    //학생이 시간표 정보를 업데이트 한다.
 //    @GET("/")
 //    Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
 //    //입력: 시제, 건물명

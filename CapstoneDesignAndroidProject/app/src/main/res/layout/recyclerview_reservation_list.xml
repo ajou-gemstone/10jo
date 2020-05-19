@@ -1,49 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reservationLL"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="40dp"
+    android:background="@drawable/reservation">
 
     <TextView
-        android:id="@+id/resId"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:text="안녕" />
-
-    <TextView
-        android:id="@+id/lectureRoomTextView"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="강의실"/>
-
-    <TextView
+        android:layout_gravity="center"
         android:id="@+id/dateTextView"
         android:layout_width="0dp"
         android:layout_weight="2"
         android:layout_height="wrap_content"
-        android:text="날짜"/>
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="2020-xx-xx"/>
 
     <TextView
+        android:layout_gravity="center"
         android:id="@+id/dayTextView"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="요일"/>
+        android:gravity="left"
+        android:layout_marginLeft="6dp"
+        android:textSize="18sp"
+        android:text="월"/>
 
     <TextView
+        android:layout_gravity="center"
+        android:id="@+id/lectureRoomTextView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="강xxx"/>
+
+    <TextView
+        android:layout_gravity="center"
         android:id="@+id/startTimeTextView"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="시작시간"/>
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="7:00"/>
 
     <TextView
+        android:layout_gravity="center"
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="~"/>
+
+    <TextView
+        android:layout_gravity="center"
         android:id="@+id/lastTimeTextView"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="종료시간"/>
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="21:00"/>
+
+    <ImageView
+        android:id="@+id/scoreChecked"
+        android:layout_width="0dp"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.7"
+        android:src="@drawable/star">
+    </ImageView>
 
 </LinearLayout>

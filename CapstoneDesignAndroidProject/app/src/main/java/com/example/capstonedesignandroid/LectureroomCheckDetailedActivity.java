@@ -1,18 +1,15 @@
 package com.example.capstonedesignandroid;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,7 +19,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
@@ -167,7 +163,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         cancelReservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomCheckDetailedActivity.this);
                 builder.setTitle("정말로 예약을 취소하시겠습니까?").setMessage("강의실 사용 전 3시간 이내에 취소하면 패널티가 부과됩니다.");
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
                     @Override
@@ -175,8 +171,14 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                     {
                         GetService service = retrofit.create(GetService.class);
                         Call<DummyResponse> call = service.deleteMyReservation(resId);
-                        //Todo: 삭제 내역도 UI에 그려준다.
                         call.enqueue(response);
+                        //화면을 다시 그려준다.
+                        Intent intent = new Intent(getApplicationContext(), LectureroomCheckActivity.class);
+                        startActivity(intent);
+                        Toast toast = Toast.makeText(getApplicationContext(), "예약이 취소되었습니다.", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                        finish();
                     }
                 });
                 builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
@@ -203,7 +205,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         day.setText(""+DefinedMethod.getDayNamebyAlpabet(dummy.getDay()));
         lectureroom.setText(""+dummy.getLectureRoom());
         startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
-        lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())));
+        lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())+1));
         reservationIntent.setText(""+dummy.getReservationIntent());
         beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
         afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
@@ -313,8 +315,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
 
                         Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다.", Toast.LENGTH_LONG).show();
-                        beforeUploadTime.setText("업로드 시간: "+ DefinedMethod.getCurrentDate2());
-
+                        beforeUploadTime.setText("업로드 시간: "+DefinedMethod.getCurrentDate2());
                         //db에 파일 이름 저장
                         GetService service = retrofit.create(GetService.class);
                         Call<DummyResponse> call = service.postBeforePicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
@@ -357,7 +358,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                         Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_LONG).show();
-                        afterUploadTime.setText("업로드 시간: "+ DefinedMethod.getCurrentDate2());
+                        afterUploadTime.setText("업로드 시간: "+DefinedMethod.getCurrentDate2());
                         //db에 파일 이름 저장
                         GetService service = retrofit.create(GetService.class);
                         Call<DummyResponse> call = service.postAfterPicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());

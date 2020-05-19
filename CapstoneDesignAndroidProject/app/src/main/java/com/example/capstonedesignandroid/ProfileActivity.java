@@ -178,7 +178,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() { //super.onBackPressed();비워두면 실행안되서 뒤로가기 안됨
+    public void onBackPressed() {
+        if(timaTableBigRL.getVisibility()==View.VISIBLE){
+            timaTableBigRL.setVisibility(View.INVISIBLE);
+            getSupportFragmentManager().beginTransaction().remove(timeTableBigFragment).commit();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

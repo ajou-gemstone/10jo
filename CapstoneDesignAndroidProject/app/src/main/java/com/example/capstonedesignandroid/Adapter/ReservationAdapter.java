@@ -1,9 +1,14 @@
 package com.example.capstonedesignandroid.Adapter;
 
 import android.content.Context;
+
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +27,7 @@ import java.util.ArrayList;
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> {
     private int timeCountNum = 0;
     private ArrayList<LectureRoomReservationState> mData = null ;
+    private Context context;
 
     //OnItemClickListener 리스너 객체 참조를 어댑터에 전달하는 메서드
     //이 메소드가 있어야 activity에서 override한 class를 instance로 객체화하여 method가 실제로 작동이 가능하도록 할 수 있다.
@@ -52,9 +58,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
             //-------------------------
             //강의실 별 TimeTable UI를 개수에 맞게 동적으로 그려준다.
-            LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(150, 150);
-            textViewParams.leftMargin = 5;
-
+            LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(150, LinearLayout.LayoutParams.MATCH_PARENT);
             String eachStateList = mData.get(0).getStateList();
             //강의실 별 TimeTable UI를 개수에 맞게 동적으로 그려준다.
             //여기서는 adapter position을 가져올 수 없다.
@@ -65,6 +69,8 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                 textView.setLayoutParams(textViewParams);
 //                resIdTextView.setText(eachState);
                 //동적으로 할당하였을 때는 tag를 붙이는게 편하다.
+                textView.setBackground(ContextCompat.getDrawable(context, R.drawable.reservation));
+                textView.setGravity(Gravity.CENTER);
                 textView.setTag(""+i);
                 i++;
                 //click하여 생기는 이벤트는 activity에서 처리
@@ -92,7 +98,8 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    public ReservationAdapter(ArrayList<LectureRoomReservationState> list) {
+    public ReservationAdapter(Context context, ArrayList<LectureRoomReservationState> list) {
+        this.context = context;
         mData = list ;
     }
 
@@ -127,6 +134,11 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             //강의실이 이미 예약되어 있는 경우 click을 못하도록 막는다.
             if(eachState.equals("R") || eachState.equals("L")){
                 textView.setClickable(false);
+                textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+                textView.setTextColor(Color.argb(255, 255, 0, 0));
+            }
+            if(eachState.equals("A")){
+                textView.setTextColor(Color.argb(0, 255, 255, 255));
             }
             i++;
         }
@@ -135,9 +147,9 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             holder.lectureRoomNameButton.setClickable(false);
             for(i = 0; i < timeCountNum; i++){
                 holder.lectureTimetable.findViewWithTag(""+i).setClickable(false);
+                holder.lectureTimetable.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(context, R.drawable.reservation2));
             }
         }
-
     }
 
     // getItemCount() - 전체 데이터 갯수 리턴.
