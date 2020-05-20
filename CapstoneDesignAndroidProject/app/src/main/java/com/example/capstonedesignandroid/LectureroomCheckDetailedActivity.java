@@ -122,7 +122,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         try {
             thread.join();
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
 
         //----------------서버에서 받기 코드-------------------

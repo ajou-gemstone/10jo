@@ -49,7 +49,7 @@
             android:id="@+id/test2Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test2"/>
+            android:text="파이어베이스 테스트"/>
         <Button
             android:id="@+id/buildingGuardActivityButton"
             android:layout_width="wrap_content"

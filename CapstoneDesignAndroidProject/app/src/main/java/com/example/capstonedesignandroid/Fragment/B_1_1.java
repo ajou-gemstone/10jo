@@ -84,8 +84,8 @@ public class B_1_1 extends Fragment {
                 try {
                     List<DummyCurrentReservationBuildingFloor> dummies = call.execute().body();
                     dummyCurrentReservationBuildingFloorArrayList = new ArrayList<DummyCurrentReservationBuildingFloor>(dummies);
-                    Log.d("dummyLectureRoomReservationList", ""+dummyCurrentReservationBuildingFloorArrayList.get(0).getLectureRoom());
-                    Log.d("dummyLectureRoomReservationList", ""+dummyCurrentReservationBuildingFloorArrayList.get(0).getStartTime());
+//                    Log.d("dummyLectureRoomReservationList", ""+dummyCurrentReservationBuildingFloorArrayList.get(0).getLectureRoom());
+//                    Log.d("dummyLectureRoomReservationList", ""+dummyCurrentReservationBuildingFloorArrayList.get(0).getStartTime());
                     IOExceptionbool = false;
                     Log.d("run: ", "run: ");
                 } catch (IOException e) {
@@ -112,9 +112,9 @@ public class B_1_1 extends Fragment {
         //xml 초기화 코드
         LinearLayout l101 = rootView.findViewById(R.id.l101);
         TextView l101t = rootView.findViewById(R.id.l101t);
-        l101t.setText("시작시간: "+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummyCurrentReservationBuildingFloorArrayList.get(0).getStartTime())) +
-                "종료시간: " +  DefinedMethod.getTimeByPosition(Integer.parseInt(dummyCurrentReservationBuildingFloorArrayList.get(0).getLastTime()))
-                + " resId:" + dummyCurrentReservationBuildingFloorArrayList.get(0).getReservationId());
+//        l101t.setText("시작시간: "+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummyCurrentReservationBuildingFloorArrayList.get(0).getStartTime())) +
+//                "종료시간: " +  DefinedMethod.getTimeByPosition(Integer.parseInt(dummyCurrentReservationBuildingFloorArrayList.get(0).getLastTime()))
+//                + " resId:" + dummyCurrentReservationBuildingFloorArrayList.get(0).getReservationId());
 
         //강의실 클릭시 액티비티에서 나머지를 처리
 

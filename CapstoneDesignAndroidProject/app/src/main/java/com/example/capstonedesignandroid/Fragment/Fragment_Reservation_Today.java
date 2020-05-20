@@ -56,7 +56,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-//Todo: 나중에 한번에 하자.
+
 public class Fragment_Reservation_Today extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 11111;
     ViewPager viewPager;
@@ -140,7 +140,7 @@ public class Fragment_Reservation_Today extends Fragment {
         try {
             thread.join();
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
 
         //받아오는데 오류면 예약 없음 화면
@@ -174,7 +174,7 @@ public class Fragment_Reservation_Today extends Fragment {
             try {
                 thread2.join();
             } catch (Exception e) {
-                // TODO: handle exception
+
             }
 
             //----------------서버에서 받기 코드-------------------
@@ -264,7 +264,6 @@ public class Fragment_Reservation_Today extends Fragment {
             try {
                 guardCallThread.join();
             } catch (Exception e) {
-                // TODO: handle exception
             }
 
             //이미 강의실 예약 점수가 있는 경우 예약 점수를 바꿀 수 없다.

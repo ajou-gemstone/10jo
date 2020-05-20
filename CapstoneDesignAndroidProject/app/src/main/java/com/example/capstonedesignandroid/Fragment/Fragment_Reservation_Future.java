@@ -86,7 +86,7 @@ public class Fragment_Reservation_Future extends Fragment {
         try {
             thread.join();
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
         //----------------서버에서 받기 코드-------------------
         //출력: {reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}

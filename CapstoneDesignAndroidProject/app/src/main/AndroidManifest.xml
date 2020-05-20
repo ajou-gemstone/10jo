@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ZoomTest3Activity"></activity>
+        <activity android:name=".FirebaseTestActivity"></activity>
+        <activity android:name=".ZoomTest3Activity" />
         <activity android:name=".ZoomTest2Activity" />
         <activity android:name=".ZoomTestActivity" />
         <activity android:name=".TimetableModifyActivity" />

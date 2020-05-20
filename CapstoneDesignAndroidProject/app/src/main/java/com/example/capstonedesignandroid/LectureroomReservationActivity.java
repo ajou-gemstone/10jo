@@ -2,7 +2,6 @@ package com.example.capstonedesignandroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,7 +24,6 @@ import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.ListPopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +40,6 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -143,10 +141,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
         //현재시간 보여주기
         dataSelected = true;
-        nowTime = System.currentTimeMillis();
-        reserveDate = new Date(nowTime);
-        //시, 분, 초를 없앤 년,월,일의 Date
-        reserveDate = DefinedMethod.getDate(DefinedMethod.getYear(reserveDate), DefinedMethod.getMonth(reserveDate),DefinedMethod.getDay(reserveDate));
+        reserveDate = new Date();
+        reserveDate = DefinedMethod.getCurrentDate();
         currentDate = new Date();
         currentDate = reserveDate;
 
@@ -350,7 +346,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 try {
                     thread.join();
                 } catch (Exception e) {
-                    // TODO: handle exception
+
                 }
 
                 //-----------------------------------------------------------
@@ -523,7 +519,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                // TODO Auto-generated method stub
                                 // 바뀐 것을 적용한다.
                                 checkedItems[which] = isChecked;
                             }
@@ -562,7 +557,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             try {
                                 thread.join();
                             } catch (Exception e) {
-                                // TODO: handle exception
                             }
 
                             if(success){
@@ -650,6 +644,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         ReservationAdapter adapter = new ReservationAdapter(getApplicationContext(), lectureRoomReservationStateArrayList) ;
         recyclerViewReservation.setAdapter(adapter);
 
+//        recyclerViewReservation.addItemDecoration(new HeaderItemDecoration(recyclerViewReservation, (HeaderItemDecoration.StickyHeaderInterface) adapter));
+
         //adapter의 click event를 listen할 수 있도록 액티비티에서 listener 객체를 생성, 등록하고
         //인터페이스를 통해 adapter에서 위임하여 처리하도록 하며
         //액티비티에서 adapter의 파라미터를 사용할 수 있도록 한다.
@@ -685,7 +681,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     try {
                         thread.join();
                     } catch (Exception e) {
-                        // TODO: handle exception
                     }
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);

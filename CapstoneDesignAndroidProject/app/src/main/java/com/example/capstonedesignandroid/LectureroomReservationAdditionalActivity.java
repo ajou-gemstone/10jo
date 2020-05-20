@@ -88,7 +88,6 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                 try {
                     thread.join();
                 } catch (Exception e) {
-                    // TODO: handle exception
                 }
                 if(saveComplete2){
                     classofArrayList.add("" + classofEdittext.getText());
@@ -149,7 +148,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                 try {
                     thread.join();
                 } catch (Exception e) {
-                    // TODO: handle exception
+
                 }
                 if(saveComplete){
                     Toast.makeText(getApplicationContext(), "예약 신청이 성공했습니다.", Toast.LENGTH_LONG).show();

@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid;
 
 
+import com.example.capstonedesignandroid.DTO.DummyCafeCoreInfo;
 import com.example.capstonedesignandroid.DTO.DummyCurrentReservationBuildingFloor;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
@@ -151,10 +152,21 @@ public interface GetService {
     //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
     //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
-    //학번이 유효한지 확인한다.
+    //학번이 유효한지 확인한다.o
     @FormUrlEncoded
     @POST("/reservation/searchStudentId")
     Call<DummyResponse> searchStudentId(@Field("studentId") String studentId);
+
+    //카페 정보를 가져온다.
+    @GET("/")
+    Call<List<DummyCafeCoreInfo>> getCafeInfoList();
+
+    //현재 시간을 가져온다.
+    @GET("/")
+    Call<DummyResponse> getServerCurrentDate();
+    //long nowTime = System.currentTimeMillis(); -->
+    //var currentTimeMillis = new Date().getTime();
+    //출력: response: 1589944246024
 
     //학생이 시간표 정보를 가져온다.
 //    @GET("/")

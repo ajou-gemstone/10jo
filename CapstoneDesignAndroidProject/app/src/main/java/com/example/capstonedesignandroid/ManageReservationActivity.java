@@ -101,7 +101,7 @@ public class ManageReservationActivity extends AppCompatActivity {
         try {
             thread.join();
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
 
 //        mockup data로 대체
@@ -117,7 +117,7 @@ public class ManageReservationActivity extends AppCompatActivity {
         try {
             thread2.join();
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
         //        mockup data로 대체
         if(IOexception){

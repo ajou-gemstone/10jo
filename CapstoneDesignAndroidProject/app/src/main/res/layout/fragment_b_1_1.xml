@@ -1,42 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.otaliastudios.zoom.ZoomLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/zoomLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.B_1_1">
+    android:scrollbars="vertical|horizontal"
+    app:alignment="center"
+    app:animationDuration="400"
+    app:flingEnabled="true"
+    app:hasClickableChildren="true"
+    app:horizontalPanEnabled="true"
+    app:maxZoom="5"
+    app:maxZoomType="zoom"
+    app:minZoom="0.7"
+    app:minZoomType="zoom"
+    app:oneFingerScrollEnabled="true"
+    app:overPinchable="true"
+    app:overScrollHorizontal="true"
+    app:overScrollVertical="true"
+    app:scrollEnabled="true"
+    app:threeFingersScrollEnabled="true"
+    app:transformation="centerInside"
+    app:transformationGravity="auto"
+    app:twoFingersScrollEnabled="true"
+    app:verticalPanEnabled="true"
+    app:zoomEnabled="true">
 
-    <HorizontalScrollView
+    <RelativeLayout
+        android:id="@+id/baselayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@drawable/reservation">
 
-        <RelativeLayout
-            android:id="@+id/baselayout"
-            android:layout_width="3000dp"
-            android:layout_height="3000dp"
-            android:background="@drawable/reserve">
+        <!--dp로 절대값으로 view를 그린다.-->
+        <LinearLayout
+            android:id="@+id/l101"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical"
+            android:background="@drawable/reservation3">
 
-            <!--dp로 절대값으로 view를 그린다.-->
-            <LinearLayout
-                android:id="@+id/l101"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="50dp"
-                android:background="#E0EC80">
+            <TextView
+                android:id="@+id/l101t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성101" />
+            <TextView
+                android:id="@+id/l101t2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+            <TextView
+                android:id="@+id/l101t3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
 
-                <TextView
-                    android:id="@+id/l101t"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="성101" />
+        </LinearLayout>
 
-            </LinearLayout>
+    </RelativeLayout>
 
-        </RelativeLayout>
-
-    </HorizontalScrollView>
-
-</ScrollView>
+</com.otaliastudios.zoom.ZoomLayout>

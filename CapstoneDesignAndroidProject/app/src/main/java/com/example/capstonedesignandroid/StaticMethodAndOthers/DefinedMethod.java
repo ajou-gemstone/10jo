@@ -3,9 +3,15 @@ package com.example.capstonedesignandroid.StaticMethodAndOthers;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import androidx.loader.content.CursorLoader;
 
+import com.example.capstonedesignandroid.DTO.DummyCafeCoreInfo;
+import com.example.capstonedesignandroid.DTO.DummyResponse;
+import com.example.capstonedesignandroid.GetService;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +19,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DefinedMethod {
 
@@ -77,17 +87,50 @@ public class DefinedMethod {
         return -1;
     }
 
-    public static String getCurrentDate(){
+    public static Date getCurrentDate(){
         long nowTime = System.currentTimeMillis();
+        Log.d("getCurrentDatee", " "+ nowTime);
         Date nowDate = new Date(nowTime);
         //시, 분, 초를 없앤 년,월,일의 Date
         Date currentDate = DefinedMethod.getDate(DefinedMethod.getYear(nowDate), DefinedMethod.getMonth(nowDate), DefinedMethod.getDay(nowDate));
-        int year = DefinedMethod.getYear(currentDate);
-        int month = DefinedMethod.getMonth(currentDate) + 1;
-        int day = DefinedMethod.getDay(currentDate);
-        String date = "" + year + "-" + month + "-" + day;
 
-        return date;
+        return currentDate;
+    }
+
+    public static Date getCurrentServerDate(){
+        final long[] nowServerTime = {0};
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit.create(GetService.class);
+        Call<DummyResponse> call = service.getServerCurrentDate();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse response = call.execute().body();
+                    Log.d("nowServerTime: ", "" + response.getResponse());
+                    nowServerTime[0] = Long.parseLong(response.getResponse());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+
+        Date nowDate = new Date(nowServerTime[0]);
+        //시, 분, 초를 없앤 년,월,일의 Date
+        Date currentDate = DefinedMethod.getDate(DefinedMethod.getYear(nowDate), DefinedMethod.getMonth(nowDate), DefinedMethod.getDay(nowDate));
+
+        return currentDate;
     }
 
     public static String getCurrentDate2(){
@@ -99,10 +142,84 @@ public class DefinedMethod {
         return date;
     }
 
+    public static String getCurrentServerDate2(){
+        final long[] nowServerTime = {0};
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit.create(GetService.class);
+        Call<DummyResponse> call = service.getServerCurrentDate();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse response = call.execute().body();
+                    Log.d("nowServerTime: ", "" + response.getResponse());
+                    nowServerTime[0] = Long.parseLong(response.getResponse());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+
+        Date nowDate = new Date(nowServerTime[0]);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = transFormat.format(nowDate);
+
+        return date;
+    }
+
     public static Boolean compareTime(String lastTime){
         lastTime = lastTime.replaceAll(":", "");
         long nowTime = System.currentTimeMillis();
         Date nowDate = new Date(nowTime);
+        SimpleDateFormat transFormat = new SimpleDateFormat("HHmm");
+        String date = transFormat.format(nowDate);
+        if(Integer.parseInt(lastTime) > Integer.parseInt(date))
+            return true;
+        return false;
+    }
+
+    public static Boolean compareServerTime(String lastTime){
+        lastTime = lastTime.replaceAll(":", "");
+        final long[] nowServerTime = {0};
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit.create(GetService.class);
+        Call<DummyResponse> call = service.getServerCurrentDate();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse response = call.execute().body();
+                    Log.d("nowServerTime: ", "" + response.getResponse());
+                    nowServerTime[0] = Long.parseLong(response.getResponse());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+
+        Date nowDate = new Date(nowServerTime[0]);
         SimpleDateFormat transFormat = new SimpleDateFormat("HHmm");
         String date = transFormat.format(nowDate);
         if(Integer.parseInt(lastTime) > Integer.parseInt(date))

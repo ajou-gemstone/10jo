@@ -91,9 +91,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                     mListener.onItemClick(view, getAdapterPosition());
                 }
             });
-
             //터치 2번으로 시간대 범위를 정한다.
-
         }
     }
 
@@ -142,13 +140,14 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             }
             i++;
         }
-        //맨 윗 줄은 touch가 불가능 하도록 한다.
+        //맨 윗 줄은 touch가 불가능 하도록 한다. 그리고 상단에 고정한다.
         if(position == 0){
             holder.lectureRoomNameButton.setClickable(false);
             for(i = 0; i < timeCountNum; i++){
                 holder.lectureTimetable.findViewWithTag(""+i).setClickable(false);
                 holder.lectureTimetable.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(context, R.drawable.reservation2));
             }
+
         }
     }
 
@@ -157,5 +156,14 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     public int getItemCount() {
         return mData.size() ;
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(position == 0){
+            return 0;//header
+        }else
+            return 1;//contents
+    }
+
 
 }

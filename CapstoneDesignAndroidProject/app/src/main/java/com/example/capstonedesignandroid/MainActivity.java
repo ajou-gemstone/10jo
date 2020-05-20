@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity{
     private Button zoomTest3;
     private Button timeTableModifyActivity;
     private TextView textView3;
+    private Button test2button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,15 @@ public class MainActivity extends AppCompatActivity{
         zoomTest3 = findViewById(R.id.zoomTest3);
         timeTableModifyActivity = findViewById(R.id.timeTableModifyActivity);
         textView3 = findViewById(R.id.textView3);
+        test2button = findViewById(R.id.test2Button);
+
+        test2button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FirebaseTestActivity.class);
+                startActivity(intent);
+            }
+        });
 
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override

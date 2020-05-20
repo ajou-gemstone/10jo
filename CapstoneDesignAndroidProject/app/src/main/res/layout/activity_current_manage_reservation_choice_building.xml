@@ -10,44 +10,62 @@
 <!--    순서대로 tag 1~8-->
 
     <Button
+        android:layout_marginTop="30dp"
         android:id="@+id/button1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="25sp"
         android:text="성호관"/>
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="25sp"
         android:text="다산관"/>
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="25sp"
         android:text="원천정보관"/>
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="25sp"
         android:text="율곡관"/>
     <Button
         android:id="@+id/button5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="25sp"
         android:text="서관"/>
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="25sp"
         android:text="신학생회관"/>
     <Button
         android:id="@+id/button7"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="25sp"
         android:text="연암관"/>
     <Button
+        android:layout_marginBottom="30dp"
         android:id="@+id/button8"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="25sp"
         android:text="원천관"/>
 
 

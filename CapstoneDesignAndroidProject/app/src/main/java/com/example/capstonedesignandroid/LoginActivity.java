@@ -78,28 +78,6 @@ public class LoginActivity extends AppCompatActivity {
             alert.show();
         }
 
-        //----------------------firebase--------------
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w("getInstanceId", "getInstanceId failed", task.getException());
-                            Log.d("onComplete", "onComplete: ");
-                            return;
-                        }
-
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-
-                        // Log and toast
-                        Log.d("token", token);
-                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        //-------------------firebase-------------------
-
         id.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
