@@ -37,4 +37,9 @@ public interface GroupService {
     Call<DummyResponse> registerStudy(@Field("groupId") String groupId, @Field("userId") String userId);
     //출력 : success or fail
 
+    @POST("/study/edit")
+    @FormUrlEncoded
+    Call<DummyResponse> editStudy(@Field("groupId") String groupId, @Field("title") String title, @Field("textBody") String textBody, @Field("tagName") ArrayList<String> tagName, @Field("studyGroupNumTot") String studyGroupNumTot);
+    //출력 : success or fail
+
 }

@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TimetableModifyActivity"></activity>
+        <activity android:name=".TimetableModifyActivity"/>
         <activity android:name=".GuardChoiceBuildingActivity" />
         <activity android:name=".GuardReservationCheckActivity" />
         <activity android:name=".LectureroomReservationGuardActivity" />
@@ -28,7 +28,9 @@
         <activity android:name=".CurrentManageReservationActivity" />
         <activity android:name=".CurrentManageReservationChoiceBuildingActivity" />
         <activity android:name=".MainBuildingGuardActivity" />
-        <activity android:name=".LectureroomReservationAdditionalActivity" /> <!-- firebase FCM 수신 서비스 -->
+        <activity android:name=".LectureroomReservationAdditionalActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"/> <!-- firebase FCM 수신 서비스 -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:enabled="true"

@@ -85,7 +85,7 @@ public class ChattingAdapter extends BaseAdapter {
         if ( convertView == null ) {
             // view가 null일 경우 커스텀 레이아웃을 얻어 옴
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.chatballoon, parent, false);
+            convertView = inflater.inflate(R.layout.activity_chatitem, parent, false);
 
             layout    = (LinearLayout) convertView.findViewById(R.id.layout);
             text    = (TextView) convertView.findViewById(R.id.text);

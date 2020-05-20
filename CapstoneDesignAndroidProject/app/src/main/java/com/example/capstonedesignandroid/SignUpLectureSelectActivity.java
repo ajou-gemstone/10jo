@@ -68,7 +68,6 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
                 boolList = lectureListAdapter.getBoolean();
                 for(int i=0; i<boolList.length; i++){
                     if(boolList[i] == true) {
-                        Log.d("aaaaa", tempArray.get(i));
                         lectureArray.add(tempArray.get(i));
                     }
                 }
@@ -96,8 +95,6 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
             public void run() {
                 try {
                     DummyResponse dummies = call.execute().body();
-                    Log.d("aaaaaaaaaaaaaa", dummies.getResponse());
-
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");

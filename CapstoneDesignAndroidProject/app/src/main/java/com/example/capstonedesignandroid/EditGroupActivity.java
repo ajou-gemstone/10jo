@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.TagName;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
@@ -27,14 +28,15 @@ public class EditGroupActivity extends AppCompatActivity {
 
     String userId;
     EditText grouptitle, tag, body, totalnum;
-    Button roommake;
+    Button roomedit;
+    ArrayList<String> tagarray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_group);
 
-        roommake = (Button) findViewById(R.id.button_makeroom2);
+        roomedit = (Button) findViewById(R.id.button_makeroom2);
         totalnum = (EditText) findViewById(R.id.totalnum);
         grouptitle = (EditText) findViewById(R.id.title);
         tag= (EditText) findViewById(R.id.tag);
@@ -55,30 +57,26 @@ public class EditGroupActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
-        roommake.setOnClickListener(new View.OnClickListener() {
+        roomedit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                 String t = tag.getText().toString();
+                 String[] tArray = t.split("[#| |,]");
+                 for(String tag : tArray)
+                     if( !tag.equals("") )
+                         tagarray.add(tag);
+
+                Retrofit retrofit2 = new Retrofit.Builder()
+                        .baseUrl(MyConstants.BASE)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                GroupService groupService = retrofit2.create(GroupService.class);
+                Call<DummyResponse> call2 = groupService.editStudy(groupId, grouptitle.getText().toString(), body.getText().toString(), tagarray, totalnum.getText().toString());
+                CallThread2(call2);
+
                 Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
                 startActivity(intent);
-
-                // String title = grouptitle.getText().toString();
-                // String textBody = body.getText().toString();
-                // int studyGroupNumTot = parseInt(totalnum.getText().toString());
-                // String t = tag.getText().toString();
-                // String[] tArray = t.split("[#| |,]");
-                // ArrayList<String> tagName = new ArrayList<>();
-                // for(String tag : tArray)
-                //     if( !tag.equals("") )
-                //         tagName.add(tag);
-
-                // Retrofit retrofit2 = new Retrofit.Builder()
-                //         .baseUrl(MyConstants.BASE)
-                //         .addConverterFactory(GsonConverterFactory.create())
-                //         .build();
-
-                // GroupService groupService = retrofit2.create(GroupService.class);
-                // Call<DummyResponse> call2 = groupService.createStudy(userId, category, title, textBody, tagName, studyGroupNumTot);
-                // CallThread(call2);
-
             }
         });
     }//onCreate
@@ -111,5 +109,27 @@ public class EditGroupActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
     }//callthread
+
+    private void CallThread2(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                    Log.d("bbbbb", dummies.toString());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }//callthread2
+
 
 }

@@ -225,12 +225,20 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
         grouplistAdapter.clear();
 
-        if (charText.length() == 0) {
-            //모든 목록 추가하기
-            for (int i = 0; i <= titleArray.size() - 1; i++) {
-                if( ! categoryArray.get(i).equals("all"))
-                    grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+        if (charText.length() == 0) {    //모든 목록 추가하기
+            if(category.equals("전체")) {
+                for (int i = 0; i <= titleArray.size() - 1; i++) {
+                    if (!categoryArray.get(i).equals("all"))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+                }
             }
+            else{ //과목 선택했을 때
+                for (int i = 0; i <= titleArray.size() - 1; i++) {
+                    if (categoryArray.get(i).equals(category))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+                }
+            }
+
         }
         else{
             // 리스트의 모든 데이터를 검색한다.

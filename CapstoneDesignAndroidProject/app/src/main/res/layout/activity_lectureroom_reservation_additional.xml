@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_vertical"
     android:padding="20dp"
     tools:context=".LectureroomReservationAdditionalActivity">
 
@@ -12,7 +13,6 @@
         android:id="@+id/reservationIntentEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
         android:hint="강의실 사용 목적을 적어주세요"
         android:ems="10"
         android:layout_marginBottom="20dp"
@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@drawable/blue_button"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:textColor="#ffffff"
         android:text="저장하기"/>
 
