@@ -49,7 +49,7 @@ public class MakeGroupActivity extends AppCompatActivity {
     RadioGroup grouptype;
     RadioButton lecturechecked, allchecked;
     LinearLayout lecture_layout;
-    String category = "";
+    String category = "all";
     ArrayList<String> mylectureArray = new ArrayList<>();
     String userId;
 
@@ -132,8 +132,6 @@ public class MakeGroupActivity extends AppCompatActivity {
 
         roommake.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
-                startActivity(intent);
 
                 String title = grouptitle.getText().toString();
                 String textBody = body.getText().toString();
@@ -153,6 +151,10 @@ public class MakeGroupActivity extends AppCompatActivity {
                 GroupService groupService = retrofit2.create(GroupService.class);
                 Call<DummyResponse> call2 = groupService.createStudy(userId, category, title, textBody, tagName, studyGroupNumTot);
                 CallThread(call2);
+
+                Toast.makeText(MakeGroupActivity.this, "즐거운 모임하세요.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
+                startActivity(intent);
 
             }
         });

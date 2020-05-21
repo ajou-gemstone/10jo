@@ -187,11 +187,12 @@ public class LoginActivity extends AppCompatActivity {
                     User dummies = call.execute().body();
                     primary_id = dummies.getId();
                     Log.d("primary_id", dummies.getId());
-                    if(!primary_id.equals(-1)) {
+                    if(!primary_id.equals("-1")) {
                         SharedPreference.removeAllAttribute(getApplicationContext());
                         SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
                     }
                     else{
+                        Log.d("11111", "11111");
                         loginsucess = false;
                     }
                 } catch (IOException e) {

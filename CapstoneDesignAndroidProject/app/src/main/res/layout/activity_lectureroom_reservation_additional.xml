@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_vertical"
     android:padding="20dp"
     tools:context=".LectureroomReservationAdditionalActivity">
 
@@ -12,17 +13,11 @@
         android:id="@+id/reservationIntentEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
         android:hint="강의실 사용 목적을 적어주세요"
         android:ems="10"
         android:layout_marginBottom="20dp"
         android:gravity="start|top"
         android:inputType="textMultiLine" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="사용 학생"
-        android:textSize="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,9 +28,9 @@
             android:id="@+id/classofEdittext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:layout_marginRight="20dp"
-            android:hint="학번을 적어주세요"
+            android:hint="사용할 학생들의 학번을 적어주세요"
             android:ems="10"
             android:inputType="number"/>
 
@@ -62,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@drawable/blue_button"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:textColor="#ffffff"
         android:text="저장하기"/>
 

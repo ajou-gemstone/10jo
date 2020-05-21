@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/chat_layout"
+
+        android:background="#abe0b9"
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,8 +28,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="모임 이름은 여기"
                 android:textSize="17dp"
-                android:textStyle="bold"
-                android:textColor="@color/asmr_blue"/>
+                android:textStyle="bold"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -80,7 +81,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="#abe0b9"
         android:layout_alignParentBottom="true">
 
         <EditText
@@ -100,8 +100,7 @@
         <Button
             android:id="@+id/send_btn"
             android:layout_height="30dp"
-            android:layout_width="50dp"
-            android:layout_weight="0.05"
+            android:layout_width="60dp"
             android:background="@drawable/blue_button"
             android:layout_below="@+id/chat_content"
             android:layout_gravity="right|center"

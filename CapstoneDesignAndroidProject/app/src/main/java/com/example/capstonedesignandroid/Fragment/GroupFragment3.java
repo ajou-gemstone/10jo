@@ -153,7 +153,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
                     groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", currentNumArray.get(i), totalNumArray.get(i));
                 } else if (tagArray.get(i).contains(charText)) {
                     groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", currentNumArray.get(i), totalNumArray.get(i));
-                }
+                }   
             }
         }
         groupAdapter.notifyDataSetChanged();
