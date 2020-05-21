@@ -10,8 +10,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,7 +21,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:textColor="#000000"
-                    android:textColorHint="#555555"
+                    android:textColorHint="#c0c0c0"
                     android:layout_weight="0.8"
                     android:privateImeOptions="defaultInputmode=english"
                     android:theme="@style/MyEditTextTheme"
@@ -29,12 +29,12 @@
             <Button
                 android:id="@+id/button_check_id"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="30dp"
                 android:layout_weight="0.15"
                 android:layout_marginLeft="10dp"
                 android:textSize="13dp"
                 android:textColor="#ffffff"
-                android:background="@color/asmr_green2"
+                android:background="@drawable/green2_button"
                 android:text="아이디 확인" />
         </LinearLayout>
         <EditText
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColor="#000000"
-            android:textColorHint="#555555"
+            android:textColorHint="#c0c0c0"
             android:privateImeOptions="defaultInputmode=english"
             android:password="true"
             android:theme="@style/MyEditTextTheme"
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColor="#000000"
-            android:textColorHint="#555555"
+            android:textColorHint="#c0c0c0"
             android:theme="@style/MyEditTextTheme"
             android:hint="이름"/>
         <EditText
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColor="#000000"
-            android:textColorHint="#555555"
+            android:textColorHint="#c0c0c0"
             android:inputType="number"
             android:theme="@style/MyEditTextTheme"
             android:hint="학번"/>
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textColor="#000000"
-            android:textColorHint="#555555"
+            android:textColorHint="#c0c0c0"
             android:privateImeOptions="defaultInputmode=english"
             android:theme="@style/MyEditTextTheme"
             android:hint="이메일@ajou.ac.kr"/>
@@ -80,10 +80,10 @@
             android:id="@+id/button_email_auth"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/blue_button"
             android:text="본인인증하기" />
 
     </LinearLayout>

@@ -31,24 +31,24 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProfileActivity extends AppCompatActivity {
+public class MyProfileActivity extends AppCompatActivity {
 
     TextView name, num, email, myname;
     Intent intent;
     ImageView leader, member;
-    Button noti_zero, noti_yes;
+    Button noti_zero, noti_yes, logout;
     String userId;
     protected BottomNavigationView navigationView;
     private TimeTableFragment timeTableFragment;
-    private TimeTableFragment timeTableBigFragment;
     private RelativeLayout timaTableBigRL;
     private Button timeTableBigCancel;
+    private TimeTableFragment timeTableBigFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_profile_my);
 
         myname =(TextView) findViewById(R.id.myname);
         name =(TextView) findViewById(R.id.name);
@@ -58,6 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
         member = findViewById(R.id.member_image);
         noti_zero = findViewById(R.id.noti_zero);
         noti_yes = findViewById(R.id.noti_yes);
+        logout = findViewById(R.id.logout);
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_profile);
@@ -83,6 +84,13 @@ public class ProfileActivity extends AppCompatActivity {
         noti_yes.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SharedPreference.removeAllAttribute(getApplicationContext());
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -195,22 +203,22 @@ public class ProfileActivity extends AppCompatActivity {
 
                     break;
                 case R.id.action_group :
-                    Intent intent1 = new Intent(ProfileActivity.this, StudyBulletinBoardActivity.class);
+                    Intent intent1 = new Intent(MyProfileActivity.this, StudyBulletinBoardActivity.class);
                     startActivity(intent1);
                     finish();
                     break;
                 case R.id.action_reservation :
-                    Intent intent2 = new Intent(ProfileActivity.this, LectureroomReservationActivity.class);
+                    Intent intent2 = new Intent(MyProfileActivity.this, LectureroomReservationActivity.class);
                     startActivity(intent2);
                     finish();
                     break;
                 case R.id.action_check :
-                    Intent intent3 = new Intent(ProfileActivity.this, LectureroomCheckActivity.class);
+                    Intent intent3 = new Intent(MyProfileActivity.this, LectureroomCheckActivity.class);
                     startActivity(intent3);
                     finish();
                     break;
                 case R.id.action_cafe :
-                    Intent intent4 = new Intent(ProfileActivity.this, CafeMapActivity.class);
+                    Intent intent4 = new Intent(MyProfileActivity.this, CafeMapActivity.class);
                     startActivity(intent4);
                     finish();
                     break;

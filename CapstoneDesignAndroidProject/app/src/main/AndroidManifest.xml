@@ -32,7 +32,9 @@
         <activity android:name=".CurrentManageReservationActivity" />
         <activity android:name=".CurrentManageReservationChoiceBuildingActivity" />
         <activity android:name=".MainBuildingGuardActivity" />
-        <activity android:name=".LectureroomReservationAdditionalActivity" /> <!-- firebase FCM 수신 서비스 -->
+        <activity android:name=".LectureroomReservationAdditionalActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"/> <!-- firebase FCM 수신 서비스 -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:enabled="true"
@@ -118,6 +120,22 @@
         <activity
             android:name=".SignUpAjouAuthActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MakeGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ReadGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".EditGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ChattingActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MyProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".NotificationActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".SignUpAjouAuthActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".UserProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"

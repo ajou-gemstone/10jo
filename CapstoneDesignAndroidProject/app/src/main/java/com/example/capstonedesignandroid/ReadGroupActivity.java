@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.capstonedesignandroid.Adapter.UserListAdapter;
-import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.TagName;
@@ -23,6 +22,7 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -32,10 +32,16 @@ public class ReadGroupActivity extends AppCompatActivity {
     Button register, reservation, chatting, edit, full;
     TextView title, maintext, currentnum, totalnum, tags;
     String userId;
+    int leaderormember = 0;
     String tag = "";
+    String username = "";
+    String grouptitle = "";
     ListView listview;
     boolean registered = false;
     boolean leader = false;
+    ArrayList<String> useridarray = new ArrayList<>();
+    ArrayList<String> leaderarray = new ArrayList<>();
+    ArrayList<String> usernamearray = new ArrayList<>();
     UserListAdapter userListAdapter = new UserListAdapter();
 
     @Override
@@ -70,25 +76,29 @@ public class ReadGroupActivity extends AppCompatActivity {
         Call<Group> call = groupService.getStudyGroup(groupId);
         CallThread(call);
 
+        full.setVisibility(View.GONE);
+
         if(registered){ //모임 참여 중이면
             reservation.setVisibility(View.VISIBLE);
             register.setVisibility(View.GONE);
+            full.setVisibility(View.GONE);
         } else{
             reservation.setVisibility(View.GONE);
-            register.setVisibility(View.VISIBLE);
+            if(currentnum.getText().equals(totalnum.getText())){ //참여 중 아닌데 꽉 찼을 때
+                register.setVisibility(View.GONE);
+                full.setVisibility(View.VISIBLE);
+            }
+            else {
+                register.setVisibility(View.VISIBLE);
+            }
             chatting.setVisibility(View.GONE);
         }
 
         if(leader){
             edit.setVisibility(View.VISIBLE);
+            full.setVisibility(View.GONE);
         } else{
             edit.setVisibility(View.GONE);
-        }
-
-        full.setVisibility(View.GONE);
-        if(currentnum.getText().equals(totalnum.getText())){
-            register.setVisibility(View.GONE);
-            full.setVisibility(View.VISIBLE);
         }
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -112,16 +122,8 @@ public class ReadGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),LectureroomReservationActivity.class);
+                intent.putExtra("groupId", groupId);
                 startActivity(intent);
-
-//                Retrofit retrofit2 = new Retrofit.Builder()
-//                        .baseUrl(BASE)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                UserKeyInterface userKeyInterface = retrofit2.create(UserKeyInterface.class);
-//                Call<List<Dummy>> call2 = userKeyInterface.listDummies(userInfo[0], userInfo[1]);
-//                call2.enqueue(dummies2);
             }
         });
         full.setOnClickListener(new View.OnClickListener() {
@@ -135,22 +137,24 @@ public class ReadGroupActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent = new Intent(getApplicationContext(),EditGroupActivity.class);
+                intent.putExtra("groupId", groupId);
+                startActivity(intent);
+            }
+        });
         chatting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(),ChattingActivity.class);
+                intent.putExtra("leaderormember", leaderormember);
+                intent.putExtra("username", username);
+                intent.putExtra("grouptitle", grouptitle);
                 startActivity(intent);
-
-//                Retrofit retrofit2 = new Retrofit.Builder()
-//                        .baseUrl(BASE)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                UserKeyInterface userKeyInterface = retrofit2.create(UserKeyInterface.class);
-//                Call<List<Dummy>> call2 = userKeyInterface.listDummies(userInfo[0], userInfo[1]);
-//                call2.enqueue(dummies2);
             }
         });
 
@@ -158,7 +162,9 @@ public class ReadGroupActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent2 = new Intent(getApplicationContext(), ProfileActivity.class);
+                Intent intent2 = new Intent(getApplicationContext(), UserProfileActivity.class);
+                intent2.putExtra("leaderormember", leaderarray.get(position));
+                intent2.putExtra("userId", useridarray.get(position));
                 startActivity(intent2);
             }
         });
@@ -176,16 +182,23 @@ public class ReadGroupActivity extends AppCompatActivity {
                     maintext.setText(dummies.getTextBody());
                     currentnum.setText(dummies.getStudyGroupNumCurrent().toString());
                     totalnum.setText(dummies.getStudyGroupNumTotal().toString());
+                    grouptitle = dummies.getTitle();
                     for(TagName t : dummies.getTagName()){
                         tag = tag +"#"+t.getTagName()+" ";
                     }
                     tags.setText(tag);
                     for(User user : dummies.getUser()){
                         userListAdapter.add(user.getUserId(), user.getLeader(), user.getName());
+                        useridarray.add(user.getUserId());
+                        leaderarray.add(Integer.toString(user.getLeader()));
+                        usernamearray.add(user.getName());
                         if(userId.equals(user.getUserId())) {
                             registered = true;
-                            if(userId.equals(user.getUserId()) && user.getLeader() == 1)
+                            username = user.getName();
+                            if(userId.equals(user.getUserId()) && user.getLeader() == 1) {
                                 leader = true;
+                                leaderormember = 1;
+                            }
                         }
 
                     }

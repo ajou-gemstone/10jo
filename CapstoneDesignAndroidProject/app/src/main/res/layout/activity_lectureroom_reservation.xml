@@ -8,59 +8,59 @@
     tools:context=".LectureroomReservationActivity">
 
     <LinearLayout
-        android:id="@+id/topLL"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
-
+        android:id="@+id/calendar_layout"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/calendarReserveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="날짜 선택" />
-
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/calendar" />
         <TextView
             android:id="@+id/reserveTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="2020-05-19"
-            android:textSize="20sp"
-            android:layout_marginLeft="15dp" />
-
+            android:layout_marginHorizontal="15dp"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:layout_toRightOf="@+id/calendarReserveButton"
+            android:text="2020-5-99"/>
         <TextView
-            android:layout_marginLeft="25dp"
             android:id="@+id/reserveTypeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="예약 타입: 선착순">
-
-        </TextView>
-
+            android:layout_gravity="center"
+            android:layout_toRightOf="@+id/reserveTimeTextView"
+            android:text="예약 타입: 선착순"/>
     </LinearLayout>
+
 
     <HorizontalScrollView
         android:id="@+id/reserveHorizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/topLL">
-
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/calendar_layout">
         <LinearLayout
             android:id="@+id/LectureBuildingFilterLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <CheckBox
                 android:id="@+id/LectureBuildingAllCheckbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="모두"></CheckBox>
-
         </LinearLayout>
     </HorizontalScrollView>
+
 
     <FrameLayout
         android:id="@+id/reservation_calendar_container"
@@ -71,41 +71,38 @@
         android:id="@+id/reserveTimeSpinnerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
         android:layout_below="@+id/reserveHorizontalScrollView"
         android:orientation="horizontal">
-
         <CheckBox
             android:id="@+id/reserveTimeAllCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="모든 시간" />
-
         <LinearLayout
             android:id="@+id/reserveTimeSpinnerInnerLayout"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp">
-
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textSize="15sp"
-                android:textColor="#000000"
-                android:text="희망 시간" />
-
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="희망시간" />
             <Spinner
                 android:id="@+id/reserveStartTimeSpinner"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown" />
-
+                android:layout_height="wrap_content" />
             <Spinner
                 android:id="@+id/reserveEndTimeSpinner"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"/>
-
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>
@@ -114,9 +111,10 @@
         android:id="@+id/reserveButtonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_below="@+id/reserveTimeSpinnerLayout"
         android:orientation="horizontal">
-
         <Button
             android:id="@+id/reserveRandomButton"
             android:layout_width="100dp"
@@ -124,7 +122,6 @@
             android:visibility="invisible"
             android:background="@drawable/randomreservebutton">
         </Button>
-
         <Button
             android:id="@+id/reserveDetermineButton"
             android:layout_centerInParent="true"
@@ -133,14 +130,12 @@
             android:layout_height="40dp"
             android:visibility="invisible">
         </Button>
-
         <Button
             android:id="@+id/reserveButton"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/lectureroom_inquiry"/>
-
     </RelativeLayout>
 
     <LinearLayout
@@ -149,6 +144,7 @@
         android:layout_above="@id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:orientation="vertical"
         android:visibility="invisible">
 
@@ -178,35 +174,15 @@
         <LinearLayout
             android:id="@+id/lectureRoomPriority"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="R: 선예약"
-                android:textColor="#F10707"
-                android:textSize="20dp"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="L: 강의"
-                android:textColor="#FFC107"
-                android:textSize="20dp"/>
-
-            <TextView
-                android:layout_marginRight="10dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="숫자: 예약 팀수"
-                android:textColor="#2196F3"
-                android:textSize="20dp"/>
+                android:text="R : 선예약    L : 강의   숫자 : 예약 팀수"
+                android:textSize="12dp"/>
 
         </LinearLayout>
 

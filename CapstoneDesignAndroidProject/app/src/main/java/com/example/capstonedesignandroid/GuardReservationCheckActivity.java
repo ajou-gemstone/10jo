@@ -40,7 +40,6 @@ public class GuardReservationCheckActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.guardreservationlistframelayout, guardReservationList).commit();
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
-        navigationView.setSelectedItemId(R.id.action_reservation);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         guardreservationlistframelayout = findViewById(R.id.guardreservationlistframelayout);
@@ -54,16 +53,16 @@ public class GuardReservationCheckActivity extends AppCompatActivity {
             Fragment guardReservationList = new GuardReservationList();
             switch (item.getItemId()){
                 case R.id.guard_reservation_today :
-                    currentReservationListType = "today";
                     Log.d("today", "onNavigationItemSelected: ");
+                    currentReservationListType = "today";
                     break;
                 case R.id.guard_reservation_future :
-                    currentReservationListType = "future";
                     Log.d("future", "onNavigationItemSelected: ");
+                    currentReservationListType = "future";
                     break;
                 case R.id.guard_reservation_previous :
-                    currentReservationListType = "past";
                     Log.d("past", "onNavigationItemSelected: ");
+                    currentReservationListType = "past";
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.guardreservationlistframelayout, guardReservationList).commit();

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.capstonedesignandroid.ProfileActivity;
+import com.example.capstonedesignandroid.MyProfileActivity;
 import com.example.capstonedesignandroid.R;
 import com.example.capstonedesignandroid.TimetableModifyActivity;
 
@@ -66,8 +66,8 @@ public class TimeTableFragment extends Fragment {
                 cmode = timetableModifyActivity.mode;
             }else{
                 //상세 정보를 볼 수 있도록 activity에서 UI 호출 -> 그냥 toast로 대체
-                if(activity.getClass().toString().equals(ProfileActivity.class.toString())){
-                    ProfileActivity profileActivity = (ProfileActivity) activity;
+                if(activity.getClass().toString().equals(MyProfileActivity.class.toString())){
+                    MyProfileActivity profileActivity = (MyProfileActivity) activity;
                     ViewGroup vg = (ViewGroup) ll;
                     TextView contentTV = (TextView) vg.getChildAt(0);
                     TextView locationTV = (TextView) vg.getChildAt(1);

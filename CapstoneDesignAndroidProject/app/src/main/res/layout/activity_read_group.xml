@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:padding="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp">
         <TextView
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:id="@+id/textview_title"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
             android:gravity="left"
             android:maxLines="1"
             android:ellipsize="end"
@@ -49,7 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="30dp"
                 android:text="이 모임에 들어오면 에이쁠을 받습니다\n선착순 3명 모집합니다\n\n버스 운전은 제가 하겠습니다"
                 android:textSize="16dp" />
         <TextView
@@ -58,25 +55,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="#aaa #bbb #ccccc"
-            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
             android:textColor="@color/asmr_blue"
             android:textSize="16dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="#f0f0f0"/>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="3dp"-->
+<!--        android:background="#f0f0f0"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginVertical="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginVertical="10dp">
         <Button
             android:id="@+id/button_oldchat"
             android:layout_width="match_parent"
@@ -84,15 +78,17 @@
             android:layout_gravity="center"
             android:text="강의실 예약"
             android:textColor="#ffffff"
-            android:background="@color/asmr_green2"
+            android:textSize="17dp"
+            android:background="@drawable/green2_button"
             android:textStyle="bold"/>
         <Button
             android:id="@+id/button_enter"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:background="@color/asmr_blue"
+            android:background="@drawable/blue_button"
             android:textColor="#ffffff"
+            android:textSize="17dp"
             android:text="모임 신청하기"
             android:textStyle="bold"/>
         <Button
@@ -102,14 +98,14 @@
             android:layout_gravity="center"
             android:background="#bbbbbb"
             android:textColor="#ffffff"
-            android:text="모임 신청하기"
+            android:textSize="17dp"
+            android:text="모집 완료"
             android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,20 +146,35 @@
 
     </LinearLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        android:id="@+id/refresh">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
         <ListView
             android:id="@+id/memberlistview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_x="0px"
-            android:layout_y="0px"
-            android:dividerHeight="3dp"
+            android:layout_weight="1"
+            android:layout_gravity="top"
+            android:dividerHeight="2dp"
             android:divider="#f0f0f0">
         </ListView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="신청목록"
+            android:textSize="15dp" />
+        <ListView
+            android:id="@+id/registerlistview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:dividerHeight="2dp"
+            android:divider="#f0f0f0">
+        </ListView>
+    </LinearLayout>
 
 </LinearLayout>

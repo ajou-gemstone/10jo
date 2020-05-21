@@ -266,14 +266,13 @@ public class Fragment_Reservation_Today extends Fragment {
             } catch (Exception e) {
             }
 
-            //이미 강의실 예약 점수가 있는 경우 예약 점수를 바꿀 수 없다.
             if(!DefinedMethod.isEmpty(guardDummy.getScore())){
                 scoreRatingBar.setRating(Integer.parseInt(guardDummy.getScore()));
                 scoreDescription.setText(guardDummy.getScore());
-                scoreReasonEditText.setText(guardDummy.getScoreReason());
-                scoreRatingBar.setEnabled(false);
-                scoreReasonEditText.setEnabled(false);
             }
+            scoreReasonEditText.setText(guardDummy.getScoreReason());
+            scoreRatingBar.setEnabled(false);
+            scoreReasonEditText.setEnabled(false);
 
             date.setText(""+DefinedMethod.getParsedDate(dummy.getDate()));
             day.setText(""+DefinedMethod.getDayNamebyAlpabet(dummy.getDay()));
@@ -281,8 +280,12 @@ public class Fragment_Reservation_Today extends Fragment {
             startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
             lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())+1));
             reservationIntent.setText(""+dummy.getReservationIntent());
-            beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
-            afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
+            if(dummy.getBeforeUploadTime().length() < 4){
+                beforeUploadTime.setText("업로드 되지 않음");
+            }
+            if(dummy.getBeforeUploadTime().length() < 4){
+                afterUploadTime.setText("업로드 되지 않음");
+            }
 
             //app에 등록된 firebase storage의 instance를 가져온다. (싱글톤)
             storage = FirebaseStorage.getInstance("gs://asmr-799cf.appspot.com");
@@ -520,7 +523,6 @@ public class Fragment_Reservation_Today extends Fragment {
                 lectureroomCheckActivity.reInflateFragment("today");
             }
             Log.d("responsefail..", "onFailure: ");
-
         }
     };
 

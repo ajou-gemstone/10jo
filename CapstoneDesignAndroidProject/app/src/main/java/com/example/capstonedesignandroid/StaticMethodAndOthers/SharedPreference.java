@@ -16,7 +16,7 @@ public class SharedPreference {
     // 값 읽기
     public static String getAttribute(Context context, String key){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(key, null);
+        return prefs.getString(key, "-100");
     }
 
     // 데이터 삭제

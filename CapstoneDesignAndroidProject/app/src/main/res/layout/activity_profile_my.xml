@@ -57,6 +57,13 @@
                 android:layout_height="30dp"
                 android:layout_gravity="right|center"
                 android:background="@drawable/noti_yes" />
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right|center"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/logout" />
         </LinearLayout>
 
         <LinearLayout
@@ -114,18 +121,16 @@
                 android:maxLines="1"
                 android:text=" | "
                 android:textSize="15dp" />
-
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:ellipsize="end"
                 android:gravity="left"
                 android:maxLines="1"
+                android:ellipsize="end"
                 android:text="rkdcksgur@ajou.ac.kr"
                 android:textSize="15dp" />
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"

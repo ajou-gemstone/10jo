@@ -11,17 +11,14 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.capstonedesignandroid.Adapter.ReservationCheckAdapter;
 import com.example.capstonedesignandroid.Fragment.Fragment_Reservation_Future;
@@ -113,7 +110,7 @@ public class LectureroomCheckActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.action_profile :
-                    Intent intent5 = new Intent(LectureroomCheckActivity.this, ProfileActivity.class);
+                    Intent intent5 = new Intent(LectureroomCheckActivity.this, MyProfileActivity.class);
                     startActivity(intent5);
                     finish();
                     break;

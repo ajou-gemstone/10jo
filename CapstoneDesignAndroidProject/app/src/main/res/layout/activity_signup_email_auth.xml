@@ -11,8 +11,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -38,12 +38,12 @@
             <Button
                 android:id="@+id/button_check_num"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="30dp"
                 android:layout_weight="0.1"
                 android:layout_marginLeft="10dp"
                 android:textSize="13dp"
                 android:textColor="#ffffff"
-                android:background="@color/asmr_green2"
+                android:background="@drawable/green2_button"
                 android:text="확인" />
         </LinearLayout>
 
@@ -57,7 +57,7 @@
             android:textSize="17dp"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/blue_button"
             android:text="아주대학교 통합 인증하기" />
 
     </LinearLayout>

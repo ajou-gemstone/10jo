@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -105,6 +107,22 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
                 return false;
             }
         });
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // input창에 문자를 입력할때마다 호출된다.
+                // search 메소드를 호출한다.
+                String text = editSearch.getText().toString();
+                search(text);
+            }
+        });
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,6 +136,29 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
 
         return view;
     } //onCreateView
+
+    //모임 제목, 태그 검색
+    public void search(String charText) {
+
+        groupAdapter.clear();
+
+        if (charText.length() == 0) {
+            for (int i = 0; i <= titleArray.size() - 1; i++) {
+                groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", totalNumArray.get(i), currentNumArray.get(i));
+            }
+        }
+        else{
+            for(int i = titleArray.size()-1;i >=0; i--) {
+                if (titleArray.get(i).contains(charText)) {
+                    groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", currentNumArray.get(i), totalNumArray.get(i));
+                } else if (tagArray.get(i).contains(charText)) {
+                    groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", currentNumArray.get(i), totalNumArray.get(i));
+                }   
+            }
+        }
+        groupAdapter.notifyDataSetChanged();
+    }
+
 
     //새로고침 코드
     @Override
@@ -140,6 +181,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
         },1000); // 1초후에 새로고침 끝
 
     }
+
     private void CallThread(Call<List<Group>> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -148,7 +190,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
                     List<Group> dummies = call.execute().body();
 
                     for(int i = 0; i< dummies.size(); i++){
-                        Log.d("aaaaaaaaaaaaaa", dummies.get(i).toString());
+                        Log.d("aaaaaaaaaaaaaa", dummies.get(i).getTitle());
                             String tag = "";
                             if (dummies.get(i).getTagName().size() != 0) {
                                 for (int t = 0; t < dummies.get(i).getTagName().size(); t++) {
