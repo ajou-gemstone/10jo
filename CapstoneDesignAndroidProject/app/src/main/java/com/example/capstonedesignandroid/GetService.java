@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid;
 
 
+import com.example.capstonedesignandroid.DTO.DummyCafeCoreInfo;
 import com.example.capstonedesignandroid.DTO.DummyCurrentReservationBuildingFloor;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
@@ -143,7 +144,7 @@ public interface GetService {
     //동작: 예약 목록에 위 내용을 업데이트 하고, leaderId의 score에 score만큼 감점을 시킨다.
     //출력: {response: success}
 
-    //경비원이 예약정보 list를 받아온다.x
+    //경비원이 예약정보 list를 받아온다.o
     @GET("/reservation/guardBuildingInfo")
     Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
     //입력: 시제, 건물명
@@ -151,6 +152,37 @@ public interface GetService {
     //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
     //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
+    //학번이 유효한지 확인한다.o
+    @FormUrlEncoded
+    @POST("/reservation/searchStudentId")
+    Call<DummyResponse> searchStudentId(@Field("studentId") String studentId);
+
+    //카페 정보를 가져온다.
+    @GET("/")
+    Call<List<DummyCafeCoreInfo>> getCafeInfoList();
+
+    //현재 시간을 가져온다.
+    @GET("/")
+    Call<DummyResponse> getServerCurrentDate();
+    //long nowTime = System.currentTimeMillis(); -->
+    //var currentTimeMillis = new Date().getTime();
+    //출력: response: 1589944246024
+
+    //학생이 시간표 정보를 가져온다.
+//    @GET("/")
+//    Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
+//    //입력: 시제, 건물명
+//    //입력: {tense: "future or past", buildingName: "성호관"}
+//    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
+//    //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
+
+    //학생이 시간표 정보를 업데이트 한다.
+//    @GET("/")
+//    Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
+//    //입력: 시제, 건물명
+//    //입력: {tense: "future or past", buildingName: "성호관"}
+//    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
+//    //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
 //    @POST("/")

@@ -8,15 +8,17 @@ public class DummyReservationList {
     String startTime;
     String lastTime;
     String lectureRoom;
+    String score;
     float timePriority;
 
-    public DummyReservationList(String reservationId, String reservationDate, String day, String startTime, String listTime, String lectureRoom) {
+    public DummyReservationList(String reservationId, String reservationDate, String day, String startTime, String listTime, String lectureRoom, String score) {
         this.reservationId = reservationId;
         this.date = reservationDate;
         this.day = day;
         this.startTime = startTime;
         this.lastTime = listTime;
         this.lectureRoom = lectureRoom;
+        this.score = score;
     }
 
     public String getReservationId() {
@@ -50,4 +52,6 @@ public class DummyReservationList {
     public void setTimePriority(float timePriority) {
         this.timePriority = timePriority;
     }
+
+    public String getScore() {return score;}
 }

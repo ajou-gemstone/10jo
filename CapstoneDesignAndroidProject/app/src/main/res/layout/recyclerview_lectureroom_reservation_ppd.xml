@@ -5,19 +5,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#8BC34A">
+    android:background="@drawable/reservation">
 
     <Button
         android:id="@+id/lectureRoomNameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="강의실호"
+        android:text="강의실"
         android:textSize="16sp">
     </Button>
     <LinearLayout
         android:id="@+id/lectureTimetable"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
     </LinearLayout>
 

@@ -16,6 +16,7 @@ import com.example.capstonedesignandroid.Fragment.B_1_2;
 import com.example.capstonedesignandroid.Fragment.B_2_1;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+//Todo: 편의상 성호관, 율곡관 2개만 한다.
 public class CurrentManageReservationActivity extends AppCompatActivity {
 
     private FloatingActionButton floatingActionButton;

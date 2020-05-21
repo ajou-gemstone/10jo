@@ -2,6 +2,7 @@ package com.example.capstonedesignandroid;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -10,7 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.capstonedesignandroid.DTO.CafeCoreInfo;
+import com.example.capstonedesignandroid.DTO.DummyCafeCoreInfo;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.daum.mf.map.api.CalloutBalloonAdapter;
@@ -18,23 +20,61 @@ import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CafeMapActivity extends AppCompatActivity implements MapView.POIItemEventListener{
 
     final static int activityIntentConstant = 100;
     final static String TAG = "CafeMapActivity";
-    ArrayList<CafeCoreInfo> cafeCoreInfoArrayList;
+    ArrayList<DummyCafeCoreInfo> cafeCoreInfoArrayList;
     ArrayList<MapPOIItem> mapPOIItemArrayList;
     RelativeLayout mapViewContainer;
     MapView mapView;
     protected BottomNavigationView navigationView;
+    private Retrofit retrofit;
+    private boolean Ioexception = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_cafe_map);
+
+        //-----------서버에서 데이터 받기-------------
+        retrofit = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit.create(GetService.class);
+        Call<List<DummyCafeCoreInfo>> call = service.getCafeInfoList();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<DummyCafeCoreInfo> cafeCoreInfoList = call.execute().body();
+                    cafeCoreInfoArrayList = new ArrayList<DummyCafeCoreInfo>(cafeCoreInfoList);
+                    Log.d("run: ", "run: ");
+                    Ioexception = false;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Ioexception = true;
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+        //-----------서버에서 데이터 받기-------------
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_cafe);
@@ -51,23 +91,25 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
         mapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter());//커스텀 말풍선, 위쪽에 있어야 작동한다.
 
         //데이터베이스에서 아주대학교 모든 카페의 id, 카페명, 혼잡도, 카페 수용 인원, 위치를 받는다.
-        cafeCoreInfoArrayList = new ArrayList<>();
-        cafeCoreInfoArrayList.add(new CafeCoreInfo(1, "카페1", 1, 20, 37.279223, 127.043013));
-        cafeCoreInfoArrayList.add(new CafeCoreInfo(2, "카페2", 2, 40, 37.278771, 127.044343));
-        cafeCoreInfoArrayList.add(new CafeCoreInfo(3, "카페3", 3, 60, 37.278447, 127.043399));
-        cafeCoreInfoArrayList.add(new CafeCoreInfo(4, "카페4", 3, 80, 37.277807, 127.043528));
-        cafeCoreInfoArrayList.add(new CafeCoreInfo(5, "카페5", 5, 100, 37.278046, 127.044011));
+        if(Ioexception){
+            cafeCoreInfoArrayList = new ArrayList<>();
+            cafeCoreInfoArrayList.add(new DummyCafeCoreInfo(1, "카페1", 1, 20, 37.279223, 127.043013, "어서와"));
+            cafeCoreInfoArrayList.add(new DummyCafeCoreInfo(2, "카페2", 2, 40, 37.278771, 127.044343, "어서와"));
+            cafeCoreInfoArrayList.add(new DummyCafeCoreInfo(3, "카페3", 3, 60, 37.278447, 127.043399, "어서와"));
+            cafeCoreInfoArrayList.add(new DummyCafeCoreInfo(4, "카페4", 3, 80, 37.277807, 127.043528, "어서와"));
+            cafeCoreInfoArrayList.add(new DummyCafeCoreInfo(5, "카페5", 5, 100, 37.278046, 127.044011, "어서와"));
+        }
 
         //커스텀 마커를 생성, DB에서 얻은 정보 입력
         mapPOIItemArrayList = new ArrayList<>();
-        for(CafeCoreInfo cafeCoreInfo: cafeCoreInfoArrayList){
+        for(DummyCafeCoreInfo cafeCoreInfo: cafeCoreInfoArrayList){
             MapPOIItem tmpCustomMarker = new MapPOIItem();
             tmpCustomMarker.setItemName("");//ItemName(없으면 표시가 안되므로 아무거나 지정)
             tmpCustomMarker.setTag(cafeCoreInfo.getCafeId());
             tmpCustomMarker.setUserObject(cafeCoreInfo);//marker는 cafeCoreInfo객체를 가진다.
             tmpCustomMarker.setMapPoint(MapPoint.mapPointWithGeoCoord(cafeCoreInfo.getLatitude(), cafeCoreInfo.getLongitude()));//카페의 위치
             tmpCustomMarker.setMarkerType(MapPOIItem.MarkerType.CustomImage);//커스텀 이미지를 마커로 사용한다.
-            tmpCustomMarker.setCustomImageResourceId(selectImageResourceIdBycongestion(cafeCoreInfo.getCafeCongestion()));//혼잡도에 따른 커스텀 이미지를 등록한다.
+            tmpCustomMarker.setCustomImageResourceId(selectImageResourceIdBycongestion(cafeCoreInfo.getCongestion()));//혼잡도에 따른 커스텀 이미지를 등록한다.
             tmpCustomMarker.setCustomImageAnchor(0.5f, 1.0f); // 마커 이미지중 기준이 되는 위치(앵커포인트) 지정 - 마커 이미지 좌측 상단 기준 x(0.0f ~ 1.0f), y(0.0f ~ 1.0f) 값.
 
             mapPOIItemArrayList.add(tmpCustomMarker);
@@ -102,7 +144,7 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
 
     @Override //marker의 balloon이 눌렸을 때
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
-        CafeCoreInfo tmpCafeCoreInfo = (CafeCoreInfo)mapPOIItem.getUserObject();
+        DummyCafeCoreInfo tmpCafeCoreInfo = (DummyCafeCoreInfo)mapPOIItem.getUserObject();
         Intent activityIntent = new Intent(this, CafeDetailedInfoActivity.class);
         activityIntent.putExtra("cafeId", tmpCafeCoreInfo.getCafeId());
         startActivityForResult(activityIntent, activityIntentConstant);
@@ -124,9 +166,9 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
 
         @Override//디폴트 값
         public View getCalloutBalloon(MapPOIItem poiItem) {
-            CafeCoreInfo tmpCafeCoreInfo = (CafeCoreInfo)poiItem.getUserObject();
-            ((TextView) mCalloutBalloon.findViewById(R.id.cafeName)).setText(tmpCafeCoreInfo.getCafeName());
-           // ((TextView) mCalloutBalloon.findViewById(R.id.cafeCongestion)).setText("혼잡도: "+tmpCafeCoreInfo.getCafeCongestion() + "/5");
+            DummyCafeCoreInfo tmpCafeCoreInfo = (DummyCafeCoreInfo)poiItem.getUserObject();
+            ((TextView) mCalloutBalloon.findViewById(R.id.name)).setText(tmpCafeCoreInfo.getName());
+           // ((TextView) mCalloutBalloon.findViewById(R.id.cafeCongestion)).setText("혼잡도: "+tmpCafeCoreInfo.getCongestion() + "/5");
             ((TextView) mCalloutBalloon.findViewById(R.id.cafeTotalSeat)).setText("총 자리수: "+tmpCafeCoreInfo.getCafeTotalSeat());
 
             return mCalloutBalloon;

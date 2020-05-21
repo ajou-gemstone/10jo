@@ -86,16 +86,16 @@ public class Fragment_Reservation_Future extends Fragment {
         try {
             thread.join();
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
         //----------------서버에서 받기 코드-------------------
         //출력: {reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}
 
         //mockup data로 대체
         if(IOexception){
-            dummyReservationListArrayList.add(new DummyReservationList("resId0", "2020-05-01", "월", "8:00", "10:00", "성101"));
-            dummyReservationListArrayList.add(new DummyReservationList("1", "2020-05-02", "화", "8:00", "10:00", "성101"));
-            dummyReservationListArrayList.add(new DummyReservationList("resId2", "2020-05-03", "수", "8:00", "10:00", "성101"));
+//            dummyReservationListArrayList.add(new DummyReservationList("resId0", "2020-05-01", "월", "8:00", "10:00", "성101"));
+//            dummyReservationListArrayList.add(new DummyReservationList("1", "2020-05-02", "화", "8:00", "10:00", "성101"));
+//            dummyReservationListArrayList.add(new DummyReservationList("resId2", "2020-05-03", "수", "8:00", "10:00", "성101"));
         }
 
         //dummyReservationListArrayList 정렬
@@ -134,7 +134,7 @@ public class Fragment_Reservation_Future extends Fragment {
 
         //recycler view에 들어갈 layout을 정해주어야 한다.
         recyclerViewReservationList.setLayoutManager(new LinearLayoutManager(getContext()));
-        reservationListAdapter = new ReservationListAdapter(dummyReservationListArrayList);
+        reservationListAdapter = new ReservationListAdapter(getContext(),"futureStudent",dummyReservationListArrayList);
         recyclerViewReservationList.setAdapter(reservationListAdapter);
 
         reservationListAdapter.setOnItemClickListener(new ReservationListAdapter.OnItemClickListener() {

@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TimetableModifyActivity"/>
+        <activity android:name=".FirebaseTestActivity"></activity>
+        <activity android:name=".ZoomTest3Activity" />
+        <activity android:name=".ZoomTest2Activity" />
+        <activity android:name=".ZoomTestActivity" />
+        <activity android:name=".TimetableModifyActivity" />
         <activity android:name=".GuardChoiceBuildingActivity" />
         <activity android:name=".GuardReservationCheckActivity" />
         <activity android:name=".LectureroomReservationGuardActivity" />
@@ -57,27 +61,36 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
 
-        <activity android:name=".LectureroomCheckDetailedActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".LectureroomCheckActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".LectureroomCheckDetailedActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LectureroomCheckActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".testActivity"
+            android:label="@string/title_activity_test"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SignUpActivity"
-            android:windowSoftInputMode="adjustResize"
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".SignUpEmailAuthActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".SignUpLectureSelectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SignUpEmailAuthActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SignUpLectureSelectActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".CafeMapActivity"
+        <activity
+            android:name=".CafeMapActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CafeDetailedInfoActivity"
@@ -89,6 +102,24 @@
             android:name=".StudyBulletinBoardActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".MakeGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReadGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ChattingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NotificationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SignUpAjouAuthActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MakeGroupActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ReadGroupActivity"
@@ -111,6 +142,7 @@
             tools:ignore="WrongManifestParent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -40,6 +40,7 @@
             android:text="예약 타입: 선착순"/>
     </LinearLayout>
 
+
     <HorizontalScrollView
         android:id="@+id/reserveHorizontalScrollView"
         android:layout_width="match_parent"
@@ -59,6 +60,7 @@
                 android:text="모두"></CheckBox>
         </LinearLayout>
     </HorizontalScrollView>
+
 
     <FrameLayout
         android:id="@+id/reservation_calendar_container"
@@ -142,7 +144,7 @@
         android:layout_above="@id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
+        android:layout_marginHorizontal="20dp"
         android:orientation="vertical"
         android:visibility="invisible">
 
@@ -173,13 +175,13 @@
             android:id="@+id/lectureRoomPriority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.2"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="R : 선예약    L : 강의    A : 예약가능    숫자 : 예약 팀수"
+                android:text="R : 선예약    L : 강의   숫자 : 예약 팀수"
                 android:textSize="12dp"/>
 
         </LinearLayout>

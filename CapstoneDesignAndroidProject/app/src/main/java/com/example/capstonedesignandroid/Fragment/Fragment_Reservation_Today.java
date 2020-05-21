@@ -1,6 +1,8 @@
 package com.example.capstonedesignandroid.Fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,10 +26,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
+import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.GetService;
 import com.example.capstonedesignandroid.LectureroomCheckActivity;
+import com.example.capstonedesignandroid.LectureroomCheckDetailedActivity;
 import com.example.capstonedesignandroid.R;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
@@ -51,7 +56,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-//Todo: 나중에 한번에 하자.
+
 public class Fragment_Reservation_Today extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 11111;
     ViewPager viewPager;
@@ -89,6 +94,10 @@ public class Fragment_Reservation_Today extends Fragment {
     private View noReservationView;
     private LectureroomCheckActivity lectureroomCheckActivity;
     private boolean deleteReservation;
+    private RatingBar scoreRatingBar;
+    private DummyReservationDetailGuard guardDummy;;
+    private TextView scoreDescription;
+    private TextView scoreReasonEditText;
 
     public Fragment_Reservation_Today(){
 
@@ -98,8 +107,6 @@ public class Fragment_Reservation_Today extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.activity_lectureroom_checkdetailed, container, false);
 
-        //Todo: 코드 복사
-        //Todo: 레트로핏으로 오늘의 reservationId 가져오기
         //----------------서버에서 받기 코드-------------------
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyConstants.BASE)
@@ -133,7 +140,7 @@ public class Fragment_Reservation_Today extends Fragment {
         try {
             thread.join();
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
 
         //받아오는데 오류면 예약 없음 화면
@@ -167,7 +174,7 @@ public class Fragment_Reservation_Today extends Fragment {
             try {
                 thread2.join();
             } catch (Exception e) {
-                // TODO: handle exception
+
             }
 
             //----------------서버에서 받기 코드-------------------
@@ -198,13 +205,29 @@ public class Fragment_Reservation_Today extends Fragment {
             cancelReservationButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    GetService service = retrofit.create(GetService.class);
-                    Call<DummyResponse> call = service.deleteMyReservation(resId);
-                    //다시 화면을 그려준다.
-                    lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
-                    lectureroomCheckActivity.reInflateFragment("today");
-                    deleteReservation = true;
-                    call.enqueue(response1);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("정말로 예약을 취소하시겠습니까?").setMessage("강의실 사용 전 3시간 이내에 취소하면 패널티가 부과됩니다.");
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            GetService service = retrofit.create(GetService.class);
+                            Call<DummyResponse> call = service.deleteMyReservation(resId);
+                            //다시 화면을 그려준다.
+                            lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
+                            lectureroomCheckActivity.reInflateFragment("today");
+                            deleteReservation = true;
+                            call.enqueue(response1);
+                        }
+                    });
+                    builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             });
 
@@ -217,14 +240,52 @@ public class Fragment_Reservation_Today extends Fragment {
             beforeUploadTime = view.findViewById(R.id.beforeUploadTime);
             afterUploadTime = view.findViewById(R.id.afterUploadTime);
 
+            //경비원 관리 정보 가져오기
+            scoreRatingBar = view.findViewById(R.id.scoreRatingBar);
+            scoreDescription = view.findViewById(R.id.scoreDescription);
+            scoreReasonEditText = view.findViewById(R.id.scoreReasonEditText);
+
+            Call<DummyReservationDetailGuard> guardCall = service.getReservationDetailGuard(resId);
+            Thread guardCallThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        guardDummy = guardCall.execute().body();
+                        Log.d("retrofitget2", " leaderId: "+ guardDummy.getLeaderId() + " score:"+guardDummy.getScore()+ " scoreReason: "+guardDummy.getScoreReason()
+                                + " guardId:" + guardDummy.getGuardId());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.d("IOException: ", "IOException: ");
+                    }
+                }
+            });
+
+            guardCallThread.start();
+            try {
+                guardCallThread.join();
+            } catch (Exception e) {
+            }
+
+            if(!DefinedMethod.isEmpty(guardDummy.getScore())){
+                scoreRatingBar.setRating(Integer.parseInt(guardDummy.getScore()));
+                scoreDescription.setText(guardDummy.getScore());
+            }
+            scoreReasonEditText.setText(guardDummy.getScoreReason());
+            scoreRatingBar.setEnabled(false);
+            scoreReasonEditText.setEnabled(false);
+
             date.setText(""+DefinedMethod.getParsedDate(dummy.getDate()));
             day.setText(""+DefinedMethod.getDayNamebyAlpabet(dummy.getDay()));
             lectureroom.setText(""+dummy.getLectureRoom());
             startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
-            lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())));
+            lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())+1));
             reservationIntent.setText(""+dummy.getReservationIntent());
-            beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
-            afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
+            if(dummy.getBeforeUploadTime().length() < 4){
+                beforeUploadTime.setText("업로드 되지 않음");
+            }
+            if(dummy.getBeforeUploadTime().length() < 4){
+                afterUploadTime.setText("업로드 되지 않음");
+            }
 
             //app에 등록된 firebase storage의 instance를 가져온다. (싱글톤)
             storage = FirebaseStorage.getInstance("gs://asmr-799cf.appspot.com");
@@ -331,7 +392,7 @@ public class Fragment_Reservation_Today extends Fragment {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
 
                             Toast.makeText(getContext(), "성공적으로 이미지 업로드가 되었습니다.", Toast.LENGTH_LONG).show();
-
+                            beforeUploadTime.setText("업로드 시간: "+DefinedMethod.getCurrentDate2());
                             //db에 파일 이름 저장
                             GetService service = retrofit.create(GetService.class);
                             Call<DummyResponse> call = service.postBeforePicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
@@ -374,6 +435,7 @@ public class Fragment_Reservation_Today extends Fragment {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                             Toast.makeText(getContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_LONG).show();
+                            afterUploadTime.setText("업로드 시간: "+DefinedMethod.getCurrentDate2());
                             //db에 파일 이름 저장
                             GetService service = retrofit.create(GetService.class);
                             Call<DummyResponse> call = service.postAfterPicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
@@ -461,7 +523,6 @@ public class Fragment_Reservation_Today extends Fragment {
                 lectureroomCheckActivity.reInflateFragment("today");
             }
             Log.d("responsefail..", "onFailure: ");
-
         }
     };
 

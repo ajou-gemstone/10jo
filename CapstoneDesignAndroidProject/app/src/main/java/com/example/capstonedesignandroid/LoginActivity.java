@@ -2,8 +2,10 @@ package com.example.capstonedesignandroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -83,28 +85,6 @@ public class LoginActivity extends AppCompatActivity {
             // 다이얼로그 보기
             alert.show();
         }
-
-        //----------------------firebase--------------
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w("getInstanceId", "getInstanceId failed", task.getException());
-                            Log.d("onComplete", "onComplete: ");
-                            return;
-                        }
-
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-
-                        // Log and toast
-                        Log.d("token", token);
-                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        //-------------------firebase-------------------
 
         id.setOnKeyListener(new View.OnKeyListener() {
             @Override

@@ -2,10 +2,10 @@ package com.example.capstonedesignandroid;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import androidx.appcompat.app.AlertDialog;
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -143,10 +144,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
         //현재시간 보여주기
         dataSelected = true;
-        nowTime = System.currentTimeMillis();
-        reserveDate = new Date(nowTime);
-        //시, 분, 초를 없앤 년,월,일의 Date
-        reserveDate = DefinedMethod.getDate(DefinedMethod.getYear(reserveDate), DefinedMethod.getMonth(reserveDate),DefinedMethod.getDay(reserveDate));
+        reserveDate = new Date();
+        reserveDate = DefinedMethod.getCurrentDate();
         currentDate = new Date();
         currentDate = reserveDate;
 
@@ -228,13 +227,13 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
         reserveStartTimeSpinner = findViewById(R.id.reserveStartTimeSpinner);
         reserveEndTimeSpinner = findViewById(R.id.reserveEndTimeSpinner);
+
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, eightToTwentyoneTimeArrayList);
         reserveStartTimeSpinner.setAdapter(arrayAdapter);
         reserveStartTimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),eightToTwentyoneTimeArrayList.get(i)+"가 선택되었습니다.",
-                        Toast.LENGTH_SHORT).show();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -245,8 +244,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         reserveEndTimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),eightToTwentyoneTimeArrayList.get(i)+"가 선택되었습니다.",
-                        Toast.LENGTH_SHORT).show();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -336,8 +334,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         try {
                             List<DummyLectureRoomReservationState> dummies = call.execute().body();
                             dummyLectureRoomReservationList = new ArrayList<DummyLectureRoomReservationState>(dummies);
-                            Log.d("dummyLectureRoomReservationList", ""+dummyLectureRoomReservationList.get(0).getLectureroom());
-                            Log.d("dummyLectureRoomReservationList", ""+dummyLectureRoomReservationList.get(0).getStateList());
+                            Log.d("dummyLectureRoomReservationList", ""+dummyLectureRoomReservationList.get(1).getLectureroom());
+                            Log.d("dummyLectureRoomReservationList", ""+dummyLectureRoomReservationList.get(1).getStateList());
                             dummyLectureRoomReservationState_state = true;
                             Log.d("run: ", "run: ");
                         } catch (IOException e) {
@@ -351,7 +349,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 try {
                     thread.join();
                 } catch (Exception e) {
-                    // TODO: handle exception
+
                 }
 
                 //-----------------------------------------------------------
@@ -402,6 +400,9 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
                         String eachStateList =  data.getStateList();
                         String[] splitState = eachStateList.split("\\s+");
+                        if(splitState[0].equals("")){
+                            return;
+                        }
                         for(String eachState : splitState){
                             if(eachState.equals("A")){
                                 lectureRoomReservationStateArrayList.get(i).setPriority(lectureRoomReservationStateArrayList.get(i).getPriority());
@@ -438,6 +439,9 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         String eachStateList =  data.getStateList();
                         Log.d("eachStateList", "aa"+eachStateList);
                         String[] splitState = eachStateList.split("\\s+");
+                        if(splitState[0].equals("")){
+                            return;
+                        }
                         for(String eachState : splitState){
                             if(num.contains(eachState)){
                                 lectureRoomReservationStateArrayList.get(i).setPriority(lectureRoomReservationStateArrayList.get(i).getPriority() + Integer.parseInt(eachState));
@@ -518,7 +522,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                // TODO Auto-generated method stub
                                 // 바뀐 것을 적용한다.
                                 checkedItems[which] = isChecked;
                             }
@@ -557,7 +560,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             try {
                                 thread.join();
                             } catch (Exception e) {
-                                // TODO: handle exception
                             }
 
                             if(success){
@@ -643,8 +645,10 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
         lectureRoomScroll = findViewById(R.id.lectureRoomScroll);
 
-        ReservationAdapter adapter = new ReservationAdapter(lectureRoomReservationStateArrayList) ;
+        ReservationAdapter adapter = new ReservationAdapter(getApplicationContext(), lectureRoomReservationStateArrayList) ;
         recyclerViewReservation.setAdapter(adapter);
+
+//        recyclerViewReservation.addItemDecoration(new HeaderItemDecoration(recyclerViewReservation, (HeaderItemDecoration.StickyHeaderInterface) adapter));
 
         //adapter의 click event를 listen할 수 있도록 액티비티에서 listener 객체를 생성, 등록하고
         //인터페이스를 통해 adapter에서 위임하여 처리하도록 하며
@@ -681,7 +685,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     try {
                         thread.join();
                     } catch (Exception e) {
-                        // TODO: handle exception
                     }
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);
@@ -711,7 +714,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     secondTag = -1;
                     //배경을 모두 지움
                     for(int i = 0; i < lastTimePosition-startTimePosition; i++){
-                        currentPositionView.findViewWithTag(""+i).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
+                        currentPositionView.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation));
                     }
                     currentPosition = position;
                     currentPositionView = pv;
@@ -721,7 +724,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     firstClick = true;
                     firstTag = tag;
                     //배경을 first view만 표시
-                    v.setBackgroundColor(Color.argb(51,17,17,17));
+                    v.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation_selected));
                 }else if(firstClick == true){
                     //first에서 똑같은 것을 선택하였을 때
                     if(firstTag == tag){
@@ -731,7 +734,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         secondTag = -1;
                         //배경을 모두 지움
                         for(int i = 0; i <= lastTimePosition-startTimePosition; i++){
-                            pv.findViewWithTag(""+i).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
+                            pv.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation));
                         }
                     }else{
                         if(secondTag == tag){
@@ -739,29 +742,29 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             secondTag = -1;
                             //배경을 first view빼고 모두 지움
                             for(int i = 0; i <= lastTimePosition-startTimePosition; i++){
-                                pv.findViewWithTag(""+i).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
+                                pv.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation));
                             }
-                            pv.findViewWithTag(""+firstTag).setBackgroundColor(Color.argb(51,17,17,17));
+                            pv.findViewWithTag(""+firstTag).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation_selected));
                         }else{
                             secondClick = true;
                             secondTag = tag;
                             for(int i = 0; i <= lastTimePosition-startTimePosition; i++){
-                                pv.findViewWithTag(""+i).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
+                                pv.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation));
                             }
                             //배경을 first view에서 second view까지 모두 표시
                             if(secondTag > firstTag){
                                 for(int i = firstTag; i <= secondTag; i++){
                                     TextView textView = pv.findViewWithTag(""+i);
-                                    pv.findViewWithTag(""+i).setBackgroundColor(Color.argb(51,17,17,17));
+                                    pv.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation_selected));
                                     //만약 예약이 불가한 날짜가 껴있다면 예약 불가
                                     if(textView.getText().equals("R") || textView.getText().equals("L")){
                                         secondClick = false;
                                         secondTag = -1;
                                         //배경을 first view빼고 모두 지움
                                         for(int j = 0; j <= lastTimePosition-startTimePosition; j++){
-                                            pv.findViewWithTag(""+j).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
+                                            pv.findViewWithTag(""+j).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation));
                                         }
-                                        pv.findViewWithTag(""+firstTag).setBackgroundColor(Color.argb(51,17,17,17));
+                                        pv.findViewWithTag(""+firstTag).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation_selected));
                                         Toast.makeText(getApplicationContext(), "예약 불가능한 시간대가 포함되어 있습니다.", Toast.LENGTH_LONG).show();
                                         break;
                                     }
@@ -770,16 +773,16 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             }else{
                                 for(int i = secondTag; i <= firstTag; i++){
                                     TextView textView = pv.findViewWithTag(""+i);
-                                    pv.findViewWithTag(""+i).setBackgroundColor(Color.argb(51,17,17,17));
+                                    pv.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation_selected));
                                     //만약 예약이 불가한 날짜가 껴있다면 예약 불가
                                     if(textView.getText().equals("R") || textView.getText().equals("L")){
                                         secondClick = false;
                                         secondTag = -1;
                                         //배경을 first view빼고 모두 지움
                                         for(int j = 0; j < lastTimePosition-startTimePosition; j++){
-                                            pv.findViewWithTag(""+j).setBackgroundColor(Color.argb(0, 0x8B,0xC3,0x4A));
+                                            pv.findViewWithTag(""+j).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation));
                                         }
-                                        pv.findViewWithTag(""+firstTag).setBackgroundColor(Color.argb(51,17,17,17));
+                                        pv.findViewWithTag(""+firstTag).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation_selected));
                                         Toast.makeText(getApplicationContext(), "예약 불가능한 시간대가 포함되어 있습니다.", Toast.LENGTH_LONG).show();
                                         break;
                                     }
@@ -806,7 +809,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         this.isFCFS = isFCFS;
         if(isFCFS){
             reserveTypeTextView.setText("  예약 타입: 선착순");
-            reserveRandomButton.setVisibility(View.VISIBLE);
+            //Todo: 랜덤 확정은 일단 뺀다
+//            reserveRandomButton.setVisibility(View.VISIBLE);
         }
         else{
             reserveTypeTextView.setText("  예약 타입: 선지망 후추첨");

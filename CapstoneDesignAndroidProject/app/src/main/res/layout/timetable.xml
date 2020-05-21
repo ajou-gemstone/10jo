@@ -1,0 +1,3786 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableParentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    android:gravity="center"
+                    android:textSize="25dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="월"
+                    android:gravity="center"
+                    android:textSize="25dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="화"
+                    android:gravity="center"
+                    android:textSize="25dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="수"
+                    android:gravity="center"
+                    android:textSize="25dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="목"
+                    android:gravity="center"
+                    android:textSize="25dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="금"
+                    android:gravity="center"
+                    android:textSize="25dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="토"
+                    android:gravity="center"
+                    android:textSize="25dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="일"
+                    android:gravity="center"
+                    android:textSize="25dp"/>
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol0"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="7:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A0"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B0"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C0"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D0"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E0"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F0"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G0"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol1"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="7:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A1"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B1"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C1"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D1"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E1"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F1"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G1"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol2"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="8:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A2"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B2"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C2"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D2"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E2"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F2"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G2"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol3"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="8:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A3"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B3"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C3"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D3"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E3"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F3"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G3"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol4"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="9:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A4"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B4"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C4"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D4"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E4"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F4"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G4"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol5"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="9:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A5"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B5"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C5"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D5"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E5"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F5"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G5"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol6"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="10:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A6"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B6"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C6"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D6"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E6"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F6"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G6"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol7"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="10:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A7"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B7"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C7"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D7"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E7"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F7"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G7"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol8"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="11:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A8"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B8"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C8"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D8"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E8"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F8"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G8"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol9"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="11:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A9"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B9"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C9"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D9"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E9"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F9"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G9"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol10"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="12:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A10"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B10"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C10"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D10"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E10"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F10"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G10"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol11"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="12:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A11"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B11"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C11"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D11"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E11"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F11"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G11"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol12"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="13:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A12"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B12"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C12"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D12"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E12"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F12"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G12"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol13"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="13:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A13"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B13"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C13"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D13"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E13"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F13"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G13"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol14"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="14:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A14"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B14"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C14"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D14"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E14"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F14"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G14"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol15"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="14:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A15"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B15"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C15"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D15"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E15"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F15"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G15"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol16"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="15:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A16"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B16"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C16"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D16"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E16"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F16"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G16"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol17"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="15:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A17"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B17"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C17"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D17"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E17"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F17"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G17"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol18"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="16:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A18"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B18"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C18"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D18"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E18"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F18"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G18"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol19"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="16:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A19"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B19"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C19"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D19"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E19"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F19"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G19"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol20"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="17:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A20"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B20"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C20"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D20"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E20"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F20"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G20"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol21"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="17:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A21"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B21"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C21"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D21"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E21"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F21"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G21"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol22"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="18:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A22"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B22"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C22"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D22"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E22"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F22"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G22"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol23"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="18:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A23"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B23"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C23"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D23"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E23"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F23"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G23"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol24"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="19:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A24"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B24"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C24"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D24"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E24"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F24"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G24"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol25"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="19:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A25"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B25"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C25"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D25"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E25"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F25"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G25"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol26"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="20:00"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A26"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B26"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C26"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D26"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E26"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F26"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G26"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/row27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:tag="timeCol27"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="20:30"
+                    android:gravity="center"
+                    android:textSize="16dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="A27"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="B27"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="C27"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="D27"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="E27"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="F27"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:tag="G27"
+                style="@style/timeTable"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/timeTableContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/timeTableLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

@@ -65,9 +65,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
+            Log.d(TAG, "Message Notification Title: " + remoteMessage.getNotification().getTitle());
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+            //Todo: 여기서 알림에 스택을 쌓는다. title을 기준으로 알림 목적을 나눈다.
+            //Todo: 알람 스택은 안드로이드 내부 저장소에 저장하는게 좋을 것 같다. (어차피 자신만 사용, 서버 통신 필요x)
+            //Todo: sharedPreference에 날짜, 시간, 내용 등을 넣는다. 시시각 초기화 필수
 
-            sendNotification(remoteMessage.getNotification().getBody());
+            //Todo: 아래에서 알람 view를 만들고 보낸다. 알람 종류에 따라서 다른 method를 작성한다.
+            sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -129,8 +134,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void sendNotification(String messageTitle, String messageBody) {
+        Intent intent = new Intent(this, FirebaseTestActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -140,7 +145,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.info_white_18)
-                        .setContentTitle(getString(R.string.fcm_message))
+                        .setContentTitle(messageTitle)
                         .setContentText(messageBody)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
