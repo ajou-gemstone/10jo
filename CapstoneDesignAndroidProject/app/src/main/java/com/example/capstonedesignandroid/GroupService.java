@@ -32,9 +32,23 @@ public interface GroupService {
     Call<DummyResponse> createStudy(@Field("userId") String userId, @Field("category") String category, @Field("title") String title, @Field("textBody") String textBody, @Field("tagName") ArrayList<String> tagName, @Field("studyGroupNumTot") int studyGroupNumTot);
     //출력 : success or fail
 
-    @POST("/study/register")
+    @POST("/study/register") //신청만 하는 API. 바로 수락되는거에서 신청자 리스트에 쌓이는 걸로 바꿔주세요
     @FormUrlEncoded
     Call<DummyResponse> registerStudy(@Field("groupId") String groupId, @Field("userId") String userId);
+    //출력 : success or fail
+
+    @GET("/study/waitinglist")
+    Call<List<Group>> getWaitingList(@Query("groupId") String groupId);
+    //출력 : 이 그룹의 신청자 userList{ userId, 이름, 학번 }
+
+    @POST("/study/accept") //이 유저의 가입을 수락합니다.
+    @FormUrlEncoded
+    Call<DummyResponse> acceptStudy(@Field("groupId") String groupId, @Field("userId") String userId);
+    //출력 : success or fail
+
+    @POST("/study/reject") // 이 유저의 가입을 거절합니다.
+    @FormUrlEncoded
+    Call<DummyResponse> rejectStudy(@Field("groupId") String groupId, @Field("userId") String userId);
     //출력 : success or fail
 
     @POST("/study/edit")

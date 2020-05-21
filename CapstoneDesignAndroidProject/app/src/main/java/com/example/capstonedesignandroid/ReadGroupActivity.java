@@ -76,25 +76,29 @@ public class ReadGroupActivity extends AppCompatActivity {
         Call<Group> call = groupService.getStudyGroup(groupId);
         CallThread(call);
 
+        full.setVisibility(View.GONE);
+
         if(registered){ //모임 참여 중이면
             reservation.setVisibility(View.VISIBLE);
             register.setVisibility(View.GONE);
+            full.setVisibility(View.GONE);
         } else{
             reservation.setVisibility(View.GONE);
-            register.setVisibility(View.VISIBLE);
+            if(currentnum.getText().equals(totalnum.getText())){ //참여 중 아닌데 꽉 찼을 때
+                register.setVisibility(View.GONE);
+                full.setVisibility(View.VISIBLE);
+            }
+            else {
+                register.setVisibility(View.VISIBLE);
+            }
             chatting.setVisibility(View.GONE);
         }
 
         if(leader){
             edit.setVisibility(View.VISIBLE);
+            full.setVisibility(View.GONE);
         } else{
             edit.setVisibility(View.GONE);
-        }
-
-        full.setVisibility(View.GONE);
-        if(currentnum.getText().equals(totalnum.getText())){
-            register.setVisibility(View.GONE);
-            full.setVisibility(View.VISIBLE);
         }
 
         register.setOnClickListener(new View.OnClickListener() {
