@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -75,6 +76,7 @@ public class EditGroupActivity extends AppCompatActivity {
                 Call<DummyResponse> call2 = groupService.editStudy(groupId, grouptitle.getText().toString(), body.getText().toString(), tagarray, totalnum.getText().toString());
                 CallThread2(call2);
 
+                Toast.makeText(EditGroupActivity.this, "모임 정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
                 startActivity(intent);
             }
