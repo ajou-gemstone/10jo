@@ -145,19 +145,19 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
                 try {
                     List<Group> dummies = call.execute().body();
                     for(int i = 0; i< dummies.size(); i++){
-                        if(dummies.get(i).getCategory().equals("all")) {
+                        if(dummies.get(dummies.size()-1-i).getCategory().equals("all")) {
                             String tag = "";
-                            if (dummies.get(i).getTagName().size() != 0) {
-                                for (int t = 0; t < dummies.get(i).getTagName().size(); t++) {
-                                    tag = tag + "#" + dummies.get(i).getTagName().get(t).getTagName() + " ";
+                            if (dummies.get(dummies.size()-1-i).getTagName().size() != 0) {
+                                for (int t = 0; t < dummies.get(dummies.size()-1-i).getTagName().size(); t++) {
+                                    tag = tag + "#" + dummies.get(dummies.size()-1-i).getTagName().get(t).getTagName() + " ";
                                 }
                             }
                             tagArray.add(tag);
-                            idArray.add(dummies.get(i).getId());
-                            titleArray.add(dummies.get(i).getTitle());
-                            categoryArray.add(dummies.get(i).getCategory());
-                            currentNumArray.add(dummies.get(i).getStudyGroupNumCurrent());
-                            totalNumArray.add(dummies.get(i).getStudyGroupNumTotal());
+                            idArray.add(dummies.get(dummies.size()-1-i).getId());
+                            titleArray.add(dummies.get(dummies.size()-1-i).getTitle());
+                            categoryArray.add(dummies.get(dummies.size()-1-i).getCategory());
+                            currentNumArray.add(dummies.get(dummies.size()-1-i).getStudyGroupNumCurrent());
+                            totalNumArray.add(dummies.get(dummies.size()-1-i).getStudyGroupNumTotal());
                         }
                     }
                 } catch (IOException e) {
@@ -185,7 +185,7 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
             }
         }
         else{
-            for(int i = titleArray.size()-1;i >=0; i--) {
+            for (int i = 0; i <= titleArray.size() - 1; i++) {
                 if(categoryArray.get(i).equals("all")) {
                     if (titleArray.get(i).contains(charText)) {
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
