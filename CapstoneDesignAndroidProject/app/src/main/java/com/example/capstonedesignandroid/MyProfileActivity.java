@@ -41,7 +41,6 @@ public class MyProfileActivity extends AppCompatActivity {
     protected BottomNavigationView navigationView;
     private TimeTableFragment timeTableFragment;
     private RelativeLayout timaTableBigRL;
-    private Button timeTableBigCancel;
     private TimeTableFragment timeTableBigFragment;
 
     @Override
@@ -107,7 +106,6 @@ public class MyProfileActivity extends AppCompatActivity {
         //시간표 크게 보기
         Button timeTableBigButton = findViewById(R.id.timeTableBigButton);
         timaTableBigRL = findViewById(R.id.timaTableBigRL);
-        timeTableBigCancel = findViewById(R.id.timeTableBigCancel);
         timeTableBigButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,15 +134,6 @@ public class MyProfileActivity extends AppCompatActivity {
 
                 Timer mTimer = new Timer();
                 mTimer.schedule(mTask, 200);
-            }
-        });
-
-        //시간표 크게 보기 - 뒤로 가기
-        timeTableBigCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                timaTableBigRL.setVisibility(View.INVISIBLE);
-                getSupportFragmentManager().beginTransaction().remove(timeTableBigFragment).commit();
             }
         });
 

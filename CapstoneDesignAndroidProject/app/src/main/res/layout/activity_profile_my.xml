@@ -14,8 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp">
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/myname"
@@ -69,26 +68,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp">
-
-            <ImageView
-                android:id="@+id/leader_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/leader" />
-
-            <ImageView
-                android:id="@+id/member_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/member" />
+            android:layout_marginHorizontal="20dp">
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 android:gravity="left"
                 android:text="강찬혁"
                 android:textSize="15dp" />
@@ -142,6 +128,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
             <com.otaliastudios.zoom.ZoomLayout
@@ -149,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="10"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:scrollbars="vertical|horizontal"
                 app:transformation="centerInside"
                 app:transformationGravity="auto"
@@ -179,28 +167,21 @@
                     android:layout_height="match_parent"/>
 
             </com.otaliastudios.zoom.ZoomLayout>
-
             <Button
                 android:id="@+id/timeTableBigButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:text="시간표 크기보기"
-                android:textColor="#ffffff"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/zoom" />
 
             <Button
                 android:id="@+id/timeTableModifyButton"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/blue_button"
                 android:text="시간표 수정하기"
                 android:textColor="#ffffff"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -231,16 +212,7 @@
         android:clickable="true"
         android:visibility="invisible">
 
-        <Button
-            android:id="@+id/timeTableBigCancel"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="뒤로 가기"/>
-
         <com.otaliastudios.zoom.ZoomLayout
-            android:layout_below="@id/timeTableBigCancel"
             android:id="@+id/timeTableBigZoomLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
