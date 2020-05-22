@@ -25,9 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LectureroomReservationAdditionalActivity extends AppCompatActivity {
 
-    private String resId;
+    private String resId, groupId;
     private RecyclerView classofRecyclerView;
-    private ArrayList<String> classofArrayList;
+    private ArrayList<String> classofArrayList, studentNumArray;
     private EditText classofEdittext;
     private Button classofAddButton;
     private Button saveReservationDescButton;
@@ -49,6 +49,8 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
 
         Intent intent = getIntent();
         resId = intent.getExtras().getString("reservationId");
+        groupId = intent.getStringExtra("groupId");
+        studentNumArray = (ArrayList<String>) intent.getSerializableExtra("studentnumarray");
 
         reservationIntentEditText = findViewById(R.id.reservationIntentEditText);
         classofEdittext = findViewById(R.id.classofEdittext);

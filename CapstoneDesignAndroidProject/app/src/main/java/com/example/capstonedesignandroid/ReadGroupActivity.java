@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.capstonedesignandroid.Adapter.UserListAdapter;
+import com.example.capstonedesignandroid.Adapter.UserWaitingListAdapter;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.TagName;
@@ -23,14 +26,15 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadGroupActivity extends AppCompatActivity {
-    Button register, reservation, chatting, edit, full;
-    TextView title, maintext, currentnum, totalnum, tags;
+    Button register, reservation, chatting, edit, full, yes ,no;
+    TextView title, maintext, currentnum, totalnum, tags, waiting;
     String userId;
     int leaderormember = 0;
     String tag = "";
@@ -39,10 +43,16 @@ public class ReadGroupActivity extends AppCompatActivity {
     ListView listview;
     boolean registered = false;
     boolean leader = false;
+    private Boolean[] yesList = new Boolean[100];
     ArrayList<String> useridarray = new ArrayList<>();
     ArrayList<String> leaderarray = new ArrayList<>();
     ArrayList<String> usernamearray = new ArrayList<>();
+    ArrayList<String> studentnumarray = new ArrayList<>();
+    ArrayList<String> waitingUserIdarray = new ArrayList<>();
     UserListAdapter userListAdapter = new UserListAdapter();
+    private RecyclerView recyclerView;
+    private ArrayList<User> list = new ArrayList();
+    ArrayList<User> waitinguserArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +64,18 @@ public class ReadGroupActivity extends AppCompatActivity {
         maintext =  (TextView)findViewById(R.id.textview_maintext);
         currentnum = (TextView) findViewById(R.id.currentnum);
         totalnum = (TextView) findViewById(R.id.totalnum);
+        waiting = findViewById(R.id.waiting_textview);
         tags = findViewById(R.id.textview_tag);
         reservation = (Button) findViewById(R.id.button_oldchat);
         chatting = (Button) findViewById(R.id.button_chat);
         edit = findViewById(R.id.button_edit);
         full = findViewById(R.id.button_full);
+        recyclerView = findViewById(R.id.recyclerview);
+
+        UserWaitingListAdapter lectureListAdapter = new UserWaitingListAdapter(list);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(lectureListAdapter);
 
         Intent intent3 = getIntent();
         String groupId = intent3.getStringExtra("groupId");
@@ -77,6 +94,7 @@ public class ReadGroupActivity extends AppCompatActivity {
         CallThread(call);
 
         full.setVisibility(View.GONE);
+        waiting.setVisibility(View.GONE);
 
         if(registered){ //모임 참여 중이면
             reservation.setVisibility(View.VISIBLE);
@@ -97,6 +115,12 @@ public class ReadGroupActivity extends AppCompatActivity {
         if(leader){
             edit.setVisibility(View.VISIBLE);
             full.setVisibility(View.GONE);
+            waiting.setVisibility(View.VISIBLE);
+            Call<List<User>> call3 = groupService.getWaitingList(groupId);
+            CallThread3(call3);
+
+            for(User user : waitinguserArray)
+                list.add(user);
         } else{
             edit.setVisibility(View.GONE);
         }
@@ -123,6 +147,7 @@ public class ReadGroupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),LectureroomReservationActivity.class);
                 intent.putExtra("groupId", groupId);
+                intent.putExtra("studentnumarray", studentnumarray);
                 startActivity(intent);
             }
         });
@@ -158,7 +183,7 @@ public class ReadGroupActivity extends AppCompatActivity {
             }
         });
 
-        //유저 하나하나 눌렀을 때
+        //가입된 유저 하나하나 눌렀을 때
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -168,8 +193,31 @@ public class ReadGroupActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-    } // onCreate
+        if(leader) {
+//            //신청자 하나하나 눌렀을 때
+//            registerlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    Intent intent2 = new Intent(getApplicationContext(), UserProfileActivity.class);
+//                    intent2.putExtra("leaderormember", "-1");
+//                    intent2.putExtra("userId", waitingUserIdarray.get(position));
+//                    startActivity(intent2);
+//                }
+//                @Override
+//                public void onYesNoClick(int position){
+//                    yes.getTag();
+//                    Toast.makeText(ReadGroupActivity.this, "hihi", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+        }
+        //yesList = userRegisterListAdapter.getYes();
+//        for(int i=0; i<yesList.length; i++){
+//            if(yesList[i]) {
+//                Log.d("ddddddd", waitingUserIdarray.get(i).toString());
+//            }
+//        }
 
+    } // onCreate
 
     private void CallThread(Call<Group> call) {
         Thread thread = new Thread(new Runnable() {
@@ -192,6 +240,7 @@ public class ReadGroupActivity extends AppCompatActivity {
                         useridarray.add(user.getUserId());
                         leaderarray.add(Integer.toString(user.getLeader()));
                         usernamearray.add(user.getName());
+                        studentnumarray.add(user.getStudentNum());
                         if(userId.equals(user.getUserId())) {
                             registered = true;
                             username = user.getName();
@@ -235,4 +284,58 @@ public class ReadGroupActivity extends AppCompatActivity {
         }
     }//callthread2
 
+    private void CallThread3(Call<List<User>> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<User> dummies = call.execute().body();
+                    for(User user : dummies){
+                        waitinguserArray.add(new User(user.getName(), user.getStudentNum()));
+                        waitingUserIdarray.add(user.getId());
+                        Log.d("waiting", waitingUserIdarray.toString());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }//callthread2
+//
+//    @Override
+//    public void onClick(View v) {
+////        View oParentView = (View)v.getParent(); // 부모의 View를 가져온다. 즉, 아이템 View임.
+////        String position = (String) oParentView.getTag();
+////
+////        AlertDialog.Builder oDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog);
+////
+////        String strMsg = "선택한 아이템의 position 은 "+position+" 입니다.";
+////        oDialog.setMessage(strMsg)
+////                .setPositiveButton("확인", null)
+////                .setCancelable(false) // 백버튼으로 팝업창이 닫히지 않도록 한다.
+////                .show();
+//        switch (v.getId()) {
+//
+//            case R.id.yes:
+//                Intent i = new Intent(this, StudyBulletinBoardActivity.class);
+//                startActivity(i);
+//                break;
+//            case R.id.no:
+//                //buttonAction.welarmListOnOff(this, v.getTag().toString());
+//                userRegisterListAdapter.notifyDataSetChanged();
+//                Log.d("ddddd","ddddd");
+//                //Log.d("MainActivity.class", "test: myAdapter_switch:"+myAdapter);
+//                // onResume();
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+//
 }
