@@ -19,13 +19,13 @@ public class ChattingAdapter extends BaseAdapter {
         int profile;
         String msg;
         int type;
-        String userKey;
-        ListContents(int profile, String _msg, int _type, String userKey)
+        String name;
+        ListContents(int profile, String _msg, int _type, String name)
         {
             this.profile = profile;
             this.msg = _msg;
             this.type = _type;
-            this.userKey = userKey;
+            this.name = name;
         }
     }
 
@@ -35,9 +35,9 @@ public class ChattingAdapter extends BaseAdapter {
     }
 
     // 외부에서 아이템 추가 요청 시 사용
-    public void add(int profile, String _msg,int _type, String userKey) {
+    public void add(int profile, String _msg,int _type, String name) {
 
-        m_List.add(new ListContents(profile,_msg,_type, userKey));
+        m_List.add(new ListContents(profile,_msg,_type, name));
     }
 
     public String getMessage(int position){
@@ -64,8 +64,8 @@ public class ChattingAdapter extends BaseAdapter {
         return position;
     }
 
-    public String getUserkey(int position){
-        return m_List.get(position).userKey;
+    public String getName(int position){
+        return m_List.get(position).name;
     }
 
     @Override
@@ -128,7 +128,7 @@ public class ChattingAdapter extends BaseAdapter {
 
         // Text 등록
         text.setText(m_List.get(position).msg);
-        name.setText("익명 "+m_List.get(position).userKey);
+        name.setText("익명 "+m_List.get(position).name);
 
         if( m_List.get(position).type == 0 ) {
             imageView.setVisibility(imageView.INVISIBLE);

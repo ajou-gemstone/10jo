@@ -87,6 +87,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
+
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -112,7 +113,7 @@
             android:name=".ChattingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".MyProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NotificationActivity"
@@ -120,19 +121,7 @@
         <activity
             android:name=".SignUpAjouAuthActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MakeGroupActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ReadGroupActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".EditGroupActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ChattingActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MyProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".NotificationActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".SignUpAjouAuthActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".UserProfileActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
