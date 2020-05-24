@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:background="@drawable/reservation">
+    android:layout_marginHorizontal="20dp">
 
     <TextView
         android:layout_gravity="center"
@@ -13,18 +13,18 @@
         android:layout_weight="2"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="17dp"
         android:text="2020-xx-xx"/>
 
     <TextView
         android:layout_gravity="center"
         android:id="@+id/dayTextView"
         android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:layout_height="wrap_content"
         android:gravity="left"
         android:layout_marginLeft="6dp"
-        android:textSize="18sp"
+        android:textSize="17dp"
         android:text="월"/>
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="17dp"
         android:text="강xxx"/>
 
     <TextView
@@ -44,7 +44,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="17dp"
         android:text="7:00"/>
 
     <TextView
@@ -53,7 +53,7 @@
         android:layout_weight="0.3"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="17dp"
         android:text="~"/>
 
     <TextView
@@ -63,7 +63,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="17dp"
         android:text="21:00"/>
 
     <ImageView

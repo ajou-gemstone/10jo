@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:background="@drawable/listview"
-    android:paddingVertical="10dp">
+    android:paddingVertical="5dp">
 
     <ImageView
         android:id="@+id/profile_image"
@@ -32,7 +32,6 @@
             android:maxLines="1"
             android:maxLength="5"
             android:ellipsize="end"
-            android:textStyle="bold"
             android:text="주피터"
             android:textSize="16dp" />
         <TextView
@@ -44,7 +43,6 @@
             android:maxLines="1"
             android:maxLength="9"
             android:ellipsize="end"
-            android:textStyle="bold"
             android:text="201520995"
             android:textSize="16dp" />
         <View
@@ -58,8 +56,8 @@
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
             android:focusable="false"
-            android:background="@drawable/green_button"
-            android:textColor="#ffffff"
+            android:background="@drawable/blue_trans_button"
+            android:textColor="@color/asmr_blue"
             android:text="거절"/>
         <Button
             android:id="@+id/yes"

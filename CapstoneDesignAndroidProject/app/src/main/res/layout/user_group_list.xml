@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:background="@drawable/listview"
-    android:paddingVertical="10dp">
+    android:paddingVertical="5dp">
 
     <ImageView
         android:id="@+id/profile_image"
@@ -31,7 +31,6 @@
             android:maxLines="1"
             android:maxLength="5"
             android:ellipsize="end"
-            android:textStyle="bold"
             android:text="주피터"
             android:textSize="16dp" />
 

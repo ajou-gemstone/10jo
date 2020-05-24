@@ -24,14 +24,12 @@
             <EditText
                 android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:backgroundTint = "#c0c0c0"
                 android:textColorHint="#c0c0c0"
                 android:hint="모임을 잘 설명할 수 있는 제목을 적어주세요"
                 android:layout_height="wrap_content" />
             <EditText
                 android:id="@+id/tag"
                 android:layout_width="match_parent"
-                android:backgroundTint = "#c0c0c0"
                 android:textColorHint="#c0c0c0"
                 android:hint="#태그, #태그 ..."
                 android:layout_height="wrap_content" />
@@ -56,7 +54,6 @@
                     android:layout_height="match_parent"
                     android:textColorHint="#c0c0c0"
                     android:hint="모임을 자세히 소개해주세요"
-                    android:padding="10dp"
                     android:gravity="top" />
 
             </LinearLayout>
@@ -85,7 +82,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
                 <TextView
-                    android:layout_width="71dp"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:text="모집 인원"/>
                 <EditText

@@ -811,12 +811,12 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     public void getReservationType(boolean isFCFS){
         this.isFCFS = isFCFS;
         if(isFCFS){
-            reserveTypeTextView.setText("  예약 타입: 선착순");
+            reserveTypeTextView.setText("선착순 예약");
             //Todo: 랜덤 확정은 일단 뺀다
 //            reserveRandomButton.setVisibility(View.VISIBLE);
         }
         else{
-            reserveTypeTextView.setText("  예약 타입: 선지망 후추첨");
+            reserveTypeTextView.setText("선지망 후추첨 예약");
             reserveRandomButton.setVisibility(View.INVISIBLE);
         }
     }
