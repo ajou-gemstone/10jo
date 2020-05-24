@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.capstonedesignandroid.Adapter.UserListAdapter;
 import com.example.capstonedesignandroid.Adapter.UserWaitingListAdapter;
@@ -72,10 +73,10 @@ public class ReadGroupActivity extends AppCompatActivity {
         full = findViewById(R.id.button_full);
         recyclerView = findViewById(R.id.recyclerview);
 
-        UserWaitingListAdapter lectureListAdapter = new UserWaitingListAdapter(list);
+        UserWaitingListAdapter userWaitingListAdapter = new UserWaitingListAdapter(getApplicationContext(), list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(lectureListAdapter);
+        recyclerView.setAdapter(userWaitingListAdapter);
 
         Intent intent3 = getIntent();
         String groupId = intent3.getStringExtra("groupId");
@@ -91,7 +92,7 @@ public class ReadGroupActivity extends AppCompatActivity {
 
         GroupService groupService = retrofit2.create(GroupService.class);
         Call<Group> call = groupService.getStudyGroup(groupId);
-        CallThread(call);
+        CallThread_GetUser(call);
 
         full.setVisibility(View.GONE);
         waiting.setVisibility(View.GONE);
@@ -116,8 +117,9 @@ public class ReadGroupActivity extends AppCompatActivity {
             edit.setVisibility(View.VISIBLE);
             full.setVisibility(View.GONE);
             waiting.setVisibility(View.VISIBLE);
+
             Call<List<User>> call3 = groupService.getWaitingList(groupId);
-            CallThread3(call3);
+            CallThread_GetWaitingUser(call3);
 
             for(User user : waitinguserArray)
                 list.add(user);
@@ -129,14 +131,8 @@ public class ReadGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            Retrofit retrofit2 = new Retrofit.Builder()
-                    .baseUrl(MyConstants.BASE)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            GroupService service = retrofit2.create(GroupService.class);
-            Call<DummyResponse> call2 = service.registerStudy(groupId, userId);
-            CallThread2(call2);
+            Call<DummyResponse> call2 = groupService.registerStudy(groupId, userId);
+            CallThread_Register(call2);
 
             Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
             startActivity(intent);
@@ -182,7 +178,6 @@ public class ReadGroupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         //가입된 유저 하나하나 눌렀을 때
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -194,32 +189,29 @@ public class ReadGroupActivity extends AppCompatActivity {
             }
         });
         if(leader) {
-//            //신청자 하나하나 눌렀을 때
-//            registerlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                    Intent intent2 = new Intent(getApplicationContext(), UserProfileActivity.class);
-//                    intent2.putExtra("leaderormember", "-1");
-//                    intent2.putExtra("userId", waitingUserIdarray.get(position));
-//                    startActivity(intent2);
-//                }
-//                @Override
-//                public void onYesNoClick(int position){
-//                    yes.getTag();
-//                    Toast.makeText(ReadGroupActivity.this, "hihi", Toast.LENGTH_SHORT).show();
-//                }
-//            });
+           //신청자 하나하나 눌렀을 때
+            userWaitingListAdapter.setOnItemClickListener(new UserWaitingListAdapter.OnItemClickListener() {
+                @Override
+                public void onYesClick(View view, int position) {
+                    Toast.makeText(ReadGroupActivity.this, "hihi"+position, Toast.LENGTH_SHORT).show();
+
+                    Call<DummyResponse> call4 = groupService.acceptStudy(groupId, waitingUserIdarray.get(position));
+                    CallThread_Accept(call4);
+                }
+                @Override
+                public void onNoClick(View view, int position) {
+                    Toast.makeText(ReadGroupActivity.this, "nono"+position, Toast.LENGTH_SHORT).show();
+
+                    Call<DummyResponse> call5 = groupService.rejectStudy(groupId, waitingUserIdarray.get(position));
+                    CallThread_Reject(call5);
+                }
+            });
         }
-        //yesList = userRegisterListAdapter.getYes();
-//        for(int i=0; i<yesList.length; i++){
-//            if(yesList[i]) {
-//                Log.d("ddddddd", waitingUserIdarray.get(i).toString());
-//            }
-//        }
+
 
     } // onCreate
 
-    private void CallThread(Call<Group> call) {
+    private void CallThread_GetUser(Call<Group> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -265,7 +257,7 @@ public class ReadGroupActivity extends AppCompatActivity {
         }
     }//callthread
 
-    private void CallThread2(Call<DummyResponse> call) {
+    private void CallThread_Register(Call<DummyResponse> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -284,7 +276,7 @@ public class ReadGroupActivity extends AppCompatActivity {
         }
     }//callthread2
 
-    private void CallThread3(Call<List<User>> call) {
+    private void CallThread_GetWaitingUser(Call<List<User>> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -306,36 +298,43 @@ public class ReadGroupActivity extends AppCompatActivity {
             thread.join();
         } catch (Exception e) {
         }
-    }//callthread2
-//
-//    @Override
-//    public void onClick(View v) {
-////        View oParentView = (View)v.getParent(); // 부모의 View를 가져온다. 즉, 아이템 View임.
-////        String position = (String) oParentView.getTag();
-////
-////        AlertDialog.Builder oDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog);
-////
-////        String strMsg = "선택한 아이템의 position 은 "+position+" 입니다.";
-////        oDialog.setMessage(strMsg)
-////                .setPositiveButton("확인", null)
-////                .setCancelable(false) // 백버튼으로 팝업창이 닫히지 않도록 한다.
-////                .show();
-//        switch (v.getId()) {
-//
-//            case R.id.yes:
-//                Intent i = new Intent(this, StudyBulletinBoardActivity.class);
-//                startActivity(i);
-//                break;
-//            case R.id.no:
-//                //buttonAction.welarmListOnOff(this, v.getTag().toString());
-//                userRegisterListAdapter.notifyDataSetChanged();
-//                Log.d("ddddd","ddddd");
-//                //Log.d("MainActivity.class", "test: myAdapter_switch:"+myAdapter);
-//                // onResume();
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-//
+    }//callthread3
+
+    private void CallThread_Accept(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
+    private void CallThread_Reject(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
+
 }
