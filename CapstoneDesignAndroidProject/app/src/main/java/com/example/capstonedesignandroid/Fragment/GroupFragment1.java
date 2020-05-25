@@ -51,7 +51,7 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
     ArrayList<Integer> idArray, currentNumArray, totalNumArray;
     EditText editSearch;
     GroupListAdapter grouplistAdapter = new GroupListAdapter();
-
+    ListView listview;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +59,6 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final ListView listview;
         View view = inflater.inflate(R.layout.group_fragment_1, container, false);
         mSwipeRefreshLayout = view.findViewById(R.id.refresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -181,7 +180,7 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
         if (charText.length() == 0) {
             for (int i = 0; i <= titleArray.size() - 1; i++) {
                 if(categoryArray.get(i).equals("all"))
-                    grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+                    grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
             }
         }
         else{
@@ -214,8 +213,9 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
                 Call<List<Group>> call1 = groupService.getStudyList();
                 CallThread(call1);
             }
-        },1000); // 1초후에 새로고침 끝
-
+        },2000); // 1초후에 새로고침 끝
+        // 새로고침 완료
+        mSwipeRefreshLayout.setRefreshing(false);
     }//onRefresh
 
 }

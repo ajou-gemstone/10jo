@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadGroupActivity extends AppCompatActivity {
     Button register, reservation, chatting, edit, full, yes ,no;
-    TextView title, maintext, currentnum, totalnum, tags, waiting;
+    TextView title, maintext, currentnum, totalnum, tags, waiting, notyet;
     String userId;
     int leaderormember = 0;
     String tag = "";
@@ -71,6 +72,7 @@ public class ReadGroupActivity extends AppCompatActivity {
         chatting = (Button) findViewById(R.id.button_chat);
         edit = findViewById(R.id.button_edit);
         full = findViewById(R.id.button_full);
+        notyet = findViewById(R.id.notyet_textview);
         recyclerView = findViewById(R.id.recyclerview);
 
         UserWaitingListAdapter userWaitingListAdapter = new UserWaitingListAdapter(getApplicationContext(), list);
@@ -96,6 +98,7 @@ public class ReadGroupActivity extends AppCompatActivity {
 
         full.setVisibility(View.GONE);
         waiting.setVisibility(View.GONE);
+        notyet.setVisibility(View.GONE);
 
         if(registered){ //모임 참여 중이면
             reservation.setVisibility(View.VISIBLE);
@@ -113,19 +116,30 @@ public class ReadGroupActivity extends AppCompatActivity {
             chatting.setVisibility(View.GONE);
         }
 
+        Call<List<User>> call3 = groupService.getWaitingList(groupId);
+        CallThread_GetWaitingUser(call3);
+
         if(leader){
             edit.setVisibility(View.VISIBLE);
             full.setVisibility(View.GONE);
             waiting.setVisibility(View.VISIBLE);
+            notyet.setVisibility(View.VISIBLE);
 
-            Call<List<User>> call3 = groupService.getWaitingList(groupId);
-            CallThread_GetWaitingUser(call3);
+            if(waitinguserArray.size() != 0)
+                notyet.setVisibility(View.GONE);
 
             for(User user : waitinguserArray)
                 list.add(user);
         } else{
             edit.setVisibility(View.GONE);
         }
+
+         for(String id : waitingUserIdarray){
+             if(id.equals(userId)){
+                 register.setText("신청 완료");
+                 register.setEnabled(false);
+             }
+         }
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,17 +207,17 @@ public class ReadGroupActivity extends AppCompatActivity {
             userWaitingListAdapter.setOnItemClickListener(new UserWaitingListAdapter.OnItemClickListener() {
                 @Override
                 public void onYesClick(View view, int position) {
-                    Toast.makeText(ReadGroupActivity.this, "hihi"+position, Toast.LENGTH_SHORT).show();
-
                     Call<DummyResponse> call4 = groupService.acceptStudy(groupId, waitingUserIdarray.get(position));
                     CallThread_Accept(call4);
+                    list.remove(position);
+                    userWaitingListAdapter.notifyDataSetChanged();
                 }
                 @Override
                 public void onNoClick(View view, int position) {
-                    Toast.makeText(ReadGroupActivity.this, "nono"+position, Toast.LENGTH_SHORT).show();
-
                     Call<DummyResponse> call5 = groupService.rejectStudy(groupId, waitingUserIdarray.get(position));
                     CallThread_Reject(call5);
+                    list.remove(position);
+                    userWaitingListAdapter.notifyDataSetChanged();
                 }
             });
         }
