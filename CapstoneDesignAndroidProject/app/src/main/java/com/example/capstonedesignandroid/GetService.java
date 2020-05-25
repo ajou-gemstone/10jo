@@ -49,6 +49,12 @@ public interface GetService {
     Call<DummyResponse> getIdConfirm(@Field("userId") String userId);
     //출력 : success or fail
 
+    //회원가입할 때 이메일 중복확인
+    @POST("/user/email")
+    @FormUrlEncoded
+    Call<DummyResponse> postEmail(@Field("email") String email);
+    //출력 : success or fail
+
     //강의실 예약 필터링o
     @GET("/reservation/list")
     Call<List<DummyLectureRoomReservationState>> getReservationList(@Query("date") String date, @Query("building") List<String> building,

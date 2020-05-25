@@ -22,8 +22,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    boolean already = false;
+    boolean IDalready = false;
+    boolean emailalready = false;
     boolean checked = false;
+    String authnum = "-1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,11 @@ public class SignUpActivity extends AppCompatActivity {
         final Button checkID = (Button) findViewById(R.id.button_check_id);
         final Button login = (Button) findViewById(R.id.button_email_auth);
 
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
         id.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
@@ -50,16 +57,12 @@ public class SignUpActivity extends AppCompatActivity {
         });
         checkID.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Retrofit retrofit2 = new Retrofit.Builder()
-                        .baseUrl(MyConstants.BASE)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
 
                 GetService service = retrofit2.create(GetService.class);
                 Call<DummyResponse> call2 = service.getIdConfirm(id.getText().toString());
                 CallThread(call2);
 
-                if(already){
+                if(IDalready){
                     checked=false;
                     AlertMessage("이미 존재하는 아이디입니다.");
                 }
@@ -114,10 +117,24 @@ public class SignUpActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checked){
+
+                GetService service = retrofit2.create(GetService.class);
+                Call<DummyResponse> call2 = service.postEmail(email.getText().toString());
+                CallThread_Email(call2);
+
+                if(!email.getText().toString().contains("@ajou.ac.kr")){
+                    AlertMessage("올바른 이메일을 입력해주세요.");
+                }
+                else if(studentNum.getText().toString().length() != 9){
+                    AlertMessage("올바른 학번을 입력해주세요.");
+                }
+                else if(emailalready){
+                    AlertMessage("이미 존재하는 이메일입니다.");
+                }
+                else if(!checked){
                     AlertMessage("아이디를 확인해주세요.");
                 }
-                else if(already){
+                else if(IDalready){
                     AlertMessage("이미 존재하는 아이디입니다.");
                 }
                 else if(id.getText().toString().equals("") || password.getText().toString().equals("") || name.getText().toString().equals("") || studentNum.getText().toString().equals("") || email.getText().toString().equals("")){
@@ -136,6 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
                     intent.putExtra("name", name1);
                     intent.putExtra("num", studentNum1);
                     intent.putExtra("email", email1);
+                    intent.putExtra("authnum", authnum);
 
                     startActivityForResult(intent, 100);
                 }
@@ -151,9 +169,35 @@ public class SignUpActivity extends AppCompatActivity {
                 try {
                     DummyResponse dummies = call.execute().body();
                     if(dummies.getResponse().equals("fail"))
-                        already = true;
+                        IDalready = true;
                     if(dummies.getResponse().equals("success"))
-                        already = false;
+                        IDalready = false;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
+    private void CallThread_Email(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                    if(dummies.getResponse().equals("-1"))
+                        emailalready = true;
+                    else {
+                        emailalready = false;
+                        authnum = dummies.getResponse();
+                        Log.d("qqqqqq", authnum);
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
