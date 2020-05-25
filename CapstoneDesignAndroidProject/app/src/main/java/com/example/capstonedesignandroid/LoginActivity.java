@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button login = (Button) findViewById(R.id.login);
         Button developer = (Button) findViewById(R.id.button_developer);
         Button signup = findViewById(R.id.button_signup);
+        Button tutorial = findViewById(R.id.button_welcome);
 
         Intent intent1 = getIntent();
         String signedup = "fromsignup";
@@ -152,6 +153,13 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 intent.putExtra("id", id1);
                 intent.putExtra("pw", password1);
+                startActivityForResult(intent,100);
+            }
+        });
+        tutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),WelcomeActivity.class);
                 startActivityForResult(intent,100);
             }
         });

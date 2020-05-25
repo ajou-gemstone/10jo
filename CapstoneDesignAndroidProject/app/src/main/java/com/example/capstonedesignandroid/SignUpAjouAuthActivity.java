@@ -36,8 +36,6 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
         num = intent3.getStringExtra("num");
         email = intent3.getStringExtra("email");
 
-        Log.d("bbbbb", id+pw+name+num+email);
-
         mWebView.getSettings().setJavaScriptEnabled(true);//자바스크립트 허용
         mWebView.getSettings().setDomStorageEnabled(true);
 

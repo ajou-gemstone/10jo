@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.capstonedesignandroid.Adapter.GroupPagerAdapter;
 import com.example.capstonedesignandroid.Fragment.GroupFragment1;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -83,7 +84,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        final GroupPagerAdapter adapter = new GroupPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
