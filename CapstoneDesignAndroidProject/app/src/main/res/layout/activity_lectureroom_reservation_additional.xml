@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginRight="20dp"
-            android:hint="사용할 학생들의 학번을 적어주세요"
+            android:hint="학번을 적어주세요"
             android:ems="10"
             android:inputType="number"/>
 
@@ -39,8 +39,9 @@
             android:layout_width="50dp"
             android:layout_weight="0.1"
             android:layout_height="30dp"
-            android:background="@drawable/green2_button"
+            android:background="@drawable/green_button"
             android:textColor="#ffffff"
+            android:textStyle="bold"
             android:text="추가하기"/>
     </LinearLayout>
 
@@ -59,6 +60,8 @@
         android:background="@drawable/blue_button"
         android:layout_marginTop="40dp"
         android:textColor="#ffffff"
+        android:textSize="17dp"
+        android:textStyle="bold"
         android:text="저장하기"/>
 
 </LinearLayout>

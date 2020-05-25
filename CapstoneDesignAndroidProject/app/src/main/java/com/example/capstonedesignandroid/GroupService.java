@@ -2,6 +2,7 @@ package com.example.capstonedesignandroid;
 
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.Group;
+import com.example.capstonedesignandroid.DTO.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public interface GroupService {
     //출력 : success or fail
 
     @GET("/study/waitinglist")
-    Call<List<Group>> getWaitingList(@Query("groupId") String groupId);
+    Call<List<User>> getWaitingList(@Query("groupId") String groupId);
     //출력 : 이 그룹의 신청자 userList{ userId, 이름, 학번 }
 
     @POST("/study/accept") //이 유저의 가입을 수락합니다.

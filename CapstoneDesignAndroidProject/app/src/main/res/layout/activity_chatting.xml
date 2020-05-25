@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/chat_layout"
-
-        android:background="#abe0b9"
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,6 +26,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="모임 이름은 여기"
                 android:textSize="17dp"
+                android:textColor="#000000"
                 android:textStyle="bold"/>
             <View
                 android:layout_width="0dp"
@@ -79,8 +78,10 @@
     <LinearLayout
         android:id="@+id/chat_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_edittext"
         android:layout_alignParentBottom="true">
 
         <EditText
@@ -90,7 +91,9 @@
             android:layout_marginLeft="20dp"
             android:layout_gravity="center"
             android:layout_weight="0.9"
-            android:background="@drawable/round_edittext"/>
+            android:textSize="15dp"
+            android:hint="채팅..."
+            android:background="@null"/>
 
         <View
             android:layout_width="0dp"
@@ -101,13 +104,14 @@
             android:id="@+id/send_btn"
             android:layout_height="30dp"
             android:layout_width="60dp"
-            android:background="@drawable/blue_button"
+            android:background="#00ffffff"
             android:layout_below="@+id/chat_content"
             android:layout_gravity="right|center"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="전송"
-            android:textColor="#ffffff"
+            android:text="보내기"
+            android:textSize="15dp"
+            android:textColor="@color/asmr_blue"
             android:textStyle="bold"/>
 
     </LinearLayout>

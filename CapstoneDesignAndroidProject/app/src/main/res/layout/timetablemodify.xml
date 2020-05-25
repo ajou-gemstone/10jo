@@ -11,61 +11,67 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:background="#FFFFFF"
+        android:padding="20dp"
+        android:gravity="center"
         android:layout_centerInParent="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/cancelButton"
-                android:layout_gravity="start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="취소"/>
-
-            <Button
-                android:id="@+id/confirmButton"
-                android:layout_gravity="end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="확인"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="내용"
-            android:textSize="20dp"/>
+        <Button
+            android:id="@+id/deleteTileButton"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="@drawable/green_button"
+            android:text="삭제" />
 
         <EditText
             android:id="@+id/contentsEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="캡스톤디자인" />
-
-        <TextView
-            android:layout_marginTop="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="장소"
-            android:textSize="20dp"/>
+            android:gravity="center"
+            android:hint="과목명" />
 
         <EditText
             android:id="@+id/locationEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="팔101" />
+            android:gravity="center"
+            android:hint="강의실" />
 
-        <Button
-            android:id="@+id/deleteTileButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="삭제하기"/>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_gravity="start"
+                android:textColor="@color/asmr_blue"
+                android:textStyle="bold"
+                android:background="@drawable/blue_trans_button"
+                android:text="취소" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/confirmButton"
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:layout_gravity="end"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:background="@drawable/blue_button"
+                android:text="확인" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

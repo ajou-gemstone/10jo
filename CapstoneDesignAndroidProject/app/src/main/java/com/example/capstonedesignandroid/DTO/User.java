@@ -16,6 +16,11 @@ public class User {
     private Integer leader;
     private ArrayList<String> lectureList = null;
 
+    public User(String name, String studentNum) {
+        this.name = name;
+        this.studentNum = studentNum;
+    }
+
     public String getId() {
         return id;
     } //primary key

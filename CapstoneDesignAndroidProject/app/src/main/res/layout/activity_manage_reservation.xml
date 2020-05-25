@@ -23,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2020-05-05"
+                android:textColor="#000000"
                 android:textSize="17dp" />
             <TextView
                 android:id="@+id/day"
@@ -30,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:textSize="17dp"
+                android:textColor="#000000"
                 android:text="월" />
             <TextView
                 android:id="@+id/startTime"
@@ -37,17 +39,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="00:00"
+                android:textColor="#000000"
                 android:textSize="17dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" ~ "
+                android:textColor="#000000"
                 android:textSize="17dp" />
             <TextView
                 android:id="@+id/lastTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00:00"
+                android:textColor="#000000"
                 android:textSize="17dp" />
         </LinearLayout>
 
@@ -61,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17dp"
+                android:textColor="#000000"
                 android:text="성101" />
         </LinearLayout>
 
@@ -74,6 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="강의실 사용 목적"
+                android:textColor="#000000"
                 android:textSize="17dp"/>
 
         </LinearLayout>
@@ -86,13 +93,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:text="강의실 사용 전" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:text="강의실 사용 후" />
         </LinearLayout>
 
@@ -130,7 +137,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="업로드 시간: "
-            android:textSize="12dp"/>
+            android:textSize="14dp"/>
 
         <TextView
             android:id="@+id/afterUploadTime"
@@ -138,7 +145,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="업로드 시간: "
-            android:textSize="12dp"/>
+            android:textSize="14dp"/>
 
     </LinearLayout>
 
@@ -184,6 +191,7 @@
             android:layout_gravity="center"
             android:background="@drawable/blue_button"
             android:text="사용 평가"
+            android:textStyle="bold"
             android:textColor="#ffffff"
             android:textSize="17dp" />
 

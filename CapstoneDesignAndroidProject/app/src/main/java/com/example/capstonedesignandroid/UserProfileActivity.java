@@ -25,7 +25,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     TextView name, num, email, myname;
     Intent intent;
-    ImageView leader, member;
+    ImageView leader, member, waiting;
     String userId;
     protected BottomNavigationView navigationView;
 
@@ -44,11 +44,19 @@ public class UserProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         leader = findViewById(R.id.leader_image);
         member = findViewById(R.id.member_image);
+        waiting = findViewById(R.id.waiting_image);
 
+        waiting.setVisibility(View.GONE);
         if(leaderormember.equals("0"))
             leader.setVisibility(View.GONE);
         else
             member.setVisibility(View.GONE);
+
+        if(leaderormember.equals("-1")){
+            leader.setVisibility(View.GONE);
+            member.setVisibility(View.GONE);
+            waiting.setVisibility(View.VISIBLE);
+        }
 
         Retrofit retrofit2 = new Retrofit.Builder()
                 .baseUrl(MyConstants.BASE)

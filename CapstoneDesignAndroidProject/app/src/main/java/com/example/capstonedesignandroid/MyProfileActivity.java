@@ -40,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyProfileActivity extends AppCompatActivity {
 
-    TextView name, num, email, myname;
+    TextView num, email, myname;
     Intent intent;
     ImageView leader, member;
     Button noti_zero, noti_yes, logout;
@@ -48,7 +48,6 @@ public class MyProfileActivity extends AppCompatActivity {
     protected BottomNavigationView navigationView;
     private TimeTableFragment timeTableFragment;
     private RelativeLayout timaTableBigRL;
-    private Button timeTableBigCancel;
     private TimeTableFragment timeTableBigFragment;
     private ArrayList<DummyTile> dummiesDummyTile;
 
@@ -59,7 +58,6 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_my);
 
         myname =(TextView) findViewById(R.id.myname);
-        name =(TextView) findViewById(R.id.name);
         num = findViewById(R.id.studentnum);
         email = findViewById(R.id.email);
         leader = findViewById(R.id.leader_image);
@@ -110,7 +108,6 @@ public class MyProfileActivity extends AppCompatActivity {
         //시간표 크게 보기
         Button timeTableBigButton = findViewById(R.id.timeTableBigButton);
         timaTableBigRL = findViewById(R.id.timaTableBigRL);
-        timeTableBigCancel = findViewById(R.id.timeTableBigCancel);
         timeTableBigButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,15 +139,6 @@ public class MyProfileActivity extends AppCompatActivity {
             }
         });
 
-        //시간표 크게 보기 - 뒤로 가기
-        timeTableBigCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                timaTableBigRL.setVisibility(View.INVISIBLE);
-                getSupportFragmentManager().beginTransaction().remove(timeTableBigFragment).commit();
-            }
-        });
-
         //시간표 수정하기
         Button timeTableModifyButton = findViewById(R.id.timeTableModifyButton);
         timeTableModifyButton.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +158,6 @@ public class MyProfileActivity extends AppCompatActivity {
                 try {
                     User dummies = call.execute().body();
                     myname.setText(dummies.getName());
-                    name.setText(dummies.getName());
                     num.setText(dummies.getStudentNum());
                     email.setText(dummies.getEmail());
                 } catch (IOException e) {

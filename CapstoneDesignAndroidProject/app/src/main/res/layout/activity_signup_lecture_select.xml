@@ -13,12 +13,13 @@
         android:gravity="center"
         android:padding="20dp"
         android:textSize="17dp"
-        android:text="이번 학기 수강 중인 과목을 선택해주세요"/>
+        android:text="이번 학기에는 어떤 과목을 듣고 계시나요?"/>
 <LinearLayout
     android:id="@+id/list_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_weight="0.9"
+    android:layout_marginHorizontal="20dp"
     android:layout_above="@+id/button_layout">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -42,8 +43,9 @@
             android:layout_height="35dp"
             android:textColor="#ffffff"
             android:textSize="17dp"
+            android:textStyle="bold"
             android:background="@drawable/blue_button"
-            android:text="완료"/>
+            android:text="선택하기"/>
 
     </LinearLayout>
 
