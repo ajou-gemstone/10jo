@@ -88,17 +88,7 @@ public class ChattingActivity extends AppCompatActivity {
             Log.i("THREADSERVICE", "Server not connected");
             e.printStackTrace();
         }
-
         socket.connect();
-
-//        Retrofit retrofit6 = new Retrofit.Builder()
-//                .baseUrl(MyConstants.BASE)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        ChattingService chattingNumInterface = retrofit6.create(ChattingService.class);
-//        Call<List<Group>> call6 = chattingNumInterface.getchattingnum(title);
-//        call6.enqueue(dummies6);
 
         JSONObject obj1 = new JSONObject();
         try {
@@ -258,7 +248,7 @@ public class ChattingActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        if (key.equals(Integer.toString(userKey))) {
+                        if (key.equals(Integer.toString(userKey))) { //나
                             num = 0;
                             if (msg1.length() > 24) {
                                 for (int i = 0; i < (msg1.length() / 24); i++) {
@@ -275,7 +265,7 @@ public class ChattingActivity extends AppCompatActivity {
 
                             m_Adapter.add(Integer.parseInt(profile), msg, num, myname);
                             m_Adapter.notifyDataSetChanged();
-                        } else {
+                        } else { //다른사람
                             num = 1;
                             if (msg1.length() > 24) {
                                 for (int i = 0; i < (msg1.length() / 24); i++) {
