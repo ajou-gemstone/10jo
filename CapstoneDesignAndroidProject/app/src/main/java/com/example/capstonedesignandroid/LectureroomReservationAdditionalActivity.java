@@ -59,10 +59,11 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         groupId = intent.getStringExtra("groupId");
         studentNumArray = (ArrayList<String>) intent.getSerializableExtra("studentnumarray");
         classofArrayList = new ArrayList<String>();
-        for(String studentnum : studentNumArray){
-            classofArrayList.add(studentnum);
+        if(studentNumArray != null ) {
+            for (String studentnum : studentNumArray) {
+                classofArrayList.add(studentnum);
+            }
         }
-
         reservationIntentEditText = findViewById(R.id.reservationIntentEditText);
         classofEdittext = findViewById(R.id.classofEdittext);
         classofAddButton = findViewById(R.id.classofAddButton);
