@@ -51,6 +51,10 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         resId = intent.getExtras().getString("reservationId");
         groupId = intent.getStringExtra("groupId");
         studentNumArray = (ArrayList<String>) intent.getSerializableExtra("studentnumarray");
+        classofArrayList = new ArrayList<String>();
+        for(String studentnum : studentNumArray){
+            classofArrayList.add(studentnum);
+        }
 
         reservationIntentEditText = findViewById(R.id.reservationIntentEditText);
         classofEdittext = findViewById(R.id.classofEdittext);
@@ -59,7 +63,6 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         //추가, 삭제되는 edittext + recyclerview구현
         classofRecyclerView = findViewById(R.id.classofRecyclerView);
         classofRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        classofArrayList = new ArrayList<String>();
         ClassofAdapter adapter = new ClassofAdapter(classofArrayList);
         classofRecyclerView.setAdapter(adapter);
 
