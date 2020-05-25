@@ -229,13 +229,13 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             if(category.equals("전체")) {
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
                     if (!categoryArray.get(i).equals("all"))
-                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
                 }
             }
             else{ //과목 선택했을 때
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
                     if (categoryArray.get(i).equals(category))
-                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), totalNumArray.get(i), currentNumArray.get(i));
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
                 }
             }
 
@@ -288,7 +288,9 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                 CallThread(call1);
 
             }
-        },1000); // 1초후에 새로고침 끝
+        },2000); // 1초후에 새로고침 끝
+        // 새로고침 완료
+        mSwipeRefreshLayout.setRefreshing(false);
 
     }//onRefresh
 

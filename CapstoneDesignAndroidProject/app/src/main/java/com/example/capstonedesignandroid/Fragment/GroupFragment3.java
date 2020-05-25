@@ -144,7 +144,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
 
         if (charText.length() == 0) {
             for (int i = 0; i <= titleArray.size() - 1; i++) {
-                groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", totalNumArray.get(i), currentNumArray.get(i));
+                groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", currentNumArray.get(i), totalNumArray.get(i));
             }
         }
         else{
@@ -178,7 +178,9 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
                 Call<List<Group>> call = groupservice.getMyStudyList(userId);
                 CallThread(call);
             }
-        },1000); // 1초후에 새로고침 끝
+        },2000); // 1초후에 새로고침 끝
+        // 새로고침 완료
+        mSwipeRefreshLayout.setRefreshing(false);
 
     }
 
