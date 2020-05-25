@@ -13,13 +13,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.capstonedesignandroid.Adapter.ClassofAdapter;
+import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
+import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -35,6 +41,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
     private EditText reservationIntentEditText;
     private boolean saveComplete = false;
     private boolean saveComplete2 = false;
+    private User userInfo;
 
     //여기서는 뒤로가기를 막는다.
 //    @Override
@@ -66,9 +73,42 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         ClassofAdapter adapter = new ClassofAdapter(classofArrayList);
         classofRecyclerView.setAdapter(adapter);
 
+        retrofit = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit.create(GetService.class);
+        String userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
+        Call<User> call1 = service.getUserInfo(userId);
+
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    userInfo = call1.execute().body();
+                    Log.d("run: ", "run: ");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread2.start();
+        try {
+            thread2.join();
+        } catch (Exception e) {
+
+        }
+
         classofAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //자신이 학번을 쓸 경우 return
+                if(userInfo.getStudentNum().equals(classofEdittext.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "자신의 학번은 입력하지 않아도 됩니다.", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 GetService service = retrofit.create(GetService.class);
                 Call<DummyResponse> call = service.searchStudentId(classofEdittext.getText().toString());
 
@@ -114,11 +154,6 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         });
 
         saveReservationDescButton = findViewById(R.id.saveReservationDescButton);
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(MyConstants.BASE)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
         saveReservationDescButton.setOnClickListener(new View.OnClickListener() {
             @Override

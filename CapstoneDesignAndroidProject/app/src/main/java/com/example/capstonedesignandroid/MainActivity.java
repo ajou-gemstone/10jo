@@ -27,7 +27,9 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity{
         textView3 = findViewById(R.id.textView3);
         test2button = findViewById(R.id.test2Button);
 
-        test2button.setOnClickListener(new View.OnClickListener(){
+        test2button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FirebaseTestActivity.class);
@@ -64,14 +66,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        timeTableModifyActivity.setOnClickListener(new View.OnClickListener(){
+        timeTableModifyActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), TimetableModifyActivity.class);
@@ -79,7 +74,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        zoomTest3.setOnClickListener(new View.OnClickListener(){
+        zoomTest3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ZoomTest3Activity.class);
@@ -87,7 +82,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        zoomTest2.setOnClickListener(new View.OnClickListener(){
+        zoomTest2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ZoomTest2Activity.class);
@@ -106,106 +101,128 @@ public class MainActivity extends AppCompatActivity{
         testActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),testActivity.class);
+                Intent intent = new Intent(getApplicationContext(), testActivity.class);
                 startActivity(intent);
             }
         });
         LectureroomCheckActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),LectureroomCheckActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LectureroomCheckActivity.class);
                 startActivity(intent);
             }
         });
         buildingGuardActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainBuildingGuardActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainBuildingGuardActivity.class);
                 startActivity(intent);
             }
         });
 
-        Log.d("asd", getKeyHash(getApplicationContext()));
+        //textView3
+        //total 0~13
+        //예약1번(a) : 0~3
+        //2번(b) : 4~6
+        //3번(c) : 6~9
+        //4번(d) : 9~13
+        //5번(e) : 2~6
+        ArrayList<MyAlgoTest> myAlgoTestArrayList = new ArrayList<>();
+        myAlgoTestArrayList.add(new MyAlgoTest("a", 0, 3)); //index 0
+        myAlgoTestArrayList.add(new MyAlgoTest("b", 4, 6)); //index 1
+        myAlgoTestArrayList.add(new MyAlgoTest("c", 6, 9)); //index 2
+        myAlgoTestArrayList.add(new MyAlgoTest("d", 9, 13)); //index 3
+        myAlgoTestArrayList.add(new MyAlgoTest("e", 2, 6)); //index 4
+        int timeStart = 0;
+        int timeLast = 13;
+        String[] seatOfRes = new String[14];
 
-        Intent intent3 = getIntent();
-        String id = intent3.getStringExtra("id");
-        String pw = intent3.getStringExtra("pw");
-        Log.d("aa", id);
-        Log.d("aa", pw);
-
-        //Log.d("ofp", executeLogin(id, pw));
-        String html = "<html><head><title>첫번째 에제입니다.</title></head>"
-                + "<body><h1>테스트</h1><p>간단히 HTML을 파싱해 보는 샘플예제입니다.</p></body></html>";
-
-        Document doc = Jsoup.parse(html);
-
-        Elements title = doc.select("title");
-
-    }
-    public String executeLogin(String id, String pw){
-        try {
-            Connection.Response loginForm = Jsoup.connect("http://www.naver.com")
-                    .method(Connection.Method.GET)
-                    .execute();
-
-//            Connection.Response mainPage = Jsoup.connect("http://www.naver.com")
-//                    .data("user", id)
-//                    .data("senha", pw)
-//                    .cookies(loginForm.cookies())
-//                    .execute();
-
-            Map<String, String> cookies = loginForm.cookies();
-
-            Document logindocument = loginForm.parse();
-
-
-
-            return logindocument.select("input. ofp").val();
-
-
-        }catch (IOException ioe) {
-            return null;
+        //초기화
+        for(int i = timeStart; i <= timeLast ; i++){
+            seatOfRes[i] = "";
         }
 
-    }
-
-        public String getKeyHash(final Context context) {
-        PackageInfo packageInfo = Utility.getPackageInfo(context, PackageManager.GET_SIGNATURES);
-        if (packageInfo == null)
-            return null;
-
-        for (Signature signature : packageInfo.signatures) {
-            try {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-
-                return Base64.encodeToString(md.digest(), Base64.NO_WRAP);
-            } catch (NoSuchAlgorithmException e) {
+        //각각의 예약의 index를 리스트의 startTime ~ lastTime에 해당하는 칸에 넣는다.
+        for(MyAlgoTest m : myAlgoTestArrayList){
+            for(int i = m.startTime ; i <= m.lastTime ; i++){
+                seatOfRes[i] = seatOfRes[i].concat(String.valueOf(myAlgoTestArrayList.indexOf(m)));
             }
         }
-        return null;
+
+        //다시 순회하면서 예약의 겹치는 시간 수와 겹치는 예약 수를 증가시킨다.
+        for(MyAlgoTest m : myAlgoTestArrayList){
+            for(int i = m.startTime ; i <= m.lastTime ; i++){
+                m.stacksTime += seatOfRes[i].length(); // 겹치는 시간 수 증가
+                for(int j = 0 ; j < seatOfRes[i].length() ; j++){
+                    if(!m.stacksRes.contains(seatOfRes[i].substring(j,j+1))){
+                        m.stacksRes = m.stacksRes.concat(seatOfRes[i].substring(j,j+1));//겹치는 예약 수 증가
+                    }
+                }
+            }
+        }
+
+        double prioritySum = 0.0;
+        //우선 순위를 정해준다. 우선순위(높으면 좋음) = 시간 차지 수 / (겹치는 예약 수 + 겹치는 시간 수)
+        for(MyAlgoTest m : myAlgoTestArrayList){
+            m.priority = (double)(m.lastTime-m.startTime+1)/(m.stacksTime-(m.lastTime-m.startTime+1)+m.stacksRes.length());
+            Log.d("MyAlgoTest", "  " + m.stacksTime + "  " + m.stacksRes.length() + "  " + Math.log(1+m.priority));
+            //로그를 취하여 편차를 조금 줄여준다.
+            prioritySum += Math.log(1+m.priority);
+            m.probabilityZone = prioritySum;
+        }
+
+        //0~1사이 값이 되도록 나눠준다.
+        for(MyAlgoTest m : myAlgoTestArrayList){
+            m.probabilityZone = m.probabilityZone/prioritySum;
+        }
+
+        //확률적으로 순위를 정한다.
+        int currentAssignedNum = 0;
+        while(true){
+            Random rand = new Random();
+            double randDouble = rand.nextDouble();
+            double beforeProbability = 0;
+            for(MyAlgoTest m : myAlgoTestArrayList) {
+                if(beforeProbability <= randDouble &&  randDouble <= m.probabilityZone){
+                    if(m.realPriority == 0){
+                        m.realPriority = currentAssignedNum;
+                        currentAssignedNum++;
+                        break;
+                    }
+                }else{
+                    beforeProbability = m.probabilityZone;
+                }
+            }
+            //모든 순위가 정해질 때까지 계속 랜덤변수를 생성한다.
+            if(currentAssignedNum == myAlgoTestArrayList.size())
+                break;
+        }
+
+        //확률로 분배한 실제 예약 순위(낮을 수록 좋음)
+        for(MyAlgoTest m : myAlgoTestArrayList) {
+            Log.d("realPriority", ": " + m.realPriority);
+        }
+
+        //Todo: 이제 순위에 따라서 예약을 채운다.
+
     }
 
-//    public static String getSigneture(Context context){
-//        PackageManager pm = context.getPackageManager();
-//        try{
-//            PackageInfo packageInfo = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
-//
-//            for(int i = 0; i < packageInfo.signatures.length; i++){
-//                Signature signature = packageInfo.signatures[i];
-//                try {
-//                    MessageDigest md = MessageDigest.getInstance("SHA");
-//                    md.update(signature.toByteArray());
-//                    return Base64.encodeToString(md.digest(), Base64.NO_WRAP);
-//                } catch (NoSuchAlgorithmException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//
-//        }catch(PackageManager.NameNotFoundException e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    public class MyAlgoTest{
+
+        String resId;
+        int startTime;
+        int lastTime;
+        double priority;  //우선순위(높으면 좋음) = 시간 차지 수 / (겹치는 예약 수 + 겹치는 시간 수)
+        double probabilityZone;
+        int realPriority;
+        int stacksTime = 0; // 겹치는 시간 수
+        String stacksRes = ""; //겹치는 예약 수
+
+        public MyAlgoTest(String a, int b, int c){
+            resId = a;
+            startTime = b;
+            lastTime = c;
+        }
+    }
 }
+

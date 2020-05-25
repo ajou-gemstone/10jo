@@ -60,6 +60,8 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
                 try {
                     List<DummyCafeCoreInfo> cafeCoreInfoList = call.execute().body();
                     cafeCoreInfoArrayList = new ArrayList<DummyCafeCoreInfo>(cafeCoreInfoList);
+                    Log.d(TAG, "runCafe: " + cafeCoreInfoArrayList.get(0).getCafeId() + "  " + cafeCoreInfoArrayList.get(0).getName() + "  "
+                            + cafeCoreInfoArrayList.get(0).getCongestion() + "  " + cafeCoreInfoArrayList.get(0).getCafeBody() + "  ");
                     Log.d("run: ", "run: ");
                     Ioexception = false;
                 } catch (IOException e) {

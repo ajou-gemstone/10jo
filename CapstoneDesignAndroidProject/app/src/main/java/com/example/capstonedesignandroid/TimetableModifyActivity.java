@@ -19,16 +19,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capstonedesignandroid.DTO.DummyReservationId;
+import com.example.capstonedesignandroid.DTO.DummyTile;
 import com.example.capstonedesignandroid.Fragment.TimeTableFragment;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TimetableModifyActivity extends AppCompatActivity {
 
@@ -41,6 +46,7 @@ public class TimetableModifyActivity extends AppCompatActivity {
     private RelativeLayout timetablemodify;
     private TimeTableFragment timeTableFragment;
     private TextView selectCancelView;
+    private ArrayList<DummyTile> dummiesDummyTile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +68,6 @@ public class TimetableModifyActivity extends AppCompatActivity {
                     selectCancelView.setVisibility(View.VISIBLE);
                 }else{
                     timetablemodify.setVisibility(View.VISIBLE);
-                    selectCancelView.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -120,6 +125,7 @@ public class TimetableModifyActivity extends AppCompatActivity {
                 timetablemodify.setVisibility(View.INVISIBLE);
                 mode = "read";
                 timeTableFragment.selectAndModify();
+                selectCancelView.setVisibility(View.INVISIBLE);
             }
         });
         Button deleteTileButton = timetablemodify.findViewById(R.id.deleteTileButton);
@@ -133,7 +139,9 @@ public class TimetableModifyActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         selectView.setText("시간표 다수 선택 (추가/수정)");
                         timetablemodify.setVisibility(View.INVISIBLE);
+                        mode = "read";
                         timeTableFragment.selectAndDelete();
+                        selectCancelView.setVisibility(View.INVISIBLE);
                     }
                 });
 

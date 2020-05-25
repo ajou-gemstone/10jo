@@ -11,10 +11,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
+import com.example.capstonedesignandroid.DTO.DummyTile;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.TagName;
 import com.example.capstonedesignandroid.DTO.User;
@@ -24,6 +28,9 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,6 +49,7 @@ public class MyProfileActivity extends AppCompatActivity {
     private TimeTableFragment timeTableFragment;
     private RelativeLayout timaTableBigRL;
     private TimeTableFragment timeTableBigFragment;
+    private ArrayList<DummyTile> dummiesDummyTile;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +70,7 @@ public class MyProfileActivity extends AppCompatActivity {
         navigationView.setSelectedItemId(R.id.action_profile);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
+        String userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
 
         Retrofit retrofit2 = new Retrofit.Builder()
         .baseUrl(MyConstants.BASE)
@@ -92,11 +100,6 @@ public class MyProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //---------시간표 retrofit----------
-        //시간표 가져오기
-        //
-//        Call<User> call = service.getUserInfo(userId);
-//        CallThread(call);
 
         //------------시간표-------------
         timeTableFragment = new TimeTableFragment();
@@ -145,8 +148,6 @@ public class MyProfileActivity extends AppCompatActivity {
                 startActivity(activityIntent);
             }
         });
-
-
 
     }//onCreate
 
@@ -213,6 +214,4 @@ public class MyProfileActivity extends AppCompatActivity {
             return false;
         }
     };
-
-
 }

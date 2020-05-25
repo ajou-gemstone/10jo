@@ -29,14 +29,14 @@ public interface FirebaseService {
     //유저id에 FCM token을 저장한다. 주기적으로 token이 초기화되기 때문에 로그인마다 업데이트를 해준다.
     @POST("/")
     @FormUrlEncoded
-    Call<DummyResponse> postUserToken(@Field("userId") String userId, @Field("fcmToken") String token);
+    Call<DummyResponse> postUserToken(@Field("userId") String userId, @Field("token") String token);
     //입력: {userId: 1, fcmToken: fnadjsnvakjsdnjlavlkjvnl}
     //출력: {response: success}
 
     //아래는 테스트 용
-    @POST("/study")
+    @POST("/study/position")
     @FormUrlEncoded
-    Call<List<Dummy>> listDummies(@Field("id") String position, @Query("position") String position2);
+    Call<List<Dummy>> listDummies(@Field("id") String position, @Field("token") String token);
     //Dummy3의 list형을 POST할 수 있도록 한다.
     //서버에서 req의 body id라는 field에(req.body.id) position이 들어갈 수 있도록 한다.
     //annotation이 붙은 Field나 Query는 server에서 사용하는 key값(변수)이고 오른쪽의 String 변수는 안드로이드에서 사용하는 변수다.

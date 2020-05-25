@@ -147,7 +147,6 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                 holder.lectureTimetable.findViewWithTag(""+i).setClickable(false);
                 holder.lectureTimetable.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(context, R.drawable.reservation2));
             }
-
         }
     }
 
@@ -156,14 +155,4 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     public int getItemCount() {
         return mData.size() ;
     }
-
-    @Override
-    public int getItemViewType(int position) {
-        if(position == 0){
-            return 0;//header
-        }else
-            return 1;//contents
-    }
-
-
 }

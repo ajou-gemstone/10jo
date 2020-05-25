@@ -2,6 +2,7 @@
 
 <com.otaliastudios.zoom.ZoomLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/zoomLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,42 +28,334 @@
     app:verticalPanEnabled="true"
     app:zoomEnabled="true">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/baselayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="400dp"
+        android:layout_height="720dp"
         android:background="@drawable/reservation">
 
         <!--dp로 절대값으로 view를 그린다.-->
+
         <LinearLayout
-            android:id="@+id/l101"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
+            android:id="@+id/l135"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="370dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
             android:orientation="vertical"
-            android:background="@drawable/reservation3">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.97"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/l101t"
+                style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성101" />
+                android:text="성135" />
+
             <TextView
-                android:id="@+id/l101t2"
+                style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="예약 시간" />
+
             <TextView
-                android:id="@+id/l101t3"
+                style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="예약 정보" />
-
         </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/l134"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="593dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/l133"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/l105"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성134" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l133"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l133_1">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성133" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l133_1"
+            android:layout_width="100dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="452dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.80"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성133-1" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l132"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="284dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성132" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l131"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="164dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성131" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l105"
+            android:layout_width="100dp"
+            android:layout_height="182dp"
+            android:layout_marginTop="452dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성105" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l104"
+            android:layout_width="100dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="320dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성104" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l101"
+            android:layout_width="275dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성101" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l103"
+            android:layout_width="100dp"
+            android:layout_height="156dp"
+            android:layout_marginTop="164dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성103" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 시간" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 정보" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.otaliastudios.zoom.ZoomLayout>
