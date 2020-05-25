@@ -97,7 +97,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         holder.lectureRoomTextView.setText(reservationArrayList.get(position).getLectureRoom());
 
         if(DefinedMethod.isEmpty(reservationArrayList.get(position).getScore())){
-            holder.scoreChecked.setVisibility(View.INVISIBLE);
+            holder.scoreChecked.setImageResource(R.drawable.star_grey);
         }else{
             holder.scoreChecked.setImageResource(R.drawable.star);
         }

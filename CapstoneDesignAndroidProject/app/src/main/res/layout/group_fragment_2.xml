@@ -13,7 +13,7 @@
         <HorizontalScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="20dp"
             android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,9 +34,9 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green_button"
+                android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
-                android:textColor="#ffffff"
+                android:textColor="@color/asmr_green"
                 android:text="전체" />
             <Button
                 android:id="@+id/whole_clicked"
@@ -51,7 +51,7 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:text="전체" />
@@ -69,9 +69,9 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green_button"
+                android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
-                android:textColor="#ffffff"
+                android:textColor="@color/asmr_green"
                 android:text="영상문학기행"/>
             <Button
                 android:id="@+id/b1_clicked"
@@ -86,7 +86,7 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:text="영상문학기행"/>
@@ -102,11 +102,11 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green_button"
+                android:background="@drawable/green_trans_button"
                 android:gravity="center"
                 android:text="자기주도연구"
                 android:textSize="11dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/asmr_green"
                 android:textStyle="bold" />
             <Button
                 android:id="@+id/b2_clicked"
@@ -119,7 +119,7 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:gravity="center"
                 android:text="자기주도연구"
                 android:textSize="11dp"
@@ -132,7 +132,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@drawable/green_button"
+                android:background="@drawable/green_trans_button"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
@@ -141,7 +141,7 @@
                 android:paddingHorizontal="10dp"
                 android:text="SW캡스톤디자인"
                 android:textSize="11dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/asmr_green"
                 android:textStyle="bold" />
             <Button
                 android:id="@+id/b3_clicked"
@@ -149,7 +149,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
@@ -166,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:textSize="11dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/asmr_green"
                 android:gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -175,7 +175,7 @@
                 android:paddingHorizontal="10dp"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:background="@drawable/green_button"
+                android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
                 android:text="인공지능" />
             <Button
@@ -192,14 +192,14 @@
                 android:paddingHorizontal="10dp"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:textStyle="bold"
                 android:text="인공지능" />
 
             <Button
                 android:id="@+id/b5"
                 android:textSize="11dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/asmr_green"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
@@ -210,7 +210,7 @@
                 android:paddingHorizontal="10dp"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:background="@drawable/green_button"
+                android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
                 android:text="과학사" />
             <Button
@@ -227,14 +227,14 @@
                 android:paddingHorizontal="10dp"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="3dp"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:textStyle="bold"
                 android:text="과학사" />
 
             <Button
                 android:id="@+id/b6"
                 android:textSize="11dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/asmr_green"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
@@ -245,7 +245,7 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green_button"
+                android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
                 android:text="확률과통계2" />
             <Button
@@ -262,14 +262,14 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:textStyle="bold"
                 android:text="확률과통계2" />
 
             <Button
                 android:id="@+id/b7"
                 android:textSize="11dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/asmr_green"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
@@ -280,7 +280,7 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green_button"
+                android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
                 android:text="알고리즘" />
             <Button
@@ -297,7 +297,7 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:textStyle="bold"
                 android:text="알고리즘" />
         </LinearLayout>
@@ -305,16 +305,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="#00000000">
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/round_edittext"
+            >
 
             <Button
                 android:id="@+id/search"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_gravity="left|center"
                 android:background="@drawable/search"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
 
             <EditText
@@ -322,10 +325,10 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="10"
                 android:layout_gravity="left|center"
-                android:layout_height="30dp"
-                android:background="@drawable/round_edittext"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:textSize="15dp"
                 android:layout_marginRight="20dp"
-                android:paddingLeft="10dp"
                 android:hint="모임을 찾아보세요" />
 
             <View

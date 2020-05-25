@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText position;
     String primary_id = "";
-    boolean loginsucess= true;
+    boolean loginsuccess= true;
     ArrayList<String> mylectureArray = new ArrayList<>();
 
     String[] usertitle;
@@ -114,23 +114,23 @@ public class LoginActivity extends AppCompatActivity {
                 String id1 = String.valueOf(id.getText().toString());
                 String password1 = String.valueOf(password.getText().toString());
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(MyConstants.BASE)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                GetService service = retrofit.create(GetService.class);
-                Call<User> call = service.login(id1, password1);
-                CallThread(call);
-                if(loginsucess) {
-                    Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
-                    startActivityForResult(intent, 100);
+                if( ! id1.equals("") && ! password1.equals("")) {
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(MyConstants.BASE)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    GetService service = retrofit.create(GetService.class);
+                    Call<User> call = service.login(id1, password1);
+                    CallThread(call);
+                    if (loginsuccess) {
+                        Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+                        startActivityForResult(intent, 100);
+                    } else {
+                        Toast.makeText(LoginActivity.this, "없는 아이디 또는 비밀번호입니다.", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{
-                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(LoginActivity.this);
-                    alert_confirm.setMessage("올바르지 않은 입력입니다.");
-                    alert_confirm.setPositiveButton("확인", null);
-                    AlertDialog alert = alert_confirm.create();
-                    alert.show();
+                    Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -170,10 +170,11 @@ public class LoginActivity extends AppCompatActivity {
                     if(!primary_id.equals("-1")) {
                         SharedPreference.removeAllAttribute(getApplicationContext());
                         SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
+                        loginsuccess = true;
                     }
                     else{
                         Log.d("11111", "11111");
-                        loginsucess = false;
+                        loginsuccess = false;
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

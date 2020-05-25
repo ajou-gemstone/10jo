@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
@@ -12,8 +14,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.capstonedesignandroid.Adapter.UserListAdapter;
+import com.example.capstonedesignandroid.Adapter.UserWaitingListAdapter;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.TagName;
@@ -23,14 +27,15 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadGroupActivity extends AppCompatActivity {
-    Button register, reservation, chatting, edit, full;
-    TextView title, maintext, currentnum, totalnum, tags;
+    Button register, reservation, chatting, edit, full, yes ,no;
+    TextView title, maintext, currentnum, totalnum, tags, waiting;
     String userId;
     int leaderormember = 0;
     String tag = "";
@@ -39,10 +44,16 @@ public class ReadGroupActivity extends AppCompatActivity {
     ListView listview;
     boolean registered = false;
     boolean leader = false;
+    private Boolean[] yesList = new Boolean[100];
     ArrayList<String> useridarray = new ArrayList<>();
     ArrayList<String> leaderarray = new ArrayList<>();
     ArrayList<String> usernamearray = new ArrayList<>();
+    ArrayList<String> studentnumarray = new ArrayList<>();
+    ArrayList<String> waitingUserIdarray = new ArrayList<>();
     UserListAdapter userListAdapter = new UserListAdapter();
+    private RecyclerView recyclerView;
+    private ArrayList<User> list = new ArrayList();
+    ArrayList<User> waitinguserArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +65,18 @@ public class ReadGroupActivity extends AppCompatActivity {
         maintext =  (TextView)findViewById(R.id.textview_maintext);
         currentnum = (TextView) findViewById(R.id.currentnum);
         totalnum = (TextView) findViewById(R.id.totalnum);
+        waiting = findViewById(R.id.waiting_textview);
         tags = findViewById(R.id.textview_tag);
         reservation = (Button) findViewById(R.id.button_oldchat);
         chatting = (Button) findViewById(R.id.button_chat);
         edit = findViewById(R.id.button_edit);
         full = findViewById(R.id.button_full);
+        recyclerView = findViewById(R.id.recyclerview);
+
+        UserWaitingListAdapter userWaitingListAdapter = new UserWaitingListAdapter(getApplicationContext(), list);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(userWaitingListAdapter);
 
         Intent intent3 = getIntent();
         String groupId = intent3.getStringExtra("groupId");
@@ -74,9 +92,10 @@ public class ReadGroupActivity extends AppCompatActivity {
 
         GroupService groupService = retrofit2.create(GroupService.class);
         Call<Group> call = groupService.getStudyGroup(groupId);
-        CallThread(call);
+        CallThread_GetUser(call);
 
         full.setVisibility(View.GONE);
+        waiting.setVisibility(View.GONE);
 
         if(registered){ //모임 참여 중이면
             reservation.setVisibility(View.VISIBLE);
@@ -97,6 +116,13 @@ public class ReadGroupActivity extends AppCompatActivity {
         if(leader){
             edit.setVisibility(View.VISIBLE);
             full.setVisibility(View.GONE);
+            waiting.setVisibility(View.VISIBLE);
+
+            Call<List<User>> call3 = groupService.getWaitingList(groupId);
+            CallThread_GetWaitingUser(call3);
+
+            for(User user : waitinguserArray)
+                list.add(user);
         } else{
             edit.setVisibility(View.GONE);
         }
@@ -105,14 +131,8 @@ public class ReadGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            Retrofit retrofit2 = new Retrofit.Builder()
-                    .baseUrl(MyConstants.BASE)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            GroupService service = retrofit2.create(GroupService.class);
-            Call<DummyResponse> call2 = service.registerStudy(groupId, userId);
-            CallThread2(call2);
+            Call<DummyResponse> call2 = groupService.registerStudy(groupId, userId);
+            CallThread_Register(call2);
 
             Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
             startActivity(intent);
@@ -123,6 +143,7 @@ public class ReadGroupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),LectureroomReservationActivity.class);
                 intent.putExtra("groupId", groupId);
+                intent.putExtra("studentnumarray", studentnumarray);
                 startActivity(intent);
             }
         });
@@ -157,8 +178,7 @@ public class ReadGroupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //유저 하나하나 눌렀을 때
+        //가입된 유저 하나하나 눌렀을 때
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -168,10 +188,30 @@ public class ReadGroupActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+        if(leader) {
+           //신청자 하나하나 눌렀을 때
+            userWaitingListAdapter.setOnItemClickListener(new UserWaitingListAdapter.OnItemClickListener() {
+                @Override
+                public void onYesClick(View view, int position) {
+                    Toast.makeText(ReadGroupActivity.this, "hihi"+position, Toast.LENGTH_SHORT).show();
+
+                    Call<DummyResponse> call4 = groupService.acceptStudy(groupId, waitingUserIdarray.get(position));
+                    CallThread_Accept(call4);
+                }
+                @Override
+                public void onNoClick(View view, int position) {
+                    Toast.makeText(ReadGroupActivity.this, "nono"+position, Toast.LENGTH_SHORT).show();
+
+                    Call<DummyResponse> call5 = groupService.rejectStudy(groupId, waitingUserIdarray.get(position));
+                    CallThread_Reject(call5);
+                }
+            });
+        }
+
+
     } // onCreate
 
-
-    private void CallThread(Call<Group> call) {
+    private void CallThread_GetUser(Call<Group> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -192,6 +232,7 @@ public class ReadGroupActivity extends AppCompatActivity {
                         useridarray.add(user.getUserId());
                         leaderarray.add(Integer.toString(user.getLeader()));
                         usernamearray.add(user.getName());
+                        studentnumarray.add(user.getStudentNum());
                         if(userId.equals(user.getUserId())) {
                             registered = true;
                             username = user.getName();
@@ -216,7 +257,7 @@ public class ReadGroupActivity extends AppCompatActivity {
         }
     }//callthread
 
-    private void CallThread2(Call<DummyResponse> call) {
+    private void CallThread_Register(Call<DummyResponse> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -234,5 +275,66 @@ public class ReadGroupActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
     }//callthread2
+
+    private void CallThread_GetWaitingUser(Call<List<User>> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<User> dummies = call.execute().body();
+                    for(User user : dummies){
+                        waitinguserArray.add(new User(user.getName(), user.getStudentNum()));
+                        waitingUserIdarray.add(user.getId());
+                        Log.d("waiting", waitingUserIdarray.toString());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }//callthread3
+
+    private void CallThread_Accept(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
+    private void CallThread_Reject(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
 
 }

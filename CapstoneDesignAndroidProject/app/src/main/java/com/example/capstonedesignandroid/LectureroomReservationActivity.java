@@ -40,6 +40,7 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -111,6 +112,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
         Intent intent6 = getIntent();
         String groupId = intent6.getStringExtra("groupId");
+        ArrayList<String> studentnumarray = (ArrayList<String>)intent6.getSerializableExtra("studentnumarray");
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_reservation);
@@ -566,7 +568,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                                 //강의실 예약 목적 입력 intent로 이동, 예약내역 id도 이동
                                 Intent intent = new Intent(getApplicationContext(), LectureroomReservationAdditionalActivity.class);
                                 intent.putExtra("reservationId", reservationid.getReservationId());
-
+                                intent.putExtra("groupId", groupId);
+                                intent.putExtra("studentnumarray", studentnumarray);
                                 startActivity(intent);
                                 finish();
                             }else{
@@ -808,12 +811,12 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     public void getReservationType(boolean isFCFS){
         this.isFCFS = isFCFS;
         if(isFCFS){
-            reserveTypeTextView.setText("  예약 타입: 선착순");
+            reserveTypeTextView.setText("선착순 예약");
             //Todo: 랜덤 확정은 일단 뺀다
 //            reserveRandomButton.setVisibility(View.VISIBLE);
         }
         else{
-            reserveTypeTextView.setText("  예약 타입: 선지망 후추첨");
+            reserveTypeTextView.setText("선지망 후추첨 예약");
             reserveRandomButton.setVisibility(View.INVISIBLE);
         }
     }

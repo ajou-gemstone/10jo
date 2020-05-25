@@ -68,6 +68,7 @@ public class ChattingActivity extends AppCompatActivity {
         leaderormember = intent1.getIntExtra("leaderormember", -1);
         name = intent1.getStringExtra("username");
         title = intent1.getStringExtra("grouptitle");
+        chattingroomname.setText(title);
 
         //고민한잔 userkey랑 같은 변수
         userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
@@ -279,7 +280,7 @@ public class ChattingActivity extends AppCompatActivity {
                                 msg = msg1;
                             }
 
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, String.valueOf(key));
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, name);
                             m_Adapter.notifyDataSetChanged();
                         } else {
                             num = 1;
@@ -295,7 +296,7 @@ public class ChattingActivity extends AppCompatActivity {
                             } else {
                                 msg = msg1;
                             }
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, String.valueOf(key));
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, name);
                             m_Adapter.notifyDataSetChanged();
                         }
                     }
