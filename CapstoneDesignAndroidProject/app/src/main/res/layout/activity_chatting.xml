@@ -26,6 +26,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="모임 이름은 여기"
                 android:textSize="17dp"
+                android:textColor="#000000"
                 android:textStyle="bold"/>
             <View
                 android:layout_width="0dp"
@@ -109,6 +110,7 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="보내기"
+            android:textSize="15dp"
             android:textColor="@color/asmr_blue"
             android:textStyle="bold"/>
 

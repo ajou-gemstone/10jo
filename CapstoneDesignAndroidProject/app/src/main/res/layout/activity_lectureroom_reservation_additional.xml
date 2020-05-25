@@ -39,8 +39,9 @@
             android:layout_width="50dp"
             android:layout_weight="0.1"
             android:layout_height="30dp"
-            android:background="@drawable/green2_button"
+            android:background="@drawable/green_button"
             android:textColor="#ffffff"
+            android:textStyle="bold"
             android:text="추가하기"/>
     </LinearLayout>
 

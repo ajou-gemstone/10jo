@@ -73,27 +73,6 @@
             android:layout_marginHorizontal="20dp">
 
             <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="left"
-                android:text="강찬혁"
-                android:textColor="#000000"
-                android:textSize="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="end"
-                android:gravity="left"
-                android:maxLines="1"
-                android:text=" | "
-                android:textColor="#000000"
-                android:textSize="15dp" />
-
-            <TextView
                 android:id="@+id/studentnum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

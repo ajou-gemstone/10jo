@@ -21,6 +21,7 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/blue_trans_button"
             android:text="취소"
+            android:textStyle="bold"
             android:textColor="@color/asmr_blue"
             android:layout_alignLeft="@+id/calendarReservationView"/>
 
@@ -33,6 +34,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/blue_button"
             android:text="확인"
+            android:textStyle="bold"
             android:textColor="#ffffff"
             android:layout_alignRight="@+id/calendarReservationView"/>
 

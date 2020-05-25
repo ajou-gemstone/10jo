@@ -32,7 +32,8 @@
             android:maxLength="5"
             android:ellipsize="end"
             android:text="주피터"
-            android:textSize="16dp" />
+            android:textColor="#000000"
+            android:textSize="15dp" />
 
     </LinearLayout>
 

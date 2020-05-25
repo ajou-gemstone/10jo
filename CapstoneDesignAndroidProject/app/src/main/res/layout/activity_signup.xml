@@ -41,7 +41,7 @@
                 android:textSize="13dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:background="@drawable/green2_button"
+                android:background="@drawable/green_button"
                 android:text="아이디 확인" />
         </LinearLayout>
         <EditText
