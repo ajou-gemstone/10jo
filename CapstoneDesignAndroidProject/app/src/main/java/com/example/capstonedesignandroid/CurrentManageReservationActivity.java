@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -22,7 +21,7 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private boolean floatingActionButtonClicked = false;
     private String buildingTag;
-    private ScrollView scrollViewOneToTwo;
+    private ScrollView scrollViewOneToThree;
     private ScrollView scrollViewOne;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,7 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_current_manage_reservation);
 
         floatingActionButton = findViewById(R.id.floatingActionButton);
-        scrollViewOneToTwo = findViewById(R.id.scrollViewOneToTwo);
+        scrollViewOneToThree = findViewById(R.id.scrollViewOneToThree);
         scrollViewOne = findViewById(R.id.scrollViewOne);
 
         Intent intent = getIntent();
@@ -53,8 +52,8 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
                     floatingActionButtonClicked = true;
                     switch (buildingTag) {
                         case "1":
-                            scrollViewOneToTwo.setVisibility(View.VISIBLE);
-                            scrollViewOneToTwo.bringToFront();
+                            scrollViewOneToThree.setVisibility(View.VISIBLE);
+                            scrollViewOneToThree.bringToFront();
                             break;
                         case "2":
                             scrollViewOne.setVisibility(View.VISIBLE);
@@ -65,7 +64,7 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
                     floatingActionButtonClicked = false;
                     switch (buildingTag) {
                         case "1":
-                            scrollViewOneToTwo.setVisibility(View.INVISIBLE);
+                            scrollViewOneToThree.setVisibility(View.INVISIBLE);
                             break;
                         case "2":
                             scrollViewOne.setVisibility(View.INVISIBLE);
@@ -92,17 +91,21 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
     };
 
     private void inflateFragmentView(String buildingTag, String floor){
+        Fragment B = new B_1_1();
         switch (buildingTag) {
             case "1":
                 if(floor.equals("1")){
-                    Fragment B_1_1 = new B_1_1();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.buildingLectureroomFrameLayout, B_1_1).commit();
-                    break;
+                    B= new B_1_1();
                 }else if(floor.equals("2")){
-                    Fragment B_1_2 = new B_1_2();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.buildingLectureroomFrameLayout, B_1_2).commit();
-                    break;
+                    B = new B_1_2();
+                }else if(floor.equals("3")){
+//                    B = new B_1_3();
+                }else if(floor.equals("4")){
+//                    B = new B_1_4();
                 }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.buildingLectureroomFrameLayout, B).commit();
+                break;
 
             case "2":
                 if(floor.equals("1")){

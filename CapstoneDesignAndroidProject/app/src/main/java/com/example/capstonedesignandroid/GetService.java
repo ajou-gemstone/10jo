@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid;
 
 
+import com.example.capstonedesignandroid.DTO.Dummy;
 import com.example.capstonedesignandroid.DTO.DummyCafeCoreInfo;
 import com.example.capstonedesignandroid.DTO.DummyCurrentReservationBuildingFloor;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
@@ -8,6 +9,8 @@ import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyReservationId;
+import com.example.capstonedesignandroid.DTO.DummyTile;
+import com.example.capstonedesignandroid.DTO.DummyTile2;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
@@ -16,7 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -158,8 +163,10 @@ public interface GetService {
     Call<DummyResponse> searchStudentId(@Field("studentId") String studentId);
 
     //카페 정보를 가져온다.
-    @GET("/")
+    @GET("/cafe/list")
     Call<List<DummyCafeCoreInfo>> getCafeInfoList();
+    //입력: x
+    //출력: [{cafeId: 3, name: 키브한커피 congestion: 5, latitude: 30.000000, longitude: 127.0000000, cafeBody: 설명}, ...]
 
     //현재 시간을 가져온다.
     @GET("/")
@@ -169,20 +176,25 @@ public interface GetService {
     //출력: response: 1589944246024
 
     //학생이 시간표 정보를 가져온다.
-//    @GET("/")
-//    Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
-//    //입력: 시제, 건물명
-//    //입력: {tense: "future or past", buildingName: "성호관"}
-//    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
-//    //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
+    @GET("/timetable/info")
+    Call<List<DummyTile>> getTimeTableInfo(@Query("userId") String userId);
+    //입력: {userId: 4}
+    //출력: {A0: 캡스톤 디자인1팔333, A1: 캡스톤 디자인1팔333, A2: 캡스톤 디자인1팔333, A10:알고리즘1팔233, A11:알고리즘1팔233, A12:알고리즘1팔233,
+    // B4:디지털회로1팔233, B5:디지털회로1팔233, B6:디지털회로1팔233, B12:동아리활동2아주대, B13:동아리활동2아주대}
+    //출력: [{contents: 캡스톤 디자인1팔333, time: A0}, {contents: 캡스톤 디자인1팔333, time: A1}, {contents: 캡스톤 디자인1팔333, time: A2},
+    // {contents: 알고리즘1팔233, time: A10}, {contents: 알고리즘1팔233, time: A11}, {contents: 알고리즘1팔233, time: A12},
+    // {contents: 동아리활동2아주대, time: B12}, {contents: 동아리활동2아주대, time: B13}]
+
 
     //학생이 시간표 정보를 업데이트 한다.
-//    @GET("/")
-//    Call<List<DummyReservationList>> getGuardReservationList(@Query("tense") String tense, @Query("buildingName") String buildingName);
-//    //입력: 시제, 건물명
-//    //입력: {tense: "future or past", buildingName: "성호관"}
-//    //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "2", lastTime:"5", lectureRoom:"성101"}, ...]
-//    //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
+//    @FormUrlEncoded
+//    @POST("/timetable/update")
+//    Call<DummyResponse> postTimeTableInfo(@Field("userId") String userId, @Field("info") ArrayList<DummyTile> dummyTileArrayList);
+    //입력: {userId: 4, B12:동아리활동2아주대, B13:동아리활동2아주대} (강의 정보는 서버에서 관리, 받아오기만 한다. 업데이트는 개인 정보만이다.)
+    //입력: {userId: 4, info: [{contents: 동아리활동2아주대, time: B12}, {contents: 동아리활동2아주대, time: B13}]}
+
+    @POST("/timetable/update")
+    Call<DummyResponse> postTimeTableInfo(@Body DummyTile2 dummyTile2);
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
 //    @POST("/")

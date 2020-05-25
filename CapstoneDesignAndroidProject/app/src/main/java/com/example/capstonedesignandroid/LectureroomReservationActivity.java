@@ -613,6 +613,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         lectureRoomLayout.setVisibility(View.VISIBLE);
         reserveDetermineButton.setVisibility(View.VISIBLE);
         recyclerViewReservation.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewReservation.getRecycledViewPool().setMaxRecycledViews(0, 0);
 
 //        selectMultipleTimeButton = findViewById(R.id.selectMultipleTimeButton);
 //        selectMultipleTimeButton.setVisibility(View.VISIBLE);

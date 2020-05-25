@@ -13,8 +13,11 @@ import android.widget.Toast;
 import com.example.capstonedesignandroid.DTO.Dummy;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
@@ -50,6 +53,8 @@ public class FirebaseTestActivity extends AppCompatActivity {
 
                         // Log and toast
                         Log.d("token", token);
+                        SharedPreference.removeAttribute(getApplicationContext(), "token");
+                        SharedPreference.setAttribute(getApplicationContext(), "token", token);
                         Toast.makeText(FirebaseTestActivity.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -64,16 +69,16 @@ public class FirebaseTestActivity extends AppCompatActivity {
                 //retrofit을 사용하기 위하여 singleton으로 build한다.
                 //gson은 json구조를 띄는 직렬화된 데이터를 Java객체로 역직렬화, 직렬화를 해주는 자바 라이브러리이다.
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.43.26:3000")//하이
+                        .baseUrl(MyConstants.BASE)//하이
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
                 //interface class를 retrofit을 이용하여 객체화하여 사용할 수 있도록 한다.
                 //그리고 아마 interface인 GetService의 제대로 정의되지 않은 메소드를 retrofit 형식에 맞게 알아서 정의를 해줘서 사용할 수 있도록 변경해주는 역할도 한다.
                 FirebaseService service = retrofit.create(FirebaseService.class);
-
+                String token = SharedPreference.getAttribute(getApplicationContext(), "token");
                 //retrofit service에 정의된 method를 사용하여
-                Call<List<Dummy>> call = service.listDummies("3", "5");
+                Call<List<Dummy>> call = service.listDummies("3", token);
                 call.enqueue(dummies);
 
 //                Call<List<Dummy>> call = service.listDummies2("3");
