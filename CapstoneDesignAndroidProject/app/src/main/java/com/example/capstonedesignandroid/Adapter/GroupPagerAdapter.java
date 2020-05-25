@@ -1,4 +1,4 @@
-package com.example.capstonedesignandroid;
+package com.example.capstonedesignandroid.Adapter;
 
 
 import androidx.fragment.app.Fragment;
@@ -9,10 +9,10 @@ import com.example.capstonedesignandroid.Fragment.GroupFragment1;
 import com.example.capstonedesignandroid.Fragment.GroupFragment2;
 import com.example.capstonedesignandroid.Fragment.GroupFragment3;
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class GroupPagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public GroupPagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }

@@ -52,7 +52,6 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
         String name = intent3.getStringExtra("name");
         String num = intent3.getStringExtra("num");
         String email = intent3.getStringExtra("email");
-        Log.d("bbbbb", id+pw+name+num+email);
 
         Intent intent1 = getIntent();
         ArrayList<String> tempArray = (ArrayList<String>) intent1.getSerializableExtra("lectureArray");
