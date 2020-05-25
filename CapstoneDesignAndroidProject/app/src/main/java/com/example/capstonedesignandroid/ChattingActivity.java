@@ -16,15 +16,21 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstonedesignandroid.Adapter.ChattingAdapter;
+import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 //import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
@@ -37,7 +43,7 @@ public class ChattingActivity extends AppCompatActivity {
     ChattingAdapter m_Adapter;
     int num;
     TextView chattingroomname;
-    String userId, msg, name, title;
+    String userId, msg, myname, username, title;
     RelativeLayout layout1;
     ScrollView scrollview_chatting;
     TextView roomnum;
@@ -66,7 +72,7 @@ public class ChattingActivity extends AppCompatActivity {
 
         Intent intent1 = getIntent();
         leaderormember = intent1.getIntExtra("leaderormember", -1);
-        name = intent1.getStringExtra("username");
+        myname = intent1.getStringExtra("username");
         title = intent1.getStringExtra("grouptitle");
         chattingroomname.setText(title);
 
@@ -222,30 +228,6 @@ public class ChattingActivity extends AppCompatActivity {
             }
         });
 
-//        mainButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                JSONObject obj2 = new JSONObject();
-//                try {
-//                    obj2.put("roomname", title);
-//                    obj2.put("roomnum", tmp);
-//                    socket.emit("leave", obj2);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                socket.emit("disconnect", "");
-//                socket.disconnect();
-//                mainbutton1 = 1;
-//                Retrofit retrofit1 = new Retrofit.Builder()
-//                        .baseUrl(BASE)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                ChattingInformationInterface chattingInformationInterface = retrofit1.create(ChattingInformationInterface.class);
-//                Call<List<Group>> call1 = chattingInformationInterface.listDummies(userId);
-//                call1.enqueue(dummies1);
-//            }
-//        });
 
         Emitter.Listener onMessageReceived = new Emitter.Listener() {
             @Override
@@ -261,6 +243,17 @@ public class ChattingActivity extends AppCompatActivity {
                             msg1 = received.get("message").toString(); //받는 메시지
                             key = received.get("key").toString(); //유저 식별키
                             profile = received.get("profile").toString();
+
+                            Retrofit retrofit2 = new Retrofit.Builder()
+                                    .baseUrl(MyConstants.BASE)
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build();
+
+                            GetService service = retrofit2.create(GetService.class);
+                            Call<User> call = service.getUserInfo(key);
+                            CallThread(call);
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -280,7 +273,7 @@ public class ChattingActivity extends AppCompatActivity {
                                 msg = msg1;
                             }
 
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, name);
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, myname);
                             m_Adapter.notifyDataSetChanged();
                         } else {
                             num = 1;
@@ -296,7 +289,7 @@ public class ChattingActivity extends AppCompatActivity {
                             } else {
                                 msg = msg1;
                             }
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, name);
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, username);
                             m_Adapter.notifyDataSetChanged();
                         }
                     }
@@ -392,6 +385,26 @@ public class ChattingActivity extends AppCompatActivity {
         Intent intent2 = new Intent(ChattingActivity.this, StudyBulletinBoardActivity.class);
         intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent2);
+    }
+
+    private void CallThread(Call<User> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    User dummies = call.execute().body();
+                    username = dummies.getName();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
     }
 
 //    Callback dummies1 = new Callback<List<Group>>() {
