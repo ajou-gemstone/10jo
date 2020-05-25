@@ -119,7 +119,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignUpAjouAuthActivity"
-            android:theme="@style/AppTheme.NoActionBar" />\
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UserProfileActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity

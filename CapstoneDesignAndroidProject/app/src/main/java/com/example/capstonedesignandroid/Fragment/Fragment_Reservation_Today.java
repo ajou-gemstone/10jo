@@ -282,9 +282,13 @@ public class Fragment_Reservation_Today extends Fragment {
             reservationIntent.setText(""+dummy.getReservationIntent());
             if(dummy.getBeforeUploadTime().length() < 4){
                 beforeUploadTime.setText("업로드 되지 않음");
+            }else{
+                beforeUploadTime.setText(dummy.getBeforeUploadTime());
             }
-            if(dummy.getBeforeUploadTime().length() < 4){
+            if(dummy.getAfterUploadTime().length() < 4){
                 afterUploadTime.setText("업로드 되지 않음");
+            }else{
+                afterUploadTime.setText(dummy.getAfterUploadTime());
             }
 
             //app에 등록된 firebase storage의 instance를 가져온다. (싱글톤)

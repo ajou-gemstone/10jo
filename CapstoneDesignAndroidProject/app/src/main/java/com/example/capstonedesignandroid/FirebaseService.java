@@ -26,12 +26,12 @@ import retrofit2.http.Query;
 
 public interface FirebaseService {
 
-    //유저id에 FCM token을 저장한다. 주기적으로 token이 초기화되기 때문에 로그인마다 업데이트를 해준다.
-    @POST("/")
-    @FormUrlEncoded
-    Call<DummyResponse> postUserToken(@Field("userId") String userId, @Field("token") String token);
-    //입력: {userId: 1, fcmToken: fnadjsnvakjsdnjlavlkjvnl}
-    //출력: {response: success}
+//    //유저id에 FCM token을 저장한다. 주기적으로 token이 초기화되기 때문에 로그인마다 업데이트를 해준다.
+//    @POST("/")
+//    @FormUrlEncoded
+//    Call<DummyResponse> postUserToken(@Field("userId") String userId, @Field("token") String token);
+//    //입력: {userId: 1, fcmToken: fnadjsnvakjsdnjlavlkjvnl}
+//    //출력: {response: success}
 
     //아래는 테스트 용
     @POST("/study/position")

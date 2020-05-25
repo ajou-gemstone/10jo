@@ -54,8 +54,31 @@ public class LoginActivity extends AppCompatActivity {
         String autologin = SharedPreference.getAttribute(getApplicationContext(), "userId");
         Log.d("uuu", autologin);
 
+        //----------------------firebase--------------
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("getInstanceId", "getInstanceId failed", task.getException());
+                            Log.d("onComplete", "onComplete: ");
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        Log.d("token", token);
+                        SharedPreference.removeAttribute(getApplicationContext(), "token");
+                        SharedPreference.setAttribute(getApplicationContext(), "token", token);
+                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        //-------------------firebase-------------------
+
         if( ! autologin.equals("-100") ){
-           Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+            Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
             startActivityForResult(intent, 100);
         }
 
@@ -120,7 +143,10 @@ public class LoginActivity extends AppCompatActivity {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     GetService service = retrofit.create(GetService.class);
-                    Call<User> call = service.login(id1, password1);
+
+                    String token = SharedPreference.getAttribute(getApplicationContext(), "token");
+                    Call<User> call = service.login(id1, password1, token);
+
                     CallThread(call);
                     if (loginsuccess) {
                         Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);

@@ -36,7 +36,7 @@ public interface GetService {
 
     @POST("user/login")
     @FormUrlEncoded
-    Call<User> login(@Field("userId") String userId, @Field("password") String password);
+    Call<User> login(@Field("userId") String userId, @Field("password") String password, @Field("token") String token);
     //출력 : id
 
     @GET("/user")

@@ -207,8 +207,16 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
         lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())+1));
         reservationIntent.setText(""+dummy.getReservationIntent());
-        beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
-        afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
+        if(dummy.getBeforeUploadTime().length() < 4){
+            beforeUploadTime.setText("업로드 되지 않음");
+        }else{
+            beforeUploadTime.setText(dummy.getBeforeUploadTime());
+        }
+        if(dummy.getAfterUploadTime().length() < 4){
+            afterUploadTime.setText("업로드 되지 않음");
+        }else{
+            afterUploadTime.setText(dummy.getAfterUploadTime());
+        }
 
         //app에 등록된 firebase storage의 instance를 가져온다. (싱글톤)
         storage = FirebaseStorage.getInstance("gs://asmr-799cf.appspot.com");
