@@ -29,10 +29,17 @@
                 android:id="@+id/day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginHorizontal="15dp"
                 android:textSize="17dp"
                 android:textColor="#000000"
                 android:text="월" />
+            <TextView
+                android:id="@+id/lectureroom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:textColor="#000000"
+                android:text="성101" />
             <TextView
                 android:id="@+id/startTime"
                 android:layout_width="wrap_content"
@@ -60,89 +67,84 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
             <TextView
-                android:id="@+id/lectureroom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="17dp"
-                android:textColor="#000000"
-                android:text="성101" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/reservationIntent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="강의실 사용 목적"
                 android:textColor="#000000"
-                android:textSize="17dp"/>
-
+                android:textSize="15dp"/>
+            <TextView
+                android:id="@+id/reservationIntent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="강의실 사용 목적"
+                android:textSize="15dp"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/takePictureButton1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/camera_blue" />
+                <ImageView
+                    android:id="@+id/pictureImageView1"
+                    android:layout_width="0dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:background="#00dddddd"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/takePictureButton2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/camera_blue" />
+                <ImageView
+                    android:id="@+id/pictureImageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:background="#00dddddd"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="14dp"
-                android:text="강의실 사용 전" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="14dp"
-                android:text="강의실 사용 후" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/takePictureButton1"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/green_button"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:text="촬영" />
 
             <Button
                 android:id="@+id/transportPictureButton1"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/blue_button"
                 android:layout_gravity="center"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
-                android:text="전송" />
-
-            <Button
-                android:id="@+id/takePictureButton2"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="5dp"
-                android:background="@drawable/green_button"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:text="촬영" />
+                android:text="사용 전 사진 제출하기" />
 
             <Button
                 android:id="@+id/transportPictureButton2"
@@ -154,29 +156,7 @@
                 android:layout_gravity="center"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
-                android:text="전송" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/pictureImageView1"
-                android:layout_width="0dp"
-                android:layout_height="175dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:background="#dddddd"/>
-
-            <ImageView
-                android:id="@+id/pictureImageView2"
-                android:layout_width="0dp"
-                android:layout_height="175dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:background="#dddddd"/>
+                android:text="사용 후 사진 제출하기" />
         </LinearLayout>
 
     </LinearLayout>
@@ -191,7 +171,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="업로드 시간: "
+            android:text="업로드 : "
             android:textSize="14dp"/>
 
         <TextView
@@ -199,7 +179,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="업로드 시간: "
+            android:text="업로드 : "
             android:textSize="14dp"/>
 
     </LinearLayout>
@@ -207,15 +187,22 @@
     <LinearLayout
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="강의실 사용 평가"
+            android:textColor="#000000"
+            android:textSize="15dp"/>
         <TextView
             android:id="@+id/scoreDescription"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="15dp"
             android:text="아직 채점되지 않음"/>
         <RatingBar
             android:id="@+id/scoreRatingBar"

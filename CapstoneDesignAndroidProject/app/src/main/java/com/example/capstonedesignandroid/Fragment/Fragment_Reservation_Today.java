@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -293,6 +294,9 @@ public class Fragment_Reservation_Today extends Fragment {
             //스토리지의 레퍼런스(주소)를 가져온다.
             storageRef = storage.getReference();
 
+            pictureImageView1.setVisibility(View.GONE);
+            pictureImageView2.setVisibility(View.GONE);
+
             if(!dummy.getBeforeUri().equals("")){
                 //downloadUrl을 이용하여 이미지를 다운로드한다.
                 StorageReference storageReference = storage.getReference(""+dummy.getBeforeUri());
@@ -305,6 +309,10 @@ public class Fragment_Reservation_Today extends Fragment {
                                     .load(task.getResult())
                                     .into(pictureImageView1);
                             alreadyBefore = true;
+                            takePictureButton1.setVisibility(View.GONE);
+                            pictureImageView1.setVisibility(View.VISIBLE);
+                            transportPictureButton1.setText("제출 완료");
+                            transportPictureButton1.setClickable(false);
                         } else {
                             Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
                         }
@@ -324,6 +332,10 @@ public class Fragment_Reservation_Today extends Fragment {
                                     .load(task.getResult())
                                     .into(pictureImageView2);
                             alreadyAfter = true;
+                            takePictureButton2.setVisibility(View.GONE);
+                            pictureImageView2.setVisibility(View.VISIBLE);
+                            transportPictureButton2.setText("제출 완료");
+                            transportPictureButton2.setClickable(false);
                         } else {
                             Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
                         }
@@ -338,7 +350,7 @@ public class Fragment_Reservation_Today extends Fragment {
                 @Override
                 public void onClick(View view) {
                     if(alreadyBefore){
-                        Toast.makeText(getContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     beforeOrAfter = 1;
@@ -350,7 +362,7 @@ public class Fragment_Reservation_Today extends Fragment {
                 @Override
                 public void onClick(View view) {
                     if(alreadyAfter){
-                        Toast.makeText(getContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     beforeOrAfter = 2;
@@ -358,15 +370,58 @@ public class Fragment_Reservation_Today extends Fragment {
                 }
             });
 
+            pictureImageView1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view){
+                    androidx.appcompat.app.AlertDialog.Builder alBuilder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
+                    alBuilder.setMessage("다시 업로드하시나요?");
+                    alBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            beforeOrAfter = 1;
+                            sendTakePhotoIntent();
+                        }
+                    });
+                    alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            return; // 아무런 작업도 하지 않고 돌아간다
+                        }
+                    });
+                    alBuilder.show();
+                }
+            });
+            pictureImageView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view){
+                    androidx.appcompat.app.AlertDialog.Builder alBuilder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
+                    alBuilder.setMessage("다시 업로드하시나요?");
+                    alBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            beforeOrAfter = 2;
+                            sendTakePhotoIntent();
+                        }
+                    });
+                    alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            return; // 아무런 작업도 하지 않고 돌아간다
+                        }
+                    });
+                    alBuilder.show();
+                }
+            });
+
             transportPictureButton1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(alreadyBefore){
-                        Toast.makeText(getContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if(!before){
-                        Toast.makeText(getContext(), "사진을 찍어주세요.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "사진을 찍어주세요.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     //photoUri는 content provider 경로이므로 file 경로로 재설정 해주어야 한다.
@@ -384,14 +439,14 @@ public class Fragment_Reservation_Today extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
                             // Handle unsuccessful uploads
-                            Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//firebase에서 자주 쓰이는 callback listener
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
 
-                            Toast.makeText(getContext(), "성공적으로 이미지 업로드가 되었습니다.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "성공적으로 이미지 업로드가 되었습니다.", Toast.LENGTH_SHORT).show();
                             beforeUploadTime.setText("업로드 시간: "+DefinedMethod.getCurrentDate2());
                             //db에 파일 이름 저장
                             GetService service = retrofit.create(GetService.class);
@@ -406,11 +461,11 @@ public class Fragment_Reservation_Today extends Fragment {
                 @Override
                 public void onClick(View view) {
                     if(alreadyAfter){
-                        Toast.makeText(getContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if(!after){
-                        Toast.makeText(getContext(), "사진을 찍어주세요.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "사진을 찍어주세요.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     //photoUri는 content provider 경로이므로 file 경로로 재설정 해주어야 한다.
@@ -428,13 +483,13 @@ public class Fragment_Reservation_Today extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
                             // Handle unsuccessful uploads
-                            Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//firebase에서 자주 쓰이는 callback listener
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                            Toast.makeText(getContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_SHORT).show();
                             afterUploadTime.setText("업로드 시간: "+DefinedMethod.getCurrentDate2());
                             //db에 파일 이름 저장
                             GetService service = retrofit.create(GetService.class);
