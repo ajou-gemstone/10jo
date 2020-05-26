@@ -12,6 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="강의실"
+        android:textColor="@color/asmr_blue"
+        android:textStyle="bold"
+        android:background="#114d75c5"
         android:textSize="16sp">
     </Button>
     <LinearLayout
