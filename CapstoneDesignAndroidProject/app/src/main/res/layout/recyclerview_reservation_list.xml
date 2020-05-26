@@ -7,6 +7,15 @@
     android:layout_height="40dp"
     android:layout_marginHorizontal="20dp">
 
+    <ImageView
+        android:id="@+id/scoreChecked"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_weight="0.1"
+        android:layout_gravity="center"
+        android:src="@drawable/star">
+    </ImageView>
+
     <TextView
         android:layout_gravity="center"
         android:id="@+id/dateTextView"
@@ -72,15 +81,5 @@
         android:textColor="#000000"
         android:textSize="17dp"
         android:text="21:00"/>
-
-    <ImageView
-        android:id="@+id/scoreChecked"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="0.1"
-        android:layout_gravity="center"
-        android:src="@drawable/star">
-    </ImageView>
 
 </LinearLayout>

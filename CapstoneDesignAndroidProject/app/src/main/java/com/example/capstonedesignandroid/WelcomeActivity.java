@@ -59,9 +59,10 @@ public class WelcomeActivity extends AppCompatActivity {
         // add few more layouts if you want
         layouts = new int[]{
                 R.layout.welcome_slide1,
-               // R.layout.welcome_slide1,
-               // R.layout.welcome_slide1,
-                R.layout.welcome_slide1};
+                R.layout.welcome_slide2,
+                R.layout.welcome_slide3,
+                R.layout.welcome_slide4,
+                R.layout.welcome_slide5};
 
         // adding bottom dots
         addBottomDots(0);
@@ -106,7 +107,7 @@ public class WelcomeActivity extends AppCompatActivity {
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
+            dots[i].setTextSize(50);
             dots[i].setTextColor(colorsInactive[currentPage]);
             dotsLayout.addView(dots[i]);
         }

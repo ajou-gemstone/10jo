@@ -40,7 +40,7 @@
 
     <style name="timeTable">
         <item name = "android:background">@drawable/back</item>
-        <item name = "android:layout_width">70dp</item>
+        <item name = "android:layout_width">80dp</item>
         <!--        <item name = "android:layout_weight">1</item>-->
         <item name = "android:layout_height">40dp</item>
     </style>
@@ -48,7 +48,7 @@
         <item name = "android:textSize">10dp</item>
     </style>
     <style name="timeTableLocation">
-        <item name = "android:textSize">7dp</item>
+        <item name = "android:textSize">9dp</item>
     </style>
     <style name="currentT1">
         <item name = "android:textSize">10dp</item>
