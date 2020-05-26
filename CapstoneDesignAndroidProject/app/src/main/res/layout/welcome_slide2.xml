@@ -19,25 +19,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="원하는 스터디 모임부터"
-            android:textColor="@color/asmr_yellow"
+            android:text="장소 고민없이"
+            android:textColor="@color/asmr_green"
             android:textSize="17dp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="학교 과목 공부까지"
+            android:text="편리하고 효율적으로"
             android:textSize="17dp"
-            android:textColor="@color/asmr_yellow"
+            android:textColor="@color/asmr_green"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="모임을 빠르게 만들고 참여하세요"
-            android:textColor="@color/asmr_yellow"
+            android:text="강의실을 예약하세요"
+            android:textColor="@color/asmr_green"
             android:textSize="17dp"
             android:textStyle="bold" />
     </LinearLayout>
