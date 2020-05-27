@@ -109,7 +109,6 @@ public class B_1_1 extends Fragment {
         try {
             thread.join();
         } catch (Exception e) {
-            // TODO: handle exception
         }
         if(IOExceptionbool){
             dummyCurrentReservationBuildingFloorArrayList = new ArrayList<DummyCurrentReservationBuildingFloor>();
@@ -133,7 +132,7 @@ public class B_1_1 extends Fragment {
         for(DummyCurrentReservationBuildingFloor d: dummyCurrentReservationBuildingFloorArrayList){
             findLLbyLectureRoomName(d.getLectureRoom());
             if(currentTmpLL != null){
-                ViewGroup vg = (ViewGroup) l101;
+                ViewGroup vg = (ViewGroup) currentTmpLL;
                 //xml 초기화 코드
                 TextView v = (TextView) vg.getChildAt(1);
                 Log.d("currentTmpLL", ""+v.getText());

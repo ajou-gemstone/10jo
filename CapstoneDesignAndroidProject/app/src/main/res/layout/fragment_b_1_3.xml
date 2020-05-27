@@ -37,23 +37,23 @@
         <!--dp로 절대값으로 view를 그린다.-->
 
         <LinearLayout
-            android:id="@+id/l238"
-            android:layout_width="89dp"
+            android:id="@+id/l337"
+            android:layout_width="125dp"
             android:layout_height="70dp"
             android:background="@drawable/reservation3"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@+id/l241"
+            app:layout_constraintStart_toEndOf="@+id/l338"
             android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/l205">
+            app:layout_constraintTop_toBottomOf="@+id/l306">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성238" />
+                android:text="성337" />
 
             <TextView
                 style="@style/currentT2"
@@ -69,86 +69,22 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l241"
-            android:layout_width="40dp"
-            android:layout_height="70dp"
-            android:background="@drawable/reservation3"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@+id/l242"
-            android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/l205">
-
-            <TextView
-                style="@style/currentT1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="성241" />
-
-            <TextView
-                style="@style/currentT2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="비었음" />
-
-            <TextView
-                style="@style/currentT3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/l242"
-            android:layout_width="40dp"
-            android:layout_height="70dp"
-            android:background="@drawable/reservation3"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@+id/l243"
-            android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/l205">
-
-            <TextView
-                style="@style/currentT1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="성242" />
-
-            <TextView
-                style="@style/currentT2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="비었음" />
-
-            <TextView
-                style="@style/currentT3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/l244"
-            android:layout_width="40dp"
+            android:id="@+id/l339"
+            android:layout_width="70dp"
             android:layout_height="100dp"
             android:background="@drawable/reservation3"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintHorizontal_bias="0.227"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l205">
+            app:layout_constraintTop_toBottomOf="@+id/l306">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성244" />
+                android:text="성339" />
 
             <TextView
                 style="@style/currentT2"
@@ -164,23 +100,23 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l243"
-            android:layout_width="40dp"
+            android:id="@+id/l338"
+            android:layout_width="55dp"
             android:layout_height="70dp"
             android:background="@drawable/reservation3"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@+id/l244"
+            app:layout_constraintStart_toEndOf="@+id/l339"
             android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/l205">
+            app:layout_constraintTop_toBottomOf="@+id/l306">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성243" />
+                android:text="성338" />
 
             <TextView
                 style="@style/currentT2"
@@ -196,22 +132,22 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l236"
+            android:id="@+id/l334"
             android:layout_width="100dp"
-            android:layout_height="55dp"
+            android:layout_height="100dp"
             android:background="@drawable/reservation3"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l235">
+            app:layout_constraintTop_toBottomOf="@+id/l333">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성236" />
+                android:text="성334" />
 
             <TextView
                 style="@style/currentT2"
@@ -227,38 +163,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l235"
-            android:layout_width="100dp"
-            android:layout_height="45dp"
-            android:background="@drawable/reservation3"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l234">
-
-            <TextView
-                style="@style/currentT1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="성235" />
-
-            <TextView
-                style="@style/currentT2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="비었음" />
-
-            <TextView
-                style="@style/currentT3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/l233"
+            android:id="@+id/l332"
             android:layout_width="100dp"
             android:layout_height="65dp"
             android:layout_marginTop="210dp"
@@ -274,7 +179,7 @@
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성233" />
+                android:text="성332" />
 
             <TextView
                 style="@style/currentT2"
@@ -290,22 +195,23 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l232"
+            android:id="@+id/l331"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:background="@drawable/reservation3"
             android:gravity="center"
             android:orientation="vertical"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l231">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성232" />
+                android:text="성331" />
 
             <TextView
                 style="@style/currentT2"
@@ -321,7 +227,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l205"
+            android:id="@+id/l306"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/reservation3"
@@ -330,13 +236,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l204">
+            app:layout_constraintTop_toBottomOf="@+id/l305">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성205" />
+                android:text="성306" />
 
             <TextView
                 style="@style/currentT2"
@@ -352,7 +258,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l204"
+            android:id="@+id/l305"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/reservation3"
@@ -361,13 +267,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l203">
+            app:layout_constraintTop_toBottomOf="@+id/l304">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성204" />
+                android:text="성305" />
 
             <TextView
                 style="@style/currentT2"
@@ -383,9 +289,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l237"
+            android:id="@+id/l335"
             android:layout_width="100dp"
-            android:layout_height="80dp"
+            android:layout_height="40dp"
             android:layout_marginTop="465dp"
             android:background="@drawable/reservation3"
             android:gravity="center"
@@ -399,7 +305,7 @@
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성237" />
+                android:text="성335" />
 
             <TextView
                 style="@style/currentT2"
@@ -415,7 +321,39 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l234"
+            android:id="@+id/l336"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l335">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성336" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l333"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:background="@drawable/reservation3"
@@ -424,13 +362,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l233">
+            app:layout_constraintTop_toBottomOf="@+id/l332">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성234" />
+                android:text="성333" />
 
             <TextView
                 style="@style/currentT2"
@@ -446,39 +384,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l231"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/reservation3"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                style="@style/currentT1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="성231" />
-
-            <TextView
-                style="@style/currentT2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="비었음" />
-
-            <TextView
-                style="@style/currentT3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/l203"
+            android:id="@+id/l304"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/reservation3"
@@ -487,13 +393,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l202">
+            app:layout_constraintTop_toBottomOf="@+id/l303">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성203" />
+                android:text="성304" />
 
             <TextView
                 style="@style/currentT2"
@@ -509,7 +415,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l202"
+            android:id="@+id/l303"
             android:layout_width="100dp"
             android:layout_height="90dp"
             android:background="@drawable/reservation3"
@@ -518,13 +424,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l201_1">
+            app:layout_constraintTop_toBottomOf="@+id/l302">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성202" />
+                android:text="성303" />
 
             <TextView
                 style="@style/currentT2"
@@ -540,7 +446,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l201"
+            android:id="@+id/l301"
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:layout_marginTop="16dp"
@@ -556,7 +462,7 @@
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성201" />
+                android:text="성301" />
 
             <TextView
                 style="@style/currentT2"
@@ -572,7 +478,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/l201_1"
+            android:id="@+id/l302"
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:background="@drawable/reservation3"
@@ -581,13 +487,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.2500"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/l201">
+            app:layout_constraintTop_toBottomOf="@+id/l301">
 
             <TextView
                 style="@style/currentT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="성201-1" />
+                android:text="성302" />
 
             <TextView
                 style="@style/currentT2"

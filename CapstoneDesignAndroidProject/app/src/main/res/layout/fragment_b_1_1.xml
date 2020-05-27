@@ -37,16 +37,78 @@
         <!--dp로 절대값으로 view를 그린다.-->
 
         <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:background="@drawable/justconstant"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/l103"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.197"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l101"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/justconstant"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/l103"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.197"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/l101"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    style="@style/currentT1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="옆문" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="옆문" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:background="@drawable/justconstant"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/l105"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.197"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l104"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정문" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/l135"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="150dp"
             android:layout_marginTop="370dp"
             android:background="@drawable/reservation3"
             android:gravity="center"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.97"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/l132"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -59,20 +121,20 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/l134"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginTop="593dp"
+            android:layout_marginTop="594dp"
             android:background="@drawable/reservation3"
             android:gravity="center"
             android:orientation="vertical"
@@ -91,13 +153,13 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -108,7 +170,7 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/l133_1">
 
@@ -122,13 +184,13 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,7 +202,7 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.80"
+            app:layout_constraintHorizontal_bias="0.750"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -154,13 +216,13 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -172,7 +234,7 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -186,13 +248,13 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -204,7 +266,7 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -218,13 +280,13 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -236,7 +298,7 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -250,13 +312,13 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -268,7 +330,7 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -282,18 +344,18 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/l101"
-            android:layout_width="275dp"
+            android:layout_width="250dp"
             android:layout_height="100dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/reservation3"
@@ -314,13 +376,13 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -332,7 +394,7 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.200"
+            app:layout_constraintHorizontal_bias="0.2500"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -346,13 +408,13 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 시간" />
+                android:text="비었음" />
 
             <TextView
                 style="@style/currentT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약 정보" />
+                android:text="" />
         </LinearLayout>
 
 

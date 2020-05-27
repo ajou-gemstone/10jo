@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.otaliastudios.zoom.ZoomLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/zoomLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical|horizontal"
+    app:alignment="center"
+    app:animationDuration="400"
+    app:flingEnabled="true"
+    app:hasClickableChildren="true"
+    app:horizontalPanEnabled="true"
+    app:maxZoom="5"
+    app:maxZoomType="zoom"
+    app:minZoom="0.7"
+    app:minZoomType="zoom"
+    app:oneFingerScrollEnabled="true"
+    app:overPinchable="true"
+    app:overScrollHorizontal="true"
+    app:overScrollVertical="true"
+    app:scrollEnabled="true"
+    app:threeFingersScrollEnabled="true"
+    app:transformation="centerInside"
+    app:transformationGravity="auto"
+    app:twoFingersScrollEnabled="true"
+    app:verticalPanEnabled="true"
+    app:zoomEnabled="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/baselayout"
+        android:layout_width="400dp"
+        android:layout_height="720dp"
+        android:background="@drawable/reservation">
+
+        <!--dp로 절대값으로 view를 그린다.-->
+
+        <LinearLayout
+            android:id="@+id/l432"
+            android:layout_width="100dp"
+            android:layout_height="37.5dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.706"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l433">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성432" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l433"
+            android:layout_width="100dp"
+            android:layout_height="37.5dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="75dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.706"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l434">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성433" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l434"
+            android:layout_width="100dp"
+            android:layout_height="52dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.706"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l435">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성434" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l435"
+            android:layout_width="100dp"
+            android:layout_height="42dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.706"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l436">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성435" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l436"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.706"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l437">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성436" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l437"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.706"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l438">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성437" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l438"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="75dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.706"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l439">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성438" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l439"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.72"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l440">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성439" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l442"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/l441"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성442" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l441"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/l440"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성441" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l440"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.59"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성440" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l431"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/l430"
+            app:layout_constraintTop_toBottomOf="@+id/l424"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성431" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l430"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/l429"
+            app:layout_constraintTop_toBottomOf="@+id/l424"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성430" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l429"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/l428"
+            app:layout_constraintTop_toBottomOf="@+id/l424"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성429" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l428"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/l427"
+            app:layout_constraintTop_toBottomOf="@+id/l424"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성428" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l427"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/l426"
+            app:layout_constraintTop_toBottomOf="@+id/l424"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성427" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l426"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/l425"
+            app:layout_constraintTop_toBottomOf="@+id/l424"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성426" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <!--dp로 절대값으로 view를 그린다.-->
+        <LinearLayout
+            android:id="@+id/l425"
+            android:layout_width="33.3dp"
+            android:layout_height="70dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.218"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l424">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성425" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l424"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l423">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성424" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l423"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l422">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성423" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l422"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l421">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성422" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l421"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l420">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성421" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l420"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l419">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성420" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l419"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l418">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성419" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l418"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l417">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성418" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l417"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l416">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성417" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l416"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l415">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성416" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l415"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l414">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성415" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l414"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l413">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성414" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l413"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l412">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성413" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l412"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l411">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성412" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l411"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l410">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성411" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l410"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l409">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성410" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l409"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l408">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성409" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l408"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l407">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성408" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l407"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l406">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성407" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l406"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l405">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성406" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l405"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l404">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성405" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l401"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/l402"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성401" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l402"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/l403"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성402" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l403"
+            android:layout_width="33.3dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.218"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성403" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l404"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/reservation3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/l403">
+
+            <TextView
+                style="@style/currentT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성404" />
+
+            <TextView
+                style="@style/currentT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비었음" />
+
+            <TextView
+                style="@style/currentT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.otaliastudios.zoom.ZoomLayout>

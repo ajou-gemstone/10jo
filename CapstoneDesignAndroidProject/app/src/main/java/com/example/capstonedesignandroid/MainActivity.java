@@ -203,8 +203,6 @@ public class MainActivity extends AppCompatActivity{
             Log.d("realPriority", ": " + m.realPriority);
         }
 
-        //Todo: 이제 순위에 따라서 예약을 채운다.
-
     }
 
     public class MyAlgoTest{
