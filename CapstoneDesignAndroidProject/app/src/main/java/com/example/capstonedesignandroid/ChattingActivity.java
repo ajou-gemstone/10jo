@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -43,7 +44,7 @@ public class ChattingActivity extends AppCompatActivity {
     ChattingAdapter m_Adapter;
     int num;
     TextView chattingroomname;
-    String userId, msg, myname, username, title;
+    String userId, msg, myname, membername, title, memberId;
     RelativeLayout layout1;
     ScrollView scrollview_chatting;
     TextView roomnum;
@@ -131,25 +132,21 @@ public class ChattingActivity extends AppCompatActivity {
         });
 
         //말풍선 클릭했을 때
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-//                String message = m_Adapter.getMessage(position);
-//                if (message.length() == 0) {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(ChattingActivity.this);
-//
-//                    builder.setTitle("이 사용자의 신뢰도를");
-//
-//                    builder.setItems(R.array.LAN, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int pos) {
-//                            String[] items = getResources().getStringArray(R.array.LAN);
-//                        }
-//                    });
-//
-//                    AlertDialog alertDialog = builder.create();
-//                    alertDialog.show();
-//                } else if (message.charAt(0) == '#') {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                String memberId = m_Adapter.getId(position);
+                String leaderornot = m_Adapter.getProfile(position);
+                Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                intent.putExtra("userId", memberId);
+                intent.putExtra("leaderormember", leaderornot);
+                startActivity(intent);
+
+               // if (message.length() == 0) {
+
+//                }
+//                else if (message.charAt(0) == '#') {
 //                    AlertDialog diaBox = new AlertDialog.Builder(ChattingActivity.this)
 //                            .setTitle("추천해준 음악링크로 이동하기")
 //                            .setMessage("음악 링크로 이동합니다")
@@ -166,7 +163,8 @@ public class ChattingActivity extends AppCompatActivity {
 //                            .setNegativeButton("아니요", null).create();
 //                    diaBox.show();
 //
-//                } else {
+//                }
+//                else {
 //                    AlertDialog.Builder builder = new AlertDialog.Builder(ChattingActivity.this);
 //
 //                    builder.setTitle("사용자");
@@ -207,8 +205,8 @@ public class ChattingActivity extends AppCompatActivity {
 //                    AlertDialog alertDialog = builder.create();
 //                    alertDialog.show();
 //                }
-//            }
-//        });
+            }
+        });
 
         listview.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -263,7 +261,7 @@ public class ChattingActivity extends AppCompatActivity {
                                 msg = msg1;
                             }
 
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, myname);
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, myname, userId);
                             m_Adapter.notifyDataSetChanged();
                         } else { //다른사람
                             num = 1;
@@ -279,7 +277,7 @@ public class ChattingActivity extends AppCompatActivity {
                             } else {
                                 msg = msg1;
                             }
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, username);
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, membername, memberId);
                             m_Adapter.notifyDataSetChanged();
                         }
                     }
@@ -383,7 +381,8 @@ public class ChattingActivity extends AppCompatActivity {
             public void run() {
                 try {
                     User dummies = call.execute().body();
-                    username = dummies.getName();
+                    membername = dummies.getName();
+                    memberId = dummies.getId();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");

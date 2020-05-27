@@ -20,12 +20,14 @@ public class ChattingAdapter extends BaseAdapter {
         String msg;
         int type;
         String name;
-        ListContents(int profile, String _msg, int _type, String name)
+        String id;
+        ListContents(int profile, String _msg, int _type, String name, String id)
         {
             this.profile = profile;
             this.msg = _msg;
             this.type = _type;
             this.name = name;
+            this.id = id;
         }
     }
 
@@ -35,13 +37,22 @@ public class ChattingAdapter extends BaseAdapter {
     }
 
     // 외부에서 아이템 추가 요청 시 사용
-    public void add(int profile, String _msg,int _type, String name) {
+    public void add(int profile, String _msg,int _type, String name, String id) {
 
-        m_List.add(new ListContents(profile,_msg,_type, name));
+        m_List.add(new ListContents(profile,_msg,_type, name, id));
     }
 
     public String getMessage(int position){
         return m_List.get(position).msg;
+    }
+    public String getName(int position){
+        return m_List.get(position).name;
+    }
+    public String getId(int position){
+        return m_List.get(position).id;
+    }
+    public String getProfile(int position){
+        return Integer.toString(m_List.get(position).profile);
     }
 
     // 외부에서 아이템 삭제 요청 시 사용
@@ -62,10 +73,6 @@ public class ChattingAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
-    }
-
-    public String getName(int position){
-        return m_List.get(position).name;
     }
 
     @Override
