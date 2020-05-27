@@ -189,6 +189,7 @@ public class ReadGroupActivity extends AppCompatActivity {
                 intent.putExtra("leaderormember", leaderormember);
                 intent.putExtra("username", username);
                 intent.putExtra("grouptitle", grouptitle);
+                intent.putExtra("groupId", groupId);
                 startActivity(intent);
             }
         });

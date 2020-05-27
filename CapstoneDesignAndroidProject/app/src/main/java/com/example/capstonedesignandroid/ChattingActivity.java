@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.capstonedesignandroid.Adapter.ChattingAdapter;
+import com.example.capstonedesignandroid.DTO.Dummy;
+import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
@@ -27,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -45,7 +48,7 @@ public class ChattingActivity extends AppCompatActivity {
     ChattingAdapter m_Adapter;
     int num;
     TextView chattingroomname;
-    String userId, msg, myname, membername, title, memberId;
+    String userId, msg, myname, membername, title, memberId, groupId;
     RelativeLayout layout1;
     ScrollView scrollview_chatting;
     TextView roomnum;
@@ -81,12 +84,23 @@ public class ChattingActivity extends AppCompatActivity {
         leaderormember = intent1.getIntExtra("leaderormember", -1);
         myname = intent1.getStringExtra("username");
         title = intent1.getStringExtra("grouptitle");
+        groupId = intent1.getStringExtra("groupId");
         chattingroomname.setText(title);
 
         //고민한잔 userkey랑 같은 변수
         userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
         userKey = Integer.parseInt(SharedPreference.getAttribute(getApplicationContext(), "userId"));
 
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ChattingService service = retrofit2.create(ChattingService.class);
+        Call<List<User>> call3 = service.getChat(groupId);
+        //CallThread_get(call3);
+        //m_Adapter.add(0, "aaaa", 1, "aaa", "2");
+        m_Adapter.notifyDataSetChanged();
         try {
             socket = IO.socket(MyConstants.BASE); //로컬호스트 ip주소 수정하기
         } catch (Exception e) {
@@ -132,6 +146,10 @@ public class ChattingActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 sendChatText.setText("");
+
+                ChattingService service = retrofit2.create(ChattingService.class);
+                Call<DummyResponse> call2 = service.postChat(groupId, Integer.toString(leaderormember), userId, message, myname);
+               // CallThread_post(call2);
             }
         });
 
@@ -174,15 +192,9 @@ public class ChattingActivity extends AppCompatActivity {
                             key = received.get("key").toString(); //유저 식별키
                             profile = received.get("profile").toString();
 
-                            Retrofit retrofit2 = new Retrofit.Builder()
-                                    .baseUrl(MyConstants.BASE)
-                                    .addConverterFactory(GsonConverterFactory.create())
-                                    .build();
-
                             GetService service = retrofit2.create(GetService.class);
                             Call<User> call = service.getUserInfo(key);
                             CallThread(call);
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -325,6 +337,54 @@ public class ChattingActivity extends AppCompatActivity {
                     User dummies = call.execute().body();
                     membername = dummies.getName();
                     memberId = dummies.getId();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
+
+    private void CallThread_post(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
+
+    private void CallThread_get(Call<List<User>> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<User> dummies = call.execute().body();
+                    for(User dummy : dummies){
+                        if(dummy.getId().equals(userId)) {
+                            m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 0, dummy.getName(), dummy.getId());
+                            m_Adapter.notifyDataSetChanged();
+                        }
+                        else {
+                            m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 1, dummy.getName(), dummy.getId());
+                            m_Adapter.notifyDataSetChanged();
+                        }
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");

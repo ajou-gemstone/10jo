@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#000000"
-                    android:text="모임종류"/>
+                    android:text="모임 종류"/>
                 <RadioGroup
                     android:id="@+id/grouptype"
                     android:layout_width="match_parent"
