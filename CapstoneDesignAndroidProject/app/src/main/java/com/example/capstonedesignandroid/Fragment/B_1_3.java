@@ -1,19 +1,17 @@
 package com.example.capstonedesignandroid.Fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.capstonedesignandroid.CurrentManageReservationActivity;
 import com.example.capstonedesignandroid.DTO.DummyCurrentReservationBuildingFloor;
@@ -30,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class B_1_2 extends Fragment {
+public class B_1_3 extends Fragment {
 
     private CurrentManageReservationActivity currentManageReservationActivity;
     private Retrofit retrofit;
@@ -38,24 +36,21 @@ public class B_1_2 extends Fragment {
     private ArrayList<DummyCurrentReservationBuildingFloor> dummyCurrentReservationBuildingFloorArrayList;
     private boolean IOExceptionbool = true;
     private LinearLayout currentTmpLL;
-    private LinearLayout l201;
-    private LinearLayout l201_1;
-    private LinearLayout l202;
-    private LinearLayout l203;
-    private LinearLayout l204;
-    private LinearLayout l205;
-    private LinearLayout l231;
-    private LinearLayout l232;
-    private LinearLayout l233;
-    private LinearLayout l234;
-    private LinearLayout l235;
-    private LinearLayout l236;
-    private LinearLayout l237;
-    private LinearLayout l238;
-    private LinearLayout l241;
-    private LinearLayout l242;
-    private LinearLayout l243;
-    private LinearLayout l244;
+    private LinearLayout l301;
+    private LinearLayout l302;
+    private LinearLayout l303;
+    private LinearLayout l304;
+    private LinearLayout l305;
+    private LinearLayout l306;
+    private LinearLayout l331;
+    private LinearLayout l332;
+    private LinearLayout l333;
+    private LinearLayout l334;
+    private LinearLayout l335;
+    private LinearLayout l336;
+    private LinearLayout l337;
+    private LinearLayout l338;
+    private LinearLayout l339;
 
     @Override
     public void onAttach(Context context) {
@@ -75,7 +70,7 @@ public class B_1_2 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //프래그먼트 메인을 인플레이트해주고 컨테이너에 붙여달라는 뜻임
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_b_1_2, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_b_1_3, container, false);
 
         //-----------복사 코드 (서버)----------------
         retrofit = new Retrofit.Builder()
@@ -85,7 +80,7 @@ public class B_1_2 extends Fragment {
         service = retrofit.create(GetService.class);
 
         //이 부분만 수정
-        Call<List<DummyCurrentReservationBuildingFloor>> call = service.getCurrentReservationBuildingFloor(DefinedMethod.getBuildingNameByBuildingTag("1"), "2");
+        Call<List<DummyCurrentReservationBuildingFloor>> call = service.getCurrentReservationBuildingFloor(DefinedMethod.getBuildingNameByBuildingTag("1"), "3");
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -94,9 +89,9 @@ public class B_1_2 extends Fragment {
                     List<DummyCurrentReservationBuildingFloor> dummies = call.execute().body();
                     dummyCurrentReservationBuildingFloorArrayList = new ArrayList<DummyCurrentReservationBuildingFloor>(dummies);
                     Log.d("dummyLectureRoomReservationList", "run: " + dummies.size());
-                    if(dummies.size() > 0){
-                        Log.d("dummyLectureRoomReservationList", ""+dummyCurrentReservationBuildingFloorArrayList.get(0).getLectureRoom());
-                        Log.d("dummyLectureRoomReservationList", ""+dummyCurrentReservationBuildingFloorArrayList.get(0).getStartTime());
+                    if (dummies.size() > 0) {
+                        Log.d("dummyLectureRoomReservationList", "" + dummyCurrentReservationBuildingFloorArrayList.get(0).getLectureRoom());
+                        Log.d("dummyLectureRoomReservationList", "" + dummyCurrentReservationBuildingFloorArrayList.get(0).getStartTime());
                     }
                     IOExceptionbool = false;
                     Log.d("run: ", "run: ");
@@ -115,34 +110,31 @@ public class B_1_2 extends Fragment {
 
         //-----------복사 코드 (서버)----------------
 
-        l201 = rootView.findViewById(R.id.l201);
-        l201_1 = rootView.findViewById(R.id.l201_1);
-        l202 = rootView.findViewById(R.id.l202);
-        l203 = rootView.findViewById(R.id.l203);
-        l204 = rootView.findViewById(R.id.l204);
-        l205 = rootView.findViewById(R.id.l205);
-        l231 = rootView.findViewById(R.id.l231);
-        l232 = rootView.findViewById(R.id.l232);
-        l233 = rootView.findViewById(R.id.l233);
-        l234 = rootView.findViewById(R.id.l234);
-        l235 = rootView.findViewById(R.id.l235);
-        l236 = rootView.findViewById(R.id.l236);
-        l237 = rootView.findViewById(R.id.l237);
-        l238 = rootView.findViewById(R.id.l238);
-        l241 = rootView.findViewById(R.id.l241);
-        l242 = rootView.findViewById(R.id.l242);
-        l243 = rootView.findViewById(R.id.l243);
-        l244 = rootView.findViewById(R.id.l244);
+        l301 = rootView.findViewById(R.id.l301);
+        l302 = rootView.findViewById(R.id.l302);
+        l303 = rootView.findViewById(R.id.l303);
+        l304 = rootView.findViewById(R.id.l304);
+        l305 = rootView.findViewById(R.id.l305);
+        l306 = rootView.findViewById(R.id.l306);
+        l331 = rootView.findViewById(R.id.l331);
+        l332 = rootView.findViewById(R.id.l332);
+        l333 = rootView.findViewById(R.id.l333);
+        l334 = rootView.findViewById(R.id.l334);
+        l335 = rootView.findViewById(R.id.l335);
+        l336 = rootView.findViewById(R.id.l336);
+        l337 = rootView.findViewById(R.id.l337);
+        l338 = rootView.findViewById(R.id.l338);
+        l339 = rootView.findViewById(R.id.l339);
 
-        for(DummyCurrentReservationBuildingFloor d: dummyCurrentReservationBuildingFloorArrayList){
+        for (DummyCurrentReservationBuildingFloor d : dummyCurrentReservationBuildingFloorArrayList) {
             findLLbyLectureRoomName(d.getLectureRoom());
-            if(currentTmpLL != null){
+            if (currentTmpLL != null) {
                 ViewGroup vg = (ViewGroup) currentTmpLL;
                 //xml 초기화 코드
                 TextView v = (TextView) vg.getChildAt(1);
-                Log.d("currentTmpLL", ""+v.getText());
+                Log.d("currentTmpLL", "" + v.getText());
                 v.setText(DefinedMethod.getTimeByPosition(Integer.parseInt(d.getStartTime())) + "~" +
-                        DefinedMethod.getTimeByPosition(Integer.parseInt(d.getLastTime())+1));
+                        DefinedMethod.getTimeByPosition(Integer.parseInt(d.getLastTime()) + 1));
                 v = (TextView) vg.getChildAt(2);
                 v.setText(d.getReservationType());
                 //강의실 클릭시 액티비티에서 나머지를 처리
@@ -160,65 +152,57 @@ public class B_1_2 extends Fragment {
         return rootView;
     }
 
-    private void findLLbyLectureRoomName(String name){
-        Log.d("findLLbyLectureRoomName", ""+name);
-        switch (name){
-            case "성244":
-                currentTmpLL = l244;
+    private void findLLbyLectureRoomName(String name) {
+        Log.d("findLLbyLectureRoomName", "" + name);
+        switch (name) {
+            case "성339":
+                currentTmpLL = l339;
                 break;
-            case "성243":
-                currentTmpLL = l243;
+            case "성338":
+                currentTmpLL = l338;
                 break;
-            case "성242":
-                currentTmpLL = l242;
+            case "성337":
+                currentTmpLL = l337;
                 break;
-            case "성241":
-                currentTmpLL = l241;
+            case "성336":
+                currentTmpLL = l336;
                 break;
-            case "성238":
-                currentTmpLL = l238;
+            case "성335":
+                currentTmpLL = l335;
                 break;
-            case "성237":
-                currentTmpLL = l237;
+            case "성334":
+                currentTmpLL = l334;
                 break;
-            case "성236":
-                currentTmpLL = l236;
+            case "성333":
+                currentTmpLL = l333;
                 break;
-            case "성235":
-                currentTmpLL = l235;
+            case "성332":
+                currentTmpLL = l332;
                 break;
-            case "성234":
-                currentTmpLL = l234;
+            case "성331":
+                currentTmpLL = l331;
                 break;
-            case "성233":
-                currentTmpLL = l233;
+            case "성306":
+                currentTmpLL = l306;
                 break;
-            case "성232":
-                currentTmpLL = l232;
+            case "성305":
+                currentTmpLL = l305;
                 break;
-            case "성231":
-                currentTmpLL = l231;
+            case "성304":
+                currentTmpLL = l304;
                 break;
-            case "성205":
-                currentTmpLL = l205;
+            case "성303":
+                currentTmpLL = l303;
                 break;
-            case "성204":
-                currentTmpLL = l204;
+            case "성302":
+                currentTmpLL = l302;
                 break;
-            case "성203":
-                currentTmpLL = l203;
-                break;
-            case "성202":
-                currentTmpLL = l202;
-                break;
-            case "성201-1":
-                currentTmpLL = l201_1;
-                break;
-            case "성201":
-                currentTmpLL = l201;
+            case "성301":
+                currentTmpLL = l301;
                 break;
             default:
                 currentTmpLL = null;
         }
     }
 }
+

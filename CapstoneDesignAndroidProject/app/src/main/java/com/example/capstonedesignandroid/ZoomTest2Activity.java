@@ -61,7 +61,7 @@ public class ZoomTest2Activity extends AppCompatActivity {
 //            @Override
 //            public boolean onTouch(View view, MotionEvent motionEvent) {
 //                Log.d("onTouch", ""+motionEvent.getAction());
-//                //Todo: onTouched로 클릭 이벤트를 처리하기 위해 Action Down과 Action Up사이의 time interval의 길이가 짧음을 인식하여 처리하도록 한다.
+//
 //                switch (motionEvent.getAction()){
 //                    case MotionEvent.ACTION_UP:
 //                        Toast.makeText(getApplicationContext(), "터치", Toast.LENGTH_SHORT).show();

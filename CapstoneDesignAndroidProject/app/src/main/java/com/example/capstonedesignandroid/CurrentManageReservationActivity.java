@@ -12,16 +12,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.capstonedesignandroid.Fragment.B_1_1;
 import com.example.capstonedesignandroid.Fragment.B_1_2;
+import com.example.capstonedesignandroid.Fragment.B_1_3;
+import com.example.capstonedesignandroid.Fragment.B_1_4;
 import com.example.capstonedesignandroid.Fragment.B_2_1;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-//Todo: 편의상 성호관, 율곡관 2개만 한다.
 public class CurrentManageReservationActivity extends AppCompatActivity {
 
     private FloatingActionButton floatingActionButton;
     private boolean floatingActionButtonClicked = false;
     private String buildingTag;
-    private ScrollView scrollViewOneToThree;
+    private ScrollView scrollViewOneToFour;
     private ScrollView scrollViewOne;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_current_manage_reservation);
 
         floatingActionButton = findViewById(R.id.floatingActionButton);
-        scrollViewOneToThree = findViewById(R.id.scrollViewOneToThree);
+        scrollViewOneToFour = findViewById(R.id.scrollViewOneToFour);
         scrollViewOne = findViewById(R.id.scrollViewOne);
 
         Intent intent = getIntent();
@@ -52,8 +53,8 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
                     floatingActionButtonClicked = true;
                     switch (buildingTag) {
                         case "1":
-                            scrollViewOneToThree.setVisibility(View.VISIBLE);
-                            scrollViewOneToThree.bringToFront();
+                            scrollViewOneToFour.setVisibility(View.VISIBLE);
+                            scrollViewOneToFour.bringToFront();
                             break;
                         case "2":
                             scrollViewOne.setVisibility(View.VISIBLE);
@@ -64,7 +65,7 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
                     floatingActionButtonClicked = false;
                     switch (buildingTag) {
                         case "1":
-                            scrollViewOneToThree.setVisibility(View.INVISIBLE);
+                            scrollViewOneToFour.setVisibility(View.INVISIBLE);
                             break;
                         case "2":
                             scrollViewOne.setVisibility(View.INVISIBLE);
@@ -99,11 +100,10 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
                 }else if(floor.equals("2")){
                     B = new B_1_2();
                 }else if(floor.equals("3")){
-//                    B = new B_1_3();
+                    B = new B_1_3();
                 }else if(floor.equals("4")){
-//                    B = new B_1_4();
+                    B = new B_1_4();
                 }
-
                 getSupportFragmentManager().beginTransaction().replace(R.id.buildingLectureroomFrameLayout, B).commit();
                 break;
 
@@ -122,5 +122,4 @@ public class CurrentManageReservationActivity extends AppCompatActivity {
         intent.putExtra("lectureRoomId", lecId);
         startActivity(intent);
     }
-
 }

@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/asmr_blue"
-            android:text="선지망 후추첨 예약"/>
+            android:text="선착순 예약"/>
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"

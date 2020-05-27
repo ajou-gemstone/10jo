@@ -38,6 +38,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
     private boolean saveComplete = false;
     private boolean saveComplete2 = false;
     private User userInfo;
+    private boolean critical;
 
     //여기서는 뒤로가기를 막는다.
 //    @Override
@@ -101,6 +102,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         classofAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                critical = false;
                 //자신이 학번을 쓸 경우 return
                 if(userInfo.getStudentNum().equals(classofEdittext.getText().toString())){
                     Toast.makeText(getApplicationContext(), "자신의 학번은 입력하지 않아도 됩니다.", Toast.LENGTH_LONG).show();
@@ -137,9 +139,11 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                     classofEdittext.setText("");
                     adapter.notifyDataSetChanged();
                     Toast.makeText(getApplicationContext(), "학번이 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                    saveComplete2 = false;
                 }else{
                     Toast.makeText(getApplicationContext(), "유효하지 않은 학번입니다.", Toast.LENGTH_SHORT).show();
                 }
+                critical = true;
             }
         });
 
@@ -156,9 +160,16 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
         saveReservationDescButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!critical){
+                    Toast.makeText(getApplicationContext(), "잠시 후 다시 시도하세요", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Log.d("onclickclassofArrayList", ""+classofArrayList.size());
 
                 if(classofArrayList.size() == 0){
                     Toast.makeText(getApplicationContext(), "학번을 하나 이상 추가해주세요", Toast.LENGTH_LONG).show();
+                    return;
                 }
 
                 //예약에 강의실 목적, 모임원 정보 저장
@@ -194,9 +205,17 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                     startActivity(intent);
                     finish();
                 }else{
-                    Toast.makeText(getApplicationContext(), "학번이 유효한지 확인해보세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "retrofit 에러.", Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!saveComplete){
+            //Todo: 아무것도 입력하지 않고 화면을 그냥 끈 경우를 따로 처리해준다.
+        }
     }
 }
