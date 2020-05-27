@@ -269,7 +269,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(alreadyBefore){
-                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 beforeOrAfter = 1;
@@ -281,7 +281,7 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(alreadyAfter){
-                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 beforeOrAfter = 2;
@@ -293,11 +293,11 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(alreadyBefore){
-                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!before){
-                    Toast.makeText(getApplicationContext(), "사진을 찍어주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "사진을 찍어주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //photoUri는 content provider 경로이므로 file 경로로 재설정 해주어야 한다.
@@ -315,15 +315,15 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         // Handle unsuccessful uploads
-                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//firebase에서 자주 쓰이는 callback listener
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
 
-                        Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다.", Toast.LENGTH_LONG).show();
-                        beforeUploadTime.setText("업로드 시간: "+DefinedMethod.getCurrentDate2());
+                        Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다.", Toast.LENGTH_SHORT).show();
+                        beforeUploadTime.setText("업로드 : "+DefinedMethod.getCurrentDate2());
                         //db에 파일 이름 저장
                         GetService service = retrofit.create(GetService.class);
                         Call<DummyResponse> call = service.postBeforePicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
@@ -337,11 +337,11 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(alreadyAfter){
-                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"이미 이미지를 업로드 했습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!after){
-                    Toast.makeText(getApplicationContext(), "사진을 찍어주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "사진을 찍어주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //photoUri는 content provider 경로이므로 file 경로로 재설정 해주어야 한다.
@@ -359,14 +359,14 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         // Handle unsuccessful uploads
-                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//firebase에서 자주 쓰이는 callback listener
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                        Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_LONG).show();
-                        afterUploadTime.setText("업로드 시간: "+DefinedMethod.getCurrentDate2());
+                        Toast.makeText(getApplicationContext(), "성공적으로 이미지 업로드가 되었습니다,", Toast.LENGTH_SHORT).show();
+                        afterUploadTime.setText("업로드 : "+DefinedMethod.getCurrentDate2());
                         //db에 파일 이름 저장
                         GetService service = retrofit.create(GetService.class);
                         Call<DummyResponse> call = service.postAfterPicture(resId, "/"+firebasefileuri, DefinedMethod.getCurrentDate2());
@@ -378,10 +378,15 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
 
         //미래, 과거의 예약일 때
         if(tense.equals("future") || tense.equals("past")){
-            takePictureButton1.setVisibility(View.INVISIBLE);
-            transportPictureButton1.setVisibility(View.INVISIBLE);
-            takePictureButton2.setVisibility(View.INVISIBLE);
-            transportPictureButton2.setVisibility(View.INVISIBLE);
+            takePictureButton1.setBackgroundResource(R.drawable.camera_grey);
+            takePictureButton2.setBackgroundResource(R.drawable.camera_grey);
+            takePictureButton1.setClickable(false);
+            takePictureButton2.setClickable(false);
+
+            transportPictureButton1.setVisibility(View.GONE);
+            transportPictureButton2.setVisibility(View.GONE);
+            pictureImageView1.setVisibility(View.GONE);
+            pictureImageView2.setVisibility(View.GONE);
         }
         if(tense.equals("past")) {//과거의 예약일 때
             cancelReservationButton.setVisibility(View.INVISIBLE);

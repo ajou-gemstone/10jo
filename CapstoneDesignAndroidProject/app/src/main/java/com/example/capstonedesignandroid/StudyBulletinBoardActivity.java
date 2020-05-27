@@ -1,8 +1,11 @@
 package com.example.capstonedesignandroid;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import com.example.capstonedesignandroid.Adapter.GroupPagerAdapter;
 import com.example.capstonedesignandroid.Fragment.GroupFragment1;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -10,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -80,7 +84,7 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        final GroupPagerAdapter adapter = new GroupPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -106,7 +110,31 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
     }//onCreate
 
     @Override
-    public void onBackPressed() { //super.onBackPressed();비워두면 실행안되서 뒤로가기 안됨
+    public void onBackPressed() {
+        // AlertDialog 빌더를 이용해 종료시 발생시킬 창을 띄운다
+        AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
+        alBuilder.setMessage("종료하시겠습니까?");
+
+        // "예" 버튼을 누르면 실행되는 리스너
+        alBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    finishAffinity();
+                }
+                System.runFinalization();
+                System.exit(0);
+            }
+        });
+        // "아니오" 버튼을 누르면 실행되는 리스너
+        alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return; // 아무런 작업도 하지 않고 돌아간다
+            }
+        });
+        alBuilder.setTitle("프로그램 종료");
+        alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

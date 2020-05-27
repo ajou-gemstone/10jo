@@ -128,6 +128,7 @@
 
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row0"
             android:layout_width="wrap_content"
@@ -149,117 +150,146 @@
             </LinearLayout>
             <LinearLayout
                 android:tag="A0"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
+
             <LinearLayout
                 android:tag="B0"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
+
             <LinearLayout
                 android:tag="C0"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
+
             <LinearLayout
                 android:tag="D0"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
+
             <LinearLayout
                 android:tag="E0"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
+
             <LinearLayout
                 android:tag="F0"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
+
             <LinearLayout
                 android:tag="G0"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
+
         </TableRow>
+
         <TableRow
             android:id="@+id/row1"
             android:layout_width="wrap_content"
@@ -282,117 +312,140 @@
             </LinearLayout>
             <LinearLayout
                 android:tag="A1"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
+
             <LinearLayout
                 android:tag="B1"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C1"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D1"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E1"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F1"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G1"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row2"
             android:layout_width="wrap_content"
@@ -415,117 +468,139 @@
             </LinearLayout>
             <LinearLayout
                 android:tag="A2"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B2"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C2"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D2"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E2"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F2"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G2"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row3"
             android:layout_width="wrap_content"
@@ -548,117 +623,139 @@
             </LinearLayout>
             <LinearLayout
                 android:tag="A3"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B3"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C3"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D3"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E3"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F3"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G3"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row4"
             android:layout_width="wrap_content"
@@ -681,117 +778,139 @@
             </LinearLayout>
             <LinearLayout
                 android:tag="A4"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B4"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C4"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D4"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E4"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F4"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G4"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row5"
             android:layout_width="wrap_content"
@@ -800,7 +919,6 @@
                 android:tag="timeCol5"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -809,122 +927,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A5"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B5"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C5"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D5"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E5"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F5"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G5"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row6"
             android:layout_width="wrap_content"
@@ -933,7 +1071,6 @@
                 android:tag="timeCol6"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -942,122 +1079,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A6"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B6"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C6"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D6"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E6"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F6"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G6"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row7"
             android:layout_width="wrap_content"
@@ -1066,7 +1223,6 @@
                 android:tag="timeCol7"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1075,122 +1231,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A7"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B7"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C7"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D7"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E7"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F7"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G7"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row8"
             android:layout_width="wrap_content"
@@ -1199,7 +1375,6 @@
                 android:tag="timeCol8"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1208,122 +1383,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A8"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B8"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C8"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D8"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E8"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F8"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G8"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row9"
             android:layout_width="wrap_content"
@@ -1332,7 +1527,6 @@
                 android:tag="timeCol9"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1341,122 +1535,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A9"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B9"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C9"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D9"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E9"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F9"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G9"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row10"
             android:layout_width="wrap_content"
@@ -1465,7 +1679,6 @@
                 android:tag="timeCol10"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1474,122 +1687,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A10"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B10"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C10"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D10"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E10"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F10"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G10"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row11"
             android:layout_width="wrap_content"
@@ -1598,7 +1831,6 @@
                 android:tag="timeCol11"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1607,122 +1839,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A11"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B11"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C11"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D11"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E11"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F11"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G11"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row12"
             android:layout_width="wrap_content"
@@ -1731,7 +1983,6 @@
                 android:tag="timeCol12"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1740,122 +1991,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A12"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B12"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C12"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D12"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E12"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F12"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G12"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row13"
             android:layout_width="wrap_content"
@@ -1864,7 +2135,6 @@
                 android:tag="timeCol13"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1873,122 +2143,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A13"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B13"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C13"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D13"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E13"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F13"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G13"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row14"
             android:layout_width="wrap_content"
@@ -1997,7 +2287,6 @@
                 android:tag="timeCol14"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -2006,122 +2295,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A14"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B14"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C14"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D14"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E14"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F14"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G14"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row15"
             android:layout_width="wrap_content"
@@ -2130,7 +2439,6 @@
                 android:tag="timeCol15"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -2139,122 +2447,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A15"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B15"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C15"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D15"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E15"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F15"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G15"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row16"
             android:layout_width="wrap_content"
@@ -2263,7 +2591,6 @@
                 android:tag="timeCol16"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -2272,122 +2599,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A16"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B16"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C16"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D16"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E16"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F16"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G16"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row17"
             android:layout_width="wrap_content"
@@ -2396,7 +2743,6 @@
                 android:tag="timeCol17"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -2405,122 +2751,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A17"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B17"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C17"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D17"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E17"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F17"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G17"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row18"
             android:layout_width="wrap_content"
@@ -2529,7 +2895,6 @@
                 android:tag="timeCol18"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -2538,122 +2903,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A18"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B18"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C18"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D18"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E18"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F18"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G18"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row19"
             android:layout_width="wrap_content"
@@ -2662,7 +3047,6 @@
                 android:tag="timeCol19"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -2671,122 +3055,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A19"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B19"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C19"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D19"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E19"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F19"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G19"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row20"
             android:layout_width="wrap_content"
@@ -2795,7 +3199,6 @@
                 android:tag="timeCol20"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -2804,122 +3207,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A20"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B20"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C20"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D20"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E20"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F20"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G20"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row21"
             android:layout_width="wrap_content"
@@ -2928,7 +3351,6 @@
                 android:tag="timeCol21"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -2937,122 +3359,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A21"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B21"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C21"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D21"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E21"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F21"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G21"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row22"
             android:layout_width="wrap_content"
@@ -3061,7 +3503,6 @@
                 android:tag="timeCol22"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -3070,122 +3511,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A22"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B22"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C22"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D22"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E22"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F22"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G22"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row23"
             android:layout_width="wrap_content"
@@ -3194,7 +3655,6 @@
                 android:tag="timeCol23"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -3203,122 +3663,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A23"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B23"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C23"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D23"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E23"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F23"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G23"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row24"
             android:layout_width="wrap_content"
@@ -3327,7 +3807,6 @@
                 android:tag="timeCol24"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -3336,122 +3815,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A24"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B24"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C24"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D24"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E24"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F24"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G24"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row25"
             android:layout_width="wrap_content"
@@ -3460,7 +3959,6 @@
                 android:tag="timeCol25"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -3469,122 +3967,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A25"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B25"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C25"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D25"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E25"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F25"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G25"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row26"
             android:layout_width="wrap_content"
@@ -3593,7 +4111,6 @@
                 android:tag="timeCol26"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -3602,122 +4119,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A26"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B26"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C26"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D26"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E26"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F26"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G26"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
         <TableRow
             android:id="@+id/row27"
             android:layout_width="wrap_content"
@@ -3726,7 +4263,6 @@
                 android:tag="timeCol27"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -3735,122 +4271,142 @@
                     android:textColor="#ffffff"
                     android:background="@color/asmr_blue"
                     android:textSize="17dp"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="A27"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="B27"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="C27"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="D27"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="E27"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="F27"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:tag="G27"
+                android:gravity="center"
                 style="@style/timeTable"
                 android:orientation="vertical">
-
                 <TextView
                     style="@style/timeTableContent"
+                    android:text=""
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
                     style="@style/timeTableLocation"
+                    android:layout_marginTop="5dp"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </TableRow>
+
     </TableLayout>
 
 </RelativeLayout>

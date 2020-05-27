@@ -109,6 +109,9 @@
             android:name=".ReadGroupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".EditGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ChattingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -132,6 +135,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".WelcomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"

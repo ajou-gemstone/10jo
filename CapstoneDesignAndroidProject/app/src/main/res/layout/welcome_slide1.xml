@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:src="@drawable/asmr" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="원하는 스터디 모임부터"
+            android:textColor="@color/asmr_yellow"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="학교 과목 공부까지"
+            android:textSize="17dp"
+            android:textColor="@color/asmr_yellow"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="모임을 빠르게 만들고 참여하세요"
+            android:textColor="@color/asmr_yellow"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

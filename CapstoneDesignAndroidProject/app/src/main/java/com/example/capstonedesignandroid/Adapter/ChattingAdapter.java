@@ -128,7 +128,7 @@ public class ChattingAdapter extends BaseAdapter {
 
         // Text 등록
         text.setText(m_List.get(position).msg);
-        name.setText("익명 "+m_List.get(position).name);
+        name.setText(m_List.get(position).name);
 
         if( m_List.get(position).type == 0 ) {
             imageView.setVisibility(imageView.INVISIBLE);
