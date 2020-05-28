@@ -143,6 +143,7 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
             public void run() {
                 try {
                     List<Group> dummies = call.execute().body();
+                    tagArray.clear(); idArray.clear(); titleArray.clear(); categoryArray.clear(); currentNumArray.clear(); totalNumArray.clear();
                     for(int i = 0; i< dummies.size(); i++){
                         if(dummies.get(dummies.size()-1-i).getCategory().equals("all")) {
                             String tag = "";
@@ -151,8 +152,8 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
                                     tag = tag + "#" + dummies.get(dummies.size()-1-i).getTagName().get(t).getTagName() + " ";
                                 }
                             }
-                            tagArray.clear(); idArray.clear(); titleArray.clear(); categoryArray.clear(); currentNumArray.clear(); totalNumArray.clear();
                             tagArray.add(tag);
+
                             idArray.add(dummies.get(dummies.size()-1-i).getId());
                             titleArray.add(dummies.get(dummies.size()-1-i).getTitle());
                             categoryArray.add(dummies.get(dummies.size()-1-i).getCategory());
