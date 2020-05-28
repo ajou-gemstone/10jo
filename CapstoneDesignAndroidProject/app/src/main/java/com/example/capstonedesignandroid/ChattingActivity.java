@@ -98,7 +98,7 @@ public class ChattingActivity extends AppCompatActivity {
 
         ChattingService service = retrofit2.create(ChattingService.class);
         Call<List<User>> call3 = service.getChat(groupId);
-        //CallThread_get(call3);
+        CallThread_get(call3);
         //m_Adapter.add(0, "aaaa", 1, "aaa", "2");
         m_Adapter.notifyDataSetChanged();
         try {
@@ -132,24 +132,29 @@ public class ChattingActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JSONObject obj = new JSONObject();
-                String message = sendChatText.getText().toString(); //전송할 메시지
-                num1= 1;
-                try {
-                    obj.put("roomname", title);
-                    obj.put("message", message);
-                    obj.put("key", userKey);
-                    obj.put("profile", leaderormember);
-                    obj.put("roomnum", num1);
-                    socket.emit("message", obj);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                sendChatText.setText("");
+                if( ! sendChatText.getText().toString().equals("")){
 
-                ChattingService service = retrofit2.create(ChattingService.class);
-                Call<DummyResponse> call2 = service.postChat(groupId, Integer.toString(leaderormember), userId, message, myname);
-               // CallThread_post(call2);
+                    JSONObject obj = new JSONObject();
+                    String message = sendChatText.getText().toString(); //전송할 메시지
+                    num1 = 1;
+
+                    try {
+                        obj.put("roomname", title);
+                        obj.put("message", message);
+                        obj.put("key", userKey);
+                        obj.put("profile", leaderormember);
+                        obj.put("roomnum", num1);
+                        socket.emit("message", obj);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    sendChatText.setText("");
+
+                    ChattingService service = retrofit2.create(ChattingService.class);
+                    Call<DummyResponse> call2 = service.postChat(groupId, userId, message);
+                    CallThread_post(call2);
+                }
             }
         });
 
@@ -376,12 +381,12 @@ public class ChattingActivity extends AppCompatActivity {
                 try {
                     List<User> dummies = call.execute().body();
                     for(User dummy : dummies){
-                        if(dummy.getId().equals(userId)) {
-                            m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 0, dummy.getName(), dummy.getId());
+                        if(dummy.getUserId().equals(userId)) {
+                            m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 0, dummy.getName(), dummy.getUserId());
                             m_Adapter.notifyDataSetChanged();
                         }
                         else {
-                            m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 1, dummy.getName(), dummy.getId());
+                            m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 1, dummy.getName(), dummy.getUserId());
                             m_Adapter.notifyDataSetChanged();
                         }
                     }
