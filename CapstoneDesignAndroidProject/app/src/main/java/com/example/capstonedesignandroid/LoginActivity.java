@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("token", token);
                         SharedPreference.removeAttribute(getApplicationContext(), "token");
                         SharedPreference.setAttribute(getApplicationContext(), "token", token);
-                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
         //-------------------firebase-------------------

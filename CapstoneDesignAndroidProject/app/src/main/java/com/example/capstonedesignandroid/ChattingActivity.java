@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -14,8 +16,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.capstonedesignandroid.Adapter.ChattingAdapter;
+import com.example.capstonedesignandroid.DTO.Dummy;
+import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
@@ -24,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -32,7 +38,6 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-//import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
 public class ChattingActivity extends AppCompatActivity {
 
@@ -43,7 +48,7 @@ public class ChattingActivity extends AppCompatActivity {
     ChattingAdapter m_Adapter;
     int num;
     TextView chattingroomname;
-    String userId, msg, myname, username, title;
+    String userId, msg, myname, membername, title, memberId, groupId;
     RelativeLayout layout1;
     ScrollView scrollview_chatting;
     TextView roomnum;
@@ -58,6 +63,11 @@ public class ChattingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chatting);
 
         m_Adapter = new ChattingAdapter();
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // listview 생성 및 adapter 지정.
         final ListView listview = (ListView) findViewById(R.id.chatting);
@@ -74,14 +84,23 @@ public class ChattingActivity extends AppCompatActivity {
         leaderormember = intent1.getIntExtra("leaderormember", -1);
         myname = intent1.getStringExtra("username");
         title = intent1.getStringExtra("grouptitle");
+        groupId = intent1.getStringExtra("groupId");
         chattingroomname.setText(title);
 
         //고민한잔 userkey랑 같은 변수
         userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
         userKey = Integer.parseInt(SharedPreference.getAttribute(getApplicationContext(), "userId"));
 
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        ChattingService service = retrofit2.create(ChattingService.class);
+        Call<List<User>> call3 = service.getChat(groupId);
+        //CallThread_get(call3);
+        //m_Adapter.add(0, "aaaa", 1, "aaa", "2");
+        m_Adapter.notifyDataSetChanged();
         try {
             socket = IO.socket(MyConstants.BASE); //로컬호스트 ip주소 수정하기
         } catch (Exception e) {
@@ -127,88 +146,27 @@ public class ChattingActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 sendChatText.setText("");
+
+                ChattingService service = retrofit2.create(ChattingService.class);
+                Call<DummyResponse> call2 = service.postChat(groupId, Integer.toString(leaderormember), userId, message, myname);
+               // CallThread_post(call2);
             }
         });
 
         //말풍선 클릭했을 때
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-//                String message = m_Adapter.getMessage(position);
-//                if (message.length() == 0) {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(ChattingActivity.this);
-//
-//                    builder.setTitle("이 사용자의 신뢰도를");
-//
-//                    builder.setItems(R.array.LAN, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int pos) {
-//                            String[] items = getResources().getStringArray(R.array.LAN);
-//                        }
-//                    });
-//
-//                    AlertDialog alertDialog = builder.create();
-//                    alertDialog.show();
-//                } else if (message.charAt(0) == '#') {
-//                    AlertDialog diaBox = new AlertDialog.Builder(ChattingActivity.this)
-//                            .setTitle("추천해준 음악링크로 이동하기")
-//                            .setMessage("음악 링크로 이동합니다")
-//                            .setIcon(R.drawable.heart)
-//                            .setPositiveButton("네",
-//                                    new DialogInterface.OnClickListener() {
-//                                        public void onClick(DialogInterface dialog, int whichButton) {
-//                                            String url = "https://www.youtube.com/results?search_query=" + m_Adapter.getMessage(position).substring(1);
-//                                            Intent i = new Intent(Intent.ACTION_VIEW);
-//                                            i.setData(Uri.parse(url));
-//                                            startActivity(i);
-//                                        }
-//                                    })
-//                            .setNegativeButton("아니요", null).create();
-//                    diaBox.show();
-//
-//                } else {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(ChattingActivity.this);
-//
-//                    builder.setTitle("사용자");
-//
-//                    builder.setItems(R.array.LAN, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int pos)
-//                        {
-//                            String[] items = getResources().getStringArray(R.array.LAN);
-//                            if(pos==2)
-//                            {
-//                                userkey = new String[]{m_Adapter.getUserkey(position)};
-//                                Intent intent = new Intent(getApplicationContext(), Profile.class);
-//                                intent.putExtra("strings", userInfo);
-//                                intent.putExtra("strings1", userkey);
-//                                startActivity(intent);
-//                            }
-//                            else if(pos ==3)
-//                            {
-//                                userkey = new String[]{m_Adapter.getUserkey(position)};
-//                                Intent intent = new Intent(getApplicationContext(), Report.class);
-//                                intent.putExtra("strings1", userkey);
-//                                startActivity(intent);
-//                            }
-//                            else {
-//                                Retrofit retrofit = new Retrofit.Builder()
-//                                        .baseUrl(BASE)
-//                                        .addConverterFactory(GsonConverterFactory.create())
-//                                        .build();
-//
-//                                TrustInterface trustInterface = retrofit.create(TrustInterface.class);
-//                                Call<List<Dummy>> call = trustInterface.listDummies(m_Adapter.getUserkey(position), String.valueOf(userKey), items[pos]);
-//                                call.enqueue(dummies);
-//                            }
-//                        }
-//                    });
-//
-//                    AlertDialog alertDialog = builder.create();
-//                    alertDialog.show();
-//                }
-//            }
-//        });
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                String memberId = m_Adapter.getId(position);
+                String leaderornot = m_Adapter.getProfile(position);
+                Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                intent.putExtra("userId", memberId);
+                intent.putExtra("leaderormember", leaderornot);
+                startActivity(intent);
+
+            }
+        });
 
         listview.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -234,15 +192,9 @@ public class ChattingActivity extends AppCompatActivity {
                             key = received.get("key").toString(); //유저 식별키
                             profile = received.get("profile").toString();
 
-                            Retrofit retrofit2 = new Retrofit.Builder()
-                                    .baseUrl(MyConstants.BASE)
-                                    .addConverterFactory(GsonConverterFactory.create())
-                                    .build();
-
                             GetService service = retrofit2.create(GetService.class);
                             Call<User> call = service.getUserInfo(key);
                             CallThread(call);
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -263,7 +215,7 @@ public class ChattingActivity extends AppCompatActivity {
                                 msg = msg1;
                             }
 
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, myname);
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, myname, userId);
                             m_Adapter.notifyDataSetChanged();
                         } else { //다른사람
                             num = 1;
@@ -279,7 +231,7 @@ public class ChattingActivity extends AppCompatActivity {
                             } else {
                                 msg = msg1;
                             }
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, username);
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, membername, memberId);
                             m_Adapter.notifyDataSetChanged();
                         }
                     }
@@ -309,7 +261,6 @@ public class ChattingActivity extends AppCompatActivity {
         };
         socket.on("exit", roomleave);
 
-        //roomnum.setText(Integer.toString(num1));
         Emitter.Listener roomenter = new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
@@ -338,26 +289,27 @@ public class ChattingActivity extends AppCompatActivity {
         };
         socket.on("enter", roomenter);
 
-//        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-//
-//                AlertDialog diaBox = new AlertDialog.Builder(ChattingActivity.this)
-//                        .setTitle("삭제")
-//                        .setMessage("정말 삭제하십니까?")
-//                        .setIcon(R.drawable.heart1)
-//                        .setPositiveButton("네",
-//                                new DialogInterface.OnClickListener() {
-//                                    public void onClick(DialogInterface dialog, int whichButton) {
-//                                        m_Adapter.remove(position);
-//                                        listview.clearChoices();
-//                                        m_Adapter.notifyDataSetChanged();
-//                                    }
-//                                })
-//                        .setNegativeButton("아니요", null).create();
-//                diaBox.show();
-//                return true;
-//            }
-//        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                finish();
+                JSONObject obj2 = new JSONObject();
+                try {
+                    obj2.put("roomname", title);
+                    obj2.put("roomnum", tmp);
+                    socket.emit("leave", obj2);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                socket.emit("disconnect", "");
+                socket.disconnect();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void onBackPressed() {
@@ -383,7 +335,56 @@ public class ChattingActivity extends AppCompatActivity {
             public void run() {
                 try {
                     User dummies = call.execute().body();
-                    username = dummies.getName();
+                    membername = dummies.getName();
+                    memberId = dummies.getId();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
+
+    private void CallThread_post(Call<DummyResponse> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DummyResponse dummies = call.execute().body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("IOException: ", "IOException: ");
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+    }
+
+    private void CallThread_get(Call<List<User>> call) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<User> dummies = call.execute().body();
+                    for(User dummy : dummies){
+                        if(dummy.getId().equals(userId)) {
+                            m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 0, dummy.getName(), dummy.getId());
+                            m_Adapter.notifyDataSetChanged();
+                        }
+                        else {
+                            m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 1, dummy.getName(), dummy.getId());
+                            m_Adapter.notifyDataSetChanged();
+                        }
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");

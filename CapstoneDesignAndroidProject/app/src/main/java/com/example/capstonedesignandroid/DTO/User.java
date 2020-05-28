@@ -14,6 +14,7 @@ public class User {
     private String name;
     private Integer score;
     private Integer leader;
+    private String message;
     private ArrayList<String> lectureList = null;
 
     public User(String name, String studentNum) {
@@ -91,6 +92,14 @@ public class User {
 
     public void setLeader(Integer leader) {
         this.leader = leader;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public ArrayList<String> getLecture() {

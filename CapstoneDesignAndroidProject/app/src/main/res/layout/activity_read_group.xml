@@ -25,15 +25,15 @@
             android:layout_weight="0.5"/>
         <Button
             android:id="@+id/button_edit"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="15dp"
             android:background="@drawable/edit" />
         <Button
             android:id="@+id/button_chat"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="right|center"
             android:background="@drawable/chat_black" />
     </LinearLayout>

@@ -46,24 +46,25 @@
 
             <Button
                 android:id="@+id/noti_zero"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
                 android:layout_gravity="right|center"
                 android:background="@drawable/noti_zero"
                 android:gravity="center" />
 
             <Button
                 android:id="@+id/noti_yes"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
                 android:layout_gravity="right|center"
-                android:background="@drawable/noti_yes" />
+                android:background="@drawable/noti_yes"
+                android:visibility="gone"/>
             <Button
                 android:id="@+id/logout"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="right|center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:background="@drawable/logout" />
         </LinearLayout>
 

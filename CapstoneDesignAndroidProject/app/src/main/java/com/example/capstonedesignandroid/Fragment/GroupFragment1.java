@@ -151,6 +151,7 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
                                     tag = tag + "#" + dummies.get(dummies.size()-1-i).getTagName().get(t).getTagName() + " ";
                                 }
                             }
+                            tagArray.clear(); idArray.clear(); titleArray.clear(); categoryArray.clear(); currentNumArray.clear(); totalNumArray.clear();
                             tagArray.add(tag);
                             idArray.add(dummies.get(dummies.size()-1-i).getId());
                             titleArray.add(dummies.get(dummies.size()-1-i).getTitle());
