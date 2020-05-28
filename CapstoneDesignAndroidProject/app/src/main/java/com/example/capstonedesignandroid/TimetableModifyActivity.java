@@ -59,18 +59,21 @@ public class TimetableModifyActivity extends AppCompatActivity {
         timeTableFragment = new TimeTableFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.timeTableFrame, timeTableFragment).commit();
 
+        mode = "select";
+
         selectView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mode.equals("read")){
-                    selectView.setText("추가/수정/삭제하기");
-                    mode = "select";
-                    selectCancelView.setVisibility(View.VISIBLE);
-                }else{
+//                if(mode.equals("read")){
+//                    selectView.setText("추가/수정/삭제하기");
+//                    mode = "select";
+//                    selectCancelView.setVisibility(View.VISIBLE);
+//                }else{
                     timetablemodify.setVisibility(View.VISIBLE);
-                }
+                //}
             }
         });
+
 //        copyView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -87,11 +90,11 @@ public class TimetableModifyActivity extends AppCompatActivity {
         selectCancelView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectView.setText("시간표 다수 선택 (추가/수정)");
+                //selectView.setText("시간표 다수 선택 (추가/수정)");
                 timetablemodify.setVisibility(View.INVISIBLE);
-                mode = "read";
+                //mode = "read";
                 timeTableFragment.selectCancel();
-                selectCancelView.setVisibility(View.INVISIBLE);
+                //selectCancelView.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -121,11 +124,11 @@ public class TimetableModifyActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectView.setText("시간표 다수 선택 (추가/수정)");
+                //selectView.setText("시간표 다수 선택 (추가/수정)");
                 timetablemodify.setVisibility(View.INVISIBLE);
-                mode = "read";
+                //mode = "read";
                 timeTableFragment.selectAndModify();
-                selectCancelView.setVisibility(View.INVISIBLE);
+                //selectCancelView.setVisibility(View.INVISIBLE);
             }
         });
         Button deleteTileButton = timetablemodify.findViewById(R.id.deleteTileButton);
@@ -137,11 +140,11 @@ public class TimetableModifyActivity extends AppCompatActivity {
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        selectView.setText("시간표 다수 선택 (추가/수정)");
+                        //selectView.setText("시간표 다수 선택 (추가/수정)");
                         timetablemodify.setVisibility(View.INVISIBLE);
-                        mode = "read";
+                        //mode = "read";
                         timeTableFragment.selectAndDelete();
-                        selectCancelView.setVisibility(View.INVISIBLE);
+                        //selectCancelView.setVisibility(View.INVISIBLE);
                     }
                 });
 
