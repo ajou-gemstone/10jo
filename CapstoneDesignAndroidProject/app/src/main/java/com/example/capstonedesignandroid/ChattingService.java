@@ -17,7 +17,7 @@ import retrofit2.http.Query;
 public interface ChattingService {
     @POST("chat/post")
     @FormUrlEncoded
-    Call<DummyResponse> postChat(@Field("groupId") String groupId, @Field("leader") String leader, @Field("userId") String userId, @Field("message") String message, @Field("name") String name);
+    Call<DummyResponse> postChat(@Field("groupId") String groupId, @Field("userId") String userId, @Field("message") String message);
     //출력 : success of fail
 
     @GET("chat/get")
