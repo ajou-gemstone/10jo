@@ -97,10 +97,9 @@ public class ChattingActivity extends AppCompatActivity {
                 .build();
 
         ChattingService service = retrofit2.create(ChattingService.class);
-        Call<List<User>> call3 = service.getChat(groupId);
+        Call<List<User>> call3 = service.getChat(groupId, userId);
         CallThread_get(call3);
-        //m_Adapter.add(0, "aaaa", 1, "aaa", "2");
-        m_Adapter.notifyDataSetChanged();
+
         try {
             socket = IO.socket(MyConstants.BASE); //로컬호스트 ip주소 수정하기
         } catch (Exception e) {
@@ -163,7 +162,7 @@ public class ChattingActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                String memberId = m_Adapter.getId(position);
+                memberId = m_Adapter.getId(position);
                 String leaderornot = m_Adapter.getProfile(position);
                 Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
                 intent.putExtra("userId", memberId);
@@ -236,7 +235,7 @@ public class ChattingActivity extends AppCompatActivity {
                             } else {
                                 msg = msg1;
                             }
-                            m_Adapter.add(Integer.parseInt(profile), msg, num, membername, memberId);
+                            m_Adapter.add(Integer.parseInt(profile), msg, num, membername, key);
                             m_Adapter.notifyDataSetChanged();
                         }
                     }
@@ -341,7 +340,6 @@ public class ChattingActivity extends AppCompatActivity {
                 try {
                     User dummies = call.execute().body();
                     membername = dummies.getName();
-                    memberId = dummies.getId();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");
@@ -380,6 +378,7 @@ public class ChattingActivity extends AppCompatActivity {
             public void run() {
                 try {
                     List<User> dummies = call.execute().body();
+                    m_Adapter.clear();
                     for(User dummy : dummies){
                         if(dummy.getUserId().equals(userId)) {
                             m_Adapter.add(dummy.getLeader(), dummy.getMessage(), 0, dummy.getName(), dummy.getUserId());
