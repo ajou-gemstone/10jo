@@ -96,6 +96,8 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         holder.dateTextView.setText(DefinedMethod.getParsedDate(reservationArrayList.get(position).getDate()));
         holder.lectureRoomTextView.setText(reservationArrayList.get(position).getLectureRoom());
 
+        Log.d("getScore", "onBindViewHolder: "+ reservationArrayList.get(position).getScore());
+
         if(DefinedMethod.isEmpty(reservationArrayList.get(position).getScore())){
             holder.scoreChecked.setImageResource(R.drawable.star_grey);
         }else{

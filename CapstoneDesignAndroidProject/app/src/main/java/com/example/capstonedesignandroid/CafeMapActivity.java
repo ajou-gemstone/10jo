@@ -64,7 +64,8 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
                     List<DummyCafeCoreInfo> cafeCoreInfoList = call.execute().body();
                     cafeCoreInfoArrayList = new ArrayList<DummyCafeCoreInfo>(cafeCoreInfoList);
                     Log.d(TAG, "runCafe: " + cafeCoreInfoArrayList.get(0).getCafeId() + "  " + cafeCoreInfoArrayList.get(0).getName() + "  "
-                            + cafeCoreInfoArrayList.get(0).getCongestion() + "  " + cafeCoreInfoArrayList.get(0).getCafeBody() + "  ");
+                            + cafeCoreInfoArrayList.get(0).getCongestion() + "  " + cafeCoreInfoArrayList.get(0).getCafeBody() + "  "
+                            + cafeCoreInfoArrayList.get(0).getLatitude() + "  " + cafeCoreInfoArrayList.get(0).getLongitude() + "  " );
                     Log.d("run: ", "run: ");
                     Ioexception = false;
                 } catch (IOException e) {
@@ -117,11 +118,11 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
             tmpCustomMarker.setCustomImageResourceId(selectImageResourceIdBycongestion(cafeCoreInfo.getCongestion()));//혼잡도에 따른 커스텀 이미지를 등록한다.
             tmpCustomMarker.setCustomImageAnchor(0.5f, 1.0f); // 마커 이미지중 기준이 되는 위치(앵커포인트) 지정 - 마커 이미지 좌측 상단 기준 x(0.0f ~ 1.0f), y(0.0f ~ 1.0f) 값.
 
-            mapPOIItemArrayList.add(tmpCustomMarker);
+            Log.d(TAG, "getLatitude: "+cafeCoreInfo.getLatitude());
 
+            mapPOIItemArrayList.add(tmpCustomMarker);
             //지도에 마커를 표시한다.
             mapView.addPOIItem(tmpCustomMarker);
-
         }
 
         mapViewContainer.addView(mapView);

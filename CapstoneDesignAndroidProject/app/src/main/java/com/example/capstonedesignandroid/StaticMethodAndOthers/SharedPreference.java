@@ -35,6 +35,4 @@ public class SharedPreference {
         editor.commit();
     }
 
-
-
 }

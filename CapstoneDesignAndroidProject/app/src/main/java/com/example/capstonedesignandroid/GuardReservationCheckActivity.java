@@ -20,8 +20,6 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 public class GuardReservationCheckActivity extends AppCompatActivity {
 
     private long today;
-    private MaterialDatePicker.Builder<Long> builder;
-    private MaterialDatePicker<Long> picker;
     private FragmentManager supportFragmentManager;
     private BottomNavigationView navigationView;
     private FrameLayout guardreservationlistframelayout;
@@ -40,6 +38,7 @@ public class GuardReservationCheckActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.guardreservationlistframelayout, guardReservationList).commit();
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setSelectedItemId(R.id.guard_reservation_today);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         guardreservationlistframelayout = findViewById(R.id.guardreservationlistframelayout);
@@ -66,7 +65,7 @@ public class GuardReservationCheckActivity extends AppCompatActivity {
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.guardreservationlistframelayout, guardReservationList).commit();
-            return false;
+            return true;
         }
     };
 }

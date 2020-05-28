@@ -174,7 +174,7 @@ public class ManageReservationActivity extends AppCompatActivity {
             }
         });
 
-        String tmpguardId = "2";
+        String tmpguardId = "8";
 
         //평가내역 save
         rateSaveButton.setOnClickListener(new View.OnClickListener() {
