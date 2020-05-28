@@ -112,6 +112,8 @@ public class ChattingActivity extends AppCompatActivity {
         try {
             obj1.put("roomname", title);
             obj1.put("roomnum", num1);
+            obj1.put("groupId", groupId);
+            obj1.put("userId", userId);
             socket.emit("join", obj1);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -143,6 +145,8 @@ public class ChattingActivity extends AppCompatActivity {
                         obj.put("key", userKey);
                         obj.put("profile", leaderormember);
                         obj.put("roomnum", num1);
+                        obj.put("groupId", groupId);
+                        obj.put("userId", userId);
                         socket.emit("message", obj);
                     } catch (JSONException e) {
                         e.printStackTrace();
