@@ -60,6 +60,8 @@ public class ChattingAdapter extends BaseAdapter {
         m_List.remove(_position);
     }
 
+    public void clear() {m_List.clear();}
+
     @Override
     public int getCount() {
         return m_List.size();

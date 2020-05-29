@@ -21,6 +21,6 @@ public interface ChattingService {
     //출력 : success of fail
 
     @GET("chat/get")
-    Call<List<User>> getChat(@Query("groupId") String groupId);
+    Call<List<User>> getChat(@Query("groupId") String groupId, @Query("userId") String userId);
     //출력 : 리스트 { leader:0 or 1, id : 3등등, message:"어쩌구", name:"주피터"}
 }

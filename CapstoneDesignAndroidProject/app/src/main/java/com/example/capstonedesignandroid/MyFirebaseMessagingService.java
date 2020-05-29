@@ -135,11 +135,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String messageTitle, String messageBody) {
-        Intent intent = new Intent(this, FirebaseTestActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+        if(messageTitle.contains("수락") || messageTitle.contains("거절") || messageTitle.contains("신청") ) {
+            Intent intent = new Intent(this, StudyBulletinBoardActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+            setMessage(messageTitle, messageBody, pendingIntent);
+        }
+        else {
+            Intent intent = new Intent(this, LectureroomCheckActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+            setMessage(messageTitle, messageBody, pendingIntent);
+        }
 
+    }
+
+    private void setMessage(String messageTitle, String messageBody, PendingIntent pendingIntent){
         String channelId = getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
