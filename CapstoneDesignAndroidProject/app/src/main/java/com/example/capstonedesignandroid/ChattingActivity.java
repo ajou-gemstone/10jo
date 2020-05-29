@@ -308,6 +308,8 @@ public class ChattingActivity extends AppCompatActivity {
                 try {
                     obj2.put("roomname", title);
                     obj2.put("roomnum", tmp);
+                    obj2.put("groupId", groupId);
+                    obj2.put("userId", userId);
                     socket.emit("leave", obj2);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -325,6 +327,8 @@ public class ChattingActivity extends AppCompatActivity {
         try {
             obj2.put("roomname", title);
             obj2.put("roomnum", tmp);
+            obj2.put("groupId", groupId);
+            obj2.put("userId", userId);
             socket.emit("leave", obj2);
         } catch (JSONException e) {
             e.printStackTrace();
