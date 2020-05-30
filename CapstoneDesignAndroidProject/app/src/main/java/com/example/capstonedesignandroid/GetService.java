@@ -1,7 +1,6 @@
 package com.example.capstonedesignandroid;
 
 
-import com.example.capstonedesignandroid.DTO.Dummy;
 import com.example.capstonedesignandroid.DTO.DummyCafeCoreInfo;
 import com.example.capstonedesignandroid.DTO.DummyCurrentReservationBuildingFloor;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
@@ -11,6 +10,7 @@ import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyReservationId;
 import com.example.capstonedesignandroid.DTO.DummyTile;
 import com.example.capstonedesignandroid.DTO.DummyTile2;
+import com.example.capstonedesignandroid.DTO.DummySignUp;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
@@ -21,7 +21,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -30,8 +29,7 @@ import retrofit2.http.Query;
 public interface GetService {
 
     @POST("user/signup")
-    @FormUrlEncoded
-    Call<DummyResponse> signup(@Field("userId") String userId, @Field("password") String password, @Field("name") String name, @Field("studentNumber") String studentNumber, @Field("email") String email, @Field("lecture") ArrayList<String> lecture);
+    Call<DummyResponse> signup(@Body DummySignUp dummySignUp);
     //출력: success or fail
 
     @POST("user/login")
