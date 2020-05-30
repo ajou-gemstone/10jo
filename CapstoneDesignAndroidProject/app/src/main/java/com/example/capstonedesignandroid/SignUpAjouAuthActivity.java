@@ -53,7 +53,7 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
                 // 자바스크립트 인터페이스로 연결되어 있는 getHTML를 실행
                 // 자바스크립트 기본 메소드로 html 소스를 통째로 지정해서 인자로 넘김
                 try {
-                    Thread.sleep(2500);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -79,6 +79,7 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
             String[] array = source.split("\n");
             String[] temp = new String[10];
             ArrayList<String> lectureArray = new ArrayList<>();
+            ArrayList<String> lectureCodeArray = new ArrayList<>();
 
             Log.d("length", Integer.toString(array.length));
 
@@ -87,9 +88,10 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
                 for (int i = 0; i < array.length; i++) {
                     if (array[i].contains("/webapps/blackboard/execute/launcher?type=Course&amp;id=_")) {
 
-                        temp = array[i].substring(104).split("[\\(|_]");  // _ ( 없애기
+                        temp = array[i].substring(104).split("[\\(|_-]");  // _ ( - 없애기
                         if(! temp[1].contains("학습자용"))
                             lectureArray.add(temp[1].substring(1));
+                        lectureCodeArray.add(temp[2]);
 
                         Intent intent = new Intent(getApplicationContext(),SignUpLectureSelectActivity.class);
                         intent.putExtra("id", id);
@@ -98,6 +100,7 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
                         intent.putExtra("num", num);
                         intent.putExtra("email", email);
                         intent.putExtra("lectureArray", lectureArray);
+                        intent.putExtra("lectureCodeArray", lectureCodeArray);
                         startActivity(intent);
                     }
                 }
