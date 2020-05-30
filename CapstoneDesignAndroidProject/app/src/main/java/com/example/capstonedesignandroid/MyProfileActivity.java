@@ -55,56 +55,16 @@ public class MyProfileActivity extends AppCompatActivity {
     private ArrayList<DummyTile> dummiesDummyTile;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_my);
-
-        myname =(TextView) findViewById(R.id.myname);
-        num = findViewById(R.id.studentnum);
-        email = findViewById(R.id.email);
-        leader = findViewById(R.id.leader_image);
-        member = findViewById(R.id.member_image);
-        noti_zero = findViewById(R.id.noti_zero);
-        noti_yes = findViewById(R.id.noti_yes);
-        logout = findViewById(R.id.logout);
-
-        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
-        navigationView.setSelectedItemId(R.id.action_profile);
-        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        String userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
-
-        Retrofit retrofit2 = new Retrofit.Builder()
-        .baseUrl(MyConstants.BASE)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build();
-
-        GetService service = retrofit2.create(GetService.class);
-        Call<User> call = service.getUserInfo(userId);
-        CallThread(call);
-
-        noti_zero.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
-                startActivity(intent);
-            }
-        });
-        noti_yes.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
-                startActivity(intent);
-            }
-        });
-        logout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                SharedPreference.removeAllAttribute(getApplicationContext());
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+    protected void onStart() {
+        super.onStart();
 
         //------------시간표-------------
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         timeTableFragment = new TimeTableFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.timeTableFrame, timeTableFragment).commit();
 
@@ -139,6 +99,57 @@ public class MyProfileActivity extends AppCompatActivity {
 
                 Timer mTimer = new Timer();
                 mTimer.schedule(mTask, 200);
+            }
+        });
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile_my);
+
+        myname =(TextView) findViewById(R.id.myname);
+        num = findViewById(R.id.studentnum);
+        email = findViewById(R.id.email);
+        leader = findViewById(R.id.leader_image);
+        member = findViewById(R.id.member_image);
+        noti_zero = findViewById(R.id.noti_zero);
+        noti_yes = findViewById(R.id.noti_yes);
+        logout = findViewById(R.id.logout);
+
+        navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
+        navigationView.setSelectedItemId(R.id.action_profile);
+        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        String userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
+
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(MyConstants.BASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetService service = retrofit2.create(GetService.class);
+        Call<User> call = service.getUserInfo(userId);
+        CallThread(call);
+
+        noti_zero.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+        noti_yes.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SharedPreference.removeAllAttribute(getApplicationContext());
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 

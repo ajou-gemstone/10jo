@@ -279,6 +279,11 @@ public class TimeTableFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        if(activity.getClass().toString().equals(MyProfileActivity.class.toString())){
+            return;
+        }
+
         ArrayList<DummyTile> dummyTileArrayList = mergeTileContents();
         String userId = SharedPreference.getAttribute(getContext(), "userId");
 //        Call<DummyResponse> callGpostTimeTableInfo = service.postTimeTableInfo(userId, dummyTileArrayList);

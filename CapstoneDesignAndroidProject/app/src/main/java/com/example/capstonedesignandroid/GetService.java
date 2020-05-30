@@ -189,7 +189,6 @@ public interface GetService {
     // {contents: 알고리즘1팔233, time: A10}, {contents: 알고리즘1팔233, time: A11}, {contents: 알고리즘1팔233, time: A12},
     // {contents: 동아리활동2아주대, time: B12}, {contents: 동아리활동2아주대, time: B13}]
 
-
     //학생이 시간표 정보를 업데이트 한다.
 //    @FormUrlEncoded
 //    @POST("/timetable/update")
