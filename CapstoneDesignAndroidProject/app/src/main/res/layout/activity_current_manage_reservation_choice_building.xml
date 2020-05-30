@@ -44,14 +44,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:textSize="25sp"
-        android:text="서관"/>
+        android:text="팔달관"/>
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:textSize="25sp"
-        android:text="신학생회관"/>
+        android:text="종합설계동"/>
     <Button
         android:id="@+id/button7"
         android:layout_width="match_parent"

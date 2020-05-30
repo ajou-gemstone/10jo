@@ -203,6 +203,7 @@ public class ReadGroupActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+        
         if(leader) {
            //신청자 하나하나 눌렀을 때
             userWaitingListAdapter.setOnItemClickListener(new UserWaitingListAdapter.OnItemClickListener() {

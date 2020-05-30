@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.example.capstonedesignandroid.Adapter.UserListAdapter;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
@@ -37,6 +40,7 @@ import com.example.capstonedesignandroid.R;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
+import com.example.capstonedesignandroid.UserProfileActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -504,6 +508,21 @@ public class Fragment_Reservation_Today extends Fragment {
                 }
             });
         }
+
+//        UserListAdapter userListAdapter = new UserListAdapter();
+//        ListView listview = (ListView) view.findViewById(R.id.memberlistview);
+//        listview.setAdapter(userListAdapter);
+//
+//        //가입된 유저 하나하나 눌렀을 때
+//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent2 = new Intent(getContext(), UserProfileActivity.class);
+//                intent2.putExtra("leaderormember", leaderarray.get(position));
+//                intent2.putExtra("userId", useridarray.get(position));
+//                startActivity(intent2);
+//            }
+//        });
 
         return view;
     }

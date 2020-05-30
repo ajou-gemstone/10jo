@@ -58,13 +58,6 @@ public class MyProfileActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        //------------시간표-------------
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         timeTableFragment = new TimeTableFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.timeTableFrame, timeTableFragment).commit();
 
