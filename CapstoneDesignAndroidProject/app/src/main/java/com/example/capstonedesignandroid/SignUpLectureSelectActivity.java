@@ -11,16 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.capstonedesignandroid.Adapter.LectureListAdapter;
-import com.example.capstonedesignandroid.DTO.Dummy;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
-import com.example.capstonedesignandroid.DTO.Group;
 import com.example.capstonedesignandroid.DTO.Lecture;
-import com.example.capstonedesignandroid.DTO.User;
+import com.example.capstonedesignandroid.DTO.DummySignUp;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -55,7 +52,9 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
 
         Intent intent1 = getIntent();
         ArrayList<String> tempArray = (ArrayList<String>) intent1.getSerializableExtra("lectureArray");
+        ArrayList<String> tempCodeArray = (ArrayList<String>) intent1.getSerializableExtra("lectureCodeArray");
         ArrayList<String> lectureArray = new ArrayList<>();
+        ArrayList<String> lectureCodeArray = new ArrayList<>();
         for(String lecture : tempArray) {
             list.add(new Lecture(lecture));
         }
@@ -68,17 +67,19 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
                 for(int i=0; i<boolList.length; i++){
                     if(boolList[i] == true) {
                         lectureArray.add(tempArray.get(i));
+                        lectureCodeArray.add(tempCodeArray.get(i));
                     }
                 }
+
+                DummySignUp dummySignUp = new DummySignUp(id, pw, name, num, email, lectureArray, lectureCodeArray);
                 Retrofit retrofit2 = new Retrofit.Builder()
                         .baseUrl(BASE)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
                 GetService userservice = retrofit2.create(GetService.class);
-                Call<DummyResponse> call = userservice.signup(id, pw, name, num, email, lectureArray);
+                Call<DummyResponse> call = userservice.signup(dummySignUp);
                 CallThread(call);
-
 
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 intent.putExtra("signup", "fromsignup");
