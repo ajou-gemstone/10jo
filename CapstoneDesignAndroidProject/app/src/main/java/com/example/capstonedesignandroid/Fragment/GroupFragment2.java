@@ -464,7 +464,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onClick(View v) {
                 grouplistAdapter.clear();
                 b6.setVisibility(View.GONE);
-                b6.setVisibility(View.VISIBLE);
+                b66.setVisibility(View.VISIBLE);
                 whole.setVisibility(View.VISIBLE);
                 whole11.setVisibility(View.GONE);
                 if(mylectureArray.size()==6){b1.setVisibility(View.VISIBLE); b2.setVisibility(View.VISIBLE); b3.setVisibility(View.VISIBLE); b4.setVisibility(View.VISIBLE); b5.setVisibility(View.VISIBLE); b11.setVisibility(View.GONE); b22.setVisibility(View.GONE); b33.setVisibility(View.GONE); b44.setVisibility(View.GONE); b55.setVisibility(View.GONE);}
