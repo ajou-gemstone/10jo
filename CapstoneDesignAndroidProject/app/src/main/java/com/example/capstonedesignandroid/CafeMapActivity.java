@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -199,7 +200,24 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
             DummyCafeCoreInfo tmpCafeCoreInfo = (DummyCafeCoreInfo)poiItem.getUserObject();
             ((TextView) mCalloutBalloon.findViewById(R.id.name)).setText(tmpCafeCoreInfo.getName());
            // ((TextView) mCalloutBalloon.findViewById(R.id.cafeCongestion)).setText("혼잡도: "+tmpCafeCoreInfo.getCongestion() + "/5");
-            ((TextView) mCalloutBalloon.findViewById(R.id.cafeTotalSeat)).setText("총 자리수: "+tmpCafeCoreInfo.getCafeTotalSeat());
+//            ((TextView) mCalloutBalloon.findViewById(R.id.cafeTotalSeat)).setText("총 자리수: "+tmpCafeCoreInfo.getCafeTotalSeat());
+
+            switch (tmpCafeCoreInfo.getCongestion()) {
+                case 1:
+                    ((ImageView) mCalloutBalloon.findViewById(R.id.congestionImageView)).setImageResource(R.drawable.congestion1);
+                    break;
+                case 2:
+                    ((ImageView) mCalloutBalloon.findViewById(R.id.congestionImageView)).setImageResource(R.drawable.congestion2);
+                    break;
+                case 3:
+                    ((ImageView) mCalloutBalloon.findViewById(R.id.congestionImageView)).setImageResource(R.drawable.congestion3);
+                    break;
+                case 4:
+                    ((ImageView) mCalloutBalloon.findViewById(R.id.congestionImageView)).setImageResource(R.drawable.congestion4);
+                    break;
+                case 5:
+                    ((ImageView) mCalloutBalloon.findViewById(R.id.congestionImageView)).setImageResource(R.drawable.congestion5);
+            }
 
             return mCalloutBalloon;
         }
