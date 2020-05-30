@@ -64,13 +64,14 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 boolList = lectureListAdapter.getBoolean();
+                lectureArray.clear();
+                lectureCodeArray.clear();
                 for(int i=0; i<boolList.length; i++){
                     if(boolList[i] == true) {
                         lectureArray.add(tempArray.get(i));
                         lectureCodeArray.add(tempCodeArray.get(i));
                     }
                 }
-
                 DummySignUp dummySignUp = new DummySignUp(id, pw, name, num, email, lectureArray, lectureCodeArray);
                 Retrofit retrofit2 = new Retrofit.Builder()
                         .baseUrl(BASE)
@@ -81,9 +82,9 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
                 Call<DummyResponse> call = userservice.signup(dummySignUp);
                 CallThread(call);
 
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.putExtra("signup", "fromsignup");
-                startActivityForResult(intent,100);
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                intent.putExtra("signup", "fromsignup");
+//                startActivityForResult(intent,100);
             }
         });
 
