@@ -82,9 +82,9 @@ public class SignUpLectureSelectActivity extends AppCompatActivity {
                 Call<DummyResponse> call = userservice.signup(dummySignUp);
                 CallThread(call);
 
-//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                intent.putExtra("signup", "fromsignup");
-//                startActivityForResult(intent,100);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.putExtra("signup", "fromsignup");
+                startActivityForResult(intent,100);
             }
         });
 
