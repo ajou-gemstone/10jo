@@ -435,7 +435,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                 }else{//선지망 후추첨 sorting
                     //sorting은 사용가능한 강의실 중
                     //선지망 후추첨인 경우 시간대에 예약 팀수의 합이 가장 적은 강의실 우선
-                    String num = "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19";
+                    String num = "A 1 2 3 4 5 6 7 8 9 10 ";
 
                     int i = 0;
                     for(DummyLectureRoomReservationState data : dummyLectureRoomReservationList){
@@ -447,7 +447,11 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                         }
                         for(String eachState : splitState){
                             if(num.contains(eachState)){
-                                lectureRoomReservationStateArrayList.get(i).setPriority(lectureRoomReservationStateArrayList.get(i).getPriority() + Integer.parseInt(eachState));
+                                if(eachState.equals("A")){
+                                    lectureRoomReservationStateArrayList.get(i).setPriority(lectureRoomReservationStateArrayList.get(i).getPriority());
+                                }else{
+                                    lectureRoomReservationStateArrayList.get(i).setPriority(lectureRoomReservationStateArrayList.get(i).getPriority() + Integer.parseInt(eachState) + 10);
+                                }
                             }else{//아니면 최대 가중치인 20을 더한다.
                                 lectureRoomReservationStateArrayList.get(i).setPriority(lectureRoomReservationStateArrayList.get(i).getPriority() + 20);
                             }
@@ -742,7 +746,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     secondClick = false;
                     secondTag = -1;
                     //배경을 모두 지움
-                    for(int i = 0; i < lastTimePosition-startTimePosition; i++){
+                    for(int i = 0; i <= lastTimePosition-startTimePosition; i++){
                         currentPositionView.findViewWithTag(""+i).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reservation));
                     }
                     currentPosition = position;

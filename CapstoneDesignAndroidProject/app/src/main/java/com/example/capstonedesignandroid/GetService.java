@@ -6,6 +6,7 @@ import com.example.capstonedesignandroid.DTO.DummyCurrentReservationBuildingFloo
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
+import com.example.capstonedesignandroid.DTO.DummyReservationDetail2;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyReservationId;
 import com.example.capstonedesignandroid.DTO.DummyTile;
@@ -14,10 +15,7 @@ import com.example.capstonedesignandroid.DTO.DummySignUp;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -79,10 +77,8 @@ public interface GetService {
     //출력: {reservationId: qninia} - 나중에 추가정보를 입력할 때 이 예약내역 id를 이용한다.
 
     //예약에 강의실 목적, 모임원 정보 저장하기o
-    @FormUrlEncoded
     @POST("/reservation/updateInfo")
-    Call<DummyResponse> postReservationDetail(@Field("reservationId") String reservationId, @Field("reservationIntent") String reservationIntent,
-                                              @Field("userClassofsNum") int userClassofsNum, @Field("userClassofs") String[] userClassofs);
+    Call<DummyResponse> postReservationDetail(@Body DummyReservationDetail2 dr2);
     //입력: {reservationId: "reservationId", reservationIntent: "studying algorithm", userClassofsNum: "3",
     // userClassofs: ["201520971", "201520000", "201520001"]}
     //동작: 학번을 가지고 userid와 매칭을 한다.
