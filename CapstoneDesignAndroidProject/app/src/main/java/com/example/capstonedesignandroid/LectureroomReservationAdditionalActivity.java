@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.capstonedesignandroid.Adapter.ClassofAdapter;
+import com.example.capstonedesignandroid.DTO.DummyReservationDetail2;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
@@ -106,6 +107,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                 //자신이 학번을 쓸 경우 return
                 if(userInfo.getStudentNum().equals(classofEdittext.getText().toString())){
                     Toast.makeText(getApplicationContext(), "자신의 학번은 입력하지 않아도 됩니다.", Toast.LENGTH_LONG).show();
+                    critical = true;
                     return;
                 }
                 GetService service = retrofit.create(GetService.class);
@@ -177,12 +179,12 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                 // userClassofs: ["201520971", "201520000", "201520001"]}
                 //출력: {response: "success or fail"}
                 GetService service = retrofit.create(GetService.class);
-                Call<DummyResponse> call = service.postReservationDetail(resId, "" + reservationIntentEditText.getText(),
-                        classofArrayList.size(), classofArrayList.toArray(new String[classofArrayList.size()]));
+                DummyReservationDetail2 dr2 = new DummyReservationDetail2(resId, "" + reservationIntentEditText.getText(), classofArrayList.size(), classofArrayList);
+                Call<DummyResponse> call = service.postReservationDetail(dr2);
 
                 Thread thread = new Thread(new Runnable() {
                     @Override
-                    public void run() {
+                    public void run(){
                         try {
                             DummyResponse dummy = call.execute().body();
                             Log.d("saveAdditional", "저장 성공");
@@ -190,6 +192,7 @@ public class LectureroomReservationAdditionalActivity extends AppCompatActivity 
                         } catch (IOException e) {
                             e.printStackTrace();
                             Log.d("IOException: ", "IOException: ");
+                            saveComplete = false;
                         }
                     }
                 });
