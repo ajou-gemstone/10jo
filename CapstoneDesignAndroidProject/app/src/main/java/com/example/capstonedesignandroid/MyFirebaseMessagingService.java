@@ -14,8 +14,16 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.ArrayList;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -63,6 +71,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //
 //        }
 
+        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> timelist = new ArrayList<String>();
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Title: " + remoteMessage.getNotification().getTitle());
@@ -72,6 +82,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //Todo: sharedPreference에 날짜, 시간, 내용 등을 넣는다. 시시각 초기화 필수
 
             //Todo: 아래에서 알람 view를 만들고 보낸다. 알람 종류에 따라서 다른 method를 작성한다.
+
+            list.add(remoteMessage.getNotification().getBody());
+            Log.d("time", DefinedMethod.getCurrentDate2());
+            timelist.add(DefinedMethod.getCurrentDate2());
+
+            SharedPreference.setStringArrayPref(getApplicationContext(),"notilist", list);
+            SharedPreference.setStringArrayPref(getApplicationContext(),"notitimelist", timelist);
+
+
+
             sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
 
@@ -135,6 +155,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String messageTitle, String messageBody) {
+
         if(messageTitle.contains("수락") || messageTitle.contains("거절") || messageTitle.contains("신청") ) {
             Intent intent = new Intent(this, StudyBulletinBoardActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
