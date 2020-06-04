@@ -218,8 +218,6 @@
         android:gravity="start|top"
         android:inputType="textMultiLine" />
 
-
-
     <Button
         android:id="@+id/cancelReservationButton"
         android:layout_width="match_parent"
@@ -231,12 +229,12 @@
         android:textColor="@color/asmr_blue"
         android:textSize="17dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
+    <ListView
+        android:id="@+id/memberlistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:divider="#00000000">
+    </ListView>
 
 </LinearLayout>
