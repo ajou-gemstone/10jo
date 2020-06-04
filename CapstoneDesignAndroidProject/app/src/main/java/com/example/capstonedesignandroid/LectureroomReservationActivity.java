@@ -678,7 +678,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
 
         lectureRoomScroll = findViewById(R.id.lectureRoomScroll);
 
-        ReservationAdapter adapter = new ReservationAdapter(getApplicationContext(), lectureRoomReservationStateArrayList) ;
+        ReservationAdapter adapter = new ReservationAdapter(getApplicationContext(), lectureRoomReservationStateArrayList);
         recyclerViewReservation.setAdapter(adapter);
 
 //        recyclerViewReservation.addItemDecoration(new HeaderItemDecoration(recyclerViewReservation, (HeaderItemDecoration.StickyHeaderInterface) adapter));

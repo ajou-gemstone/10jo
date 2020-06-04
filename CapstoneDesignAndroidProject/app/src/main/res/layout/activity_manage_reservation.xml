@@ -204,7 +204,7 @@
 
         <EditText
             android:id="@+id/scoreReasonEditText"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ex) 너무나 더럽게 사용하였음"

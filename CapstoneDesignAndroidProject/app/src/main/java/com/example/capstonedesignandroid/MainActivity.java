@@ -82,14 +82,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        zoomTest2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ZoomTest2Activity.class);
-                startActivity(intent);
-            }
-        });
-
         zoomTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,6 +97,7 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
         LectureroomCheckActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

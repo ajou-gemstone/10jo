@@ -201,6 +201,7 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
             ((TextView) mCalloutBalloon.findViewById(R.id.name)).setText(tmpCafeCoreInfo.getName());
            // ((TextView) mCalloutBalloon.findViewById(R.id.cafeCongestion)).setText("혼잡도: "+tmpCafeCoreInfo.getCongestion() + "/5");
 //            ((TextView) mCalloutBalloon.findViewById(R.id.cafeTotalSeat)).setText("총 자리수: "+tmpCafeCoreInfo.getCafeTotalSeat());
+            ((TextView) mCalloutBalloon.findViewById(R.id.updated_time)).setText(tmpCafeCoreInfo.getUpdateTime());
 
             switch (tmpCafeCoreInfo.getCongestion()) {
                 case 1:

@@ -9,6 +9,7 @@ public class DummyCafeCoreInfo {
     private double latitude;
     private double longitude;
     private String cafeBody;
+    private String updateTime;
 
     public DummyCafeCoreInfo(int cafeId, String name, int congestion, int cafeTotalSeat, double latitude, double longitude, String cafeBody) {
         this.cafeId = cafeId;
@@ -46,5 +47,9 @@ public class DummyCafeCoreInfo {
 
     public String getCafeBody() {
         return cafeBody;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
     }
 }

@@ -1,16 +1,24 @@
 package com.example.capstonedesignandroid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.capstonedesignandroid.DTO.Dummy;
 import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
@@ -18,6 +26,11 @@ import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +54,18 @@ public class ManageReservationActivity extends AppCompatActivity {
     private EditText scoreReasonEditText;
     private DummyReservationDetailGuard dummy2;
     private float currentScore;
-    private View date;
+    private TextView date;
+    private TextView day;
+    private TextView lectureroom;
+    private TextView startTime;
+    private TextView lastTime;
+    private TextView reservationIntent;
+    private TextView beforeUploadTime;
+    private TextView afterUploadTime;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+    private ImageView pictureImageView1;
+    private ImageView pictureImageView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,8 +148,36 @@ public class ManageReservationActivity extends AppCompatActivity {
             dummy2 = new DummyReservationDetailGuard("10", "5.0", "", "2");
         }
 
-
         //----------------초기화------------------
+        pictureImageView1 = findViewById(R.id.pictureImageView1);
+        pictureImageView2 = findViewById(R.id.pictureImageView2);
+
+        date = findViewById(R.id.date);
+        day = findViewById(R.id.day);
+        lectureroom = findViewById(R.id.lectureroom);
+        startTime = findViewById(R.id.startTime);
+        lastTime = findViewById(R.id.lastTime);
+        reservationIntent = findViewById(R.id.reservationIntent);
+        beforeUploadTime = findViewById(R.id.beforeUploadTime);
+        afterUploadTime = findViewById(R.id.afterUploadTime);
+
+        date.setText(""+DefinedMethod.getParsedDate(dummy.getDate()));
+        day.setText(""+DefinedMethod.getDayNamebyAlpabet(dummy.getDay()));
+        lectureroom.setText(""+dummy.getLectureRoom());
+        startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
+        lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())+1));
+        reservationIntent.setText(""+dummy.getReservationIntent());
+        if(dummy.getBeforeUploadTime().length() < 4){
+            beforeUploadTime.setText("업로드 되지 않음");
+        }else{
+            beforeUploadTime.setText(dummy.getBeforeUploadTime());
+        }
+        if(dummy.getAfterUploadTime().length() < 4){
+            afterUploadTime.setText("업로드 되지 않음");
+        }else{
+            afterUploadTime.setText(dummy.getAfterUploadTime());
+        }
+
         ratingBar = findViewById(R.id.ratingBar);
         ratingTextView = findViewById(R.id.ratingTextView);
         scoreReasonEditText = findViewById(R.id.scoreReasonEditText);
@@ -135,37 +187,25 @@ public class ManageReservationActivity extends AppCompatActivity {
         if(!(dummy2.getScore()).equals("")){
             ratingBar.setRating(Integer.parseInt(dummy2.getScore()));
             ratingTextView.setText(dummy2.getScore());
+            Log.d("getScoreReason", "onCreate: " + dummy2.getScoreReason());
             scoreReasonEditText.setText(dummy2.getScoreReason());
             ratingBar.setEnabled(false);
             rateSaveButton.setEnabled(false);
             scoreReasonEditText.setEnabled(false);
         }
 
-        //기본 뷰들 초기화
-//        date = findViewById(R.id.date);
-//        day = findViewById(R.id.day);
-//        lectureroom = findViewById(R.id.lectureroom);
-//        startTime = findViewById(R.id.startTime);
-//        lastTime = findViewById(R.id.lastTime);
-//        reservationIntent = findViewById(R.id.reservationIntent);
-//        beforeUploadTime = findViewById(R.id.beforeUploadTime);
-//        afterUploadTime = findViewById(R.id.afterUploadTime);
-//
-//        date.setText(""+ DefinedMethod.getParsedDate(dummy.getDate()));
-//        day.setText(""+DefinedMethod.getDayNamebyAlpabet(dummy.getDay()));
-//        lectureroom.setText(""+dummy.getLectureRoom());
-//        startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
-//        lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())));
-//        reservationIntent.setText(""+dummy.getReservationIntent());
-//        beforeUploadTime.setText("업로드 시간: "+dummy.getBeforeUploadTime());
-//        afterUploadTime.setText("업로드 시간: "+dummy.getAfterUploadTime());
-        //----------------초기화------------------
+        if(DefinedMethod.isEmpty(dummy2.getScoreReason())){
+            scoreReasonEditText.setVisibility(View.GONE);
+        }
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 ratingTextView.setText(""+ v);
                 currentScore = v;
+                if(v < 0.5){
+                    ratingBar.setRating(1);
+                }
                 if(v <= 1){
                     scoreReasonEditText.setVisibility(View.VISIBLE);
                 }else{
@@ -180,11 +220,72 @@ public class ManageReservationActivity extends AppCompatActivity {
         rateSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<DummyResponse> call3 = service.postSaveReservationDetailGuard(resId, currentScore, scoreReasonEditText.getText().toString(),
-                        dummy2.getLeaderId(), tmpguardId);
-                call3.enqueue(response);
+                if(currentScore <= 1 && scoreReasonEditText.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "점수를 낮게 준 이유를 작성해주세요.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                AlertDialog.Builder alBuilder = new AlertDialog.Builder(ManageReservationActivity.this);
+                alBuilder.setMessage("평가를 저장하시겠습니까?");
+                alBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Call<DummyResponse> call3 = service.postSaveReservationDetailGuard(resId, currentScore, scoreReasonEditText.getText().toString(),
+                                dummy2.getLeaderId(), tmpguardId);
+                        call3.enqueue(response);
+                    }
+                });
+                alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+                alBuilder.setTitle("평가 저장");
+                alBuilder.show();
             }
         });
+
+        //app에 등록된 firebase storage의 instance를 가져온다. (싱글톤)
+        storage = FirebaseStorage.getInstance("gs://asmr-799cf.appspot.com");
+
+        //스토리지의 레퍼런스(주소)를 가져온다.
+        storageRef = storage.getReference();
+
+        if(!dummy.getBeforeUri().equals("")){
+            //downloadUrl을 이용하여 이미지를 다운로드한다.
+            StorageReference storageReference = storage.getReference(""+dummy.getBeforeUri());
+            storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        // Glide 이용하여 이미지뷰에 로딩
+                        Glide.with(getApplicationContext())
+                                .load(task.getResult())
+                                .into(pictureImageView1);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        if(!dummy.getAfterUri().equals("")){
+            //downloadUrl을 이용하여 이미지를 다운로드한다.
+            StorageReference storageReference = storage.getReference(""+dummy.getAfterUri());
+            storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        // Glide 이용하여 이미지뷰에 로딩
+                        Glide.with(getApplicationContext())
+                                .load(task.getResult())
+                                .into(pictureImageView2);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     Callback<DummyResponse> response = new Callback<DummyResponse>() {

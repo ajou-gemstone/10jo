@@ -20,33 +20,44 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FirebaseTestActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ZoomTest3Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ZoomTest2Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ZoomTestActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".TimetableModifyActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".GuardChoiceBuildingActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".GuardReservationCheckActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".LectureroomReservationGuardActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ManageReservationActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".CurrentManageReservationActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".CurrentManageReservationChoiceBuildingActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MainBuildingGuardActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".LectureroomReservationAdditionalActivity"
+        <activity android:name=".TimeTableCompare"></activity>
+        <activity
+            android:name=".FirebaseTestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ZoomTest3Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ZoomTestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TimetableModifyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GuardChoiceBuildingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GuardReservationCheckActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LectureroomReservationGuardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ManageReservationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CurrentManageReservationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CurrentManageReservationChoiceBuildingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainBuildingGuardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LectureroomReservationAdditionalActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize"/> <!-- firebase FCM 수신 서비스 -->
+            android:windowSoftInputMode="adjustResize" /> <!-- firebase FCM 수신 서비스 -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:enabled="true"
@@ -135,8 +146,9 @@
         <activity
             android:name=".SignUpAjouAuthActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".UserProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".UserProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
@@ -147,8 +159,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WelcomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".WelcomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"

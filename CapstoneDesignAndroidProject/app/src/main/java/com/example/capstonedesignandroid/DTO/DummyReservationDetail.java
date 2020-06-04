@@ -9,6 +9,7 @@ public class DummyReservationDetail {
     String lastTime;
     String lectureRoom;
     String[] userId;
+    String[] userName;
     String beforeUri;
     String afterUri;
     String reservationIntent;
@@ -72,5 +73,9 @@ public class DummyReservationDetail {
 
     public String getAfterUploadTime() {
         return afterUploadTime;
+    }
+
+    public String[] getUserName() {
+        return userName;
     }
 }
