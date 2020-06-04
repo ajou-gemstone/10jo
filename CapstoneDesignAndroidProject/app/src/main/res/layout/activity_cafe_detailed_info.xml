@@ -1,9 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CafeDetailedInfoActivity">
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/cafeimage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:background="@drawable/cafeimage"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/cafename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="할리스 아주대점"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/congestionImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/congestion1"/>
+            <TextView
+                android:id="@+id/updated_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="13dp"
+                android:textColor="#000000"
+                android:text="14:38" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="13dp"
+                android:textColor="#000000"
+                android:text=" 기준" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    app:srcCompat="@drawable/map"/>
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:gravity="left"
+                    android:layout_marginBottom="20dp"
+                    android:text=" 경기도 수원시 영통구 원천동 원천로 154번길 51-16 아주빌딩 1층"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    app:srcCompat="@drawable/cafehome"/>
+            <TextView
+                android:id="@+id/cafebody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:text=" 어서오세요 할리스 아주대점입니다\n\n아메리카노 4100원 카페라떼 4500원입니다."
+                android:textColor="#000000"
+                android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
