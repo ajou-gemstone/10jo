@@ -121,7 +121,7 @@ public interface GetService {
     //내 예약 삭제하기o
     @FormUrlEncoded
     @POST("/reservation/delete")
-    Call<DummyResponse> deleteMyReservation(@Field("reservationId") String reservationId, @Field("score") boolean panelty);
+    Call<DummyResponse> deleteMyReservation(@Field("reservationId") String reservationId, @Field("score") int panelty);
     //입력: {reservationId: "reservationId"}
     //출력: {response: "success or fail"}
 

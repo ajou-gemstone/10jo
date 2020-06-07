@@ -39,7 +39,6 @@ public class TimeTableCompare extends AppCompatActivity {
 
         GetService service = retrofit.create(GetService.class);
 
-        Log.d("00000", "onCreate: " + groupId);
         Call<List<DummyTile>> call = service.getTimeTableCompared(groupId);
 
         Thread thread = new Thread(new Runnable() {
@@ -55,6 +54,7 @@ public class TimeTableCompare extends AppCompatActivity {
                 }
             }
         });
+
         thread.start();
         try {
             thread.join();

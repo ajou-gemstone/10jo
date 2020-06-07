@@ -218,11 +218,11 @@ public class Fragment_Reservation_Today extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int id)
                         {
-                            boolean panelty;
+                            int panelty;
                             if(DefinedMethod.compareTime2(DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())))){
-                                panelty = true;
+                                panelty = 1;
                             }else{
-                                panelty = false;
+                                panelty = 0;
                             }
                             Log.d("panelty", "onClick: " + panelty);
                             GetService service = retrofit.create(GetService.class);
