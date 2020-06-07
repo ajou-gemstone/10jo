@@ -180,8 +180,14 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id)
                     {
+                        boolean panelty;
+                        if(DefinedMethod.compareTime2(DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())))){
+                            panelty = true;
+                        }else{
+                            panelty = false;
+                        }
                         GetService service = retrofit.create(GetService.class);
-                        Call<DummyResponse> call = service.deleteMyReservation(resId);
+                        Call<DummyResponse> call = service.deleteMyReservation(resId, panelty);
                         call.enqueue(response);
                         //화면을 다시 그려준다.
                         Intent intent = new Intent(getApplicationContext(), LectureroomCheckActivity.class);

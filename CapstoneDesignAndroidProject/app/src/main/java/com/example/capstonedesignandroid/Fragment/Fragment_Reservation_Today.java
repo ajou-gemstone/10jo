@@ -218,8 +218,15 @@ public class Fragment_Reservation_Today extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int id)
                         {
+                            boolean panelty;
+                            if(DefinedMethod.compareTime2(DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())))){
+                                panelty = true;
+                            }else{
+                                panelty = false;
+                            }
+                            Log.d("panelty", "onClick: " + panelty);
                             GetService service = retrofit.create(GetService.class);
-                            Call<DummyResponse> call = service.deleteMyReservation(resId);
+                            Call<DummyResponse> call = service.deleteMyReservation(resId, panelty);
                             //다시 화면을 그려준다.
                             lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
                             lectureroomCheckActivity.reInflateFragment("today");

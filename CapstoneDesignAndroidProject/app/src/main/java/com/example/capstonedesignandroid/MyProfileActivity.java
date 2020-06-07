@@ -46,6 +46,7 @@ public class MyProfileActivity extends AppCompatActivity {
     private RelativeLayout timaTableBigRL;
     private TimeTableFragment timeTableBigFragment;
     private ArrayList<DummyTile> dummiesDummyTile;
+    private TextView score;
 
     @Override
     protected void onStart() {
@@ -103,6 +104,7 @@ public class MyProfileActivity extends AppCompatActivity {
         noti_zero = findViewById(R.id.noti_zero);
         noti_yes = findViewById(R.id.noti_yes);
         logout = findViewById(R.id.logout);
+        score = findViewById(R.id.penalty);
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_profile);
@@ -180,6 +182,7 @@ public class MyProfileActivity extends AppCompatActivity {
                     myname.setText(dummies.getName());
                     num.setText(dummies.getStudentNum());
                     email.setText(dummies.getEmail());
+                    score.setText(dummies.getScore().toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");

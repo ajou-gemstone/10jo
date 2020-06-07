@@ -104,6 +104,31 @@
                 android:text="rkdcksgur@ajou.ac.kr"
                 android:textColor="#000000"
                 android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:maxLines="1"
+                android:text=" | "
+                android:textColor="#000000"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="패널티  "
+                android:textColor="#000000"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/penalty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="#BB0000"
+                android:textSize="15dp" />
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"

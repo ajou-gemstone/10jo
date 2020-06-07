@@ -109,5 +109,4 @@ public class User {
     public void setLecture(ArrayList<String> lectureList) {
         this.lectureList = lectureList;
     }
-
 }

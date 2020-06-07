@@ -121,7 +121,7 @@ public interface GetService {
     //내 예약 삭제하기o
     @FormUrlEncoded
     @POST("/reservation/delete")
-    Call<DummyResponse> deleteMyReservation(@Field("reservationId") String reservationId);
+    Call<DummyResponse> deleteMyReservation(@Field("reservationId") String reservationId, @Field("score") boolean panelty);
     //입력: {reservationId: "reservationId"}
     //출력: {response: "success or fail"}
 
@@ -191,8 +191,8 @@ public interface GetService {
     //입력: {userId: 4, info: [{contents: 동아리활동2아주대, time: B12}, {contents: 동아리활동2아주대, time: B13}]}
 
     //스터디원의 비교된 시간표를 가져온다.
-    @GET("/")
-    Call<List<DummyTile>> getTimeTableCompared(@Query("groudId") String groupId);
+    @GET("/timetable/time")
+    Call<List<DummyTile>> getTimeTableCompared(@Query("groupId") String groupId);
     //contents에는 겹치는 명 수가 들어가면 된다. (0명이면 안와도 된다.)
     //출력: [{contents: 2, time: A0}, {contents: 2, time: A1}, {contents: 2, time: A2},
     // {contents: 1, time: A10}, {contents: 1, time: A11}, {contents: 1, time: A12},
