@@ -106,6 +106,12 @@ public class MyProfileActivity extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         score = findViewById(R.id.penalty);
 
+        ArrayList<String> title = SharedPreference.getStringArrayPref(getApplicationContext(), "notilist");
+       if(title.size() != 0){
+           noti_zero.setVisibility(View.GONE);
+           noti_yes.setVisibility(View.VISIBLE);
+       }
+
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_profile);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -225,7 +231,6 @@ public class MyProfileActivity extends AppCompatActivity {
                     return; // 아무런 작업도 하지 않고 돌아간다
                 }
             });
-            alBuilder.setTitle("프로그램 종료");
             alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
         }
     }

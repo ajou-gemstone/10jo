@@ -104,8 +104,12 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
         listview.setAdapter(grouplistAdapter);
 
         for (int i = 0; i <= titleArray.size() - 1; i++) {
-            if( ! categoryArray.get(i).equals("all") )
-                grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+            if( ! categoryArray.get(i).equals("all") ) {
+                for(String lec : mylectureArray) {
+                    if(lec.equals(categoryArray.get(i)))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                }
+            }
         }
 
         ButtonSetText(mylectureArray);
@@ -229,8 +233,12 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
         if (charText.length() == 0) {    //모든 목록 추가하기
             if(category.equals("전체")) {
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (!categoryArray.get(i).equals("all"))
-                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                    if( ! categoryArray.get(i).equals("all") ) {
+                        for(String lec : mylectureArray) {
+                            if(lec.equals(categoryArray.get(i)))
+                                grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        }
+                    }
                 }
             }
             else{ //과목 선택했을 때
@@ -246,10 +254,14 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             if(category.equals("전체")) {
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
                     if( ! categoryArray.get(i).equals("all")) {
-                        if (titleArray.get(i).contains(charText)) {
-                            grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
-                        } else if (tagArray.get(i).contains(charText)) {
-                            grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        for(String lec : mylectureArray) {
+                            if(lec.equals(categoryArray.get(i))) {
+                                if (titleArray.get(i).contains(charText)) {
+                                    grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                                } else if (tagArray.get(i).contains(charText)) {
+                                    grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                                }
+                            }
                         }
                     }
                 }
@@ -343,9 +355,14 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                 else if(mylectureArray.size()==7){b1.setVisibility(View.VISIBLE); b2.setVisibility(View.VISIBLE); b3.setVisibility(View.VISIBLE); b4.setVisibility(View.VISIBLE); b5.setVisibility(View.VISIBLE); b6.setVisibility(View.VISIBLE); b7.setVisibility(View.VISIBLE); b11.setVisibility(View.GONE); b22.setVisibility(View.GONE); b33.setVisibility(View.GONE); b44.setVisibility(View.GONE); b55.setVisibility(View.GONE); b66.setVisibility(View.GONE); b77.setVisibility(View.GONE);}
 
                 category="전체";
-                for (int i = 0; i <= titleArray.size() - 1; i++)
-                    if( ! categoryArray.get(i).equals("all") )
-                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                for (int i = 0; i <= titleArray.size() - 1; i++) {
+                    if (!categoryArray.get(i).equals("all")) {
+                        for (String lec : mylectureArray) {
+                            if (lec.equals(categoryArray.get(i)))
+                                grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        }
+                    }
+                }
                 grouplistAdapter.notifyDataSetChanged();
             }
         });
