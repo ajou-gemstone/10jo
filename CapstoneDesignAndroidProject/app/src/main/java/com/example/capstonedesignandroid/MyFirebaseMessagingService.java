@@ -84,13 +84,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //Todo: 아래에서 알람 view를 만들고 보낸다. 알람 종류에 따라서 다른 method를 작성한다.
 
             list.add(remoteMessage.getNotification().getBody());
-            Log.d("time", DefinedMethod.getCurrentDate2());
             timelist.add(DefinedMethod.getCurrentDate2());
 
             SharedPreference.setStringArrayPref(getApplicationContext(),"notilist", list);
             SharedPreference.setStringArrayPref(getApplicationContext(),"notitimelist", timelist);
-
-
 
             sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
@@ -156,7 +153,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void sendNotification(String messageTitle, String messageBody) {
 
-        if(messageTitle.contains("수락") || messageTitle.contains("거절") || messageTitle.contains("신청") ) {
+        if(messageBody.contains("수락") || messageBody.contains("거절") || messageBody.contains("신청") || messageBody.contains("메시지") ) {
             Intent intent = new Intent(this, StudyBulletinBoardActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
