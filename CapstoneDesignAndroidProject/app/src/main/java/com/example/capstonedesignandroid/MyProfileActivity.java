@@ -36,17 +36,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyProfileActivity extends AppCompatActivity {
 
-    TextView num, email, myname;
+    TextView num, email, myname, score;
     Intent intent;
-    ImageView leader, member;
-    Button noti_zero, noti_yes, logout;
-    String userId;
+    ImageView leader, member, waiting;
+    Button noti_zero, noti_yes, logout, timeTableModifyButton;
+    String userId, fromReadgroup;
     protected BottomNavigationView navigationView;
     private TimeTableFragment timeTableFragment;
     private RelativeLayout timaTableBigRL;
     private TimeTableFragment timeTableBigFragment;
     private ArrayList<DummyTile> dummiesDummyTile;
-    private TextView score;
+    public String memberId;
 
     @Override
     protected void onStart() {
@@ -101,22 +101,59 @@ public class MyProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         leader = findViewById(R.id.leader_image);
         member = findViewById(R.id.member_image);
+        waiting = findViewById(R.id.waiting_image);
         noti_zero = findViewById(R.id.noti_zero);
         noti_yes = findViewById(R.id.noti_yes);
         logout = findViewById(R.id.logout);
         score = findViewById(R.id.penalty);
+        timeTableModifyButton = findViewById(R.id.timeTableModifyButton);
 
         ArrayList<String> title = SharedPreference.getStringArrayPref(getApplicationContext(), "notilist");
-       if(title.size() != 0){
-           noti_zero.setVisibility(View.GONE);
-           noti_yes.setVisibility(View.VISIBLE);
-       }
+        if(title.size() != 0){
+            noti_zero.setVisibility(View.GONE);
+            noti_yes.setVisibility(View.VISIBLE);
+        }
+        
+        Intent intent = getIntent();
+        String leaderormember = intent.getStringExtra("leaderormember");
+        memberId = intent.hasExtra("fromReadgroup") ? intent.getStringExtra("userId") : "000";
+        fromReadgroup = intent.hasExtra("fromReadgroup") ? intent.getStringExtra("fromReadgroup") : "false";
+
+        userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_profile);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        String userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
+        waiting.setVisibility(View.GONE);
+        Log.d("memberid", memberId);
+        Log.d("memberid", userId);
+        Log.d("memberid", fromReadgroup);
+
+        if(fromReadgroup.equals("true")){
+            navigationView.findViewById(R.id.bottom_navigation_view).setVisibility(View.GONE); timeTableModifyButton.setVisibility(View.GONE);
+            noti_zero.setVisibility(View.GONE); noti_yes.setVisibility(View.GONE); logout.setVisibility(View.GONE);
+
+            userId = memberId;
+
+            if(leaderormember.equals("0"))
+                leader.setVisibility(View.GONE);
+            else
+                member.setVisibility(View.GONE);
+
+            if(leaderormember.equals("-1")){
+                leader.setVisibility(View.GONE);
+                member.setVisibility(View.GONE);
+                waiting.setVisibility(View.VISIBLE);
+            }
+            Log.d("memberid", memberId);
+            Log.d("memberid", userId);
+            Log.d("memberid", fromReadgroup);
+
+        }
+        else{
+            leader.setVisibility(View.GONE); member.setVisibility(View.GONE); 
+        }
 
         Retrofit retrofit2 = new Retrofit.Builder()
                 .baseUrl(MyConstants.BASE)
@@ -168,7 +205,6 @@ public class MyProfileActivity extends AppCompatActivity {
         });
 
         //시간표 수정하기
-        Button timeTableModifyButton = findViewById(R.id.timeTableModifyButton);
         timeTableModifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -207,6 +243,9 @@ public class MyProfileActivity extends AppCompatActivity {
         if(timaTableBigRL.getVisibility()==View.VISIBLE){
             timaTableBigRL.setVisibility(View.INVISIBLE);
             getSupportFragmentManager().beginTransaction().remove(timeTableBigFragment).commit();
+        }
+        else if(fromReadgroup.equals("true")){
+            super.onBackPressed();
         }
         else {
             // AlertDialog 빌더를 이용해 종료시 발생시킬 창을 띄운다

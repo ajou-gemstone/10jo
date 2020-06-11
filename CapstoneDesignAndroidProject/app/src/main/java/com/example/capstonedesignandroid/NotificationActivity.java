@@ -35,7 +35,6 @@ public class NotificationActivity extends AppCompatActivity {
 
         ArrayList<String> title = SharedPreference.getStringArrayPref(getApplicationContext(), "notilist");
         ArrayList<String> time = SharedPreference.getStringArrayPref(getApplicationContext(), "notitimelist");
-        Log.d("noti", time.toString());
 
         for (int i=0; i<title.size(); i++) {
             list.add(title.get(i)) ;
@@ -50,6 +49,7 @@ public class NotificationActivity extends AppCompatActivity {
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         notiadapter = new MyNotiListAdapter(list, timelist) ;
         recyclerView.setAdapter(notiadapter) ;
+        notiadapter.notifyDataSetChanged();
 
         // setup swipe to remove item
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
@@ -60,6 +60,7 @@ public class NotificationActivity extends AppCompatActivity {
                 SharedPreference.removeStringArrayPref(getApplicationContext(), "notilist");
                 SharedPreference.removeStringArrayPref(getApplicationContext(), "notitimelist");
                recyclerView.setAdapter(null);
+               notiadapter.notifyDataSetChanged();
             }
         });
 
@@ -79,6 +80,7 @@ public class NotificationActivity extends AppCompatActivity {
             // 아답타에게 알린다
             list.remove(position);
             notiadapter.notifyItemRemoved(position);
+            notiadapter.notifyDataSetChanged();
         }
     };
 

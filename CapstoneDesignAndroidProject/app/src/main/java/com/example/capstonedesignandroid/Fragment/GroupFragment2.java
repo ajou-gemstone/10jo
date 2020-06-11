@@ -63,7 +63,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final ListView listview;
+        ListView listview;
         View view = inflater.inflate(R.layout.group_fragment_2, container, false);
         whole = view.findViewById(R.id.whole); b1 = view.findViewById(R.id.b1); b2 = view.findViewById(R.id.b2); b3 = view.findViewById(R.id.b3); b4 = view.findViewById(R.id.b4); b5 = view.findViewById(R.id.b5); b6 = view.findViewById(R.id.b6); b7 = view.findViewById(R.id.b7);
         whole11 = view.findViewById(R.id.whole_clicked); b11 = view.findViewById(R.id.b1_clicked); b22 = view.findViewById(R.id.b2_clicked); b33 = view.findViewById(R.id.b3_clicked); b44 = view.findViewById(R.id.b4_clicked); b55 = view.findViewById(R.id.b5_clicked); b66 = view.findViewById(R.id.b6_clicked); b77 = view.findViewById(R.id.b7_clicked);
@@ -300,8 +300,18 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                 Call<List<Group>> call1 = groupService.getStudyList();
                 CallThread(call1);
 
+                grouplistAdapter.clear();
+                for (int i = 0; i <= titleArray.size() - 1; i++) {
+                    if( ! categoryArray.get(i).equals("all") ) {
+                        for(String lec : mylectureArray) {
+                            if(lec.equals(categoryArray.get(i)))
+                                grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        }
+                    }
+                }
+
             }
-        },2000); // 1초후에 새로고침 끝
+        },100); 
         // 새로고침 완료
         mSwipeRefreshLayout.setRefreshing(false);
 

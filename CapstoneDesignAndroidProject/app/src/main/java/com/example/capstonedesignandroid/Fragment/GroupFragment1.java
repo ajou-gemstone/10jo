@@ -214,8 +214,15 @@ public class GroupFragment1 extends Fragment implements SwipeRefreshLayout.OnRef
                 GroupService groupService = retrofit1.create(GroupService.class);
                 Call<List<Group>> call1 = groupService.getStudyList();
                 CallThread(call1);
+                listview.setAdapter(grouplistAdapter);
+                grouplistAdapter.clear();
+                //모든 목록 추가하기
+                for (int i = 0; i <= titleArray.size() - 1; i++) {
+                    if(categoryArray.get(i).equals("all"))
+                        grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                }
             }
-        },2000); // 1초후에 새로고침 끝
+        },100); 
         // 새로고침 완료
         mSwipeRefreshLayout.setRefreshing(false);
     }//onRefresh
