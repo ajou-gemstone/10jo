@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.capstonedesignandroid.DTO.Lecture;
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
     private ArrayList<Lecture> list = new ArrayList();
     private WebView mWebView;
     String source, id, pw, name, num, email;
+    private String TAG = "TTAAGG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +87,11 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
 
             //로그인 화면이 아닐 때,
             if(array.length > 100) {
+                Log.d(TAG, "getHtmlll:");
                 for (int i = 0; i < array.length; i++) {
+                    Log.d(TAG, "getHtmlArray: ");
                     if (array[i].contains("/webapps/blackboard/execute/launcher?type=Course&amp;id=_")) {
-
+                        Log.d(TAG, "webappsss:");
                         temp = array[i].substring(104).split("[\\(|_-]");  // _ ( - 없애기
                         if(! temp[1].contains("학습자용"))
                             lectureArray.add(temp[1].substring(1));
@@ -105,9 +109,6 @@ public class SignUpAjouAuthActivity extends AppCompatActivity {
                     }
                 }
             }
-
         }
     }
-
-
 }

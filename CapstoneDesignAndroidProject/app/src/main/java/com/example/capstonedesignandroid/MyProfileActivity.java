@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid;
 
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -13,17 +14,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.capstonedesignandroid.DTO.DummyLectureroomInfo;
 import com.example.capstonedesignandroid.DTO.DummyTile;
-import com.example.capstonedesignandroid.DTO.Group;
-import com.example.capstonedesignandroid.DTO.TagName;
 import com.example.capstonedesignandroid.DTO.User;
 import com.example.capstonedesignandroid.Fragment.TimeTableFragment;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
@@ -31,9 +26,7 @@ import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -53,6 +46,7 @@ public class MyProfileActivity extends AppCompatActivity {
     private RelativeLayout timaTableBigRL;
     private TimeTableFragment timeTableBigFragment;
     private ArrayList<DummyTile> dummiesDummyTile;
+    private TextView score;
 
     @Override
     protected void onStart() {
@@ -110,6 +104,7 @@ public class MyProfileActivity extends AppCompatActivity {
         noti_zero = findViewById(R.id.noti_zero);
         noti_yes = findViewById(R.id.noti_yes);
         logout = findViewById(R.id.logout);
+        score = findViewById(R.id.penalty);
 
         ArrayList<String> title = SharedPreference.getStringArrayPref(getApplicationContext(), "notilist");
        if(title.size() != 0){
@@ -146,9 +141,29 @@ public class MyProfileActivity extends AppCompatActivity {
         });
         logout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SharedPreference.removeAllAttribute(getApplicationContext());
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
+                // AlertDialog 빌더를 이용해 종료시 발생시킬 창을 띄운다
+                AlertDialog.Builder alBuilder = new AlertDialog.Builder(MyProfileActivity.this);
+                alBuilder.setMessage("로그아웃 하시겠습니까?");
+                // "예" 버튼을 누르면 실행되는 리스너
+                alBuilder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            SharedPreference.removeAllAttribute(getApplicationContext());
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+                // "아니오" 버튼을 누르면 실행되는 리스너
+                alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return; // 아무런 작업도 하지 않고 돌아간다
+                    }
+                });
+                alBuilder.setTitle("로그아웃");
+                alBuilder.show();
             }
         });
 
@@ -173,6 +188,7 @@ public class MyProfileActivity extends AppCompatActivity {
                     myname.setText(dummies.getName());
                     num.setText(dummies.getStudentNum());
                     email.setText(dummies.getEmail());
+                    score.setText(dummies.getScore().toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");

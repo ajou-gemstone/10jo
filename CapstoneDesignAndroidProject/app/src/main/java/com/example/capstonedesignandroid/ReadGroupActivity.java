@@ -55,6 +55,7 @@ public class ReadGroupActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<User> list = new ArrayList();
     ArrayList<User> waitinguserArray = new ArrayList<>();
+    private Button button_timetable_compare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class ReadGroupActivity extends AppCompatActivity {
         full = findViewById(R.id.button_full);
         notyet = findViewById(R.id.notyet_textview);
         recyclerView = findViewById(R.id.recyclerview);
+        button_timetable_compare = findViewById(R.id.button_timetable_compare);
 
         UserWaitingListAdapter userWaitingListAdapter = new UserWaitingListAdapter(getApplicationContext(), list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -201,6 +203,15 @@ public class ReadGroupActivity extends AppCompatActivity {
                 intent2.putExtra("leaderormember", leaderarray.get(position));
                 intent2.putExtra("userId", useridarray.get(position));
                 startActivity(intent2);
+            }
+        });
+
+        button_timetable_compare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent activityIntent = new Intent(getApplicationContext(), TimeTableCompare.class);
+                activityIntent.putExtra("groupId", groupId);
+                startActivity(activityIntent);
             }
         });
         

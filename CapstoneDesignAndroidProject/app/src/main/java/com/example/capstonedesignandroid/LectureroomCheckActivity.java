@@ -65,6 +65,7 @@ public class LectureroomCheckActivity extends AppCompatActivity {
 
         //테스트용
         FloatingActionButton testGuardButton = findViewById(R.id.testGuardButton);
+        testGuardButton.setVisibility(View.INVISIBLE);
         testGuardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

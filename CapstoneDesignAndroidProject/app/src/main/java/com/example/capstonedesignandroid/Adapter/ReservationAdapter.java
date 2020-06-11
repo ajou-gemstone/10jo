@@ -7,24 +7,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.capstonedesignandroid.DTO.DummyLectureRoomReservationState;
 import com.example.capstonedesignandroid.DTO.LectureRoomReservationState;
-import com.example.capstonedesignandroid.LectureroomReservationActivity;
 import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;
 
-public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> {
+public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder>{
     private int timeCountNum = 0;
     private ArrayList<LectureRoomReservationState> mData = null ;
     private Context context;

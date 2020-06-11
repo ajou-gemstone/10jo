@@ -189,6 +189,17 @@ public class DefinedMethod {
         return false;
     }
 
+    public static Boolean compareTime2(String lastTime){
+        lastTime = lastTime.replaceAll(":", "");
+        long nowTime = System.currentTimeMillis();
+        Date nowDate = new Date(nowTime);
+        SimpleDateFormat transFormat = new SimpleDateFormat("HHmm");
+        String date = transFormat.format(nowDate);
+        if(Integer.parseInt(lastTime) - Integer.parseInt(date) >= 300)//패널티 x
+            return false;
+        return true;// 패널티 o
+    }
+
     public static Boolean compareServerTime(String lastTime){
         lastTime = lastTime.replaceAll(":", "");
         final long[] nowServerTime = {0};

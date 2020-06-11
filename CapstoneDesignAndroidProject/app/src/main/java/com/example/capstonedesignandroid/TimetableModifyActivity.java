@@ -119,11 +119,17 @@ public class TimetableModifyActivity extends AppCompatActivity {
                 mode = "select";
             }
         });
+
         //수정 완료
         Button confirmButton = timetablemodify.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //아무것도 작성하지 않았을 때는 확인이 안된다.
+                if(contentsEditText.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "일정을 작성해주세요.", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 //selectView.setText("시간표 다수 선택 (추가/수정)");
                 timetablemodify.setVisibility(View.INVISIBLE);
                 //mode = "read";
@@ -131,6 +137,7 @@ public class TimetableModifyActivity extends AppCompatActivity {
                 //selectCancelView.setVisibility(View.INVISIBLE);
             }
         });
+
         Button deleteTileButton = timetablemodify.findViewById(R.id.deleteTileButton);
         deleteTileButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -33,6 +33,7 @@ import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.DTO.DummyResponse;
+import com.example.capstonedesignandroid.DTO.DummyStudentNameId;
 import com.example.capstonedesignandroid.GetService;
 import com.example.capstonedesignandroid.LectureroomCheckActivity;
 import com.example.capstonedesignandroid.LectureroomCheckDetailedActivity;
@@ -103,6 +104,7 @@ public class Fragment_Reservation_Today extends Fragment {
     private DummyReservationDetailGuard guardDummy;;
     private TextView scoreDescription;
     private TextView scoreReasonEditText;
+    private ArrayList<DummyStudentNameId> dummyStudentNameIdArrayList;
 
     public Fragment_Reservation_Today(){
 
@@ -193,7 +195,7 @@ public class Fragment_Reservation_Today extends Fragment {
             Log.d("getPackageName", "" + getContext().getPackageName());
             Log.d("getExternalFilesDir", "" + getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES));
 
-            //모임원 정보 보기 리사이클러뷰는 스터디 액티비피 부분에서 재사용 한다.
+            //모임원 정보 보기 리사이클러뷰는 스터디 액티비티 부분에서 재사용 한다.
 
             //------------초기 설정----------------
             takePictureButton1 = view.findViewById(R.id.takePictureButton1);
@@ -216,8 +218,15 @@ public class Fragment_Reservation_Today extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int id)
                         {
+                            int panelty;
+                            if(DefinedMethod.compareTime2(DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())))){
+                                panelty = 1;
+                            }else{
+                                panelty = 0;
+                            }
+                            Log.d("panelty", "onClick: " + panelty);
                             GetService service = retrofit.create(GetService.class);
-                            Call<DummyResponse> call = service.deleteMyReservation(resId);
+                            Call<DummyResponse> call = service.deleteMyReservation(resId, panelty);
                             //다시 화면을 그려준다.
                             lectureroomCheckActivity = (LectureroomCheckActivity) getActivity();
                             lectureroomCheckActivity.reInflateFragment("today");
@@ -275,7 +284,11 @@ public class Fragment_Reservation_Today extends Fragment {
                 scoreRatingBar.setRating(Integer.parseInt(guardDummy.getScore()));
                 scoreDescription.setText(guardDummy.getScore());
             }
-            scoreReasonEditText.setText(guardDummy.getScoreReason());
+            if(guardDummy.getScoreReason().equals("")){
+                scoreReasonEditText.setVisibility(View.GONE);
+            }else{
+                scoreReasonEditText.setText(guardDummy.getScoreReason());
+            }
             scoreRatingBar.setEnabled(false);
             scoreReasonEditText.setEnabled(false);
 
@@ -399,6 +412,7 @@ public class Fragment_Reservation_Today extends Fragment {
                     alBuilder.show();
                 }
             });
+
             pictureImageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view){
@@ -509,20 +523,33 @@ public class Fragment_Reservation_Today extends Fragment {
             });
         }
 
-//        UserListAdapter userListAdapter = new UserListAdapter();
-//        ListView listview = (ListView) view.findViewById(R.id.memberlistview);
-//        listview.setAdapter(userListAdapter);
-//
-//        //가입된 유저 하나하나 눌렀을 때
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent2 = new Intent(getContext(), UserProfileActivity.class);
-//                intent2.putExtra("leaderormember", leaderarray.get(position));
-//                intent2.putExtra("userId", useridarray.get(position));
-//                startActivity(intent2);
-//            }
-//        });
+        //강의실 사용 인원 리스트
+        String[] usersName = dummy.getUserName();
+        String[] usersId = dummy.getUserId();
+
+        //mockup data
+        ArrayList<DummyStudentNameId> dummyStudentNameIdArrayList = new ArrayList<>();
+        for(int i = 0; i < usersName.length; i++){
+            dummyStudentNameIdArrayList.add(new DummyStudentNameId(usersId[i], usersName[i]));
+        }
+
+        UserListAdapter userListAdapter = new UserListAdapter();
+        for(DummyStudentNameId d : dummyStudentNameIdArrayList){
+            userListAdapter.add(d.getUserId(), 0, d.getName());
+        }
+        ListView listview = (ListView) view.findViewById(R.id.memberlistview);
+        listview.setAdapter(userListAdapter);
+
+        //가입된 유저 하나하나 눌렀을 때
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent2 = new Intent(getContext(), UserProfileActivity.class);
+                intent2.putExtra("leaderormember", 0);
+                intent2.putExtra("userId", dummyStudentNameIdArrayList.get(position).getUserId());
+                startActivity(intent2);
+            }
+        });
 
         return view;
     }
@@ -668,10 +695,14 @@ public class Fragment_Reservation_Today extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             if(beforeOrAfter == 1){
+                pictureImageView1.setVisibility(View.VISIBLE);
                 pictureImageView1.setImageURI(photoUri1);
+                takePictureButton1.setVisibility(View.GONE);
                 before = true;
             }else if(beforeOrAfter == 2){
+                pictureImageView2.setVisibility(View.VISIBLE);
                 pictureImageView2.setImageURI(photoUri2);
+                takePictureButton2.setVisibility(View.GONE);
                 after = true;
             }
         }

@@ -103,6 +103,17 @@
             android:textSize="17dp"
             android:text="모집 완료"
             android:textStyle="bold"/>
+        <Button
+            android:id="@+id/button_timetable_compare"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:background="#C90000"
+            android:textColor="#ffffff"
+            android:textSize="17dp"
+            android:text="시간표 비교"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout

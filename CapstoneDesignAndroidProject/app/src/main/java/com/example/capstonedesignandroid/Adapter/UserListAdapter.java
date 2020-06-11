@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.capstonedesignandroid.DTO.DummyStudentNameId;
 import com.example.capstonedesignandroid.R;
 
 import java.util.ArrayList;

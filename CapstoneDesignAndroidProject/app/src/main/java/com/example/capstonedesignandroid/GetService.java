@@ -9,6 +9,7 @@ import com.example.capstonedesignandroid.DTO.DummyReservationDetail;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetail2;
 import com.example.capstonedesignandroid.DTO.DummyReservationDetailGuard;
 import com.example.capstonedesignandroid.DTO.DummyReservationId;
+import com.example.capstonedesignandroid.DTO.DummyStudentNameId;
 import com.example.capstonedesignandroid.DTO.DummyTile;
 import com.example.capstonedesignandroid.DTO.DummyTile2;
 import com.example.capstonedesignandroid.DTO.DummySignUp;
@@ -97,8 +98,8 @@ public interface GetService {
     Call<DummyReservationDetail> getReservationDetail(@Query("reservationId") String reservationId);
     //입력: {reservationId: "reservationId"}
     //출력: {date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101",
-    //userid: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri, reservationIntent: "studying algorithm",
-    // beforeUploadTime: "8:05", afterUploadTime: "10:20"}
+    //userId: ["user1", "user2", ...], beforeUri: "beforeuri", afterUri: "afteruri, reservationIntent: "studying algorithm",
+    // beforeUploadTime: "8:05", afterUploadTime: "10:20", userName: [""]}
     //만약 uri가 존재하지 않으면 ""(null)로 보냄 uploadtime도 마찬가지
 
     //예약내역에 사진 저장하기 (before)o
@@ -120,7 +121,7 @@ public interface GetService {
     //내 예약 삭제하기o
     @FormUrlEncoded
     @POST("/reservation/delete")
-    Call<DummyResponse> deleteMyReservation(@Field("reservationId") String reservationId);
+    Call<DummyResponse> deleteMyReservation(@Field("reservationId") String reservationId, @Field("score") int panelty);
     //입력: {reservationId: "reservationId"}
     //출력: {response: "success or fail"}
 
@@ -162,7 +163,7 @@ public interface GetService {
     @POST("/reservation/searchStudentId")
     Call<DummyResponse> searchStudentId(@Field("studentId") String studentId);
 
-    //카페 정보를 가져온다.
+    //카페 정보를 가져온다. 나중에 시간 추가로 가져오기.o
     @GET("/cafe/list")
     Call<List<DummyCafeCoreInfo>> getCafeInfoList();
     //입력: x
@@ -175,25 +176,27 @@ public interface GetService {
     //var currentTimeMillis = new Date().getTime();
     //출력: response: 1589944246024
 
-    //학생이 시간표 정보를 가져온다.
+    //학생이 시간표 정보를 가져온다.o
     @GET("/timetable/info")
     Call<List<DummyTile>> getTimeTableInfo(@Query("userId") String userId);
     //입력: {userId: 4}
-    //출력: {A0: 캡스톤 디자인1팔333, A1: 캡스톤 디자인1팔333, A2: 캡스톤 디자인1팔333, A10:알고리즘1팔233, A11:알고리즘1팔233, A12:알고리즘1팔233,
-    // B4:디지털회로1팔233, B5:디지털회로1팔233, B6:디지털회로1팔233, B12:동아리활동2아주대, B13:동아리활동2아주대}
     //출력: [{contents: 캡스톤 디자인1팔333, time: A0}, {contents: 캡스톤 디자인1팔333, time: A1}, {contents: 캡스톤 디자인1팔333, time: A2},
     // {contents: 알고리즘1팔233, time: A10}, {contents: 알고리즘1팔233, time: A11}, {contents: 알고리즘1팔233, time: A12},
     // {contents: 동아리활동2아주대, time: B12}, {contents: 동아리활동2아주대, time: B13}]
 
-    //학생이 시간표 정보를 업데이트 한다.
-//    @FormUrlEncoded
-//    @POST("/timetable/update")
-//    Call<DummyResponse> postTimeTableInfo(@Field("userId") String userId, @Field("info") ArrayList<DummyTile> dummyTileArrayList);
-    //입력: {userId: 4, B12:동아리활동2아주대, B13:동아리활동2아주대} (강의 정보는 서버에서 관리, 받아오기만 한다. 업데이트는 개인 정보만이다.)
-    //입력: {userId: 4, info: [{contents: 동아리활동2아주대, time: B12}, {contents: 동아리활동2아주대, time: B13}]}
-
+    //학생이 시간표 정보를 업데이트 한다.o
     @POST("/timetable/update")
     Call<DummyResponse> postTimeTableInfo(@Body DummyTile2 dummyTile2);
+    //(강의 정보는 서버에서 관리, 받아오기만 한다. 업데이트는 개인 정보만이다.)
+    //입력: {userId: 4, info: [{contents: 동아리활동2아주대, time: B12}, {contents: 동아리활동2아주대, time: B13}]}
+
+    //스터디원의 비교된 시간표를 가져온다.
+    @GET("/timetable/time")
+    Call<List<DummyTile>> getTimeTableCompared(@Query("groupId") String groupId);
+    //contents에는 겹치는 명 수가 들어가면 된다. (0명이면 안와도 된다.)
+    //출력: [{contents: 2, time: A0}, {contents: 2, time: A1}, {contents: 2, time: A2},
+    // {contents: 1, time: A10}, {contents: 1, time: A11}, {contents: 1, time: A12},
+    // {contents: 4, time: B12}, {contents: 4, time: B13}]
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
 //    @POST("/")

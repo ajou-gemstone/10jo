@@ -151,6 +151,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
+
     private void sendNotification(String messageTitle, String messageBody) {
 
         if(messageBody.contains("수락") || messageBody.contains("거절") || messageBody.contains("신청") || messageBody.contains("메시지") ) {
