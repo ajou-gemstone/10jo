@@ -88,6 +88,13 @@ public class TimeTableFragment extends Fragment {
                 .build();
         service = retrofit2.create(GetService.class);
         String userId = SharedPreference.getAttribute(getContext(), "userId");
+        //다른 유저의 개인 정보인 경우
+        if(activity.getClass().toString().equals(MyProfileActivity.class.toString())){
+            MyProfileActivity curActivity = (MyProfileActivity) activity;
+            if(curActivity.fromReadgroup.equals("true")){
+                userId = curActivity.memberId;
+            }
+        }
         Call<List<DummyTile>> callGetTimeTableInfo = service.getTimeTableInfo(userId);
 
         Thread thread = new Thread(new Runnable() {
