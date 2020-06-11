@@ -40,7 +40,7 @@ public class MyProfileActivity extends AppCompatActivity {
     Intent intent;
     ImageView leader, member, waiting;
     Button noti_zero, noti_yes, logout, timeTableModifyButton;
-    String userId, fromReadgroup;
+    public String userId, fromReadgroup;
     protected BottomNavigationView navigationView;
     private TimeTableFragment timeTableFragment;
     private RelativeLayout timaTableBigRL;
