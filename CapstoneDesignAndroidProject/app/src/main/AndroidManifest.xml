@@ -130,13 +130,23 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ReadGroupActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name=".ReadGroupActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".EditGroupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ChattingActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name=".ChattingActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MyProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />

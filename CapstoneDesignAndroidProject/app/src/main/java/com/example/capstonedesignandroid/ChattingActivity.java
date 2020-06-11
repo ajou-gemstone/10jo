@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -79,6 +81,29 @@ public class ChattingActivity extends AppCompatActivity {
         chattingroomname = (TextView) findViewById(R.id.chattingroomname);
         scrollview_chatting = (ScrollView) findViewById(R.id.scrollview_chatting);
         roomnum = (TextView) findViewById(R.id.roomnum);
+
+//        scrollview.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+//            }
+//        });
+//        scrollview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                scrollview.post(new Runnable() {
+//                    public void run() {
+//                        scrollview.fullScroll(View.FOCUS_DOWN);
+//                    }
+//                });
+//            }
+//        });
+//        scrollview_chatting.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                scrollview_chatting.fullScroll(ScrollView.FOCUS_DOWN);
+//            }
+//        },1000);
 
         Intent intent1 = getIntent();
         leaderormember = intent1.getIntExtra("leaderormember", -1);
@@ -168,9 +193,10 @@ public class ChattingActivity extends AppCompatActivity {
 
                 memberId = m_Adapter.getId(position);
                 String leaderornot = m_Adapter.getProfile(position);
-                Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MyProfileActivity.class);
                 intent.putExtra("userId", memberId);
                 intent.putExtra("leaderormember", leaderornot);
+                intent.putExtra("fromReadgroup", "true");
                 startActivity(intent);
 
             }
@@ -397,6 +423,23 @@ public class ChattingActivity extends AppCompatActivity {
                             m_Adapter.notifyDataSetChanged();
                         }
                     }
+
+                    //        scrollview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    //            @Override
+                    //            public void onGlobalLayout() {
+                    //                scrollview.post(new Runnable() {
+                    //                    public void run() {
+                    //                        scrollview.fullScroll(View.FOCUS_DOWN);
+                    //                    }
+                    //                });
+                    //            }
+                    //        });
+                    scrollview_chatting.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            scrollview_chatting.fullScroll(ScrollView.FOCUS_DOWN);
+                        }
+                    },1000);
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");
