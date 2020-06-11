@@ -178,7 +178,6 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
                 Call<List<Group>> call = groupservice.getMyStudyList(userId);
                 CallThread(call);
 
-                listview.setAdapter(groupAdapter);
                 groupAdapter.clear();
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
                     groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), "", currentNumArray.get(i), totalNumArray.get(i));

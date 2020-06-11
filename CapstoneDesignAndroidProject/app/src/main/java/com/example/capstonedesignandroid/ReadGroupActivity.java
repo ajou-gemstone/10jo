@@ -199,9 +199,10 @@ public class ReadGroupActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent2 = new Intent(getApplicationContext(), UserProfileActivity.class);
+                Intent intent2 = new Intent(getApplicationContext(), MyProfileActivity.class);
                 intent2.putExtra("leaderormember", leaderarray.get(position));
                 intent2.putExtra("userId", useridarray.get(position));
+                intent2.putExtra("fromReadgroup", "true");
                 startActivity(intent2);
             }
         });

@@ -15,13 +15,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp">
-
+            <ImageView
+                android:id="@+id/leader_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/leader"/>
+            <ImageView
+                android:id="@+id/member_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/member"/>
+            <ImageView
+                android:id="@+id/waiting_image"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/profile"/>
             <TextView
                 android:id="@+id/myname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ellipsize="end"
+                android:layout_marginLeft="10dp"
                 android:gravity="left"
                 android:maxLines="1"
                 android:textColor="#000000"
