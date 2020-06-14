@@ -88,13 +88,6 @@
     <View
         android:layout_width="50dp"
         android:layout_height="0dp"/>
-    <Button
-        android:id="@+id/button_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:background="#00000000"
-        android:text="튜토리얼"
-        android:textColor="#444349" />
 </LinearLayout>
 
     </LinearLayout>

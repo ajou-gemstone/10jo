@@ -4,9 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     android:orientation="vertical"
     tools:context=".MainBuildingGuardActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="left"
+        android:textColor="#000000"
+        android:text="예약 내역 조회하기"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <Button
         android:layout_marginTop="30dp"
         android:id="@+id/button1"
@@ -14,11 +28,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:textSize="30sp"
-        android:text="실시간 예약 내역 조회"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:textColor="@color/asmr_blue"
+        android:textStyle="bold"
+        android:text="실시간"
+        android:background="@drawable/blue_trans_button" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"/>
     <Button
         android:layout_marginBottom="30dp"
         android:id="@+id/button2"
@@ -26,9 +43,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:textSize="30sp"
-        android:text="전체 예약 내역 조회(수업 제외)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/asmr_green"
+        android:textStyle="bold"
+        android:background="@drawable/green_trans_button"
+        android:text="모든" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>
