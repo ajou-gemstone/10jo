@@ -424,22 +424,6 @@ public class ChattingActivity extends AppCompatActivity {
                         }
                     }
 
-                    //        scrollview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    //            @Override
-                    //            public void onGlobalLayout() {
-                    //                scrollview.post(new Runnable() {
-                    //                    public void run() {
-                    //                        scrollview.fullScroll(View.FOCUS_DOWN);
-                    //                    }
-                    //                });
-                    //            }
-                    //        });
-                    scrollview_chatting.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            scrollview_chatting.fullScroll(ScrollView.FOCUS_DOWN);
-                        }
-                    },1000);
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d("IOException: ", "IOException: ");
