@@ -283,8 +283,8 @@ public class ChattingActivity extends AppCompatActivity {
                         JSONObject received = (JSONObject) args[0];
                         int exit;
                         try {
-                            exit = (int) received.get("roomnum"); //받는 메시지
-                            roomnum.setText(Integer.toString(exit - 1));
+                            exit = (int) received.get("currentNum"); //받는 메시지
+                            roomnum.setText(Integer.toString(exit));
                             tmp = exit - 1;
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -304,15 +304,17 @@ public class ChattingActivity extends AppCompatActivity {
                         JSONObject received = (JSONObject) args[0];
                         String enter = null;
                         try {
-                            enter = received.get("roomnum").toString(); //받는 메시지
-                            if(num1<Integer.parseInt(enter)){
-                                roomnum.setText(enter.toString());
-                                tmp = Integer.parseInt(enter);
-                            }
-                            else{
-                                roomnum.setText(Integer.toString(num1));
-                                tmp = num1;
-                            }
+                            enter = received.get("currentNum").toString(); //받는 메시지
+                            Log.d("string111111111", enter);
+                            roomnum.setText(enter.toString());
+                            tmp = Integer.parseInt(enter);
+//                            if(num1<Integer.parseInt(enter)){
+//
+//                            }
+//                            else{
+//                                roomnum.setText(Integer.toString(num1));
+//                                tmp = num1;
+//                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
