@@ -440,7 +440,6 @@ public class ChattingActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-        Log.d("1", "onRestart: 1");
         super.onRestart();
 
         JSONObject obj1 = new JSONObject();
@@ -467,7 +466,7 @@ public class ChattingActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("11111111", "onStop: 1");
+
         super.onStop();
     }
 
