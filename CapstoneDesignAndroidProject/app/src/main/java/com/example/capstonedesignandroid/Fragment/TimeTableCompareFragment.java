@@ -38,7 +38,6 @@ public class TimeTableCompareFragment extends Fragment {
         return rootView;
     }
 
-    //Todo: 터치 기능은 그냥 하지 말고 색깔로 표시만 잘 하자.
     private void initializeTimeTable(ArrayList<DummyTile> dummiesDummyTile){
         for(DummyTile d : dummiesDummyTile){
             Log.d("initializeTimeTable", ": d.getTime  d.getContents  "+d.getTime() +"  " + d.getContents());
@@ -47,6 +46,16 @@ public class TimeTableCompareFragment extends Fragment {
             }else{
                 LinearLayout ll = rootView.findViewWithTag(""+d.getTime());
                 TextView tv = (TextView) ll.getChildAt(0);
+                int tmpInt = Integer.parseInt(d.getContents());
+
+                switch (tmpInt){
+                    case 1: ll.setBackgroundColor(Color.argb(255, 247, 168, 196)); break;
+                    case 2: ll.setBackgroundColor(Color.argb(255, 250, 137, 177)); break;
+                    case 3: ll.setBackgroundColor(Color.argb(255, 250, 95, 150)); break;
+                    case 4: ll.setBackgroundColor(Color.argb(255, 252, 56, 125)); break;
+                    default: ll.setBackgroundColor(Color.argb(255, 252, 15, 99)); break;
+                }
+                tv.setTextSize(18);
                 tv.setText(d.getContents());
             }
         }
