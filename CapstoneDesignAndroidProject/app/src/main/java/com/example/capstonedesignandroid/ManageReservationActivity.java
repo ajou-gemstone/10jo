@@ -166,13 +166,17 @@ public class ManageReservationActivity extends AppCompatActivity {
         lectureroom.setText(""+dummy.getLectureRoom());
         startTime.setText(""+ DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getStartTime())));
         lastTime.setText(""+DefinedMethod.getTimeByPosition(Integer.parseInt(dummy.getLastTime())+1));
-        reservationIntent.setText(""+dummy.getReservationIntent());
-        if(dummy.getBeforeUploadTime().length() < 4){
+        if(DefinedMethod.isEmpty(dummy.getReservationIntent())){
+            reservationIntent.setText("");
+        }else{
+            reservationIntent.setText(""+dummy.getReservationIntent());
+        }
+        if(DefinedMethod.isEmpty(dummy.getBeforeUploadTime()) || dummy.getBeforeUploadTime().length() < 4){
             beforeUploadTime.setText("업로드 되지 않음");
         }else{
             beforeUploadTime.setText(dummy.getBeforeUploadTime());
         }
-        if(dummy.getAfterUploadTime().length() < 4){
+        if(DefinedMethod.isEmpty(dummy.getBeforeUploadTime()) || dummy.getAfterUploadTime().length() < 4){
             afterUploadTime.setText("업로드 되지 않음");
         }else{
             afterUploadTime.setText(dummy.getAfterUploadTime());

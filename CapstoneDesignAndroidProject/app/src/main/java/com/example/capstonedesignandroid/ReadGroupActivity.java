@@ -106,8 +106,10 @@ public class ReadGroupActivity extends AppCompatActivity {
             reservation.setVisibility(View.VISIBLE);
             register.setVisibility(View.GONE);
             full.setVisibility(View.GONE);
+            button_timetable_compare.setVisibility(View.VISIBLE);
         } else{
             reservation.setVisibility(View.GONE);
+            button_timetable_compare.setVisibility(View.GONE);
             if(currentnum.getText().equals(totalnum.getText())){ //참여 중 아닌데 꽉 찼을 때
                 register.setVisibility(View.GONE);
                 full.setVisibility(View.VISIBLE);
