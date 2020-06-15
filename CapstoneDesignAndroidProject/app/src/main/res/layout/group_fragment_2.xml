@@ -71,7 +71,7 @@
                 android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
                 android:textColor="@color/asmr_green"
-                android:text="영상문학기행"/>
+                android:text="111"/>
             <Button
                 android:id="@+id/b1_clicked"
                 android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
                 android:background="@drawable/green_button"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:text="영상문학기행"/>
+                android:text="111"/>
 
             <Button
                 android:id="@+id/b2"
@@ -103,7 +103,7 @@
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/green_trans_button"
                 android:gravity="center"
-                android:text="자기주도연구"
+                android:text="222"
                 android:textSize="11dp"
                 android:textColor="@color/asmr_green"
                 android:textStyle="bold" />
@@ -120,7 +120,7 @@
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/green_button"
                 android:gravity="center"
-                android:text="자기주도연구"
+                android:text="222"
                 android:textSize="11dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
@@ -138,7 +138,7 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:paddingHorizontal="10dp"
-                android:text="SW캡스톤디자인"
+                android:text="333"
                 android:textSize="11dp"
                 android:textColor="@color/asmr_green"
                 android:textStyle="bold" />
@@ -155,7 +155,7 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:paddingHorizontal="10dp"
-                android:text="SW캡스톤디자인"
+                android:text="333"
                 android:textSize="11dp"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
@@ -176,7 +176,7 @@
                 android:layout_marginLeft="3dp"
                 android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
-                android:text="인공지능" />
+                android:text="ㅁㄴㅇㄹ" />
             <Button
                 android:id="@+id/b4_clicked"
                 android:layout_width="wrap_content"
@@ -193,7 +193,7 @@
                 android:layout_marginLeft="3dp"
                 android:background="@drawable/green_button"
                 android:textStyle="bold"
-                android:text="인공지능" />
+                android:text="ㅁㄴㅇㄹ" />
 
             <Button
                 android:id="@+id/b5"
@@ -211,7 +211,7 @@
                 android:layout_marginLeft="3dp"
                 android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
-                android:text="과학사" />
+                android:text="ㄴㅇㄹ" />
             <Button
                 android:id="@+id/b5_clicked"
                 android:textSize="11dp"
@@ -228,7 +228,7 @@
                 android:layout_marginLeft="3dp"
                 android:background="@drawable/green_button"
                 android:textStyle="bold"
-                android:text="과학사" />
+                android:text="ㄴㅇㄹ" />
 
             <Button
                 android:id="@+id/b6"
@@ -246,7 +246,7 @@
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
-                android:text="확률과통계2" />
+                android:text="ㅎㅎㅎㅎ" />
             <Button
                 android:id="@+id/b6_clicked"
                 android:textSize="11dp"
@@ -263,7 +263,7 @@
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/green_button"
                 android:textStyle="bold"
-                android:text="확률과통계2" />
+                android:text="ㅎㅎㅎㅎ" />
 
             <Button
                 android:id="@+id/b7"
@@ -281,7 +281,7 @@
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/green_trans_button"
                 android:textStyle="bold"
-                android:text="알고리즘" />
+                android:text="ㄷㄷㄷ" />
             <Button
                 android:id="@+id/b7_clicked"
                 android:textSize="11dp"
@@ -298,7 +298,7 @@
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/green_button"
                 android:textStyle="bold"
-                android:text="알고리즘" />
+                android:text="ㄷㄷㄷ" />
         </LinearLayout>
         </HorizontalScrollView>
 
