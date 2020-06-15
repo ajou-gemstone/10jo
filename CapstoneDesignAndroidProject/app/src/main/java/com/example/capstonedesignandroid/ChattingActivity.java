@@ -305,7 +305,6 @@ public class ChattingActivity extends AppCompatActivity {
                         String enter = null;
                         try {
                             enter = received.get("currentNum").toString(); //받는 메시지
-                            Log.d("string111111111", enter);
                             roomnum.setText(enter.toString());
                             tmp = Integer.parseInt(enter);
 //                            if(num1<Integer.parseInt(enter)){
@@ -439,7 +438,40 @@ public class ChattingActivity extends AppCompatActivity {
         }
     }
 
-//    Callback dummies1 = new Callback<List<Group>>() {
+    @Override
+    protected void onRestart() {
+        Log.d("1", "onRestart: 1");
+        super.onRestart();
+
+        JSONObject obj1 = new JSONObject();
+        try {
+            obj1.put("roomname", title);
+            obj1.put("roomnum", num1);
+            obj1.put("groupId", groupId);
+            obj1.put("userId", userId);
+            socket.emit("join", obj1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        JSONObject obj2 = new JSONObject();
+        try {
+            obj2.put("roomname", title);
+            obj2.put("roomnum", tmp);
+            obj2.put("groupId", groupId);
+            obj2.put("userId", userId);
+            socket.emit("leave", obj2);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("11111111", "onStop: 1");
+        super.onStop();
+    }
+
+    //    Callback dummies1 = new Callback<List<Group>>() {
 //
 //        @Override
 //        public void onResponse(Call<List<Group>> call1, Response<List<Group>> response) {
