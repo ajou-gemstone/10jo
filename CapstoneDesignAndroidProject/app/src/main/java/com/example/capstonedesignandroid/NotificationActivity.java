@@ -23,7 +23,7 @@ public class NotificationActivity extends AppCompatActivity {
     ArrayList<String> timelist = new ArrayList<>();
     TextView delete;
 
-    MyNotiListAdapter notiadapter = new MyNotiListAdapter(list, timelist);
+    MyNotiListAdapter notiadapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,12 +42,15 @@ public class NotificationActivity extends AppCompatActivity {
         for (int i=0; i<time.size(); i++) {
             timelist.add(time.get(i)) ;
         }
+        Log.d("notilist", list.toString());
+        Log.d("notilist", timelist.toString());
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        notiadapter = new MyNotiListAdapter(list, timelist);
         RecyclerView recyclerView = findViewById(R.id.my_noti_list) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        notiadapter = new MyNotiListAdapter(list, timelist) ;
+       // notiadapter = new MyNotiListAdapter(list, timelist) ;
         recyclerView.setAdapter(notiadapter) ;
         notiadapter.notifyDataSetChanged();
 

@@ -91,6 +91,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             list.add(remoteMessage.getData().get("body"));
             timelist.add(DefinedMethod.getCurrentDate2());
 
+            ArrayList<String> beforelist = SharedPreference.getStringArrayPref(getApplicationContext(),"notilist");
+            ArrayList<String> beforetimelist = SharedPreference.getStringArrayPref(getApplicationContext(),"notitimelist");
+
+            for(String a : beforelist)
+                list.add(a);
+            for(String a : beforetimelist)
+                timelist.add(a);
+
             SharedPreference.setStringArrayPref(getApplicationContext(),"notilist", list);
             SharedPreference.setStringArrayPref(getApplicationContext(),"notitimelist", timelist);
             Log.d("sadfasdf", remoteMessage.getData().get("title")+"  "+remoteMessage.getData().get("body"));
