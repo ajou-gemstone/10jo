@@ -167,7 +167,7 @@ public interface GetService {
     @GET("/cafe/list")
     Call<List<DummyCafeCoreInfo>> getCafeInfoList();
     //입력: x
-    //출력: [{cafeId: 3, name: 키브한커피 congestion: 5, latitude: 30.000000, longitude: 127.0000000, cafeBody: 설명}, ...]
+    //출력: [{cafeId: 3, name: 키브한커피 congestion: 5, latitude: 30.000000, longitude: 127.0000000, cafeBody: 설명, address: 주소}, ...]
 
     //현재 시간을 가져온다.
     @GET("/")

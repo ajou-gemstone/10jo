@@ -177,6 +177,11 @@ public class CafeMapActivity extends AppCompatActivity implements MapView.POIIte
         DummyCafeCoreInfo tmpCafeCoreInfo = (DummyCafeCoreInfo)mapPOIItem.getUserObject();
         Intent activityIntent = new Intent(this, CafeDetailedInfoActivity.class);
         activityIntent.putExtra("cafeId", tmpCafeCoreInfo.getCafeId());
+        activityIntent.putExtra("cafename", tmpCafeCoreInfo.getName());
+        activityIntent.putExtra("congestion", tmpCafeCoreInfo.getCongestion());
+        activityIntent.putExtra("cafebody", tmpCafeCoreInfo.getCafeBody());
+        activityIntent.putExtra("time", tmpCafeCoreInfo.getUpdateTime());
+        activityIntent.putExtra("address", tmpCafeCoreInfo.getAddress());
         startActivityForResult(activityIntent, activityIntentConstant);
 
     }
