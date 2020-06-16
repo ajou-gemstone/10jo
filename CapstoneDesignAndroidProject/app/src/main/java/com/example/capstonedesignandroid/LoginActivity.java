@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         String autologin = SharedPreference.getAttribute(getApplicationContext(), "userId");
-        Log.d("uuu", autologin);
 
         //----------------------firebase--------------
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -152,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivityForResult(intent, 100);
                     } else {
                         Toast.makeText(LoginActivity.this, "없는 아이디 또는 비밀번호입니다.", Toast.LENGTH_SHORT).show();
+                        loginsuccess = true;
                     }
                 }
                 else{
@@ -198,7 +198,6 @@ public class LoginActivity extends AppCompatActivity {
                         loginsuccess = true;
                     }
                     else{
-                        Log.d("11111", "11111");
                         loginsuccess = false;
                     }
                 } catch (IOException e) {
