@@ -22,6 +22,7 @@ public class NotificationActivity extends AppCompatActivity {
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> timelist = new ArrayList<>();
     TextView delete;
+    String deleted = "false";
 
     MyNotiListAdapter notiadapter;
 
@@ -42,8 +43,7 @@ public class NotificationActivity extends AppCompatActivity {
         for (int i=0; i<time.size(); i++) {
             timelist.add(time.get(i)) ;
         }
-        Log.d("notilist", list.toString());
-        Log.d("notilist", timelist.toString());
+
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         notiadapter = new MyNotiListAdapter(list, timelist);
         RecyclerView recyclerView = findViewById(R.id.my_noti_list) ;
@@ -64,6 +64,7 @@ public class NotificationActivity extends AppCompatActivity {
                 SharedPreference.removeStringArrayPref(getApplicationContext(), "notitimelist");
                recyclerView.setAdapter(null);
                notiadapter.notifyDataSetChanged();
+               deleted = "true";
             }
         });
 
@@ -86,6 +87,13 @@ public class NotificationActivity extends AppCompatActivity {
             notiadapter.notifyDataSetChanged();
         }
     };
+
+
+    public void onBackPressed() {
+        Intent intent2 = new Intent(NotificationActivity.this, MyProfileActivity.class);
+        intent2.putExtra("notideleted", deleted);
+        startActivity(intent2);
+    }
 
 
 }

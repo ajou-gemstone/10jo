@@ -82,29 +82,6 @@ public class ChattingActivity extends AppCompatActivity {
         scrollview_chatting = (ScrollView) findViewById(R.id.scrollview_chatting);
         roomnum = (TextView) findViewById(R.id.roomnum);
 
-//        scrollview.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-//            }
-//        });
-//        scrollview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                scrollview.post(new Runnable() {
-//                    public void run() {
-//                        scrollview.fullScroll(View.FOCUS_DOWN);
-//                    }
-//                });
-//            }
-//        });
-//        scrollview_chatting.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                scrollview_chatting.fullScroll(ScrollView.FOCUS_DOWN);
-//            }
-//        },1000);
-
         Intent intent1 = getIntent();
         leaderormember = intent1.getIntExtra("leaderormember", -1);
         myname = intent1.getStringExtra("username");
@@ -363,7 +340,8 @@ public class ChattingActivity extends AppCompatActivity {
         socket.emit("disconnect", "");
         socket.disconnect();
 
-        Intent intent2 = new Intent(ChattingActivity.this, StudyBulletinBoardActivity.class);
+        Intent intent2 = new Intent(ChattingActivity.this, ReadGroupActivity.class);
+        intent2.putExtra("groupId", groupId);
         intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent2);
     }
@@ -470,140 +448,4 @@ public class ChattingActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    //    Callback dummies1 = new Callback<List<Group>>() {
-//
-//        @Override
-//        public void onResponse(Call<List<Group>> call1, Response<List<Group>> response) {
-//            if (response.isSuccessful()) {
-//                List<Group> dummies = response.body();
-//                String[] build;
-//                builder_like = new StringBuilder();
-//                builder_title = new StringBuilder();
-//                builder_category = new StringBuilder();
-//                builder_profile = new StringBuilder();
-//                for (Group dummy : dummies) {
-//                    build = dummy.toString().split(",");
-//                    builder_like.append(build[0] + ",");
-//                    builder_title.append(build[1] + ",");
-//                    builder_category.append(build[2] + ",");
-//                    builder_profile.append(build[3] + ",");
-//                }
-//
-//                if (mainbutton1 == 1) {
-//                    Retrofit retrofit1 = new Retrofit.Builder()
-//                            .baseUrl(BASE)
-//                            .addConverterFactory(GsonConverterFactory.create())
-//                            .build();
-//
-//                    GetTrustInterface getTrustInterface = retrofit1.create(GetTrustInterface.class);
-//                    Call<List<Dummy>> call3 = getTrustInterface.listDummies(userId);
-//                    call3.enqueue(dummies5);
-//                }
-//
-//                if (backbutton == 1) {
-//                    Retrofit retrofit1 = new Retrofit.Builder()
-//                            .baseUrl(BASE)
-//                            .addConverterFactory(GsonConverterFactory.create())
-//                            .build();
-//
-//                    GetTrustInterface getTrustInterface = retrofit1.create(GetTrustInterface.class);
-//                    Call<List<Dummy>> call3 = getTrustInterface.listDummies(userId);
-//                    call3.enqueue(dummies5);
-//                }
-//            }
-//        }
-//
-//        @Override
-//        public void onFailure(Call<List<Group>> call1, Throwable t) {
-//
-//        }
-//    };
-//
-//    Callback dummies5 = new Callback<List<Dummy>>() {
-//
-//        @Override
-//        public void onResponse(Call<List<Dummy>> call3, Response<List<Dummy>> response) {
-//            if (response.isSuccessful()) {
-//                List<Dummy> dummies = response.body();
-//                StringBuilder builder = new StringBuilder();
-//                for (Dummy dummy : dummies) {
-//                    builder.append(dummy.toString());
-//                }
-//                updatetrust = builder.toString();
-//
-//                Retrofit retrofit2 = new Retrofit.Builder()
-//                        .baseUrl(BASE)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                UserInterface userInterface = retrofit2.create(UserInterface.class);
-//                Call<List<Group>> call2 = userInterface.listDummies(userId);
-//                call2.enqueue(dummies2);
-//            }
-//        }
-//
-//        @Override
-//        public void onFailure(Call<List<Dummy>> call3, Throwable t) {
-//
-//        }
-//    };
-//
-//    Callback dummies2 = new Callback<List<Group>>() {
-//
-//        @Override
-//        public void onResponse(Call<List<Group>> call2, Response<List<Group>> response) {
-//            if (response.isSuccessful()) {
-//                List<Group> dummies = response.body();
-//                String[] build1;
-//                StringBuilder builder_title1 = new StringBuilder();
-//                StringBuilder builder_category1 = new StringBuilder();
-//                StringBuilder builder_profile1 = new StringBuilder();
-//                StringBuilder builder_like1 = new StringBuilder();
-//                for (Group dummy : dummies) {
-//                    build1 = dummy.toString().split(",");
-//                    builder_title1.append(build1[0] + ",");
-//                    builder_category1.append(build1[1] + ",");
-//                    builder_profile1.append(build1[2] + ",");
-//                    builder_like1.append(build1[3] + ",");
-//                }
-//                String[] usertitle = new String[]{String.valueOf(builder_title1), String.valueOf(builder_category1), String.valueOf(builder_profile1), String.valueOf(builder_like1)};
-//
-//                Intent intent2 = new Intent(ChattingActivity.this, MainActivity.class);
-//                String[] information1 = new String[]{userId, userPassword, String.valueOf(builder_title), name, updatetrust, emotion, String.valueOf(builder_like), String.valueOf(builder_category), String.valueOf(builder_profile)};
-//                intent2.putExtra("strings", information1);
-//                intent2.putExtra("usertitle", usertitle);
-//                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent2);
-//            }
-//        }
-//
-//        @Override
-//        public void onFailure(Call<List<Group>> call1, Throwable t) {
-//
-//        }
-//    };
-//
-//
-//    Callback dummies6 = new Callback<List<Dummy>>() {
-//
-//        @Override
-//        public void onResponse(Call<List<Dummy>> call6, Response<List<Dummy>> response) {
-//            if (response.isSuccessful()) {
-//                List<Dummy> dummies = response.body();
-//                StringBuilder builder = new StringBuilder();
-//
-//                for (Dummy dummy : dummies) {
-//                    num1 = Integer.parseInt(dummy.toString())+1;
-//                }
-//                chattingroomname.setText(title+"   ");
-//
-//
-//            }
-//        }
-//
-//        @Override
-//        public void onFailure(Call<List<Dummy>> call6, Throwable t) {
-//
-//        }
-//    };
 }

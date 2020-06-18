@@ -44,39 +44,6 @@ public class StudyBulletinBoardActivity extends AppCompatActivity {
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         final ArrayList<String> list = new ArrayList<>();
-
-        // 4. ArrayList 객체에 데이터를 집어넣습니다.
-//
-//        final ArrayAdapter<String> favoriteadapter = new ArrayAdapter<String>(
-//                this, //context(액티비티 인스턴스)
-//                android.R.layout.simple_list_item_1, // 한 줄에 하나의 텍스트 아이템만 보여주는 레이아웃 파일
-//                // 한 줄에 보여지는 아이템 갯수나 구성을 변경하려면 여기에 새로만든 레이아웃을 지정하면 됩니다.
-//                list  // 데이터가 저장되어 있는 ArrayList 객체
-//        );
-//
-//        final String BASE = SharedPreference.getAttribute(getApplicationContext(), "IP");
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BASE)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        FavoriteListInterface favoriteListInterface = retrofit.create(FavoriteListInterface.class);
-//        Call<List<Dummy>> call = favoriteListInterface.listDummies(userInfo[0]);
-//        call.enqueue(dummies);
-
-
-//        switch(Integer.parseInt(userInfo[5])) {
-//            case 0:
-//                imageView.setImageResource(R.drawable.heart);
-//                break;
-//            case 1:
-//                imageView.setImageResource(R.drawable.heart);
-//                break;
-//            default: break;
-//        }
-//        user.setText(userInfo[3].toString());
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("모든스터디"));
         tabLayout.addTab(tabLayout.newTab().setText("과목별스터디"));
