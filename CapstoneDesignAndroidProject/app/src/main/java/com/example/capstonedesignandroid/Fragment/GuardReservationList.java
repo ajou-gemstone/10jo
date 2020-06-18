@@ -128,21 +128,37 @@ public class GuardReservationList extends Fragment {
             float dateTime = date.getTime();
             //startTime순 정렬
             dateTime += 1000000 * Integer.parseInt(dummyReservationList.getStartTime());
+            Log.d("stringDate", "  "+ ymz.get(0) + " "+ ymz.get(1) + " " + ymz.get(2));
             Log.d("dateTimee", ""+dateTime);
             dummyReservationList.setTimePriority(dateTime);
         }
 
-        Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
-            @Override
-            public int compare(DummyReservationList t1, DummyReservationList t2) {
-                if(t1.getTimePriority() > t2.getTimePriority()){
-                    return 1;
-                }else if(t1.getTimePriority() < t2.getTimePriority()){
-                    return -1;
+        if(tense.equals("past")){
+            Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
+                @Override
+                public int compare(DummyReservationList t1, DummyReservationList t2) {
+                    if(t1.getTimePriority() > t2.getTimePriority()){
+                        return -1;
+                    }else if(t1.getTimePriority() < t2.getTimePriority()){
+                        return 1;
+                    }
+                    return 0;
                 }
-                return 0;
-            }
-        });
+            });
+        }else{
+            Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
+                @Override
+                public int compare(DummyReservationList t1, DummyReservationList t2) {
+                    if(t1.getTimePriority() > t2.getTimePriority()){
+                        return 1;
+                    }else if(t1.getTimePriority() < t2.getTimePriority()){
+                        return -1;
+                    }
+                    return 0;
+                }
+            });
+        }
+
 
         recyclerViewReservationList = rootView.findViewById(R.id.recyclerViewReservationList);
 

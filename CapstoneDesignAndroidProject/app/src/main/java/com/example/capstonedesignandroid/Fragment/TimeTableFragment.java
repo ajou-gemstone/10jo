@@ -256,7 +256,7 @@ public class TimeTableFragment extends Fragment {
         myTimeLLArrayList = new ArrayList<>();
         for(DummyTile d : dummiesDummyTile){
             Log.d("initializeTimeTable", ": d.getTime  d.getContents  "+d.getTime() +"  " + d.getContents());
-            if(d.getTime().equals("undefined")){
+            if(d.getTime().equals("undefined") || d.getTime().substring(1).equals("28")){
 
             }else{
                 LinearLayout ll = rootView.findViewWithTag(""+d.getTime());
