@@ -49,13 +49,13 @@ public class TimeTableCompareFragment extends Fragment {
                 int tmpInt = Integer.parseInt(d.getContents());
 
                 switch (tmpInt){
-                    case 1: ll.setBackgroundColor(Color.argb(255, 247, 168, 196)); break;
-                    case 2: ll.setBackgroundColor(Color.argb(255, 250, 137, 177)); break;
-                    case 3: ll.setBackgroundColor(Color.argb(255, 250, 95, 150)); break;
-                    case 4: ll.setBackgroundColor(Color.argb(255, 252, 56, 125)); break;
-                    default: ll.setBackgroundColor(Color.argb(255, 252, 15, 99)); break;
+                    case 1: ll.setBackgroundColor(Color.argb(255, 220, 245, 132)); break;
+                    case 2: ll.setBackgroundColor(Color.argb(255, 213, 240, 115)); break;
+                    case 3: ll.setBackgroundColor(Color.argb(255, 198, 219, 118)); break;
+                    case 4: ll.setBackgroundColor(Color.argb(255, 147, 186, 4)); break;
+                    default: ll.setBackgroundColor(Color.argb(255, 140, 156, 82)); break;
                 }
-                tv.setTextSize(18);
+                tv.setTextSize(23);
                 tv.setText(d.getContents());
             }
         }

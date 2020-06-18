@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,9 +109,9 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         if(activityType.equals("todayGuard")){
             if(!DefinedMethod.compareTime(startTime)){
                 if(DefinedMethod.compareTime(lastTime)){
-                    holder.reservationLL.setBackground(ContextCompat.getDrawable(context, R.drawable.reservation_selected));
+                    holder.reservationLL.setBackgroundColor(Color.argb(66,77,117,197));
                 }else{
-                    holder.reservationLL.setBackground(ContextCompat.getDrawable(context, R.drawable.reservation2));
+                    // holder.reservationLL.setBackgroundColor(Color.argb(66,77,117,197));
                 }
             }
         }
