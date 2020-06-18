@@ -103,7 +103,9 @@
             android:layout_weight="0.9"
             android:textSize="15dp"
             android:hint="채팅..."
-            android:background="@null"/>
+            android:background="@null">
+            <requestFocus />
+        </EditText>
 
         <View
             android:layout_width="0dp"

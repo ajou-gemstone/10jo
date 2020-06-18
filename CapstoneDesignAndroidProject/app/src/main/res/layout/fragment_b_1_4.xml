@@ -31,8 +31,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/baselayout"
         android:layout_width="400dp"
-        android:layout_height="720dp"
-        android:background="@drawable/reservation">
+        android:layout_height="720dp">
 
         <!--dp로 절대값으로 view를 그린다.-->
 
@@ -58,7 +57,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -90,7 +89,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -121,7 +120,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -152,7 +151,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -183,7 +182,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -214,7 +213,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -246,7 +245,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -278,7 +277,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -309,7 +308,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -339,7 +338,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -371,7 +370,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -403,7 +402,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -435,7 +434,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -467,7 +466,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -499,7 +498,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -531,7 +530,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -563,7 +562,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -595,7 +594,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -626,7 +625,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -657,7 +656,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -688,7 +687,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -719,7 +718,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -750,7 +749,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -781,7 +780,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -812,7 +811,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -843,7 +842,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -874,7 +873,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -905,7 +904,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -936,7 +935,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -967,7 +966,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -998,7 +997,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1029,7 +1028,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1060,7 +1059,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1091,7 +1090,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1122,7 +1121,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1153,7 +1152,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1184,7 +1183,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1215,7 +1214,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1246,7 +1245,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1276,7 +1275,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1308,7 +1307,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"
@@ -1340,7 +1339,7 @@
                 style="@style/currentT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비었음" />
+                android:text="" />
 
             <TextView
                 style="@style/currentT3"

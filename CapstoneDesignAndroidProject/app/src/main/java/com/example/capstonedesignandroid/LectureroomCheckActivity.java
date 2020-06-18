@@ -63,16 +63,6 @@ public class LectureroomCheckActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        //테스트용
-        FloatingActionButton testGuardButton = findViewById(R.id.testGuardButton);
-        testGuardButton.setVisibility(View.INVISIBLE);
-        testGuardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainBuildingGuardActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override

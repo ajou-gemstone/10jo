@@ -53,7 +53,7 @@ public class ManageReservationActivity extends AppCompatActivity {
     private Button rateSaveButton;
     private EditText scoreReasonEditText;
     private DummyReservationDetailGuard dummy2;
-    private float currentScore;
+    private float currentScore = 5;
     private TextView date;
     private TextView day;
     private TextView lectureroom;
@@ -236,6 +236,7 @@ public class ManageReservationActivity extends AppCompatActivity {
                         Call<DummyResponse> call3 = service.postSaveReservationDetailGuard(resId, currentScore, scoreReasonEditText.getText().toString(),
                                 dummy2.getLeaderId(), tmpguardId);
                         call3.enqueue(response);
+                        finish();
                     }
                 });
                 alBuilder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {

@@ -21,7 +21,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".DrawTestActivity"></activity>
-        <activity android:name=".TimeTableCompare" />
+        <activity android:name=".TimeTableCompare"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FirebaseTestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
