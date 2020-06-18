@@ -241,6 +241,11 @@ public class ReadGroupActivity extends AppCompatActivity {
 
     } // onCreate
 
+    public void onBackPressed() {
+        Intent intent2 = new Intent(ReadGroupActivity.this, StudyBulletinBoardActivity.class);
+        startActivity(intent2);
+    }
+
     private void CallThread_GetUser(Call<Group> call) {
         Thread thread = new Thread(new Runnable() {
             @Override
