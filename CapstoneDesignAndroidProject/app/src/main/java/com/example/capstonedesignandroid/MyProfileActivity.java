@@ -107,28 +107,30 @@ public class MyProfileActivity extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         score = findViewById(R.id.penalty);
         timeTableModifyButton = findViewById(R.id.timeTableModifyButton);
-
-        ArrayList<String> title = SharedPreference.getStringArrayPref(getApplicationContext(), "notilist");
-        if(title.size() != 0){
-            noti_zero.setVisibility(View.GONE);
-            noti_yes.setVisibility(View.VISIBLE);
-        }
         
         Intent intent = getIntent();
+        String notiDeleted = intent.getStringExtra("notideleted");
         String leaderormember = intent.getStringExtra("leaderormember");
         memberId = intent.hasExtra("fromReadgroup") ? intent.getStringExtra("userId") : "000";
         fromReadgroup = intent.hasExtra("fromReadgroup") ? intent.getStringExtra("fromReadgroup") : "false";
 
         userId = SharedPreference.getAttribute(getApplicationContext(), "userId");
 
+        ArrayList<String> title = SharedPreference.getStringArrayPref(getApplicationContext(), "notilist");
+        if(title.size() != 0){
+            noti_zero.setVisibility(View.GONE);
+            noti_yes.setVisibility(View.VISIBLE);
+        }
+        if(intent.hasExtra("notideleted") && notiDeleted.equals("true")){
+            noti_zero.setVisibility(View.VISIBLE);
+            noti_yes.setVisibility(View.GONE);
+        }
+
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         navigationView.setSelectedItemId(R.id.action_profile);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         waiting.setVisibility(View.GONE);
-        Log.d("memberid", memberId);
-        Log.d("memberid", userId);
-        Log.d("memberid", fromReadgroup);
 
         if(fromReadgroup.equals("true")){
             navigationView.findViewById(R.id.bottom_navigation_view).setVisibility(View.GONE); timeTableModifyButton.setVisibility(View.GONE);
