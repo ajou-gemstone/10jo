@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TimeTableCompare"></activity>
+        <activity android:name=".TimeTableCompare"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FirebaseTestActivity"
             android:theme="@style/AppTheme.NoActionBar" />

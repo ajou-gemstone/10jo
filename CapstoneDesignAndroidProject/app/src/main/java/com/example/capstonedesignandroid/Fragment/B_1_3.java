@@ -1,6 +1,7 @@
 package com.example.capstonedesignandroid.Fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -132,7 +133,7 @@ public class B_1_3 extends Fragment {
             if (currentTmpLL != null) {
                 ViewGroup vg = (ViewGroup) currentTmpLL;
                 //xml 초기화 코드
-                currentTmpLL.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.reservation2));
+                currentTmpLL.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.reservation4));
                 TextView v = (TextView) vg.getChildAt(1);
                 Log.d("currentTmpLL", "" + v.getText());
                 v.setText(DefinedMethod.getTimeByPosition(Integer.parseInt(d.getStartTime())) + "~" +
