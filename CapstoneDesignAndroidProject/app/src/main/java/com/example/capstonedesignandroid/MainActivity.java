@@ -1,99 +1,37 @@
 package com.example.capstonedesignandroid;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Base64;
-import android.util.Log;
-
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.kakao.util.maps.helper.Utility;
-
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
 
-    private Button testActivity;
     private Button LectureroomCheckActivityButton;
     private Button buildingGuardActivityButton;
-    private Button zoomTest;
-    private Button zoomTest2;
-    private Button zoomTest3;
-    private Button timeTableModifyActivity;
-    private TextView textView3;
     private Button test2button;
+    private Button drawTestButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testActivity = findViewById(R.id.testButton);
         LectureroomCheckActivityButton = findViewById(R.id.LectureroomCheckActivityButton);
         buildingGuardActivityButton = findViewById(R.id.buildingGuardActivityButton);
-        zoomTest = findViewById(R.id.zoomTest);
-        zoomTest2 = findViewById(R.id.zoomTest2);
-        zoomTest3 = findViewById(R.id.zoomTest3);
-        timeTableModifyActivity = findViewById(R.id.timeTableModifyActivity);
-        textView3 = findViewById(R.id.textView3);
         test2button = findViewById(R.id.test2Button);
+        drawTestButton = findViewById(R.id.drawTestButton);
 
         test2button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FirebaseTestActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        timeTableModifyActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TimetableModifyActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        zoomTest3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ZoomTest3Activity.class);
-                startActivity(intent);
-            }
-        });
-
-        zoomTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ZoomTestActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        testActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), testActivity.class);
                 startActivity(intent);
             }
         });
@@ -109,6 +47,14 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainBuildingGuardActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        drawTestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), DrawTestActivity.class);
                 startActivity(intent);
             }
         });

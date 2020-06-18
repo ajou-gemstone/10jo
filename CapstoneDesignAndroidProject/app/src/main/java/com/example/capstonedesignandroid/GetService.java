@@ -199,7 +199,8 @@ public interface GetService {
     // {contents: 4, time: B12}, {contents: 4, time: B13}]
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
-//    @POST("/")
-//    Call<>
+    @FormUrlEncoded
+    @POST("/")
+    Call<DummyResponse> postDrawDate(@Field("date") String date);
 
 }

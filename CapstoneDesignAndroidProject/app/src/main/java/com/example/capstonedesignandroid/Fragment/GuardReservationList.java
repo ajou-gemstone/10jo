@@ -8,7 +8,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.example.capstonedesignandroid.Adapter.ReservationListAdapter;
 import com.example.capstonedesignandroid.CurrentManageReservationActivity;
 import com.example.capstonedesignandroid.DTO.DummyReservationList;
 import com.example.capstonedesignandroid.GetService;
+import com.example.capstonedesignandroid.GroupService;
 import com.example.capstonedesignandroid.GuardReservationCheckActivity;
 import com.example.capstonedesignandroid.LectureroomCheckDetailedActivity;
 import com.example.capstonedesignandroid.ManageReservationActivity;
@@ -37,7 +40,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GuardReservationList extends Fragment {
+public class GuardReservationList extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private GuardReservationCheckActivity guardReservationCheckActivity;
     private Retrofit retrofit;
@@ -45,6 +48,10 @@ public class GuardReservationList extends Fragment {
     private ArrayList<DummyReservationList> dummyReservationListArrayList;
     private RecyclerView recyclerViewReservationList;
     private ReservationListAdapter reservationListAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private GetService service;
+    private String tense;
+    private String buildingName;
 
     public GuardReservationList() {
         // Required empty public constructor
@@ -66,15 +73,19 @@ public class GuardReservationList extends Fragment {
         //출력: [{reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}, ]
         //출력: reservationId, 예약 날짜, 요일(day), 시작시간, 종료시간, 강의실 이름
 
+        mSwipeRefreshLayout = rootView.findViewById(R.id.refresh);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyConstants.BASE)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String tense = guardReservationCheckActivity.currentReservationListType;
-        String buildingName = guardReservationCheckActivity.buildingName;
+        tense = guardReservationCheckActivity.currentReservationListType;
+        buildingName = guardReservationCheckActivity.buildingName;
 
-        GetService service = retrofit.create(GetService.class);
+        service = retrofit.create(GetService.class);
         Call<List<DummyReservationList>> call = service.getGuardReservationList(tense, buildingName);
 
         dummyReservationListArrayList = new ArrayList<DummyReservationList>();
@@ -128,21 +139,36 @@ public class GuardReservationList extends Fragment {
             float dateTime = date.getTime();
             //startTime순 정렬
             dateTime += 1000000 * Integer.parseInt(dummyReservationList.getStartTime());
+            Log.d("stringDate", "  "+ ymz.get(0) + " "+ ymz.get(1) + " " + ymz.get(2));
             Log.d("dateTimee", ""+dateTime);
             dummyReservationList.setTimePriority(dateTime);
         }
 
-        Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
-            @Override
-            public int compare(DummyReservationList t1, DummyReservationList t2) {
-                if(t1.getTimePriority() > t2.getTimePriority()){
-                    return 1;
-                }else if(t1.getTimePriority() < t2.getTimePriority()){
-                    return -1;
+        if(tense.equals("past")){
+            Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
+                @Override
+                public int compare(DummyReservationList t1, DummyReservationList t2) {
+                    if(t1.getTimePriority() > t2.getTimePriority()){
+                        return -1;
+                    }else if(t1.getTimePriority() < t2.getTimePriority()){
+                        return 1;
+                    }
+                    return 0;
                 }
-                return 0;
-            }
-        });
+            });
+        }else{
+            Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
+                @Override
+                public int compare(DummyReservationList t1, DummyReservationList t2) {
+                    if(t1.getTimePriority() > t2.getTimePriority()){
+                        return 1;
+                    }else if(t1.getTimePriority() < t2.getTimePriority()){
+                        return -1;
+                    }
+                    return 0;
+                }
+            });
+        }
 
         recyclerViewReservationList = rootView.findViewById(R.id.recyclerViewReservationList);
 
@@ -174,5 +200,116 @@ public class GuardReservationList extends Fragment {
     public void onDetach() {
         super.onDetach();
         guardReservationCheckActivity = null;
+    }
+
+    @Override
+    public void onRefresh() {
+        mSwipeRefreshLayout.setRefreshing(true);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() { // 여기에 코드 추가
+
+                Call<List<DummyReservationList>> call = service.getGuardReservationList(tense, buildingName);
+
+                dummyReservationListArrayList = new ArrayList<DummyReservationList>();
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            List<DummyReservationList> dummies = call.execute().body();
+                            dummyReservationListArrayList = new ArrayList<DummyReservationList>(dummies);
+                            IOexception = false;
+                            Log.d("run:", "run:dummyReservationListArrayList");
+                            try{
+                                Log.d("run", "startTime " + dummyReservationListArrayList.get(0).getStartTime() +
+                                        " reservationId " + dummyReservationListArrayList.get(0).getReservationId() +
+                                        " date " + dummyReservationListArrayList.get(0).getDate() +
+                                        " lectureRoom " + dummyReservationListArrayList.get(0).getLectureRoom() +
+                                        " score " + dummyReservationListArrayList.get(0).getScore());
+                            }catch (Exception e){
+
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            IOexception = true;
+                            Log.d("IOException: ", "IOException:dummyReservationListArrayList");
+                        }
+                    }
+                });
+                thread.start();
+
+                try {
+                    thread.join();
+                } catch (Exception e) {
+                }
+                //----------------서버에서 받기 코드-------------------
+                //출력: {reservationId: "reservationId", date: "YYYY-MM-DD", day(요일): "월", startTime: "8:00", lastTime:"10:00", lectureRoom:"성101"}
+
+                //mockup data로 대체
+                if(IOexception){
+//            dummyReservationListArrayList.add(new DummyReservationList("resId0", "2020-05-01", "월", "2", "6", "성101"));
+//            dummyReservationListArrayList.add(new DummyReservationList("1", "2020-05-02", "화", "2", "6", "성101"));
+//            dummyReservationListArrayList.add(new DummyReservationList("resId2", "2020-05-03", "수", "2", "6", "성101"));
+                }
+
+                //dummyReservationListArrayList 정렬
+                //dummyReservationListArrayList 정렬
+                for(DummyReservationList dummyReservationList: dummyReservationListArrayList){
+                    ArrayList<Integer> ymz = DefinedMethod.getYearMonthDaybyDate(dummyReservationList.getDate());
+                    //날짜 순 정렬
+                    Date date = DefinedMethod.getDate(ymz.get(0), ymz.get(1), ymz.get(2));
+                    float dateTime = date.getTime();
+                    //startTime순 정렬
+                    dateTime += 1000000 * Integer.parseInt(dummyReservationList.getStartTime());
+                    Log.d("stringDate", "  "+ ymz.get(0) + " "+ ymz.get(1) + " " + ymz.get(2));
+                    Log.d("dateTimee", ""+dateTime);
+                    dummyReservationList.setTimePriority(dateTime);
+                }
+
+                if(tense.equals("past")){
+                    Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
+                        @Override
+                        public int compare(DummyReservationList t1, DummyReservationList t2) {
+                            if(t1.getTimePriority() > t2.getTimePriority()){
+                                return -1;
+                            }else if(t1.getTimePriority() < t2.getTimePriority()){
+                                return 1;
+                            }
+                            return 0;
+                        }
+                    });
+                }else{
+                    Collections.sort(dummyReservationListArrayList, new Comparator<DummyReservationList>() {
+                        @Override
+                        public int compare(DummyReservationList t1, DummyReservationList t2) {
+                            if(t1.getTimePriority() > t2.getTimePriority()){
+                                return 1;
+                            }else if(t1.getTimePriority() < t2.getTimePriority()){
+                                return -1;
+                            }
+                            return 0;
+                        }
+                    });
+                }
+            }
+        },100);
+
+        //recycler view에 들어갈 layout을 정해주어야 한다.
+        recyclerViewReservationList.setLayoutManager(new LinearLayoutManager(getContext()));
+        reservationListAdapter = new ReservationListAdapter(getContext(),""+ tense+"Guard",dummyReservationListArrayList);
+        recyclerViewReservationList.setAdapter(reservationListAdapter);
+
+        reservationListAdapter.setOnItemClickListener(new ReservationListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Intent intent = new Intent(getContext(), ManageReservationActivity.class);
+                intent.putExtra("reservationId", dummyReservationListArrayList.get(position).getReservationId());
+                intent.putExtra("tense", ""+tense);
+                startActivity(intent);
+            }
+        });
+        // 새로고침 완료
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

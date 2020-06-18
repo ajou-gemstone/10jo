@@ -1,11 +1,7 @@
 package com.example.capstonedesignandroid;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,27 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.capstonedesignandroid.DTO.DummyReservationId;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.capstonedesignandroid.DTO.DummyTile;
 import com.example.capstonedesignandroid.Fragment.TimeTableFragment;
-import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
-import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
-import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TimetableModifyActivity extends AppCompatActivity {
 
