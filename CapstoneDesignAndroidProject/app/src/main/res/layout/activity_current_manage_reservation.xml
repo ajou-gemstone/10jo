@@ -22,50 +22,49 @@
         android:id="@+id/scrollViewOneToFour"
         android:visibility="invisible"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="70dp">
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="30dp">
 
         <LinearLayout
             android:id="@+id/ll1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="30dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textSize="25dp"
-                android:textColor="#000000"
-                android:tag="1"
-                android:text = "1 F"/>
-
+                android:textStyle="bold"
+                android:tag="4"
+                android:textColor="@color/asmr_blue"
+                android:text = "4F"/>
             <TextView
-                android:layout_width="30dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textSize="25dp"
-                android:textColor="#000000"
-                android:tag="2"
-                android:text = "2F"/>
-
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:textColor="#000000"
+                android:textColor="@color/asmr_blue"
+                android:textStyle="bold"
                 android:tag="3"
                 android:text = "3F"/>
-
             <TextView
-                android:layout_width="30dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textSize="25dp"
-                android:tag="4"
-                android:textColor="#000000"
-                android:text = "4F"/>
-
+                android:textColor="@color/asmr_blue"
+                android:textStyle="bold"
+                android:tag="2"
+                android:text = "2F"/>
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:textColor="@color/asmr_blue"
+                android:textStyle="bold"
+                android:tag="1"
+                android:text = "1F"/>
         </LinearLayout>
     </ScrollView>
 
@@ -73,33 +72,34 @@
         android:id="@+id/scrollViewOne"
         android:visibility="invisible"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="70dp">
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="30dp">
 
         <LinearLayout
             android:id="@+id/ll2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="30dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:tag="1"
-                android:text = "1 F"/>
-
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:textSize="25dp"
                 android:tag="2"
-                android:text = "2F"/>
+                android:text="2F"
+                android:textColor="@color/asmr_blue"
+                android:textStyle="bold"
+                android:textSize="25dp" />
 
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/asmr_blue"
+                android:textStyle="bold"
+                android:tag="1"
+                android:text="1F"
+                android:textSize="25dp" />
         </LinearLayout>
 
     </ScrollView>
