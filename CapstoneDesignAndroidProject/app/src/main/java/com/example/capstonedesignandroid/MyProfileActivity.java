@@ -148,10 +148,6 @@ public class MyProfileActivity extends AppCompatActivity {
                 member.setVisibility(View.GONE);
                 waiting.setVisibility(View.VISIBLE);
             }
-            Log.d("memberid", memberId);
-            Log.d("memberid", userId);
-            Log.d("memberid", fromReadgroup);
-
         }
         else{
             leader.setVisibility(View.GONE); member.setVisibility(View.GONE); 
