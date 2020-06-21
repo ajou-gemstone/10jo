@@ -138,7 +138,7 @@ public class MakeGroupActivity extends AppCompatActivity {
                 int studyGroupNumTot = parseInt(totalnum.getText().toString());
                 String t = tag.getText().toString();
 
-                if( ! title.equals("") && ! textBody.equals("") && ! t.equals("") && studyGroupNumTot > 0) {
+                if( ! title.equals("") && ! textBody.equals("") && ! t.equals("") && studyGroupNumTot > 1) {
                     String[] tArray = t.split("[#| |,]");
                     ArrayList<String> tagName = new ArrayList<>();
                     for (String tag : tArray)
@@ -160,6 +160,9 @@ public class MakeGroupActivity extends AppCompatActivity {
                 }
                 else if(studyGroupNumTot <= 0 && ! title.equals("") && ! textBody.equals("") && ! t.equals("")){
                     Toast.makeText(MakeGroupActivity.this, "올바른 숫자를 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
+                else if(studyGroupNumTot ==1 && ! title.equals("") && ! textBody.equals("") && ! t.equals("")){
+                    Toast.makeText(MakeGroupActivity.this, "모임은 혼자 하지 않아요", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(MakeGroupActivity.this, "모든 내용을 입력해주세요", Toast.LENGTH_SHORT).show();
