@@ -553,6 +553,7 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                                 // 바뀐 것을 적용한다.
                                 checkedItems[which] = isChecked;
+                                Log.d("checkedItems", "onClick: " + checkedItems[0]);
                             }
                         });
                     }

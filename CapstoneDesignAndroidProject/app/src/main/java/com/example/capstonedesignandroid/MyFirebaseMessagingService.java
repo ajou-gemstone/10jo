@@ -201,7 +201,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     PendingIntent.FLAG_ONE_SHOT);
             setMessage(messageTitle, messageBody, pendingIntent);
         }
-
     }
 
     private void setMessage(String messageTitle, String messageBody, PendingIntent pendingIntent){

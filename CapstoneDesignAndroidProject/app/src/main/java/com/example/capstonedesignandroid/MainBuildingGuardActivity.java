@@ -57,7 +57,7 @@ public class MainBuildingGuardActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            SharedPreference.removeAllAttribute(getApplicationContext());
+                            SharedPreference.removeAttribute(getApplicationContext(), "userId");
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         }
