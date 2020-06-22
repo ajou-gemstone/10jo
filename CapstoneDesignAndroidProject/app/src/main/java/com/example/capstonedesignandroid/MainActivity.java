@@ -5,8 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.capstonedesignandroid.StaticMethodAndOthers.SharedPreference;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,6 +21,7 @@ public class MainActivity extends AppCompatActivity{
     private Button buildingGuardActivityButton;
     private Button test2button;
     private Button drawTestButton;
+    private CheckBox pastAvailCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity{
         buildingGuardActivityButton = findViewById(R.id.buildingGuardActivityButton);
         test2button = findViewById(R.id.test2Button);
         drawTestButton = findViewById(R.id.drawTestButton);
+        pastAvailCheckBox = findViewById(R.id.pastAvailCheckBox);
 
         test2button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +62,22 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DrawTestActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //로그아웃되면 값이 사라지는 것 주의
+        if(SharedPreference.getAttribute(getApplicationContext(), "pastAvailCheckBox").equals("true")){
+            pastAvailCheckBox.setChecked(true);
+        }else {
+            pastAvailCheckBox.setChecked(false);
+        }
+        pastAvailCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                Log.d("onCheckedChanged", "onCheckedChanged: " + b);
+                SharedPreference.removeAttribute(getApplicationContext(), "pastAvailCheckBox");
+                SharedPreference.setAttribute(getApplicationContext(), "pastAvailCheckBox", ""+b);
             }
         });
 

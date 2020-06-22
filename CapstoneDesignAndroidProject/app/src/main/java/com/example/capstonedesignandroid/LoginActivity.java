@@ -199,8 +199,10 @@ public class LoginActivity extends AppCompatActivity {
                     primary_id = dummies.getId();
                     Log.d("primary_id", dummies.getId());
                     if(!primary_id.equals("-1")) {
+                        String pastAvailCheckBox = SharedPreference.getAttribute(getApplicationContext(), "pastAvailCheckBox");
                         SharedPreference.removeAllAttribute(getApplicationContext());
                         SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
+                        SharedPreference.setAttribute(getApplicationContext(), "pastAvailCheckBox", pastAvailCheckBox);
                         Log.d("Login", "primary_id: " + primary_id);
                         loginsuccess = true;
                     }
