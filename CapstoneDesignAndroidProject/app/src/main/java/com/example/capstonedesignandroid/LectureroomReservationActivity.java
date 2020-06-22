@@ -646,35 +646,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         recyclerViewReservation.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewReservation.getRecycledViewPool().setMaxRecycledViews(0, 0);
 
-//        selectMultipleTimeButton = findViewById(R.id.selectMultipleTimeButton);
-//        selectMultipleTimeButton.setVisibility(View.VISIBLE);
-//
-//        selectMultipleTimeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(selectMultipleTimeButtonClicked == false){
-//                    selectMultipleTimeButtonClicked = true;
-//                    //횡 스크롤 고정
-//                    lectureRoomScroll.setOnTouchListener(new View.OnTouchListener() {
-//                        @Override
-//                        public boolean onTouch(View view, MotionEvent motionEvent) {
-//                            return true;
-//                        }
-//                    });
-//                    Toast.makeText(getApplicationContext(), "영역을 선택하세요", Toast.LENGTH_LONG).show();
-//                }else{
-//                    selectMultipleTimeButtonClicked = false;
-//                    //횡 스크롤 고정 풀기
-//                    lectureRoomScroll.setOnTouchListener(new View.OnTouchListener() {
-//                        @Override
-//                        public boolean onTouch(View view, MotionEvent motionEvent) {
-//                            return false;
-//                        }
-//                    });
-//                }
-//            }
-//        });
-
         lectureRoomScroll = findViewById(R.id.lectureRoomScroll);
 
         ReservationAdapter adapter = new ReservationAdapter(getApplicationContext(), lectureRoomReservationStateArrayList);
