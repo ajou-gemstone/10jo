@@ -137,25 +137,36 @@ public class MakeGroupActivity extends AppCompatActivity {
                 String textBody = body.getText().toString();
                 int studyGroupNumTot = parseInt(totalnum.getText().toString());
                 String t = tag.getText().toString();
-                String[] tArray = t.split("[#| |,]");
-                ArrayList<String> tagName = new ArrayList<>();
-                for(String tag : tArray)
-                    if( !tag.equals("") )
-                        tagName.add(tag);
 
-                Retrofit retrofit2 = new Retrofit.Builder()
-                        .baseUrl(MyConstants.BASE)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                if( ! title.equals("") && ! textBody.equals("") && ! t.equals("") && studyGroupNumTot > 1) {
+                    String[] tArray = t.split("[#| |,]");
+                    ArrayList<String> tagName = new ArrayList<>();
+                    for (String tag : tArray)
+                        if (!tag.equals(""))
+                            tagName.add(tag);
 
-                GroupService groupService = retrofit2.create(GroupService.class);
-                Call<DummyResponse> call2 = groupService.createStudy(userId, category, title, textBody, tagName, studyGroupNumTot);
-                CallThread(call2);
+                    Retrofit retrofit2 = new Retrofit.Builder()
+                            .baseUrl(MyConstants.BASE)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
 
-                Toast.makeText(MakeGroupActivity.this, "즐거운 모임하세요.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),StudyBulletinBoardActivity.class);
-                startActivity(intent);
+                    GroupService groupService = retrofit2.create(GroupService.class);
+                    Call<DummyResponse> call2 = groupService.createStudy(userId, category, title, textBody, tagName, studyGroupNumTot);
+                    CallThread(call2);
 
+                    Toast.makeText(MakeGroupActivity.this, "즐거운 모임하세요.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+                    startActivity(intent);
+                }
+                else if(studyGroupNumTot <= 0 && ! title.equals("") && ! textBody.equals("") && ! t.equals("")){
+                    Toast.makeText(MakeGroupActivity.this, "올바른 숫자를 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
+                else if(studyGroupNumTot ==1 && ! title.equals("") && ! textBody.equals("") && ! t.equals("")){
+                    Toast.makeText(MakeGroupActivity.this, "모임은 혼자 하지 않아요", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(MakeGroupActivity.this, "모든 내용을 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
