@@ -37,6 +37,7 @@ import com.example.capstonedesignandroid.DTO.DummyStudentNameId;
 import com.example.capstonedesignandroid.GetService;
 import com.example.capstonedesignandroid.LectureroomCheckActivity;
 import com.example.capstonedesignandroid.LectureroomCheckDetailedActivity;
+import com.example.capstonedesignandroid.MyProfileActivity;
 import com.example.capstonedesignandroid.R;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.DefinedMethod;
 import com.example.capstonedesignandroid.StaticMethodAndOthers.MyConstants;
@@ -544,9 +545,10 @@ public class Fragment_Reservation_Today extends Fragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent2 = new Intent(getContext(), UserProfileActivity.class);
-                intent2.putExtra("leaderormember", 0);
+                Intent intent2 = new Intent(getContext(), MyProfileActivity.class);
+                intent2.putExtra("leaderormember", "0");
                 intent2.putExtra("userId", dummyStudentNameIdArrayList.get(position).getUserId());
+                intent2.putExtra("fromReadgroup", "true");
                 startActivity(intent2);
             }
         });
