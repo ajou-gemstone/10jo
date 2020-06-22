@@ -8,14 +8,37 @@
     android:orientation="vertical"
     tools:context=".MainBuildingGuardActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:gravity="left"
-        android:textColor="#000000"
-        android:text="예약 내역 조회하기"
-        android:textSize="20dp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="#000000"
+            android:text="예약 내역 조회하기"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textSize="10sp"
+            android:textColor="@color/asmr_blue"
+            android:textStyle="bold"
+            android:text="로그아웃"
+            android:background="@drawable/blue_trans_button" />
+
+    </LinearLayout>
 
     <View
         android:layout_width="0dp"

@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText position;
     String primary_id = "";
-    boolean loginsuccess= true;
+    boolean loginsuccess= false;
     ArrayList<String> mylectureArray = new ArrayList<>();
 
     String[] usertitle;
@@ -147,8 +147,14 @@ public class LoginActivity extends AppCompatActivity {
 
                     CallThread(call);
                     if (loginsuccess) {
-                        Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
-                        startActivityForResult(intent, 100);
+                        //경비원인 경우(id = 8)
+                        if(primary_id.equals("8")){
+                            Intent intent = new Intent(getApplicationContext(), MainBuildingGuardActivity.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+                            startActivityForResult(intent, 100);
+                        }
                     } else {
                         Toast.makeText(LoginActivity.this, "없는 아이디 또는 비밀번호입니다.", Toast.LENGTH_SHORT).show();
                         loginsuccess = true;
@@ -193,8 +199,11 @@ public class LoginActivity extends AppCompatActivity {
                     primary_id = dummies.getId();
                     Log.d("primary_id", dummies.getId());
                     if(!primary_id.equals("-1")) {
+                        String pastAvailCheckBox = SharedPreference.getAttribute(getApplicationContext(), "pastAvailCheckBox");
                         SharedPreference.removeAllAttribute(getApplicationContext());
                         SharedPreference.setAttribute(getApplicationContext(), "userId", primary_id);
+                        SharedPreference.setAttribute(getApplicationContext(), "pastAvailCheckBox", pastAvailCheckBox);
+                        Log.d("Login", "primary_id: " + primary_id);
                         loginsuccess = true;
                     }
                     else{

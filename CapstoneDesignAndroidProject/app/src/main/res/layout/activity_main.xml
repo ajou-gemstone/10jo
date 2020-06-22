@@ -34,6 +34,12 @@
             android:layout_height="wrap_content"
             android:text="추첨 테스트" />
 
+        <CheckBox
+            android:id="@+id/pastAvailCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="오늘 과거 예약 가능" />
+
     </LinearLayout>
 
 </RelativeLayout>

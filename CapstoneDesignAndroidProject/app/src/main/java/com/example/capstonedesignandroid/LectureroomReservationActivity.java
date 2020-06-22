@@ -104,6 +104,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private DummyReservationId reservationid;
     private ArrayList<LectureRoomReservationState> lectureRoomReservationStateArrayList;
     protected BottomNavigationView navigationView;
+    private String reserveDateString;
+    private String currentDateString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +154,9 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         currentDate = new Date();
         currentDate = reserveDate;
 
-        reserveTimeTextView.setText(""+DefinedMethod.getYear(currentDate)+"-"+Math.addExact(DefinedMethod.getMonth(currentDate), 1)+"-"+DefinedMethod.getDay(currentDate));
+        currentDateString = ""+DefinedMethod.getYear(currentDate)+"-"+Math.addExact(DefinedMethod.getMonth(currentDate), 1)+"-"+DefinedMethod.getDay(currentDate);
+        reserveDateString = currentDateString;
+        reserveTimeTextView.setText(currentDateString);
         //--------------------------------------------
 
         //모든 강의실 checkBox처리
@@ -521,6 +525,24 @@ public class LectureroomReservationActivity extends AppCompatActivity {
                     String date = "" + year + "-" + month + "-" + day;
                     String lectureroom = lectureRoomReservationStateArrayList.get(currentPosition).getLectureroom();//강의실
 
+                    //오늘+과거의 예약인 경우를 따진다.
+                    if(reserveDateString.equals(currentDateString)){
+                        Log.d("reserveDatecurrentDate", "currentDate: ");
+                        //과거에 예약이 불가하다면
+                        if(!SharedPreference.getAttribute(getApplicationContext(), "pastAvailCheckBox").equals("true")){
+                            if(!DefinedMethod.compareTime(DefinedMethod.getTimeByPosition(firstActualTag))){
+                                Log.d("currentDateAvail", "onClick: ");
+                                Toast.makeText(getApplicationContext(), "과거의 시간대를 예약할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                                if (tagChanged) {
+                                    int tmp = firstTag;
+                                    firstTag = secondTag;
+                                    secondTag = tmp;
+                                }
+                                return;
+                            }
+                        }
+                    }
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(LectureroomReservationActivity.this);
                     builder.setTitle("예약 내용:  " + lectureroom+ "   "+ month + "월" + " " + day + "일" + "\n" + "시작시간: " + DefinedMethod.getTimeByPosition(firstActualTag) +  "  종료시간: " + DefinedMethod.getTimeByPosition(secondActualTag+1));
                     final boolean[] checkedItems = {false};
@@ -645,35 +667,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         reserveDetermineButton.setVisibility(View.VISIBLE);
         recyclerViewReservation.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewReservation.getRecycledViewPool().setMaxRecycledViews(0, 0);
-
-//        selectMultipleTimeButton = findViewById(R.id.selectMultipleTimeButton);
-//        selectMultipleTimeButton.setVisibility(View.VISIBLE);
-//
-//        selectMultipleTimeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(selectMultipleTimeButtonClicked == false){
-//                    selectMultipleTimeButtonClicked = true;
-//                    //횡 스크롤 고정
-//                    lectureRoomScroll.setOnTouchListener(new View.OnTouchListener() {
-//                        @Override
-//                        public boolean onTouch(View view, MotionEvent motionEvent) {
-//                            return true;
-//                        }
-//                    });
-//                    Toast.makeText(getApplicationContext(), "영역을 선택하세요", Toast.LENGTH_LONG).show();
-//                }else{
-//                    selectMultipleTimeButtonClicked = false;
-//                    //횡 스크롤 고정 풀기
-//                    lectureRoomScroll.setOnTouchListener(new View.OnTouchListener() {
-//                        @Override
-//                        public boolean onTouch(View view, MotionEvent motionEvent) {
-//                            return false;
-//                        }
-//                    });
-//                }
-//            }
-//        });
 
         lectureRoomScroll = findViewById(R.id.lectureRoomScroll);
 
@@ -835,7 +828,8 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     public void getReservationDate(Date reserveDate){
         dataSelected = true;
         this.reserveDate = reserveDate;
-        reserveTimeTextView.setText(""+DefinedMethod.getYear(reserveDate)+"-"+Math.addExact(DefinedMethod.getMonth(reserveDate), 1)+"-"+DefinedMethod.getDay(reserveDate));
+        reserveDateString = ""+DefinedMethod.getYear(reserveDate)+"-"+Math.addExact(DefinedMethod.getMonth(reserveDate), 1)+"-"+DefinedMethod.getDay(reserveDate);
+        reserveTimeTextView.setText(reserveDateString);
     }
     public void getReservationType(boolean isFCFS){
         this.isFCFS = isFCFS;
