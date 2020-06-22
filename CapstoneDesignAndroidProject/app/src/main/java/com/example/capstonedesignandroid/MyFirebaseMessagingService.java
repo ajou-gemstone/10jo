@@ -187,6 +187,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     PendingIntent.FLAG_ONE_SHOT);
             setMessage(messageTitle, messageBody, pendingIntent);
         }
+        else if(messageBody.contains("패널티")) {
+            Intent intent = new Intent(this, MyProfileActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+            setMessage(messageTitle, messageBody, pendingIntent);
+        }
         else {
             Intent intent = new Intent(this, LectureroomCheckActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
