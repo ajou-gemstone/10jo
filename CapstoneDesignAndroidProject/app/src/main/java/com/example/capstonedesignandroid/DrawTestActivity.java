@@ -50,7 +50,6 @@ public class DrawTestActivity extends AppCompatActivity {
                     public void run() {
                         try {
                             DummyResponse response = call.execute().body();
-                            Toast.makeText(getApplicationContext(), ""+response+ "후에 추첨이 됩니다.", Toast.LENGTH_LONG).show();
                             Log.d("runDrawTestActivity: ", "run: ");
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -61,7 +60,7 @@ public class DrawTestActivity extends AppCompatActivity {
                 thread.start();
                 try {
                     thread.join();
-                } catch (Exception e) {
+                }catch (Exception e) {
 
                 }
             }

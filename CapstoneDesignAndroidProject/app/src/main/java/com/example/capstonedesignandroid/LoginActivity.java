@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String autologin = SharedPreference.getAttribute(getApplicationContext(), "userId");
 
-        //----------------------firebase--------------
+        //----------------------firebase------------------------
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -75,9 +75,14 @@ public class LoginActivity extends AppCompatActivity {
                 });
         //-------------------firebase-------------------
 
-        if( ! autologin.equals("-100") ){
-            Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
-            startActivityForResult(intent, 100);
+        if(!autologin.equals("-100") ){
+            if(autologin.equals("8")){
+                Intent intent = new Intent(getApplicationContext(), MainBuildingGuardActivity.class);
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+                startActivityForResult(intent, 100);
+            }
         }
 
         final EditText id = (EditText) findViewById(R.id.id);
@@ -85,6 +90,8 @@ public class LoginActivity extends AppCompatActivity {
         final Button login = (Button) findViewById(R.id.login);
         Button developer = (Button) findViewById(R.id.button_developer);
         Button signup = findViewById(R.id.button_signup);
+
+        developer.setVisibility(View.INVISIBLE);
 
         Intent intent1 = getIntent();
         String signedup = "fromsignup";
@@ -98,7 +105,6 @@ public class LoginActivity extends AppCompatActivity {
             alert_confirm.setPositiveButton("확인", null);
             // 다이얼로그 생성
             AlertDialog alert = alert_confirm.create();
-
             // 아이콘
             alert.setIcon(R.drawable.app);
             // 다이얼로그 타이틀
@@ -135,6 +141,19 @@ public class LoginActivity extends AppCompatActivity {
                 String id1 = String.valueOf(id.getText().toString());
                 String password1 = String.valueOf(password.getText().toString());
 
+                if(id1.equals("developer")){
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
+                //경비원인 경우(id = 8)
+                if(id1.equals("office") && password1.equals("office")){
+                    Intent intent = new Intent(getApplicationContext(), MainBuildingGuardActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
                 if( ! id1.equals("") && ! password1.equals("")) {
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(MyConstants.BASE)
@@ -147,14 +166,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     CallThread(call);
                     if (loginsuccess) {
-                        //경비원인 경우(id = 8)
-                        if(primary_id.equals("8")){
-                            Intent intent = new Intent(getApplicationContext(), MainBuildingGuardActivity.class);
-                            startActivity(intent);
-                        }else{
-                            Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
-                            startActivityForResult(intent, 100);
-                        }
+                        Intent intent = new Intent(getApplicationContext(), StudyBulletinBoardActivity.class);
+                        startActivityForResult(intent, 100);
                     } else {
                         Toast.makeText(LoginActivity.this, "없는 아이디 또는 비밀번호입니다.", Toast.LENGTH_SHORT).show();
                         loginsuccess = true;
