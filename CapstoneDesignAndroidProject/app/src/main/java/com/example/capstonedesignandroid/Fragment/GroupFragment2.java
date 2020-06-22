@@ -304,14 +304,16 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
                     if( ! categoryArray.get(i).equals("all") ) {
                         for(String lec : mylectureArray) {
-                            if(lec.equals(categoryArray.get(i)))
+                            if(lec.equals(categoryArray.get(i))){
                                 grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                            }
                         }
                     }
                 }
+                grouplistAdapter.notifyDataSetChanged();
 
             }
-        },100); 
+        },100);
         // 새로고침 완료
         mSwipeRefreshLayout.setRefreshing(false);
 
