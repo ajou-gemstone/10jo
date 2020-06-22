@@ -200,7 +200,6 @@ public interface GetService {
 
     //test용 - 선지망 후추첨인 경우 서버에서 강의실 확정을 짓는다.
     @FormUrlEncoded
-    @POST("/")
+    @POST("/reservation/test")
     Call<DummyResponse> postDrawDate(@Field("date") String date);
-
 }
