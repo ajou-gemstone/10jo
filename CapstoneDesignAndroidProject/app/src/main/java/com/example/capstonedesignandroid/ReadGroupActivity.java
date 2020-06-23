@@ -226,6 +226,7 @@ public class ReadGroupActivity extends AppCompatActivity {
                     Call<DummyResponse> call4 = groupService.acceptStudy(groupId, waitingUserIdarray.get(position));
                     CallThread_Accept(call4);
                     list.remove(position);
+                    waitingUserIdarray.remove(position);
                     userWaitingListAdapter.notifyDataSetChanged();
                 }
                 @Override
@@ -233,6 +234,7 @@ public class ReadGroupActivity extends AppCompatActivity {
                     Call<DummyResponse> call5 = groupService.rejectStudy(groupId, waitingUserIdarray.get(position));
                     CallThread_Reject(call5);
                     list.remove(position);
+                    waitingUserIdarray.remove(position);
                     userWaitingListAdapter.notifyDataSetChanged();
                 }
             });

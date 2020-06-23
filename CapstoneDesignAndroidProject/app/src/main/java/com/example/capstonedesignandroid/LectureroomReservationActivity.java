@@ -258,18 +258,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
             }
         });
 
-        //강의실 랜덤 확정
-        reserveRandomButton = findViewById(R.id.reserveRandomButton);
-        reserveRandomButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //입력: 날짜(하나), 건물(리스트), 시작시간(하나), 종료시간(하나), //강의실 예약 인원 수(하나)
-                //입력: {date: "YYYY-M-D", building: "성호관 율곡관 연암관" startTime: "0" lastTime: "3"}
-                //출력: {lectureroom: "성101", stateList: "R 0 0 0 1 L"}
-                //출력: {lectureroom: "성103", stateList: "R A A A L L"}
-            }
-        });
-
         //강의실 예약 조회
         reserveButton = findViewById(R.id.reserveButton);
         reserveButton.setOnClickListener(new View.OnClickListener() {

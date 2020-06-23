@@ -51,7 +51,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
     SwipeRefreshLayout mSwipeRefreshLayout;
     Context context;
     ArrayList<String> titleArray, tagArray;
-    ArrayList<Integer> idArray, currentNumArray, totalNumArray;
+    ArrayList<Integer> idArray, currentNumArray, totalNumArray, idListviewArray;
     EditText editSearch;
     GroupListAdapter groupAdapter = new GroupListAdapter();
 
@@ -72,6 +72,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
         idArray = new ArrayList<>();
         currentNumArray = new ArrayList<>();
         totalNumArray = new ArrayList<>();
+        idListviewArray = new ArrayList<>();
         context = container.getContext();
         editSearch = view.findViewById(R.id.editSearch);
         search = view.findViewById(R.id.search);
@@ -94,8 +95,6 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
         for (int i = 0; i <= titleArray.size() - 1; i++) {
             groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), "", currentNumArray.get(i), totalNumArray.get(i));
         }
-
-        //groupAdapter.clear();
 
         editSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -128,7 +127,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent2 = new Intent(getActivity(), ReadGroupActivity.class);
-                intent2.putExtra("groupId", idArray.get(position).toString());
+                intent2.putExtra("groupId", idListviewArray.get(position).toString());
                 startActivity(intent2);
             }
 
@@ -141,18 +140,22 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
     public void search(String charText) {
 
         groupAdapter.clear();
+        idListviewArray.clear();
 
         if (charText.length() == 0) {
             for (int i = 0; i <= titleArray.size() - 1; i++) {
                 groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", currentNumArray.get(i), totalNumArray.get(i));
+                 idListviewArray.add(idArray.get(i));
             }
         }
         else{
             for(int i = titleArray.size()-1;i >=0; i--) {
                 if (titleArray.get(i).contains(charText)) {
                     groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", currentNumArray.get(i), totalNumArray.get(i));
+                     idListviewArray.add(idArray.get(i));
                 } else if (tagArray.get(i).contains(charText)) {
                     groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i),"", currentNumArray.get(i), totalNumArray.get(i));
+                    idListviewArray.add(idArray.get(i));
                 }   
             }
         }
@@ -168,19 +171,21 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() { // 여기에 코드 추가
+                if (editSearch.getText().toString().equals("")) {
+                    Retrofit retrofit2 = new Retrofit.Builder()
+                            .baseUrl(MyConstants.BASE)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
 
-                Retrofit retrofit2 = new Retrofit.Builder()
-                        .baseUrl(MyConstants.BASE)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                    GroupService groupservice = retrofit2.create(GroupService.class);
+                    Call<List<Group>> call = groupservice.getMyStudyList(userId);
+                    CallThread(call);
 
-                GroupService groupservice = retrofit2.create(GroupService.class);
-                Call<List<Group>> call = groupservice.getMyStudyList(userId);
-                CallThread(call);
-
-                groupAdapter.clear();
-                for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), "", currentNumArray.get(i), totalNumArray.get(i));
+                    groupAdapter.clear();
+                    for (int i = 0; i <= titleArray.size() - 1; i++) {
+                        groupAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), "", currentNumArray.get(i), totalNumArray.get(i));
+                    }
+                    groupAdapter.notifyDataSetChanged();
                 }
             }
         },100); 
@@ -195,7 +200,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
             public void run() {
                 try {
                     List<Group> dummies = call.execute().body();
-                    tagArray.clear(); idArray.clear(); titleArray.clear(); currentNumArray.clear(); totalNumArray.clear();
+                    tagArray.clear(); idArray.clear(); titleArray.clear(); currentNumArray.clear(); totalNumArray.clear(); idListviewArray.clear();
                     for(int i = 0; i< dummies.size(); i++){
                             String tag = "";
                             if (dummies.get(dummies.size()-1-i).getTagName().size() != 0) {
@@ -205,6 +210,7 @@ public class GroupFragment3 extends Fragment implements SwipeRefreshLayout.OnRef
                             }
                             tagArray.add(tag);
                             idArray.add(dummies.get(dummies.size()-1-i).getId());
+                            idListviewArray.add(dummies.get(dummies.size()-1-i).getId());
                             titleArray.add(dummies.get(dummies.size()-1-i).getTitle());
                             currentNumArray.add(dummies.get(dummies.size()-1-i).getStudyGroupNumCurrent());
                             totalNumArray.add(dummies.get(dummies.size()-1-i).getStudyGroupNumTotal());
