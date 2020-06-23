@@ -175,20 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/reserveRandomButton"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_weight="1"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:textSize="17dp"
-                android:text="랜덤예약하기"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/green2_button"
-                android:visibility="invisible"/>
             <Button
                 android:id="@+id/reserveDetermineButton"
                 android:layout_centerInParent="true"
@@ -196,12 +183,9 @@
                 android:textStyle="bold"
                 android:text="예약하기"
                 android:textSize="17dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp"
                 android:background="@drawable/green_button"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:visibility="invisible"/>
+                android:layout_width="match_parent"
+                android:layout_height="35dp"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -49,7 +49,7 @@ public class TimeTableCompareFragment extends Fragment {
                 int tmpInt = Integer.parseInt(d.getContents());
 
                 switch (tmpInt){
-                    case 1: ll.setBackgroundColor(Color.argb(255, 220, 245, 132)); break;
+                    case 1: ll.setBackgroundColor(Color.argb(255, 232, 255, 150)); break;
                     case 2: ll.setBackgroundColor(Color.argb(255, 213, 240, 115)); break;
                     case 3: ll.setBackgroundColor(Color.argb(255, 198, 219, 118)); break;
                     case 4: ll.setBackgroundColor(Color.argb(255, 147, 186, 4)); break;
