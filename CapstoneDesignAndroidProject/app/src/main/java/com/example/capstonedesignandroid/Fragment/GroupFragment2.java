@@ -50,9 +50,9 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
     Context context;
     ArrayAdapter<String> adapter1;
     ArrayList<String> list, titleArray, tagArray, categoryArray, mylectureArray;
-    ArrayList<Integer> idArray, currentNumArray, totalNumArray;
+    ArrayList<Integer> idArray, currentNumArray, totalNumArray, idListviewArray;
     EditText editSearch;
-    String category = "";
+    String category = "전체";
     String userId;
     GroupListAdapter grouplistAdapter = new GroupListAdapter();
 
@@ -82,6 +82,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
         currentNumArray = new ArrayList<>();
         totalNumArray = new ArrayList<>();
         mylectureArray = new ArrayList<>();
+        idListviewArray = new ArrayList<>();
         list = new ArrayList<>();
         adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
 
@@ -159,7 +160,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent2 = new Intent(getActivity(), ReadGroupActivity.class);
-                intent2.putExtra("groupId", idArray.get(position).toString());
+                intent2.putExtra("groupId", idListviewArray.get(position).toString());
                 startActivity(intent2);
             }
         });
@@ -173,7 +174,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void run() {
                 try {
                     List<Group> dummies = call.execute().body();
-                    tagArray.clear(); idArray.clear(); titleArray.clear(); categoryArray.clear(); currentNumArray.clear(); totalNumArray.clear();
+                    tagArray.clear(); idArray.clear(); titleArray.clear(); categoryArray.clear(); currentNumArray.clear(); totalNumArray.clear(); idListviewArray.clear();
                     for(int i = 0; i< dummies.size(); i++){
                         if(! dummies.get(dummies.size()-1-i).getCategory().equals("all")) {
                             String tag = "";
@@ -184,6 +185,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                             }
                             tagArray.add(tag);
                             idArray.add(dummies.get(dummies.size()-1-i).getId());
+                            idListviewArray.add(dummies.get(dummies.size()-1-i).getId());
                             titleArray.add(dummies.get(dummies.size()-1-i).getTitle());
                             categoryArray.add(dummies.get(dummies.size()-1-i).getCategory());
                             currentNumArray.add(dummies.get(dummies.size()-1-i).getStudyGroupNumCurrent());
@@ -229,22 +231,27 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
     public void search(String charText, String category) {
 
         grouplistAdapter.clear();
+        idListviewArray.clear();
 
         if (charText.length() == 0) {    //모든 목록 추가하기
             if(category.equals("전체")) {
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
                     if( ! categoryArray.get(i).equals("all") ) {
                         for(String lec : mylectureArray) {
-                            if(lec.equals(categoryArray.get(i)))
+                            if(lec.equals(categoryArray.get(i))){
                                 grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                                idListviewArray.add(idArray.get(i));
+                            }
                         }
                     }
                 }
             }
             else{ //과목 선택했을 때
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (categoryArray.get(i).equals(category))
+                    if (categoryArray.get(i).equals(category)){
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        idListviewArray.add(idArray.get(i));
+                    }
                 }
             }
 
@@ -258,8 +265,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                             if(lec.equals(categoryArray.get(i))) {
                                 if (titleArray.get(i).contains(charText)) {
                                     grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                                    idListviewArray.add(idArray.get(i));
                                 } else if (tagArray.get(i).contains(charText)) {
                                     grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                                    idListviewArray.add(idArray.get(i));
                                 }
                             }
                         }
@@ -271,8 +280,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                     if( categoryArray.get(i).equals(category)) {
                         if (titleArray.get(i).contains(charText)) {
                             grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                            idListviewArray.add(idArray.get(i));
                         } else if (tagArray.get(i).contains(charText)) {
                             grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                            idListviewArray.add(idArray.get(i));
                         }
                     }
                 }
@@ -291,27 +302,28 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() { // 여기에 코드 추가
-                Retrofit retrofit1 = new Retrofit.Builder()
-                        .baseUrl(BASE)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                if (editSearch.getText().toString().equals("")) {
+                    Retrofit retrofit1 = new Retrofit.Builder()
+                            .baseUrl(BASE)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
 
-                GroupService groupService = retrofit1.create(GroupService.class);
-                Call<List<Group>> call1 = groupService.getStudyList();
-                CallThread(call1);
+                    GroupService groupService = retrofit1.create(GroupService.class);
+                    Call<List<Group>> call1 = groupService.getStudyList();
+                    CallThread(call1);
 
-                grouplistAdapter.clear();
-                for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if( ! categoryArray.get(i).equals("all") ) {
-                        for(String lec : mylectureArray) {
-                            if(lec.equals(categoryArray.get(i))){
-                                grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                    grouplistAdapter.clear();
+                    for (int i = 0; i <= titleArray.size() - 1; i++) {
+                        if (!categoryArray.get(i).equals("all")) {
+                            for (String lec : mylectureArray) {
+                                if (lec.equals(categoryArray.get(i))) {
+                                    grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                                }
                             }
                         }
                     }
+                    grouplistAdapter.notifyDataSetChanged();
                 }
-                grouplistAdapter.notifyDataSetChanged();
-
             }
         },100);
         // 새로고침 완료
