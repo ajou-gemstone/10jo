@@ -334,6 +334,7 @@ public class Fragment_Reservation_Today extends Fragment {
                             takePictureButton1.setVisibility(View.GONE);
                             pictureImageView1.setVisibility(View.VISIBLE);
                             transportPictureButton1.setText("제출 완료");
+                            pictureImageView1.setClickable(false);
                             transportPictureButton1.setClickable(false);
                         } else {
                             Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
@@ -357,6 +358,7 @@ public class Fragment_Reservation_Today extends Fragment {
                             takePictureButton2.setVisibility(View.GONE);
                             pictureImageView2.setVisibility(View.VISIBLE);
                             transportPictureButton2.setText("제출 완료");
+                            pictureImageView2.setClickable(false);
                             transportPictureButton2.setClickable(false);
                         } else {
                             Toast.makeText(getContext(), "이미지 업로드 실패", Toast.LENGTH_SHORT).show();
