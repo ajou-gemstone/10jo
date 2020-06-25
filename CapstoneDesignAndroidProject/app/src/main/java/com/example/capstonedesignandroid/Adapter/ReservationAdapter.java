@@ -126,7 +126,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             TextView textView = holder.lectureTimetable.findViewWithTag(""+i);
             textView.setText(eachState);
             textView.setTextColor(Color.argb(255, 255, 255, 255));
-            textView.setTextSize(17);
+            textView.setTextSize(14);
             //강의실이 이미 예약되어 있는 경우 click을 못하도록 막는다.
             if(eachState.equals("R") || eachState.equals("L")){
                 textView.setClickable(false);

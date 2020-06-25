@@ -368,6 +368,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onClick(View v) {
                 grouplistAdapter.clear();
+                idListviewArray.clear();
                 whole.setVisibility(View.GONE);
                 whole11.setVisibility(View.VISIBLE);
                 if(mylectureArray.size()==1){b1.setVisibility(View.VISIBLE); b11.setVisibility(View.GONE);}
@@ -382,8 +383,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
                     if (!categoryArray.get(i).equals("all")) {
                         for (String lec : mylectureArray) {
-                            if (lec.equals(categoryArray.get(i)))
+                            if (lec.equals(categoryArray.get(i))) {
                                 grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                                idListviewArray.add(idArray.get(i));
+                            }
                         }
                     }
                 }
@@ -394,6 +397,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onClick(View v) {
                 grouplistAdapter.clear();
+                idListviewArray.clear();
                 b1.setVisibility(View.GONE);
                 b11.setVisibility(View.VISIBLE);
                 whole.setVisibility(View.VISIBLE);
@@ -407,8 +411,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
                 category = b1.getText().toString();
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (categoryArray.get(i).equals(category))
+                    if (categoryArray.get(i).equals(category)) {
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        idListviewArray.add(idArray.get(i));
+                    }
                 }
                 grouplistAdapter.notifyDataSetChanged();
             }
@@ -417,6 +423,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onClick(View v) {
                 grouplistAdapter.clear();
+                idListviewArray.clear();
                 b2.setVisibility(View.GONE);
                 b22.setVisibility(View.VISIBLE);
                 whole.setVisibility(View.VISIBLE);
@@ -431,8 +438,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
                 category = b2.getText().toString();
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (categoryArray.get(i).equals(category))
+                    if (categoryArray.get(i).equals(category)) {
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        idListviewArray.add(idArray.get(i));
+                    }
                 }
                 grouplistAdapter.notifyDataSetChanged();
             }
@@ -441,6 +450,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onClick(View v) {
                 grouplistAdapter.clear();
+                idListviewArray.clear();
                 b3.setVisibility(View.GONE);
                 b33.setVisibility(View.VISIBLE);
                 whole.setVisibility(View.VISIBLE);
@@ -453,8 +463,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
                 category = b3.getText().toString();
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (categoryArray.get(i).equals(category))
+                    if (categoryArray.get(i).equals(category)) {
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        idListviewArray.add(idArray.get(i));
+                    }
                 }
                 grouplistAdapter.notifyDataSetChanged();
             }
@@ -463,6 +475,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onClick(View v) {
                 grouplistAdapter.clear();
+                idListviewArray.clear();
                 b4.setVisibility(View.GONE);
                 b44.setVisibility(View.VISIBLE);
                 whole.setVisibility(View.VISIBLE);
@@ -474,8 +487,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
                 category = b4.getText().toString();
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (categoryArray.get(i).equals(category))
+                    if (categoryArray.get(i).equals(category)) {
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        idListviewArray.add(idArray.get(i));
+                    }
                 }
                 grouplistAdapter.notifyDataSetChanged();
             }
@@ -484,6 +499,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onClick(View v) {
                 grouplistAdapter.clear();
+                idListviewArray.clear();
                 b5.setVisibility(View.GONE);
                 b55.setVisibility(View.VISIBLE);
                 whole.setVisibility(View.VISIBLE);
@@ -494,8 +510,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
                 category = b5.getText().toString();
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (categoryArray.get(i).equals(category))
+                    if (categoryArray.get(i).equals(category)) {
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        idListviewArray.add(idArray.get(i));
+                    }
                 }
                 grouplistAdapter.notifyDataSetChanged();
             }
@@ -504,6 +522,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onClick(View v) {
                 grouplistAdapter.clear();
+                idListviewArray.clear();
                 b6.setVisibility(View.GONE);
                 b66.setVisibility(View.VISIBLE);
                 whole.setVisibility(View.VISIBLE);
@@ -513,8 +532,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
                 category = b6.getText().toString();
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (categoryArray.get(i).equals(category))
+                    if (categoryArray.get(i).equals(category)) {
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        idListviewArray.add(idArray.get(i));
+                    }
                 }
                 grouplistAdapter.notifyDataSetChanged();
             }
@@ -523,6 +544,7 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onClick(View v) {
                 grouplistAdapter.clear();
+                idListviewArray.clear();
                 b7.setVisibility(View.GONE);
                 b77.setVisibility(View.VISIBLE);
                 whole.setVisibility(View.VISIBLE);
@@ -531,8 +553,10 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
 
                 category = b7.getText().toString();
                 for (int i = 0; i <= titleArray.size() - 1; i++) {
-                    if (categoryArray.get(i).equals(category))
+                    if (categoryArray.get(i).equals(category)) {
                         grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                        idListviewArray.add(idArray.get(i));
+                    }
                 }
                 grouplistAdapter.notifyDataSetChanged();
             }
