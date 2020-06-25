@@ -314,11 +314,13 @@ public class GroupFragment2 extends Fragment implements SwipeRefreshLayout.OnRef
                     CallThread(call1);
 
                     grouplistAdapter.clear();
+                    idListviewArray.clear();
                     for (int i = 0; i <= titleArray.size() - 1; i++) {
                         if (!categoryArray.get(i).equals("all")) {
                             for (String lec : mylectureArray) {
                                 if (lec.equals(categoryArray.get(i))) {
                                     grouplistAdapter.add(idArray.get(i), tagArray.get(i), titleArray.get(i), categoryArray.get(i), currentNumArray.get(i), totalNumArray.get(i));
+                                    idListviewArray.add(idArray.get(i));
                                 }
                             }
                         }
