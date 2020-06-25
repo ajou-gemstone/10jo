@@ -74,7 +74,6 @@ public class LectureroomReservationActivity extends AppCompatActivity {
     private long nowTime;
     private boolean isFCFS = true;
     private TextView reserveTypeTextView;
-    private Button reserveRandomButton;
     private Button reserveButton;
     private RecyclerView recyclerView;
     private ArrayList<String> list;
@@ -824,12 +823,9 @@ public class LectureroomReservationActivity extends AppCompatActivity {
         this.isFCFS = isFCFS;
         if(isFCFS){
             reserveTypeTextView.setText("선착순 예약");
-            //Todo: 랜덤 확정은 일단 뺀다
-//            reserveRandomButton.setVisibility(View.VISIBLE);
         }
         else{
             reserveTypeTextView.setText("선지망 후추첨 예약");
-            reserveRandomButton.setVisibility(View.INVISIBLE);
         }
     }
     //------------------------------------------------------
