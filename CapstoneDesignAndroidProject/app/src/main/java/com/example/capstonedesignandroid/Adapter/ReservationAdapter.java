@@ -125,7 +125,11 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             //여기에서야 비로소 time마다 state를 표시할 수 있다.
             TextView textView = holder.lectureTimetable.findViewWithTag(""+i);
             textView.setText(eachState);
-            textView.setTextColor(Color.argb(255, 255, 255, 255));
+            if(position == 0){
+                textView.setTextColor(Color.argb(255, 255, 255, 255));
+            }else{
+                textView.setTextColor(Color.argb(255, 0, 0, 0));
+            }
             textView.setTextSize(14);
             //강의실이 이미 예약되어 있는 경우 click을 못하도록 막는다.
             if(eachState.equals("R") || eachState.equals("L")){
