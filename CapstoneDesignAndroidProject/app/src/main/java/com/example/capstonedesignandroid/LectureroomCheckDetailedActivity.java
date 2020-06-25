@@ -358,9 +358,10 @@ public class LectureroomCheckDetailedActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent2 = new Intent(getApplicationContext(), UserProfileActivity.class);
-                intent2.putExtra("leaderormember", 0);
+                Intent intent2 = new Intent(getApplicationContext(), MyProfileActivity.class);
+                intent2.putExtra("leaderormember", "0");
                 intent2.putExtra("userId", dummyStudentNameIdArrayList.get(position).getUserId());
+                intent2.putExtra("fromReadgroup", "true");
                 startActivity(intent2);
             }
         });
