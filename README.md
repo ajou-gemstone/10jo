@@ -17,6 +17,7 @@
 
 ## Target
 - 아주대학생, 경비원, 교직원, 카페 점주
+<img src = "https://user-images.githubusercontent.com/48430005/105450354-a151d080-5cbd-11eb-89c3-86d6761c3582.jpg" width="400px">
 
 ## Value
 언제, 어디서든 원하는 모임을 가질 수 있다!
@@ -25,6 +26,10 @@
 - 갈 곳 없이 떠도는 학생들이 없게 하자
 - 시간 낭비와 귀찮음 줄여주자
 - 내 학교 내 건물 더 깨끗이 사용하자
+
+## 개발환경
+<img src = "https://user-images.githubusercontent.com/48430005/105450456-d4945f80-5cbd-11eb-8336-56db62945688.png" width="500px">
+<img src = "https://user-images.githubusercontent.com/48430005/105450458-d5c58c80-5cbd-11eb-990a-0eeee76a3c00.png" width="500px">
 
 ## App 
 ### 스터디 탭
@@ -45,3 +50,14 @@
 - 강의실 사용 전,후 상태를 사진으로 인증
 - 경비원은 실시간으로 한 눈에 확인 가능
 - 사용 상태에 따라 상/벌 제공
+
+## Web
+- 수업 등록 및 관리
+- 엑셀 파일 업로드/다운로드를 통해 가능
+- 강의실 우선예약하기
+- 강의실, 예약, 학생, 카페, 스터디 관리
+- 카페 등록 및 관리
+
+## 시연 영상
+https://drive.google.com/file/d/1M0V0YTNOwga9QEpGxT3lkQjJ6L2BQl8S/view?usp=sharing
+
